@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import CookieConsent from '../../src/components/CookieConsent'
 
 // Mock localStorage
@@ -36,7 +36,7 @@ describe('CookieConsent component', () => {
     }, { timeout: 2000 })
   })
 
-  it('should have necessary cookies always enabled', async () => {
+  it('should display banner when no preferences are saved', async () => {
     render(<CookieConsent />)
     
     await waitFor(() => {
@@ -46,7 +46,7 @@ describe('CookieConsent component', () => {
   })
 
   it('should not show banner if preferences are already saved', () => {
-    localStorageMock.setItem('cookieConsent', JSON.stringify({
+    localStorageMock.setItem('cookie-consent', JSON.stringify({
       necessary: true,
       functional: true,
       analytics: false,
@@ -57,8 +57,7 @@ describe('CookieConsent component', () => {
     
     // Banner should not appear immediately if consent is already saved
     const banner = screen.queryByText(/We use cookies/i)
-    // This might still be in the DOM but hidden, so we check for visibility or text presence
-    // If the component hides it with display:none or removes it, this should pass
+    expect(banner).not.toBeInTheDocument()
   })
 
   it('should have a link to privacy policy', async () => {

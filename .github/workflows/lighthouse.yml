@@ -7,14 +7,18 @@ on:
     types:
       - completed
   
+  # Run on pull requests
+  pull_request:
+    branches: ["main"]
+  
   # Allow manual trigger
   workflow_dispatch:
 
 # Only run if the deployment was successful
 jobs:
   lighthouse:
-    # Only run on successful deployment
-    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    # Only run on successful deployment, PR, or manual trigger
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     
     permissions:
