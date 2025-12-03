@@ -3,7 +3,7 @@ import FrequentlyAskedQuestions from '@/components/UI/Frequently-Asked-Questions
 
 const index = () => {
   return (
-    <div className="py-[50px]">
+    <div id="faq" className="py-[50px]">
       <div className="w-[90%] mx-auto lg:px-[20px]">
         <h1
           className="font-[400] text-[40px] lg:text-[48px]  tracking-[0] text-center mx-auto mb-[50px]"

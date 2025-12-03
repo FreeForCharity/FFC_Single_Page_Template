@@ -71,18 +71,13 @@ const Footer: React.FC = () => {
 
           <ul className="space-y-2 text-sm" id="lato-font">
             {[
-              { name: 'Home', href: '/' },
-              { name: 'About Us', href: '/about-us' },
-              { name: 'Donate', href: '/donate' },
-              { name: 'Volunteer', href: '/volunteer' },
-              {
-                name: 'Pre-501c3 Onboarding',
-                href: '/pre501c3',
-              },
-              {
-                name: '501c3 Onboarding',
-                href: '/501c3',
-              },
+              { name: 'Home', href: '/#hero' },
+              { name: 'Mission', href: '/#mission' },
+              { name: 'Programs', href: '/#programs' },
+              { name: 'Donate', href: '/#donate' },
+              { name: 'Volunteer', href: '/#volunteer' },
+              { name: 'FAQ', href: '/#faq' },
+              { name: 'Team', href: '/#team' },
               {
                 name: 'Supported Charity Login',
                 href: 'https://freeforcharity.org/hub/',
@@ -91,7 +86,7 @@ const Footer: React.FC = () => {
               <li key={link.name}>
                 <Link
                   href={link.href}
-                  target="_black"
+                  target={link.href.startsWith('http') ? '_blank' : undefined}
                   className="hover:text-[#F58C23] hover:tracking-widest transition-all text-[16px] font-[500]"
                 >
                   {link.name}

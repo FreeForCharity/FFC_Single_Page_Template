@@ -70,7 +70,7 @@ const TestimonialSlider: React.FC = () => {
   }
 
   return (
-    <section className="py-16 pb-25 bg-[#FCFCFC]">
+    <section id="testimonials" className="py-16 pb-25 bg-[#FCFCFC]">
       <div className="container mx-auto px-4 max-w-[1150px] text-center">
         <h2 className="font-bold text-[#F27022] text-[40px] leading-[44px] mb-7">Testimonials</h2>
 
