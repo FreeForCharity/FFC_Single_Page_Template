@@ -1,0 +1,91 @@
+name: Lighthouse CI
+
+on:
+  # Run after deployment workflow completes
+  workflow_run:
+    workflows: ["Deploy Next.js site to Pages"]
+    types:
+      - completed
+  
+  # Allow manual trigger
+  workflow_dispatch:
+
+# Only run if the deployment was successful
+jobs:
+  lighthouse:
+    # Only run on successful deployment
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build site
+        run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /FFC_Single_Page_Template
+      
+      - name: Run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli
+          lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+      
+      - name: Upload Lighthouse reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-reports
+          path: .lighthouseci
+          retention-days: 30
+      
+      - name: Comment PR with Lighthouse results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            
+            // Read Lighthouse results
+            const resultsDir = '.lighthouseci';
+            if (!fs.existsSync(resultsDir)) {
+              console.log('No Lighthouse results found');
+              return;
+            }
+            
+            // Find the manifest file
+            const manifestPath = path.join(resultsDir, 'manifest.json');
+            if (!fs.existsSync(manifestPath)) {
+              console.log('No manifest file found');
+              return;
+            }
+            
+            const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+            
+            // Create a comment with results summary
+            let comment = '## 🔦 Lighthouse CI Results\n\n';
+            comment += 'Performance audits completed. ';
+            comment += 'View detailed reports in the workflow artifacts.\n\n';
+            comment += `📊 **Pages Audited**: ${manifest.length}\n`;
+            comment += `🏃 **Runs Per Page**: 3\n\n`;
+            comment += 'Download the full reports from the workflow artifacts for detailed analysis.';
+            
+            // Post comment on PR
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });

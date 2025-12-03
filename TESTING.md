@@ -31,6 +31,20 @@ npm run preview
 Visit http://localhost:3000 to see the built site
 
 ### 5. Run Automated Tests
+
+**Unit Tests (Jest)**:
+```bash
+# Run all unit tests
+npm test
+
+# Run with coverage report
+npm run test:coverage
+
+# Run in watch mode (for development)
+npm run test:watch
+```
+
+**E2E Tests (Playwright)**:
 ```bash
 # First, ensure the site is built
 npm run build
@@ -38,20 +52,137 @@ npm run build
 # Install Playwright browsers (first time only)
 npx playwright install chromium
 
-# Run tests
-npm test
-```
+# Run E2E tests
+npm run test:e2e
 
-Tests verify:
-- Logo presence in top left corner (NavBar)
-- Logo presence in hero section
-- Both logos use the same image source
+# Run with UI
+npm run test:e2e:ui
+```
 
 ## Automated Test Suite
 
 ### Overview
 
-The project uses **Playwright** for end-to-end testing. All tests run automatically in CI before deployment.
+The project uses a **two-tier testing approach**:
+
+1. **Jest + React Testing Library**: Unit tests for components and utilities
+2. **Playwright**: End-to-end tests for user flows and critical functionality
+
+All tests run automatically in CI before deployment.
+
+---
+
+## Unit Testing (Jest)
+
+### Test Framework
+
+- **Jest**: v30.x - JavaScript testing framework
+- **React Testing Library**: v16.x - React component testing utilities
+- **@testing-library/jest-dom**: v6.x - Custom Jest matchers for DOM
+- **jest-environment-jsdom**: Simulates browser environment for tests
+
+### Running Unit Tests
+
+```bash
+# Run all unit tests
+npm test
+
+# Run with coverage report
+npm run test:coverage
+
+# Run in watch mode for development
+npm run test:watch
+
+# Run specific test file
+npm test -- __tests__/components/Header.test.tsx
+
+# Run tests matching a pattern
+npm test -- -t "Header"
+```
+
+### Test File Structure
+
+Unit tests are located in the `__tests__` directory, mirroring the source structure:
+
+```
+__tests__/
+├── components/
+│   ├── Header.test.tsx
+│   ├── Footer.test.tsx
+│   └── CookieConsent.test.tsx
+└── lib/
+    └── assetPath.test.ts
+```
+
+### Current Test Coverage
+
+**Components Tested**:
+- Header (navigation component)
+- Footer (footer component)
+- CookieConsent (cookie consent banner)
+
+**Utilities Tested**:
+- assetPath (asset path helper for GitHub Pages)
+
+**Coverage Threshold**: 5% (initial baseline, will be increased over time)
+
+### Writing Unit Tests
+
+Example component test:
+
+```tsx
+import React from 'react'
+import { render, screen } from '@testing-library/react'
+import MyComponent from '../../src/components/MyComponent'
+
+describe('MyComponent', () => {
+  it('should render correctly', () => {
+    render(<MyComponent title="Test" />)
+    expect(screen.getByText('Test')).toBeInTheDocument()
+  })
+
+  it('should handle user interaction', () => {
+    render(<MyComponent />)
+    fireEvent.click(screen.getByRole('button'))
+    expect(screen.getByText('Clicked')).toBeInTheDocument()
+  })
+})
+```
+
+Example utility test:
+
+```tsx
+import { myUtility } from '../../src/lib/myUtility'
+
+describe('myUtility', () => {
+  it('should return correct value', () => {
+    expect(myUtility('input')).toBe('expected-output')
+  })
+
+  it('should handle edge cases', () => {
+    expect(myUtility('')).toBe('')
+    expect(myUtility(null)).toBeNull()
+  })
+})
+```
+
+### Test Configuration
+
+**jest.config.js**: Main Jest configuration
+- Uses Next.js Jest integration
+- Configured for jsdom test environment
+- Code coverage collection enabled
+- Module path aliases configured
+
+**jest.setup.js**: Test environment setup
+- Imports @testing-library/jest-dom for custom matchers
+- Can be extended with global test setup
+
+---
+
+## E2E Testing (Playwright)
+
+### Test Framework
 
 **Test Framework**: Playwright v1.56.0  
 **Browser**: Chromium (uses system browser to avoid network restrictions)  
