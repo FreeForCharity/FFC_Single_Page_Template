@@ -61,7 +61,7 @@ const SupportFreeForCharity: React.FC = () => {
               heading="HELP FOR CHARITIES"
               text="If you are representing a charity or you currently work for a charity and want to improve your own skills start here to get help for your organization. You get instant access to many of our free tools and products right away!"
             />
-            <BlueBtn href="/help-for-charities" />
+            <BlueBtn href="/501c3" />
           </div>
 
           {/* Card 3 */}

@@ -10,7 +10,7 @@ const index = () => {
           className="font-[400] text-[40px] lg:text-[48px]  tracking-[0] text-center mx-auto mb-[50px]"
           id="faustina-font"
         >
-          Help for Charities
+          Our Programs
         </h1>
 
         <div className="lg:pl-[50px]">

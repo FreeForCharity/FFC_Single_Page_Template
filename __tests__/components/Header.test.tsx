@@ -39,7 +39,7 @@ describe('Header component', () => {
   it('should display main navigation links', () => {
     render(<Header />)
     expect(screen.getByText('Home')).toBeInTheDocument()
-    expect(screen.getByText('Help for Charities')).toBeInTheDocument()
+    expect(screen.getByText('Onboarding')).toBeInTheDocument()
     expect(screen.getByText('About Us')).toBeInTheDocument()
   })
 

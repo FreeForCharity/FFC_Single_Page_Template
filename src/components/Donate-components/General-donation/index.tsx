@@ -16,13 +16,13 @@ const index = () => {
             title="Monthly Donations"
             description="Monthly donations help by providing a predictable cash flow and are generally put towards expenses that are paid by free for charity each month like hosting and software licenses. By matching up our monthly bills to our monthly donations we can then scale up in tandem to produce more and more for charities."
             img="/Images/payment.gif"
-            href="/help-for-charities"
+            href="/donate"
           />
           <GeneralDonationCard
             title="One Time Donations"
             description="On time donations of any amount are placed in the general fund and used to help fund special projects as they become available throughout the year."
             img="/Images/payment.gif"
-            href="/help-for-charities"
+            href="/donate"
           />
           <GeneralDonationCard
             title="Large Donations"

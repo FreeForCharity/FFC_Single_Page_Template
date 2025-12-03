@@ -139,8 +139,7 @@ The Lighthouse CI configuration is in `lighthouserc.json`:
         "http://localhost/index.html",
         "http://localhost/about-us.html",
         "http://localhost/donate.html",
-        "http://localhost/volunteer.html",
-        "http://localhost/help-for-charities.html"
+        "http://localhost/volunteer.html"
       ],
       "numberOfRuns": 3
     }
@@ -467,7 +466,7 @@ This prevents unnecessary runs and saves CI/CD resources.
 
 **Last Updated**: 2025-12-03
 
-**Pages Monitored**: 5 key pages (Home, About, Donate, Volunteer, Help for Charities)
+**Pages Monitored**: 4 key pages (Home, About, Donate, Volunteer)
 
 **Monitoring Frequency**:
 
