@@ -389,7 +389,7 @@ groups:
 
 **Check**:
 1. Dependabot is enabled in repository settings
-   - Go to: Settings → Code security → Dependabot
+   - Go to: Settings → Security & Analysis → Dependabot
 2. `.github/dependabot.yml` syntax is valid
    - Use a YAML linter to check
 3. No errors in Dependabot logs
@@ -513,5 +513,5 @@ For issues or questions about Dependabot:
 ---
 
 **Configuration Version**: 1.0  
-**Last Updated**: December 2024  
+**Last Updated**: 2024-12-03  
 **Maintained By**: FreeForCharity Team

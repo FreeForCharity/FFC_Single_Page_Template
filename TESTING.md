@@ -307,7 +307,7 @@ GitHub Dependabot provides automated dependency management and security updates 
 
 **Issue**: Dependabot PRs not appearing
 - **Solution**: Check `.github/dependabot.yml` syntax with a YAML validator
-- **Solution**: Verify Dependabot is enabled in repository settings (Settings → Security & Analysis → Dependabot)
+- **Solution**: Verify Dependabot is enabled in repository settings (Settings → Security & Analysis → Dependabot alerts and Dependabot security updates)
 
 **Issue**: Dependabot creating too many PRs
 - **Solution**: Adjust `open-pull-requests-limit` in `dependabot.yml`
