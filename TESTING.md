@@ -436,10 +436,10 @@ Tests run automatically in GitHub Actions with the following workflows:
 
 **Current Warnings**:
 
-- 2 warnings about using `<img>` instead of `<Image />` (expected and acceptable)
-  - `src/app/components/NavBar.tsx:17:11`
-  - `src/app/page.tsx:82:17`
-- These warnings are intentional for static export with GitHub Pages basePath support
+- 8 warnings about using `<img>` instead of `<Image />` and React hooks (expected and acceptable)
+  - 6 warnings about `<img>` tags in various components (Footer, Header, UI components)
+  - 2 warnings about React hooks exhaustive dependencies
+- These warnings are intentional for static export with GitHub Pages basePath support and are not blocking issues
 
 ### TypeScript
 
@@ -831,6 +831,6 @@ FFC_Single_Page_Template/
 
 ---
 
-**Test Suite Status**: ✅ 5 passing, 1 skipped  
+**Test Suite Status**: ✅ 26 unit tests passing (4 test suites), 5 E2E passing, 1 E2E skipped  
 **Integration Status**: ✅ Complete  
-**Last Tested**: October 2025
+**Last Tested**: December 2025
