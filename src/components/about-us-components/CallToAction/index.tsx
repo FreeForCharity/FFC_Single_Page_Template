@@ -17,8 +17,8 @@ const Index = () => {
             <CallToActionCard
               icon={<IoIosHome className="w-[80px] h-[80px]" />}
               iconLabel="Home"
-              text="Help for Charity"
-              href="/help-for-charities"
+              text="Onboarding"
+              href="/501c3"
             />
             <CallToActionCard
               icon={<IoHeart className="w-[80px] h-[80px]" />}

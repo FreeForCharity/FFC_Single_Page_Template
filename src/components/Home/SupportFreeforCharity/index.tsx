@@ -58,10 +58,10 @@ const SupportFreeForCharity: React.FC = () => {
             </h1>
             <TrainingCard
               src="/Svgs/home.svg"
-              heading="HELP FOR CHARITIES"
+              heading="CHARITY ONBOARDING"
               text="If you are representing a charity or you currently work for a charity and want to improve your own skills start here to get help for your organization. You get instant access to many of our free tools and products right away!"
             />
-            <BlueBtn href="/help-for-charities" />
+            <BlueBtn href="/501c3" />
           </div>
 
           {/* Card 3 */}

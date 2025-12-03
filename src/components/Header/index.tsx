@@ -36,11 +36,10 @@ const Header: React.FC = () => {
   const menuItems: MenuItem[] = [
     { label: 'Home', path: '/', hasDropdown: false },
     {
-      label: 'Help for Charities',
-      path: '/help-for-charities',
+      label: 'Onboarding',
+      path: '/501c3',
       hasDropdown: true,
       dropdownItems: [
-        { label: 'Help for Charities', path: '/help-for-charities' },
         { label: '501c3 Onboarding Guide', path: '/501c3' },
         { label: 'Pre501c3 Onboarding Guide', path: '/pre501c3' },
         {

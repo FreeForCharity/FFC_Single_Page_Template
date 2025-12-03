@@ -75,7 +75,6 @@ const Footer: React.FC = () => {
               { name: 'About Us', href: '/about-us' },
               { name: 'Donate', href: '/donate' },
               { name: 'Volunteer', href: '/volunteer' },
-              { name: 'Help For Charities', href: '/help-for-charities' },
               {
                 name: 'Pre-501c3 Onboarding',
                 href: '/pre501c3',
