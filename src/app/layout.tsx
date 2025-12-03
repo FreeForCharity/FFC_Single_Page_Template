@@ -3,6 +3,7 @@ import './globals.css'
 import Header from './../components/Header'
 import Footer from './../components/Footer'
 import CookieConsent from './../components/CookieConsent'
+import GoogleTagManager, { GoogleTagManagerNoScript } from './../components/GoogleTagManager'
 
 // Get basePath for GitHub Pages deployment
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
@@ -78,7 +79,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <GoogleTagManager />
+      </head>
       <body className={`antialiased`} suppressHydrationWarning={true}>
+        <GoogleTagManagerNoScript />
         {/* <PopupProvider> */}
         <Header />
         {children}
