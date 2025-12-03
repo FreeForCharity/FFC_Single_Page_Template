@@ -15,14 +15,14 @@ const index = () => {
     <div>
       <Hero />
       <Mission />
+      <Results2023 />
+      <Testimonials />
+      <VolunteerwithUs />
       <SupportFreeForCharity />
       <EndowmentFeatures />
       <OurPrograms />
-      <VolunteerwithUs />
-      <Results2023 />
-      <Testimonials />
-      <TheFreeForCharityTeam />
       <FrequentlyAskedQuestions />
+      <TheFreeForCharityTeam />
     </div>
   );
 };
