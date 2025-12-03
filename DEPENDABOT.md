@@ -513,5 +513,5 @@ For issues or questions about Dependabot:
 ---
 
 **Configuration Version**: 1.0  
-**Last Updated**: 2024-12-03  
+**Last Updated**: 2025-12-03  
 **Maintained By**: FreeForCharity Team
