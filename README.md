@@ -61,7 +61,7 @@ The site is deployed to its live domain (ffcworkingsite1.org) but some functiona
 
 ## Overview
 
-This is a comprehensive multi-page website with **29 pages** and **83 components** that showcases Free For Charity's programs, services, and resources. The site is designed to enable donations and volunteer signups via global popups (currently disabled in code).
+This is a comprehensive multi-page website with **29 pages** and **111 component files** that showcases Free For Charity's programs, services, and resources. The site is designed to enable donations and volunteer signups via global popups (currently disabled in code).
 
 ### Site Structure
 
@@ -325,7 +325,7 @@ The following enhancements could further improve the test suite:
 ## Key Features
 
 - **Comprehensive Page Structure:** 29 pages covering programs, services, guides, and legal content
-- **Component Library:** 83 reusable components organized by feature/page
+- **Component Library:** 111 component files organized by feature/page
 - **Responsive Navigation:** Mobile and desktop navigation with Header/Footer components
 - **Cookie Consent System:** GDPR-compliant cookie consent management
 - **SEO Optimization:**
@@ -398,7 +398,7 @@ The site is configured for static export and deployed to GitHub Pages:
 
 - Live at: [https://ffcworkingsite1.org](https://ffcworkingsite1.org)
 - GitHub Pages URL: [https://freeforcharity.github.io/FFC_Single_Page_Template/](https://freeforcharity.github.io/FFC_Single_Page_Template/)
-- Deployment: Automatic via GitHub Actions (`.github/workflows/nextjs.yml`)
+- Deployment: Automatic via GitHub Actions (`.github/workflows/deploy.yml`)
 - Trigger: Push to `main` branch
 - Build output: Static files in `./out` directory
 

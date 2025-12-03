@@ -337,14 +337,23 @@ npm run test:ui       # Interactive Playwright UI
 
 #### CI/CD Environment
 
-Tests run automatically in GitHub Actions with the following configuration:
+Tests run automatically in GitHub Actions with two workflows:
 
-- **Trigger**: Every push to main branch
+**CI Workflow** (`.github/workflows/ci.yml`)
+
+- **Trigger**: Every pull request and push to main branch
 - **Environment**: Ubuntu latest with Node.js 20
+- **Steps**: Format check → Lint → Unit tests → Build → E2E tests
 - **Browser Setup**: `npx playwright install --with-deps chromium`
 - **Build**: Built with `NEXT_PUBLIC_BASE_PATH=/FFC_Single_Page_Template`
-- **Retry Logic**: Failed tests retry 2 times
-- **Failure Handling**: Deployment blocked if tests fail
+- **Retry Logic**: Failed tests retry 2 times in CI
+- **Failure Handling**: PR cannot be merged if tests fail
+
+**Deploy Workflow** (`.github/workflows/deploy.yml`)
+
+- **Trigger**: Only on push to main branch (after CI passes)
+- **Steps**: Build → Upload artifact → Deploy to GitHub Pages
+- **Deployment**: Blocked if build fails
 
 ### Test Configuration
 
@@ -369,11 +378,19 @@ Key settings:
 
 ### CI/CD Integration
 
-Tests run automatically in GitHub Actions:
+Tests run automatically in GitHub Actions workflows:
 
-- On every push to main branch
-- Before deployment to GitHub Pages
-- If tests fail, deployment is blocked
+**CI Workflow** (`.github/workflows/ci.yml`):
+
+- Runs on all pull requests and pushes to main
+- Includes format checking, linting, unit tests, build, and E2E tests
+- Must pass before PRs can be merged
+
+**Deploy Workflow** (`.github/workflows/deploy.yml`):
+
+- Runs only on push to main branch
+- Deploys to GitHub Pages after successful build
+- Deployment is blocked if build fails
 
 ## Static Analysis
 

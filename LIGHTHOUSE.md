@@ -82,11 +82,11 @@ Lighthouse is an open-source, automated tool developed by Google for improving t
 
 ### When Audits Run
 
-Lighthouse CI runs automatically:
+Lighthouse CI runs automatically via `.github/workflows/lighthouse.yml`:
 
-1. **After successful deployment** to the main branch
+1. **After successful deployment** to the main branch (triggered after deploy.yml completes)
 2. **On manual trigger** from the Actions tab
-3. **Multiple runs per page** (3 runs) to get median scores
+3. **Multiple runs per page** (3 runs) to get median scores for consistency
 
 ### Viewing CI Results
 
