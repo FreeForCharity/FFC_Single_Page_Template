@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import { FiMenu } from 'react-icons/fi'
 import { LiaSearchSolid } from 'react-icons/lia'
@@ -12,11 +12,32 @@ interface MenuItem {
   path: string
 }
 
+const SCROLL_OFFSET = 100
+
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<string>('')
+
+  const menuItems: MenuItem[] = useMemo(
+    () => [
+      { label: 'Home', path: '/#hero' },
+      { label: 'Mission', path: '/#mission' },
+      { label: 'Programs', path: '/#programs' },
+      { label: 'Volunteer', path: '/#volunteer' },
+      { label: 'Donate', path: '/#donate' },
+      { label: 'FAQ', path: '/#faq' },
+      { label: 'Team', path: '/#team' },
+    ],
+    []
+  )
+
+  const sections = useMemo(
+    () =>
+      menuItems.map((item) => item.path.replace('/#', '')).filter((section) => section !== 'hero'),
+    [menuItems]
+  )
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
@@ -27,8 +48,7 @@ const Header: React.FC = () => {
   // Track active section based on scroll position
   useEffect(() => {
     const handleScrollSpy = () => {
-      const sections = ['mission', 'programs', 'volunteer', 'donate', 'faq', 'team']
-      const scrollPosition = window.scrollY + 100
+      const scrollPosition = window.scrollY + SCROLL_OFFSET
 
       for (const sectionId of sections) {
         const element = document.getElementById(sectionId)
@@ -42,24 +62,14 @@ const Header: React.FC = () => {
         }
       }
       // If at the top, set home as active
-      if (window.scrollY < 100) {
+      if (window.scrollY < SCROLL_OFFSET) {
         setActiveSection('')
       }
     }
 
     window.addEventListener('scroll', handleScrollSpy)
     return () => window.removeEventListener('scroll', handleScrollSpy)
-  }, [])
-
-  const menuItems: MenuItem[] = [
-    { label: 'Home', path: '/#hero' },
-    { label: 'Mission', path: '/#mission' },
-    { label: 'Programs', path: '/#programs' },
-    { label: 'Volunteer', path: '/#volunteer' },
-    { label: 'Donate', path: '/#donate' },
-    { label: 'FAQ', path: '/#faq' },
-    { label: 'Team', path: '/#team' },
-  ]
+  }, [sections])
 
   const handleSearchToggle = () => setIsSearchOpen(!isSearchOpen)
   const handleLinkClick = () => {
@@ -179,7 +189,7 @@ const Header: React.FC = () => {
             }`}
           >
             <div
-              className={`max-w-[700px] mx-auto px-6 p-[5%] bg-white border-t-[3px] border-[#2EA3F2] shadow-[0_2px_5px_rgba(0,0,0,0.1)] max-h-[80vh] overflow-auto`}
+              className={`max-w-[700px] mx-auto px-6 py-4 bg-white border-t-[3px] border-[#2EA3F2] shadow-[0_2px_5px_rgba(0,0,0,0.1)] max-h-[80vh] overflow-auto`}
             >
               <ul className="space-y-2">
                 {menuItems.map((item, index) => (
