@@ -169,8 +169,28 @@ Tests run automatically on every push to main via GitHub Actions before deployme
 
 ### Security Analysis
 
+**GitHub Dependabot**
+- ✅ **Configuration File**: `.github/dependabot.yml` enables version updates
+  - npm packages (production and development dependencies)
+  - GitHub Actions workflow dependencies
+  - Weekly updates every Monday at 9:00 AM UTC
+  - Grouped updates for easier review
+- ⚙️ **Repository Settings**: Must be enabled for security alerts and security updates
+  - Settings → Security & Analysis → Dependabot alerts (enable this)
+  - Settings → Security & Analysis → Dependabot security updates (enable this)
+  - Security updates run immediately when vulnerabilities are detected
+- 📊 Monitor Dependabot PRs in the repository's Pull Requests tab
+- 📖 **Full Guide**: See [DEPENDABOT.md](./DEPENDABOT.md) for comprehensive documentation and setup instructions
+
+**CodeQL Security Scanning** (`.github/workflows/codeql.yml`)
+- ✅ Scans JavaScript/TypeScript code for security vulnerabilities
+- ✅ Scans GitHub Actions workflows for security issues
+- ✅ Runs on push to main, pull requests, and weekly schedule
+- 📊 View results in repository Security → Code scanning alerts
+
 **npm audit**
 - All dependencies are checked for security vulnerabilities
+- Run `npm audit` locally to check for known security issues
 
 ### CI/CD Integration
 
@@ -204,8 +224,8 @@ The following enhancements could improve the test suite and CI/CD process:
 - **Import Organization**: Add eslint-plugin-import for import sorting
 
 #### Security Testing
-- **Dependabot**: Enable GitHub Dependabot for automated dependency updates
-- **CodeQL**: Add GitHub CodeQL for security vulnerability scanning
+- ✅ **Dependabot**: Enabled for automated dependency updates (npm + GitHub Actions)
+- ✅ **CodeQL**: Enabled for security vulnerability scanning
 - **npm audit**: Add automated npm audit checks to CI with failure threshold
 
 #### Build Quality Gates
