@@ -9,6 +9,7 @@
     "lint": "eslint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "check-links": "linkinator ./out --recurse --config .linkinatorrc.json",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -50,6 +51,7 @@
     "jest": "^30.2.0",
     "jest-axe": "^10.0.0",
     "jest-environment-jsdom": "^30.2.0",
+    "linkinator": "^7.5.0",
     "prettier": "^3.7.4",
     "tailwindcss": "^4.1.12",
     "typescript": "^5"

@@ -1,0 +1,71 @@
+name: CI - Build and Test
+
+on:
+  # Runs on all pull requests
+  pull_request:
+    branches: ['main']
+
+  # Runs on pushes to main (before deploy)
+  push:
+    branches: ['main']
+
+  # Allows manual trigger from Actions tab
+  workflow_dispatch:
+
+# Cancel in-progress CI runs for the same PR/branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-build:
+    name: Test and Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Run linting
+        run: npm run lint
+
+      - name: Run unit tests
+        run: npm test
+        env:
+          CI: true
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Build Next.js site
+        run: npm run build
+        env:
+          # Set basePath for GitHub Pages deployment
+          NEXT_PUBLIC_BASE_PATH: /FFC_Single_Page_Template
+
+      - name: Run E2E tests
+        run: npm run test:e2e
+        env:
+          CI: true
+
+      - name: Upload build artifacts (for debugging)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: |
+            .next/
+            out/
+          retention-days: 7
