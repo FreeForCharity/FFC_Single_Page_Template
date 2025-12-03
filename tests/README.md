@@ -153,7 +153,10 @@ Tests are configured in `playwright.config.ts` at the project root.
 
 Tests are automatically run in GitHub Actions on every push to the main branch.
 
-**Workflow**: `.github/workflows/nextjs.yml`
+**Workflows**:
+
+- `.github/workflows/ci.yml` - CI testing on all PRs and pushes
+- `.github/workflows/deploy.yml` - Deployment on push to main
 
 **CI Pipeline Steps**:
 

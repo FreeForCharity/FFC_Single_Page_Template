@@ -196,34 +196,49 @@ The repository uses automated quality checks to ensure code quality and security
 
 ### 1. Pre-merge Checks (on Pull Requests)
 
-- **CodeQL Code Scanning** (`.github/workflows/codeql.yml`)
-  - Runs automatically on every pull request targeting `main`
-  - Scans for security vulnerabilities and code quality issues
-  - Must pass before merging
+**CI Workflow** (`.github/workflows/ci.yml`)
 
-- **Status Visibility**
-  - You can see the status of these checks in your pull request
-  - Click "Details" next to any check to see the full logs
-  - If a check fails, review the error messages and fix the issue
-  - Push new commits to your branch to re-trigger the checks
+- Runs automatically on every pull request targeting `main`
+- Steps include:
+  - Code formatting check (Prettier)
+  - Linting (ESLint)
+  - Unit tests (Jest)
+  - Static site build with proper basePath configuration
+  - End-to-end tests (Playwright)
+- Must pass before merging
 
-### 2. Post-merge CI/CD Pipeline (on Push to Main)
+**CodeQL Code Scanning** (`.github/workflows/codeql.yml`)
 
-- **Build and Test Workflow** (`.github/workflows/nextjs.yml`)
-  - Runs automatically after code is merged to `main` (on push to `main`)
-  - Can also be triggered manually via workflow dispatch
-  - Steps include:
-    - Node.js 20 environment setup
-    - Clean dependency installation (`npm ci`)
-    - Next.js static site build with proper basePath configuration
-    - Playwright end-to-end tests (logo visibility, GitHub Pages compatibility)
-    - Deployment to GitHub Pages from `./out` directory
-  - All build and test steps must pass for successful deployment
+- Runs automatically on every pull request targeting `main`
+- Scans for security vulnerabilities and code quality issues
+- Must pass before merging
 
-- **Security Scanning**
-  - Additional security scanning tools may run as configured in GitHub security settings
-  - Dependency vulnerability checks are performed
-  - Must have no high-severity issues
+**Status Visibility**
+
+- You can see the status of these checks in your pull request
+- Click "Details" next to any check to see the full logs
+- If a check fails, review the error messages and fix the issue
+- Push new commits to your branch to re-trigger the checks
+
+### 2. Post-merge Deployment (on Push to Main)
+
+**Deploy Workflow** (`.github/workflows/deploy.yml`)
+
+- Runs automatically on push to `main` branch
+- Can also be triggered manually via workflow dispatch
+- Steps include:
+  - Node.js 20 environment setup
+  - Clean dependency installation (`npm ci`)
+  - Next.js static site build with basePath for GitHub Pages
+  - Static site artifact upload
+  - Deployment to GitHub Pages from `./out` directory
+- Deployment fails if build encounters errors
+
+**Security Scanning**
+
+- CodeQL continues to run on main branch pushes
+- Dependency vulnerability checks are performed
+- Security alerts visible in repository Security tab
 
 ---
 

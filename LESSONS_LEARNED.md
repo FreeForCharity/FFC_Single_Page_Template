@@ -112,7 +112,7 @@ The FFC Single Page Template was created as a standardized, reusable foundation 
 
 **Current Stats**:
 
-- 83+ components
+- 111 component files
 - Well-organized in `/src/components/`
 - Each component has single responsibility
 
@@ -410,7 +410,7 @@ docs: update README with new deployment instructions
 **Solution**:
 
 - Split into separate `ci.yml` and `deploy.yml`
-- CI runs on all PRs (fast feedback)
+- CI runs on all PRs and pushes (fast feedback)
 - Deploy only runs on main branch push
 - Lighthouse runs after deployment
 
