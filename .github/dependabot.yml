@@ -19,12 +19,16 @@ updates:
       - "npm"
     groups:
       # Group all npm production dependencies together
+      # Note: Major version updates are excluded and handled individually
+      # to allow careful review of potentially breaking changes
       production-dependencies:
         dependency-type: "production"
         update-types:
           - "minor"
           - "patch"
       # Group all npm development dependencies together
+      # Note: Major version updates are excluded and handled individually
+      # to allow careful review of potentially breaking changes
       development-dependencies:
         dependency-type: "development"
         update-types:
