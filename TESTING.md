@@ -231,7 +231,7 @@ GitHub Dependabot provides automated dependency management and security updates 
 2. **github-actions** - GitHub Actions workflows in `.github/workflows/`
 
 **Update Schedule**:
-- Runs every Monday at 9:00 AM
+- Runs every Monday at 9:00 AM UTC
 - Checks for new versions and security vulnerabilities
 - Creates pull requests automatically
 

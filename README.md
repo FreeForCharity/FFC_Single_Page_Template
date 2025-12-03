@@ -173,7 +173,7 @@ Tests run automatically on every push to main via GitHub Actions before deployme
 - ✅ **Configuration File**: `.github/dependabot.yml` enables version updates
   - npm packages (production and development dependencies)
   - GitHub Actions workflow dependencies
-  - Weekly updates every Monday at 9:00 AM
+  - Weekly updates every Monday at 9:00 AM UTC
   - Grouped updates for easier review
 - ⚙️ **Repository Settings**: Must be enabled for security alerts and security updates
   - Settings → Security & Analysis → Dependabot alerts (enable this)

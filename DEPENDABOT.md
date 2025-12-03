@@ -36,7 +36,7 @@ Dependabot consists of three components that work together:
 Dependabot automatically checks for newer versions of dependencies and creates pull requests to update them.
 
 **What it does**:
-- Checks for updates on a weekly schedule (every Monday at 9:00 AM)
+- Checks for updates on a weekly schedule (every Monday at 9:00 AM UTC)
 - Creates grouped pull requests for easier review
 - Includes changelogs, release notes, and compatibility information
 - Helps prevent dependency drift and technical debt
@@ -107,7 +107,7 @@ updates:
 #### Package Ecosystem: npm
 
 - **directory**: `"/"` - Looks for `package.json` in the root directory
-- **schedule**: Weekly checks every Monday at 9:00 AM
+- **schedule**: Weekly checks every Monday at 9:00 AM UTC
 - **open-pull-requests-limit**: Maximum of 10 open PRs at once
 - **commit-message prefix**: `"npm"` - All commits start with "npm:"
 - **labels**: PRs tagged with "dependencies" and "npm" for easy filtering
@@ -119,7 +119,7 @@ updates:
 #### Package Ecosystem: github-actions
 
 - **directory**: `"/"` - Looks for workflows in `.github/workflows/`
-- **schedule**: Weekly checks every Monday at 9:00 AM
+- **schedule**: Weekly checks every Monday at 9:00 AM UTC
 - **open-pull-requests-limit**: Maximum of 5 open PRs at once
 - **commit-message prefix**: `"ci"` - All commits start with "ci:"
 - **labels**: PRs tagged with "dependencies" and "github-actions"
