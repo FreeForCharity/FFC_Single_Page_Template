@@ -1,18 +1,18 @@
-"use client";
+'use client'
 
-import React from "react";
-import Image from "next/image";
-import { IoIosArrowForward } from "react-icons/io";
-import { motion, Variants } from "framer-motion";
+import React from 'react'
+import Image from 'next/image'
+import { IoIosArrowForward } from 'react-icons/io'
+import { motion, Variants } from 'framer-motion'
 
 const sectionVariants: Variants = {
   offscreen: { opacity: 0, scale: 0.8 },
   onscreen: {
     opacity: 1,
     scale: 1,
-    transition: { type: "spring", bounce: 0.3, duration: 0.6 },
+    transition: { type: 'spring', bounce: 0.3, duration: 0.6 },
   },
-};
+}
 
 const Index = () => {
   return (
@@ -47,17 +47,12 @@ const Index = () => {
               Credit Karma (free add supported)
             </h3>
 
-            <div
-              className="text-white text-[18px] leading-[24px] font-[500]"
-              id="lato-font"
-            >
-              Credit Karma actually gives you a FREE credit score and report
-              from transunion. When I say free I mean it. At no time does it
-              even ask you for a credit card so it is impossible to charge you.
-              It uses the same model as Mint.com for income and serves you with
-              information based on what it pulls. This is a great way to get
-              your score and report alerts. You don’t really need all three
-              reports this gets the job done.
+            <div className="text-white text-[18px] leading-[24px] font-[500]" id="lato-font">
+              Credit Karma actually gives you a FREE credit score and report from transunion. When I
+              say free I mean it. At no time does it even ask you for a credit card so it is
+              impossible to charge you. It uses the same model as Mint.com for income and serves you
+              with information based on what it pulls. This is a great way to get your score and
+              report alerts. You don’t really need all three reports this gets the job done.
             </div>
 
             {/* Button */}
@@ -120,15 +115,11 @@ const Index = () => {
               Rescue Time (free with a paid premium version)
             </h3>
 
-            <div
-              className="text-white text-[18px] leading-[24px] font-[500]"
-              id="lato-font"
-            >
-              Rescue Time is another FREE tool that really tells you about
-              yourself and how you spend your time. It is amazing once you get
-              it set up. The only downside is that you may not be able to
-              install this on your work computer. NOTE: I use the paid version
-              on my systems.
+            <div className="text-white text-[18px] leading-[24px] font-[500]" id="lato-font">
+              Rescue Time is another FREE tool that really tells you about yourself and how you
+              spend your time. It is amazing once you get it set up. The only downside is that you
+              may not be able to install this on your work computer. NOTE: I use the paid version on
+              my systems.
             </div>
 
             {/* Button */}
@@ -163,7 +154,7 @@ const Index = () => {
         </motion.div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

@@ -1,5 +1,5 @@
-import React from "react";
-import Image from "next/image";
+import React from 'react'
+import Image from 'next/image'
 
 const Index = () => {
   return (
@@ -22,9 +22,8 @@ const Index = () => {
             id="raleway-font"
             className="text-[18px] md:text-[20px] font-[600] leading-[28px] md:leading-[30px]"
           >
-            Welcome to Free For Charity Hosting, a project of Free For Charity
-            providing free domains and hosting services to other Non-Profit
-            Organizations
+            Welcome to Free For Charity Hosting, a project of Free For Charity providing free
+            domains and hosting services to other Non-Profit Organizations
           </p>
         </div>
 
@@ -46,7 +45,7 @@ const Index = () => {
       {/* White Curved Overlay */}
       <div className="h-[100px] w-full"></div>
     </section>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

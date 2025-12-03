@@ -1,5 +1,5 @@
-import React from "react";
-import GeneralDonationCard from "@/components/UI/General-Donation-Card";
+import React from 'react'
+import GeneralDonationCard from '@/components/UI/General-Donation-Card'
 
 const index = () => {
   return (
@@ -33,7 +33,7 @@ const index = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

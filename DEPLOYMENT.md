@@ -119,17 +119,20 @@ While automated deployment is recommended, you can also deploy manually if neede
 ### Manual Deployment Steps
 
 1. **Clone the repository** (if not already done):
+
    ```bash
    git clone https://github.com/FreeForCharity/FFC_Single_Page_Template.git
    cd FFC_Single_Page_Template
    ```
 
 2. **Install dependencies**:
+
    ```bash
    npm install
    ```
 
 3. **Run tests** to ensure everything works:
+
    ```bash
    npm run lint
    npm test
@@ -137,11 +140,13 @@ While automated deployment is recommended, you can also deploy manually if neede
    ```
 
 4. **Build the site** with the correct base path:
+
    ```bash
    NEXT_PUBLIC_BASE_PATH=/FFC_Single_Page_Template npm run build
    ```
 
 5. **Verify the build**:
+
    ```bash
    npm run preview
    # Visit http://localhost:3000 to test
@@ -180,6 +185,7 @@ The site will be built without a base path, making all assets available at the r
 If using a custom domain:
 
 1. **Add a CNAME file** to the `public` directory with your domain:
+
    ```
    www.freeforcharity.org
    ```
@@ -198,6 +204,7 @@ If using a custom domain:
 ### DNS Propagation
 
 After configuring DNS:
+
 - Changes can take 24-48 hours to propagate
 - Use `dig` or online DNS tools to verify propagation
 - Clear browser cache when testing
@@ -210,12 +217,12 @@ After configuring DNS:
 
 These variables are embedded during the build process:
 
-| Variable | Purpose | Default | Required |
-|----------|---------|---------|----------|
-| `NEXT_PUBLIC_BASE_PATH` | Base path for GitHub Pages | (empty) | No |
-| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics ID | `G-XXXXXXXXXX` | No |
-| `NEXT_PUBLIC_META_PIXEL_ID` | Meta Pixel ID | `XXXXXXXXXXXXXXX` | No |
-| `NEXT_PUBLIC_CLARITY_PROJECT_ID` | Microsoft Clarity ID | `XXXXXXXXXX` | No |
+| Variable                         | Purpose                    | Default           | Required |
+| -------------------------------- | -------------------------- | ----------------- | -------- |
+| `NEXT_PUBLIC_BASE_PATH`          | Base path for GitHub Pages | (empty)           | No       |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID`  | Google Analytics ID        | `G-XXXXXXXXXX`    | No       |
+| `NEXT_PUBLIC_META_PIXEL_ID`      | Meta Pixel ID              | `XXXXXXXXXXXXXXX` | No       |
+| `NEXT_PUBLIC_CLARITY_PROJECT_ID` | Microsoft Clarity ID       | `XXXXXXXXXX`      | No       |
 
 ### Setting Environment Variables in GitHub Actions
 
@@ -255,16 +262,18 @@ NEXT_PUBLIC_CLARITY_PROJECT_ID=
 **Symptoms**: Images return 404 errors or don't display
 
 **Causes**:
+
 - Incorrect `NEXT_PUBLIC_BASE_PATH` setting
 - Not using the `assetPath()` helper function
 - Missing images in the `public` directory
 
 **Solutions**:
+
 1. Verify `NEXT_PUBLIC_BASE_PATH` is set correctly in the build environment
 2. Check that all image paths use `assetPath()`:
    ```tsx
    import { assetPath } from '@/lib/assetPath'
-   <img src={assetPath('/images/logo.png')} alt="Logo" />
+   ;<img src={assetPath('/images/logo.png')} alt="Logo" />
    ```
 3. Ensure images exist in the `public` directory
 
@@ -273,12 +282,14 @@ NEXT_PUBLIC_CLARITY_PROJECT_ID=
 **Symptoms**: GitHub Actions workflow fails during the build step
 
 **Common Causes**:
+
 - TypeScript errors
 - Linting errors
 - Missing dependencies
 - Test failures
 
 **Solutions**:
+
 1. Run locally to reproduce:
    ```bash
    npm run lint
@@ -296,6 +307,7 @@ NEXT_PUBLIC_CLARITY_PROJECT_ID=
 **Cause**: GitHub Pages doesn't support client-side routing by default
 
 **Solution**: Next.js static export handles this automatically. Ensure:
+
 1. `output: 'export'` is set in `next.config.ts`
 2. All pages are pre-rendered during build
 3. No dynamic routes are used (or they're pre-generated with `generateStaticParams`)
@@ -305,11 +317,13 @@ NEXT_PUBLIC_CLARITY_PROJECT_ID=
 **Symptoms**: Site displays with no styling
 
 **Causes**:
+
 - CSS build errors
 - Incorrect asset paths
 - Tailwind CSS configuration issues
 
 **Solutions**:
+
 1. Check build logs for CSS compilation errors
 2. Verify `postcss.config.mjs` and Tailwind config are correct
 3. Clear browser cache and hard refresh

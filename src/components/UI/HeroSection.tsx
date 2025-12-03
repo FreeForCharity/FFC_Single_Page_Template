@@ -1,15 +1,15 @@
-"use client";
+'use client'
 
-import React from "react";
-import Image from "next/image";
+import React from 'react'
+import Image from 'next/image'
 
 interface HeroSectionProps {
-  heading: string;
-  paragraph: string;
-  heroImg: string;
-  fontSize?: number;
-  lineHeight?: number;
-  imageContainerWidth?: string; // 👈 new prop (e.g., "w-[100%]" or "w-[80%]")
+  heading: string
+  paragraph: string
+  heroImg: string
+  fontSize?: number
+  lineHeight?: number
+  imageContainerWidth?: string // 👈 new prop (e.g., "w-[100%]" or "w-[80%]")
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
@@ -18,7 +18,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   heroImg,
   fontSize,
   lineHeight,
-  imageContainerWidth = "w-[100%] lg:w-[62%]", // 👈 default value
+  imageContainerWidth = 'w-[100%] lg:w-[62%]', // 👈 default value
 }) => {
   return (
     <section
@@ -37,8 +37,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               className="font-[500] w-full mt-[11px]"
               id="lato-font"
               style={{
-                fontSize: fontSize ? `${fontSize}px` : "22px",
-                lineHeight: lineHeight ? `${lineHeight}px` : "31px",
+                fontSize: fontSize ? `${fontSize}px` : '22px',
+                lineHeight: lineHeight ? `${lineHeight}px` : '31px',
               }}
             >
               {paragraph}
@@ -62,7 +62,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default HeroSection;
+export default HeroSection

@@ -30,31 +30,40 @@ describe('CookieConsent component', () => {
 
   it('should show cookie banner on first visit', async () => {
     render(<CookieConsent />)
-    
-    await waitFor(() => {
-      expect(screen.queryByText(/cookies/i)).toBeInTheDocument()
-    }, { timeout: 2000 })
+
+    await waitFor(
+      () => {
+        expect(screen.queryByText(/cookies/i)).toBeInTheDocument()
+      },
+      { timeout: 2000 }
+    )
   })
 
   it('should display banner when no preferences are saved', async () => {
     render(<CookieConsent />)
-    
-    await waitFor(() => {
-      const banner = screen.queryByText(/cookies/i)
-      expect(banner).toBeInTheDocument()
-    }, { timeout: 2000 })
+
+    await waitFor(
+      () => {
+        const banner = screen.queryByText(/cookies/i)
+        expect(banner).toBeInTheDocument()
+      },
+      { timeout: 2000 }
+    )
   })
 
   it('should not show banner if preferences are already saved', () => {
-    localStorageMock.setItem('cookie-consent', JSON.stringify({
-      necessary: true,
-      functional: true,
-      analytics: false,
-      marketing: false,
-    }))
-    
+    localStorageMock.setItem(
+      'cookie-consent',
+      JSON.stringify({
+        necessary: true,
+        functional: true,
+        analytics: false,
+        marketing: false,
+      })
+    )
+
     render(<CookieConsent />)
-    
+
     // Banner should not appear immediately if consent is already saved
     const banner = screen.queryByText(/We use cookies/i)
     expect(banner).not.toBeInTheDocument()
@@ -62,10 +71,13 @@ describe('CookieConsent component', () => {
 
   it('should have a link to privacy policy', async () => {
     render(<CookieConsent />)
-    
-    await waitFor(() => {
-      const privacyLinks = screen.queryAllByText(/Privacy Policy/i)
-      expect(privacyLinks.length).toBeGreaterThanOrEqual(1)
-    }, { timeout: 2000 })
+
+    await waitFor(
+      () => {
+        const privacyLinks = screen.queryAllByText(/Privacy Policy/i)
+        expect(privacyLinks.length).toBeGreaterThanOrEqual(1)
+      },
+      { timeout: 2000 }
+    )
   })
 })

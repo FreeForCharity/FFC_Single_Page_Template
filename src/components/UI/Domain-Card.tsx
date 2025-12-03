@@ -1,18 +1,18 @@
-import React from "react";
-import Image from "next/image";
+import React from 'react'
+import Image from 'next/image'
 
 type StepCardProps = {
-  imageSrc: string;
-  imageAlt?: string;
-  text: string;
-  className?: string;
-};
+  imageSrc: string
+  imageAlt?: string
+  text: string
+  className?: string
+}
 
 export default function StepCard({
   imageSrc,
-  imageAlt = "Step icon",
+  imageAlt = 'Step icon',
   text,
-  className = "",
+  className = '',
 }: StepCardProps) {
   return (
     <div
@@ -39,5 +39,5 @@ export default function StepCard({
         {text}
       </p>
     </div>
-  );
+  )
 }

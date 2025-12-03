@@ -10,10 +10,14 @@ jest.mock('next/navigation', () => ({
 // Mock framer-motion to avoid animation issues in tests
 jest.mock('framer-motion', () => ({
   motion: {
-    div: ({ children, ...props }: any) => <div {...props}>{children}</div>,
-    nav: ({ children, ...props }: any) => <nav {...props}>{children}</nav>,
+    div: ({ children, ...props }: React.PropsWithChildren<Record<string, unknown>>) => (
+      <div {...props}>{children}</div>
+    ),
+    nav: ({ children, ...props }: React.PropsWithChildren<Record<string, unknown>>) => (
+      <nav {...props}>{children}</nav>
+    ),
   },
-  AnimatePresence: ({ children }: any) => <>{children}</>,
+  AnimatePresence: ({ children }: React.PropsWithChildren) => <>{children}</>,
 }))
 
 describe('Header component', () => {

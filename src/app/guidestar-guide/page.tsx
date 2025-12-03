@@ -1,8 +1,8 @@
-import React from "react";
-import HeroSection from "@/components/UI/HeroSection";
-import FreeForCharity from "@/components/guidestar-guide/Free-for-charity";
-import Faqs from "@/components/guidestar-guide/Faqs";
-import CallSection from "@/components/help-for-charities-components/call-section";
+import React from 'react'
+import HeroSection from '@/components/UI/HeroSection'
+import FreeForCharity from '@/components/guidestar-guide/Free-for-charity'
+import Faqs from '@/components/guidestar-guide/Faqs'
+import CallSection from '@/components/help-for-charities-components/call-section'
 
 const index = () => {
   return (
@@ -16,7 +16,7 @@ const index = () => {
       <Faqs />
       <CallSection />
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

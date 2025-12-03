@@ -1,5 +1,5 @@
-import React from "react";
-import ResultCard from "@/components/UI/ResultCard";
+import React from 'react'
+import ResultCard from '@/components/UI/ResultCard'
 
 const index = () => {
   return (
@@ -18,14 +18,11 @@ const index = () => {
             title="221"
             description="Organizations accessing technical assistance offerings"
           />
-          <ResultCard
-            title="25"
-            description="Volunteer hours contributed to the organization"
-          />
+          <ResultCard title="25" description="Volunteer hours contributed to the organization" />
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

@@ -1,6 +1,6 @@
-import React from "react";
-import HeroSection from "@/components/UI/HeroSection";
-import FreeForCharity from "@/components/volunteer/Free-For-Charity";
+import React from 'react'
+import HeroSection from '@/components/UI/HeroSection'
+import FreeForCharity from '@/components/volunteer/Free-For-Charity'
 
 const index = () => {
   return (
@@ -13,7 +13,7 @@ const index = () => {
       />
       <FreeForCharity />
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

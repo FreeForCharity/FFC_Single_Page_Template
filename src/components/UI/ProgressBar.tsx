@@ -1,21 +1,21 @@
-"use client";
-import React, { useEffect, useState } from "react";
+'use client'
+import React, { useEffect, useState } from 'react'
 
 interface ProgressBarProps {
-  title: string;
-  percentage: number; // 0 to 100
+  title: string
+  percentage: number // 0 to 100
 }
 
 const ProgressBar: React.FC<ProgressBarProps> = ({ title, percentage }) => {
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(0)
 
   // Animate on mount
   useEffect(() => {
     const timer = setTimeout(() => {
-      setProgress(percentage);
-    }, 100); // small delay for smooth start
-    return () => clearTimeout(timer);
-  }, [percentage]);
+      setProgress(percentage)
+    }, 100) // small delay for smooth start
+    return () => clearTimeout(timer)
+  }, [percentage])
 
   return (
     <div className="w-full">
@@ -35,7 +35,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ title, percentage }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProgressBar;
+export default ProgressBar

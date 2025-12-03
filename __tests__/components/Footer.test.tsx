@@ -47,7 +47,7 @@ describe('Footer component', () => {
     render(<Footer />)
     // Look for email link
     const links = screen.getAllByRole('link')
-    const emailLink = links.find(link => link.getAttribute('href')?.includes('mailto:'))
+    const emailLink = links.find((link) => link.getAttribute('href')?.includes('mailto:'))
     expect(emailLink).toBeDefined()
   })
 })

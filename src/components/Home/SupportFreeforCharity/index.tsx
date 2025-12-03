@@ -1,7 +1,7 @@
-import React from "react";
-import TrainingCard from "../../UI/trainingcard";
-import BlueBtn from "../../UI/Bluebtn";
-import Transparentbtn from "@/components/UI/Transparentbtn";
+import React from 'react'
+import TrainingCard from '../../UI/trainingcard'
+import BlueBtn from '../../UI/Bluebtn'
+import Transparentbtn from '@/components/UI/Transparentbtn'
 
 const SupportFreeForCharity: React.FC = () => {
   return (
@@ -18,12 +18,12 @@ const SupportFreeForCharity: React.FC = () => {
               className="w-full max-w-[650px] font-[500] text-[18px] leading-[27px] text-black"
               id="montserrat-font"
             >
-              By donating you help drive our mission and allow us to support
-              more charities with our Domain, Website, and other services.
+              By donating you help drive our mission and allow us to support more charities with our
+              Domain, Website, and other services.
             </p>
           </div>
           {/* Right – PayPal Donate button */}
-          <Transparentbtn text="Donate With Paypal"  href="/donate" />
+          <Transparentbtn text="Donate With Paypal" href="/donate" />
         </div>
       </section>
 
@@ -36,15 +36,15 @@ const SupportFreeForCharity: React.FC = () => {
               className="text-center mb-10 font-[600] text-[18px] leading-[27px] text-black px-1"
               id="montserrat-font"
             >
-              LOOKING TO GET FREE SKILLS TRAINING AND HELP CHARITIES AT THE SAME
-              TIME? START A TRAINING PROGRAM.
+              LOOKING TO GET FREE SKILLS TRAINING AND HELP CHARITIES AT THE SAME TIME? START A
+              TRAINING PROGRAM.
             </h1>
             <TrainingCard
               src="/Svgs/tickmark.svg"
               heading="FREE TRAINING PROGRAMS"
               text="Are you looking to gain marketable skills in technology and business services? Are you looking to start building a portfolio showing real world support to small, medium, and large organizations? If so, this is the place for you."
             />
-            <BlueBtn href="/free-training-programs"/>
+            <BlueBtn href="/free-training-programs" />
           </div>
 
           {/* Card 2 */}
@@ -53,15 +53,15 @@ const SupportFreeForCharity: React.FC = () => {
               className="text-center mb-10 font-[600] text-[18px] leading-[27px] text-black px-1"
               id="montserrat-font"
             >
-              CHARITY IN NEED OF HELP? GET FREE SUPPORT WITH YOUR ONLINE AND
-              OFFLINE CRITICAL PROJECTS.
+              CHARITY IN NEED OF HELP? GET FREE SUPPORT WITH YOUR ONLINE AND OFFLINE CRITICAL
+              PROJECTS.
             </h1>
             <TrainingCard
               src="/Svgs/home.svg"
               heading="HELP FOR CHARITIES"
               text="If you are representing a charity or you currently work for a charity and want to improve your own skills start here to get help for your organization. You get instant access to many of our free tools and products right away!"
             />
-            <BlueBtn href="/help-for-charities"/>
+            <BlueBtn href="/help-for-charities" />
           </div>
 
           {/* Card 3 */}
@@ -70,20 +70,19 @@ const SupportFreeForCharity: React.FC = () => {
               className="text-center mb-10 font-[600] text-[18px] leading-[27px] text-black px-1"
               id="montserrat-font"
             >
-              ARE YOU A BUSINESS OR INDIVIDUAL LOOKING TO DONATE OR PARTNER WITH
-              FREE FOR CHARITY?
+              ARE YOU A BUSINESS OR INDIVIDUAL LOOKING TO DONATE OR PARTNER WITH FREE FOR CHARITY?
             </h1>
             <TrainingCard
               src="/Svgs/heart.svg"
               heading="VOLUNTEER AND/OR DONATE"
               text="We are always looking for individuals and business to support our training programs. Both donations as well as performing volunteer work for our training programs are critical to the success of Free For Charity and it’s mission."
             />
-            <BlueBtn href="/volunteer"/>
+            <BlueBtn href="/volunteer" />
           </div>
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default SupportFreeForCharity;
+export default SupportFreeForCharity

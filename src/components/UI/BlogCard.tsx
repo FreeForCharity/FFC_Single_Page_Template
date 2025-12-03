@@ -1,32 +1,26 @@
-"use client";
+'use client'
 
-import React, { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
+import React, { useState } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
 
 interface InfoCardProps {
-  imageUrl?: string;
-  heading: string;
-  date?: string;
-  description: string;
-  href?: string; // new prop for dynamic link
+  imageUrl?: string
+  heading: string
+  date?: string
+  description: string
+  href?: string // new prop for dynamic link
 }
 
-const InfoCard: React.FC<InfoCardProps> = ({
-  imageUrl,
-  heading,
-  date,
-  description,
-  href,
-}) => {
-  const [isHovered, setIsHovered] = useState<boolean>(false);
+const InfoCard: React.FC<InfoCardProps> = ({ imageUrl, heading, date, description, href }) => {
+  const [isHovered, setIsHovered] = useState<boolean>(false)
 
   return (
     <div
       className={`min-w-[300px] w-full max-w-full mx-auto bg-white overflow-hidden transition-all duration-[300ms] ${
         isHovered
-          ? "shadow-none border border-[#d8d8d8]"
-          : "shadow-[0_2px_18px_0_rgba(0,0,0,0.3)] border border-transparent"
+          ? 'shadow-none border border-[#d8d8d8]'
+          : 'shadow-[0_2px_18px_0_rgba(0,0,0,0.3)] border border-transparent'
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -43,7 +37,7 @@ const InfoCard: React.FC<InfoCardProps> = ({
           {/* Overlay on Hover */}
           <div
             className={`absolute inset-0 transition-opacity duration-300 ${
-              isHovered ? "bg-[#7CB5CE] opacity-80" : "opacity-0"
+              isHovered ? 'bg-[#7CB5CE] opacity-80' : 'opacity-0'
             }`}
           />
         </div>
@@ -61,22 +55,16 @@ const InfoCard: React.FC<InfoCardProps> = ({
           )}
         </h3>
         {date && (
-          <p
-            id="aria-font"
-            className="text-[14px] font-[600] text-[#f27022] my-2"
-          >
+          <p id="aria-font" className="text-[14px] font-[600] text-[#f27022] my-2">
             {date}
           </p>
         )}
-        <p
-          id="lato-font"
-          className="text-[#666666] font-[500] text-[18px] leading-relaxed"
-        >
+        <p id="lato-font" className="text-[#666666] font-[500] text-[18px] leading-relaxed">
           {description}
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default InfoCard;
+export default InfoCard

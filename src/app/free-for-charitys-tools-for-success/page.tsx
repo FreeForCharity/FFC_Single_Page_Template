@@ -1,14 +1,14 @@
-import React from "react";
-import HeroSection from "@/components/UI/HeroSection";
-import CardSection from "@/components/free-for-charitys-tools-for-success-components/Card-section";
-import RescueTime from "@/components/free-for-charitys-tools-for-success-components/Rescue-Time";
-import TwoCards from "@/components/free-for-charitys-tools-for-success-components/Two-Cards";
-import EducationalSites from "@/components/free-for-charitys-tools-for-success-components/Educational-Sites";
-import TwoCardsWithHeading from "@/components/free-for-charitys-tools-for-success-components/Two-Cards-With-Heading";
-import TwoFlexCards from "@/components/free-for-charitys-tools-for-success-components/Two-Flex-Cards";
-import SixGridCards from "@/components/free-for-charitys-tools-for-success-components/Six-Grid-Cards";
-import ToolsForBusinesses from "@/components/free-for-charitys-tools-for-success-components/Tools-For-Businesses";
-import FiveCardsGridSection from "@/components/free-for-charitys-tools-for-success-components/Five-Cards-Grid-Section";
+import React from 'react'
+import HeroSection from '@/components/UI/HeroSection'
+import CardSection from '@/components/free-for-charitys-tools-for-success-components/Card-section'
+import RescueTime from '@/components/free-for-charitys-tools-for-success-components/Rescue-Time'
+import TwoCards from '@/components/free-for-charitys-tools-for-success-components/Two-Cards'
+import EducationalSites from '@/components/free-for-charitys-tools-for-success-components/Educational-Sites'
+import TwoCardsWithHeading from '@/components/free-for-charitys-tools-for-success-components/Two-Cards-With-Heading'
+import TwoFlexCards from '@/components/free-for-charitys-tools-for-success-components/Two-Flex-Cards'
+import SixGridCards from '@/components/free-for-charitys-tools-for-success-components/Six-Grid-Cards'
+import ToolsForBusinesses from '@/components/free-for-charitys-tools-for-success-components/Tools-For-Businesses'
+import FiveCardsGridSection from '@/components/free-for-charitys-tools-for-success-components/Five-Cards-Grid-Section'
 
 const index = () => {
   return (
@@ -31,7 +31,7 @@ const index = () => {
       <ToolsForBusinesses />
       <FiveCardsGridSection />
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

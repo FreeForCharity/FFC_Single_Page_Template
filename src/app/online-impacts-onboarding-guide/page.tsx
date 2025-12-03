@@ -1,8 +1,8 @@
-import React from "react";
-import HeroSection from "@/components/UI/HeroSection";
-import CharityText from "@/components/online-impacts-onboarding-guide-components/charity-text";
-import ReadyToGetStartedNow from "@/components/online-impacts-onboarding-guide-components/Ready-To-Get-Started-Now";
-import CallSection from "@/components/help-for-charities-components/call-section";
+import React from 'react'
+import HeroSection from '@/components/UI/HeroSection'
+import CharityText from '@/components/online-impacts-onboarding-guide-components/charity-text'
+import ReadyToGetStartedNow from '@/components/online-impacts-onboarding-guide-components/Ready-To-Get-Started-Now'
+import CallSection from '@/components/help-for-charities-components/call-section'
 
 const index = () => {
   return (
@@ -16,7 +16,7 @@ const index = () => {
       <ReadyToGetStartedNow />
       <CallSection />
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

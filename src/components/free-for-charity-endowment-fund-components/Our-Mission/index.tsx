@@ -1,5 +1,5 @@
-import React from "react";
-import Image from "next/image";
+import React from 'react'
+import Image from 'next/image'
 
 const Index = () => {
   return (
@@ -19,14 +19,12 @@ const Index = () => {
               className="text-[15px] sm:text-[16px] text-[#000000a3] font-[500] leading-[26px] sm:leading-[28px] text-center md:text-left"
               id="fauna-font"
             >
-              The Free For Charity Domain Program is dedicated to providing
-              essential digital tools to charities at no cost. By offering free
-              domain names and setting up Microsoft 365 accounts, we help
-              charities establish their online presence and streamline
-              communication. Our mission is to ensure that every charity can
-              focus on their cause without the burden of digital infrastructure
-              costs. Through this program, we aim to empower charities to reach
-              wider audiences and amplify their impact.
+              The Free For Charity Domain Program is dedicated to providing essential digital tools
+              to charities at no cost. By offering free domain names and setting up Microsoft 365
+              accounts, we help charities establish their online presence and streamline
+              communication. Our mission is to ensure that every charity can focus on their cause
+              without the burden of digital infrastructure costs. Through this program, we aim to
+              empower charities to reach wider audiences and amplify their impact.
             </p>
           </div>
 
@@ -45,7 +43,7 @@ const Index = () => {
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

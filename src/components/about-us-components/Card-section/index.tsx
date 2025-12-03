@@ -1,5 +1,5 @@
-import React from "react";
-import Image from "next/image";
+import React from 'react'
+import Image from 'next/image'
 
 const Index = () => {
   return (
@@ -9,7 +9,8 @@ const Index = () => {
           {/* Left Content */}
           <div className="w-full md:w-[58.8%] md:mr-[32px] rounded-[15px] overflow-hidden p-[30px] shadow-[0_2px_18px_rgba(0,0,0,0.3)]">
             <h1 className="text-[30px] md:text-[36px] font-[700] leading-[36px] md:leading-[40px] text-center text-[#f27022]">
-              Some things we are working to get to free or at cost to non profits and charity groups are:
+              Some things we are working to get to free or at cost to non profits and charity groups
+              are:
             </h1>
             <ul
               className="mt-[20px] md:mt-[30px] list-disc text-[16px] md:text-[18px] font-[500] leading-[28px] md:leading-[31px] pb-[10px] pl-[1.5em]"
@@ -19,12 +20,12 @@ const Index = () => {
               <li>Free Charity Domain Name</li>
               <li>Free Microsoft 365 grant assistance and setup support</li>
               <li>
-                Free charity website hosting and web hosting support with tons
-                of for-profit paid products included free for charities
+                Free charity website hosting and web hosting support with tons of for-profit paid
+                products included free for charities
               </li>
               <li>
-                Unbiased technology recommendations focused on helping you find
-                the software and tools you need
+                Unbiased technology recommendations focused on helping you find the software and
+                tools you need
               </li>
             </ul>
           </div>
@@ -42,7 +43,7 @@ const Index = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

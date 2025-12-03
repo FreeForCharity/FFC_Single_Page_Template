@@ -1,5 +1,5 @@
-import React from "react";
-import { SustainableFundingCard } from "@/components/UI/SustainableFundingCard";
+import React from 'react'
+import { SustainableFundingCard } from '@/components/UI/SustainableFundingCard'
 
 const Home: React.FC = () => {
   return (
@@ -38,7 +38,7 @@ const Home: React.FC = () => {
       </div>
       <div className="w-[95%] mt-[50px] mx-auto border border-[#2B627B]"></div>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

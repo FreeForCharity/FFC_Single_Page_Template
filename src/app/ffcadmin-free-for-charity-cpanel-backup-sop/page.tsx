@@ -1,14 +1,11 @@
-"use client";
+'use client'
 
-import React from "react";
+import React from 'react'
 // import { Search } from "lucide-react";
 
 const NotFoundSection = () => {
   return (
-    <div
-      className="lg:min-h-screen w-[90%] md:w-[80%] max-w-[1080px] mx-auto "
-      id="aria-font"
-    >
+    <div className="lg:min-h-screen w-[90%] md:w-[80%] max-w-[1080px] mx-auto " id="aria-font">
       <div className="flex flex-col lg:flex-row">
         <div className="w-full lg:w-[79%] float-start pb-[23px] pr-[53px] pt-[138px]">
           <div className="mb-[60px] ">
@@ -16,8 +13,8 @@ const NotFoundSection = () => {
               No Results Found
             </h1>
             <p className="text-[14px] leading-[24px] font-[500] text-[#666]">
-              The page you requested could not be found. Try refining your
-              search, or use the navigation above to locate the post.
+              The page you requested could not be found. Try refining your search, or use the
+              navigation above to locate the post.
             </p>
           </div>
         </div>
@@ -86,7 +83,7 @@ const NotFoundSection = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NotFoundSection;
+export default NotFoundSection

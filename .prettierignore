@@ -1,0 +1,31 @@
+# Dependencies
+node_modules
+package-lock.json
+
+# Build output
+.next
+out
+dist
+build
+
+# Test output
+coverage
+test-results
+playwright-report
+.lighthouseci
+
+# Generated files
+*.log
+*.min.js
+*.min.css
+
+# Environment files
+.env
+.env.*
+
+# Git
+.git
+
+# Other
+.DS_Store
+*.pem

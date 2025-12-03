@@ -1,5 +1,5 @@
-import React from "react";
-import Image from "next/image";
+import React from 'react'
+import Image from 'next/image'
 
 const index = () => {
   return (
@@ -15,9 +15,9 @@ const index = () => {
           className="mb-[13px] w-[85%] mx-auto font-[500] text-[20px] leading-[30px] text-center text-white"
           id="lato-font"
         >
-          Your time and skills can create a lasting impact. Whether youre
-          assisting with outreach, providing technical expertise, or supporting
-          our programs, your contributions are invaluable to our mission.
+          Your time and skills can create a lasting impact. Whether youre assisting with outreach,
+          providing technical expertise, or supporting our programs, your contributions are
+          invaluable to our mission.
         </p>
         <a
           href="https://www.idealist.org/en/nonprofit/356bfc8e2ae64f83beea4a4e677e99d7-free-for-charity-state-college#opportunities"
@@ -40,7 +40,7 @@ const index = () => {
         ></Image>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

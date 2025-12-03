@@ -1,6 +1,6 @@
-import React from "react";
-import HeroSection from "@/components/UI/HeroSection";
-import ContactSection from "@/components/Contact-Us-components/Contact-Us";
+import React from 'react'
+import HeroSection from '@/components/UI/HeroSection'
+import ContactSection from '@/components/Contact-Us-components/Contact-Us'
 
 const index = () => {
   return (
@@ -18,7 +18,7 @@ const index = () => {
         <ContactSection />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

@@ -18,11 +18,13 @@ This document provides solutions to common issues, troubleshooting steps, and fr
 ### Issue: Node.js Version Mismatch
 
 **Symptoms**:
+
 - Build fails with incompatibility errors
 - Packages fail to install
 - Runtime errors about unsupported features
 
 **Solution**:
+
 ```bash
 # Check your Node.js version
 node --version
@@ -39,6 +41,7 @@ nvm use 20
 ### Issue: Port 3000 Already in Use
 
 **Symptoms**:
+
 ```
 Error: listen EADDRINUSE: address already in use :::3000
 ```
@@ -46,6 +49,7 @@ Error: listen EADDRINUSE: address already in use :::3000
 **Solutions**:
 
 **Option 1**: Kill the process using port 3000
+
 ```bash
 # macOS/Linux
 lsof -ti:3000 | xargs kill -9
@@ -56,6 +60,7 @@ taskkill /PID <PID> /F
 ```
 
 **Option 2**: Use a different port
+
 ```bash
 PORT=3001 npm run dev
 ```
@@ -63,6 +68,7 @@ PORT=3001 npm run dev
 ### Issue: npm install Fails
 
 **Symptoms**:
+
 - Permission errors
 - Network timeouts
 - Dependency conflicts
@@ -70,6 +76,7 @@ PORT=3001 npm run dev
 **Solutions**:
 
 **Permission errors**:
+
 ```bash
 # Don't use sudo with npm
 # Fix npm permissions instead
@@ -78,6 +85,7 @@ export PATH=~/.npm-global/bin:$PATH
 ```
 
 **Network timeouts**:
+
 ```bash
 # Clear npm cache
 npm cache clean --force
@@ -90,6 +98,7 @@ npm install --registry=https://registry.npmjs.org/
 ```
 
 **Dependency conflicts**:
+
 ```bash
 # Delete node_modules and package-lock.json
 rm -rf node_modules package-lock.json
@@ -101,6 +110,7 @@ npm install
 ### Issue: TypeScript Errors in IDE but Build Succeeds
 
 **Symptoms**:
+
 - VS Code shows TypeScript errors
 - `npm run build` succeeds
 - Types appear incorrect
@@ -130,6 +140,7 @@ npm install
 ### Issue: Build Fails with "Cannot find module"
 
 **Symptoms**:
+
 ```
 Error: Cannot find module '@/components/Header'
 ```
@@ -137,15 +148,17 @@ Error: Cannot find module '@/components/Header'
 **Solutions**:
 
 1. **Check the import path**:
+
    ```tsx
    // Correct
    import Header from '@/components/Header'
-   
+
    // Wrong
-   import Header from '@/components/header'  // Case sensitivity!
+   import Header from '@/components/header' // Case sensitivity!
    ```
 
 2. **Verify the file exists**:
+
    ```bash
    ls -la src/components/Header
    ```
@@ -164,6 +177,7 @@ Error: Cannot find module '@/components/Header'
 ### Issue: Build Succeeds but Images Don't Load
 
 **Symptoms**:
+
 - Build completes successfully
 - Site displays but images return 404
 - Console shows "Failed to load resource: 404"
@@ -171,27 +185,30 @@ Error: Cannot find module '@/components/Header'
 **Solutions**:
 
 1. **Use assetPath helper**:
+
    ```tsx
    import { assetPath } from '@/lib/assetPath'
-   
+
    // Correct
    <img src={assetPath('/logo.png')} alt="Logo" />
-   
+
    // Wrong
    <img src="/logo.png" alt="Logo" />
    ```
 
 2. **Verify images are in public directory**:
+
    ```bash
    ls -la public/
    # Your images should be here
    ```
 
 3. **Check NEXT_PUBLIC_BASE_PATH**:
+
    ```bash
    # For GitHub Pages
    NEXT_PUBLIC_BASE_PATH=/FFC_Single_Page_Template npm run build
-   
+
    # For custom domain
    npm run build
    ```
@@ -199,6 +216,7 @@ Error: Cannot find module '@/components/Header'
 ### Issue: Out of Memory During Build
 
 **Symptoms**:
+
 ```
 FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
 ```
@@ -206,11 +224,13 @@ FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memor
 **Solutions**:
 
 1. **Increase Node.js memory**:
+
    ```bash
    NODE_OPTIONS="--max-old-space-size=4096" npm run build
    ```
 
 2. **Add to package.json**:
+
    ```json
    {
      "scripts": {
@@ -231,6 +251,7 @@ FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memor
 ### Issue: Jest Tests Fail with "Cannot use import statement"
 
 **Symptoms**:
+
 ```
 SyntaxError: Cannot use import statement outside a module
 ```
@@ -238,17 +259,17 @@ SyntaxError: Cannot use import statement outside a module
 **Solutions**:
 
 1. **Check jest.config.js has correct setup**:
+
    ```javascript
    const nextJest = require('next/jest')
    const createJestConfig = nextJest({ dir: './' })
    ```
 
 2. **Add transformIgnorePatterns** if needed:
+
    ```javascript
    module.exports = {
-     transformIgnorePatterns: [
-       '/node_modules/(?!(module-to-transform)/)',
-     ],
+     transformIgnorePatterns: ['/node_modules/(?!(module-to-transform)/)'],
    }
    ```
 
@@ -260,6 +281,7 @@ SyntaxError: Cannot use import statement outside a module
 ### Issue: Tests Pass Locally but Fail in CI
 
 **Symptoms**:
+
 - All tests pass with `npm test`
 - GitHub Actions shows test failures
 - Different behavior in CI vs local
@@ -267,6 +289,7 @@ SyntaxError: Cannot use import statement outside a module
 **Solutions**:
 
 1. **Check environment variables**:
+
    ```yaml
    # In workflow file
    env:
@@ -275,10 +298,11 @@ SyntaxError: Cannot use import statement outside a module
    ```
 
 2. **Ensure deterministic tests**:
+
    ```tsx
    // Bad - relies on current date
    expect(getToday()).toBe('2024-12-03')
-   
+
    // Good - mock the date
    jest.useFakeTimers()
    jest.setSystemTime(new Date('2024-12-03'))
@@ -295,6 +319,7 @@ SyntaxError: Cannot use import statement outside a module
 ### Issue: Playwright Tests Timeout
 
 **Symptoms**:
+
 ```
 Error: Test timeout of 30000ms exceeded
 ```
@@ -302,6 +327,7 @@ Error: Test timeout of 30000ms exceeded
 **Solutions**:
 
 1. **Increase timeout** for slow operations:
+
    ```typescript
    test('loads page', async ({ page }) => {
      await page.goto('/', { timeout: 60000 })
@@ -309,10 +335,11 @@ Error: Test timeout of 30000ms exceeded
    ```
 
 2. **Wait for specific elements**:
+
    ```typescript
    // Bad - arbitrary wait
    await page.waitForTimeout(5000)
-   
+
    // Good - wait for specific element
    await page.waitForSelector('h1', { state: 'visible' })
    ```
@@ -332,6 +359,7 @@ Error: Test timeout of 30000ms exceeded
 ### Issue: GitHub Actions Deployment Fails
 
 **Symptoms**:
+
 - Workflow shows failure
 - Site doesn't update
 - Red X on commits
@@ -339,6 +367,7 @@ Error: Test timeout of 30000ms exceeded
 **Common Causes & Solutions**:
 
 #### Build Failure
+
 ```bash
 # Check build logs in Actions tab
 # Fix reported errors locally first
@@ -348,6 +377,7 @@ npm run build
 ```
 
 #### Test Failure
+
 ```bash
 # Run tests locally
 npm test
@@ -358,6 +388,7 @@ npm run test:e2e
 ```
 
 #### Permission Issues
+
 - Check repository Settings → Actions → General
 - Ensure "Read and write permissions" is enabled
 - Verify GitHub Pages is enabled in Settings → Pages
@@ -365,6 +396,7 @@ npm run test:e2e
 ### Issue: Site Deployed but Shows 404
 
 **Symptoms**:
+
 - Workflow completes successfully
 - Visiting site shows 404 error
 - Console shows "Page not found"
@@ -378,10 +410,11 @@ npm run test:e2e
    - Folder should be `/ (root)`
 
 2. **Verify base path configuration**:
+
    ```typescript
    // next.config.ts should have:
    output: 'export'
-   
+
    // Build should use:
    NEXT_PUBLIC_BASE_PATH=/FFC_Single_Page_Template
    ```
@@ -396,6 +429,7 @@ npm run test:e2e
 ### Issue: Images Load Locally but Not in Production
 
 **Symptoms**:
+
 - `npm run build && npm run preview` works fine
 - Production site shows broken images
 - 404 errors for images in console
@@ -403,6 +437,7 @@ npm run test:e2e
 **Solutions**:
 
 1. **Ensure assetPath is used everywhere**:
+
    ```bash
    # Search for hardcoded paths
    grep -r 'src="/' src/
@@ -410,6 +445,7 @@ npm run test:e2e
    ```
 
 2. **Verify images in public directory**:
+
    ```bash
    npm run build
    ls -la out/_next/static/media/
@@ -426,6 +462,7 @@ npm run test:e2e
 ### Issue: "Hydration failed" Error
 
 **Symptoms**:
+
 ```
 Error: Hydration failed because the initial UI does not match what was rendered on the server
 ```
@@ -433,10 +470,11 @@ Error: Hydration failed because the initial UI does not match what was rendered 
 **Common Causes & Solutions**:
 
 1. **HTML mismatch**:
+
    ```tsx
    // Bad - browser and server return different values
-   <div>{new Date().toLocaleString()}</div>
-   
+   ;<div>{new Date().toLocaleString()}</div>
+
    // Good - use useState to only show on client
    const [mounted, setMounted] = useState(false)
    useEffect(() => setMounted(true), [])
@@ -444,12 +482,13 @@ Error: Hydration failed because the initial UI does not match what was rendered 
    ```
 
 2. **Nesting violations**:
+
    ```tsx
    // Bad - div inside p
    <p>
      <div>Content</div>
    </p>
-   
+
    // Good - proper nesting
    <div>
      <p>Content</p>
@@ -459,14 +498,13 @@ Error: Hydration failed because the initial UI does not match what was rendered 
 3. **Whitespace differences**:
    ```tsx
    // Can cause issues in some cases
-   <div>
-     { someCondition && <span>Text</span> }
-   </div>
+   <div>{someCondition && <span>Text</span>}</div>
    ```
 
 ### Issue: "localStorage is not defined"
 
 **Symptoms**:
+
 ```
 ReferenceError: localStorage is not defined
 ```
@@ -492,6 +530,7 @@ if (typeof window !== 'undefined') {
 ### Issue: Styles Not Applied After Deployment
 
 **Symptoms**:
+
 - Site loads but has no styling
 - Looks like plain HTML
 - CSS files return 404
@@ -499,18 +538,18 @@ if (typeof window !== 'undefined') {
 **Solutions**:
 
 1. **Check build output**:
+
    ```bash
    npm run build
    ls -la out/_next/static/css/
    ```
 
 2. **Verify Tailwind config**:
+
    ```javascript
    // tailwind.config.js
    module.exports = {
-     content: [
-       './src/**/*.{js,ts,jsx,tsx}',
-     ],
+     content: ['./src/**/*.{js,ts,jsx,tsx}'],
    }
    ```
 
@@ -581,6 +620,7 @@ npm install
 ### How do I add environment variables?
 
 1. **Local development**: Create `.env.local`
+
    ```env
    NEXT_PUBLIC_MY_VAR=value
    ```
@@ -661,4 +701,4 @@ If your issue isn't covered here:
 
 **Last Updated**: 2025-12-03
 
-*This document is continuously updated. If you solve an issue not listed here, please contribute by adding it!*
+_This document is continuously updated. If you solve an issue not listed here, please contribute by adding it!_

@@ -1,9 +1,9 @@
-import React from "react";
-import HeroSection from "@/components/UI/HeroSection";
-import Content from "@/components/about-us-components/content";
-import CardSection from "@/components/about-us-components/Card-section";
-import ParaText from "@/components/about-us-components/ParaText";
-import CallToAction from "@/components/about-us-components/CallToAction";
+import React from 'react'
+import HeroSection from '@/components/UI/HeroSection'
+import Content from '@/components/about-us-components/content'
+import CardSection from '@/components/about-us-components/Card-section'
+import ParaText from '@/components/about-us-components/ParaText'
+import CallToAction from '@/components/about-us-components/CallToAction'
 
 const index = () => {
   return (
@@ -25,7 +25,7 @@ const index = () => {
         <h1>About Us Page</h1>
       </div> */}
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

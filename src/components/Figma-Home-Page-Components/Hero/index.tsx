@@ -1,5 +1,5 @@
-import React from "react";
-import Image from "next/image";
+import React from 'react'
+import Image from 'next/image'
 
 const CharityHeroBackground = () => {
   return (
@@ -10,7 +10,7 @@ const CharityHeroBackground = () => {
       <div
         className="absolute inset-0 bg-white"
         style={{
-          clipPath: "polygon(0% 108%, 100% 32%, 100% 35%, 0% 111%)",
+          clipPath: 'polygon(0% 108%, 100% 32%, 100% 35%, 0% 111%)',
         }}
       />
 
@@ -18,7 +18,7 @@ const CharityHeroBackground = () => {
       <div
         className="absolute inset-0 bg-[#F57C20]"
         style={{
-          clipPath: "polygon(0% 111%, 100% 35%, 100% 100%, 0% 100%)",
+          clipPath: 'polygon(0% 111%, 100% 35%, 100% 100%, 0% 100%)',
         }}
       />
 
@@ -34,8 +34,7 @@ const CharityHeroBackground = () => {
             className="text-[24px] font-[400] leading-[120%] text-[#FFFFFF] mb-[20px]"
             id="lato-font"
           >
-            Connecting Students, Professionals, & Businesses with Charities in
-            Need
+            Connecting Students, Professionals, & Businesses with Charities in Need
           </p>
           <a
             href="#volunteer"
@@ -75,7 +74,7 @@ const CharityHeroBackground = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CharityHeroBackground;
+export default CharityHeroBackground

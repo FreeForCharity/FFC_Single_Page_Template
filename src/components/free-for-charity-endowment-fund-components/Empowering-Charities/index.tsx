@@ -1,6 +1,6 @@
-import React from "react";
-import Image from "next/image";
-import ProgressBar from "@/components/UI/ProgressBar";
+import React from 'react'
+import Image from 'next/image'
+import ProgressBar from '@/components/UI/ProgressBar'
 
 const Index = () => {
   return (
@@ -33,11 +33,10 @@ const Index = () => {
               className="text-[15px] sm:text-[16px] text-[#000000a3] font-[500] leading-[26px] sm:leading-[28px]"
               id="fauna-font"
             >
-              Our Free For Charity Domain Program has already supported over 200
-              charitable organizations, providing them with essential digital
-              tools to enhance their outreach and impact. With the establishment
-              of the endowment we can sustainably maintain our current charities
-              and support 100 new charities annually.
+              Our Free For Charity Domain Program has already supported over 200 charitable
+              organizations, providing them with essential digital tools to enhance their outreach
+              and impact. With the establishment of the endowment we can sustainably maintain our
+              current charities and support 100 new charities annually.
             </p>
 
             <div className="mt-[30px] space-y-[20px] md:space-y-[30px]">
@@ -49,7 +48,7 @@ const Index = () => {
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

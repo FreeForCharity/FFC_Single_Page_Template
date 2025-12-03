@@ -1,5 +1,5 @@
-import React from "react";
-import Transparentbtn from "@/components/UI/Transparentbtn";
+import React from 'react'
+import Transparentbtn from '@/components/UI/Transparentbtn'
 
 const index: React.FC = () => {
   return (
@@ -24,7 +24,7 @@ const index: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

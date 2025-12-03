@@ -1,45 +1,40 @@
-"use client";
-import React, { useEffect, useRef, useState } from "react";
+'use client'
+import React, { useEffect, useRef, useState } from 'react'
 
 interface IconTextCardProps {
-  icon: React.ReactNode;
-  iconLabel?: string;
-  text: string;
-  href?: string;
+  icon: React.ReactNode
+  iconLabel?: string
+  text: string
+  href?: string
 }
 
-const IconTextCard: React.FC<IconTextCardProps> = ({
-  icon,
-  iconLabel = "icon",
-  text,
-  href,
-}) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const cardRef = useRef<HTMLDivElement | null>(null);
+const IconTextCard: React.FC<IconTextCardProps> = ({ icon, iconLabel = 'icon', text, href }) => {
+  const [isVisible, setIsVisible] = useState(false)
+  const cardRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.disconnect(); // trigger only once
+            setIsVisible(true)
+            observer.disconnect() // trigger only once
           }
-        });
+        })
       },
       { threshold: 0.3 } // 30% visible triggers animation
-    );
+    )
 
-    if (cardRef.current) observer.observe(cardRef.current);
+    if (cardRef.current) observer.observe(cardRef.current)
 
     return () => {
-      if (cardRef.current) observer.unobserve(cardRef.current);
-    };
-  }, []);
+      if (cardRef.current) observer.unobserve(cardRef.current)
+    }
+  }, [])
 
   return (
     <a
-      href={href || "#"}
+      href={href || '#'}
       rel="noopener noreferrer"
       className="
         block
@@ -60,7 +55,7 @@ const IconTextCard: React.FC<IconTextCardProps> = ({
         ref={cardRef}
         className={`
           text-[#277CA0] flex items-center justify-center mb-[30px]
-          ${isVisible ? "animate-fadeTop opacity-100" : "opacity-0"}
+          ${isVisible ? 'animate-fadeTop opacity-100' : 'opacity-0'}
         `}
         aria-label={iconLabel}
       >
@@ -68,14 +63,11 @@ const IconTextCard: React.FC<IconTextCardProps> = ({
       </div>
 
       {/* Text */}
-      <h3
-        className="text-[30px] font-bold leading-[30px] text-center text-gray-900"
-        id="lato-font"
-      >
+      <h3 className="text-[30px] font-bold leading-[30px] text-center text-gray-900" id="lato-font">
         {text}
       </h3>
     </a>
-  );
-};
+  )
+}
 
-export default IconTextCard;
+export default IconTextCard

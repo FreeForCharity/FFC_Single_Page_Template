@@ -31,6 +31,7 @@ The site features two primary CTAs accessible throughout the experience via glob
 The site is actively being developed with the following status:
 
 ✅ **Functional:**
+
 - Core navigation and layout
 - Global Donate and Volunteer popups
 - Responsive design (mobile and desktop)
@@ -38,6 +39,7 @@ The site is actively being developed with the following status:
 - Static site generation and deployment pipeline
 
 ⚠️ **In Progress:**
+
 - Many footer links are placeholder (#) and need proper destinations
 - Program application CTAs link to placeholders
 - Social media links need proper URLs
@@ -53,6 +55,7 @@ This is a comprehensive multi-page website with **29 pages** and **83 components
 ### Site Structure
 
 **Core Pages:**
+
 - Homepage (Figma-Home-page)
 - About Us
 - Contact Us
@@ -60,6 +63,7 @@ This is a comprehensive multi-page website with **29 pages** and **83 components
 - Volunteer
 
 **Program & Service Pages:**
+
 - Free Charity Web Hosting
 - Free For Charity Endowment Fund
 - FFC Tools for Success
@@ -67,6 +71,7 @@ This is a comprehensive multi-page website with **29 pages** and **83 components
 - Domains
 
 **Guide & Documentation Pages:**
+
 - GuideStar Guide
 - Online Impacts Onboarding Guide
 - Charity Validation Guide
@@ -76,10 +81,12 @@ This is a comprehensive multi-page website with **29 pages** and **83 components
 - FFCAdmin cPanel Backup SOP
 
 **Nonprofit Status Pages:**
+
 - 501(c)(3) Information
 - Pre-501(c)(3) Information
 
 **Legal & Policy Pages:**
+
 - Privacy Policy
 - Cookie Policy
 - Terms of Service
@@ -88,6 +95,7 @@ This is a comprehensive multi-page website with **29 pages** and **83 components
 - Security Acknowledgements
 
 **Technical Pages:**
+
 - Tech Stack
 - FFCAdmin Portal
 
@@ -103,12 +111,14 @@ Content such as FAQs, Team Members, and Testimonials is stored as JSON files in 
 
 ## Local Development
 
-1) Install dependencies
+1. Install dependencies
+
 ```bash
 npm install
 ```
 
-2) Run the dev server
+2. Run the dev server
+
 ```bash
 npm run dev
 ```
@@ -139,16 +149,19 @@ npm run test:ui       # Interactive UI mode
 #### End-to-End Tests (Playwright)
 
 **Logo Visibility Tests** (`tests/logo.spec.ts`)
+
 - ✅ **NavBar Logo Visibility**: Verifies logo appears in top left corner with correct src and alt text
-- ✅ **Hero Section Logo Visibility**: Verifies logo appears in hero section with correct src and alt text  
+- ✅ **Hero Section Logo Visibility**: Verifies logo appears in hero section with correct src and alt text
 - ✅ **Logo Consistency**: Confirms both logos are present simultaneously and use the same image source
 
 **GitHub Pages Deployment Tests** (`tests/github-pages.spec.ts`)
+
 - ✅ **Image Path Compatibility**: Validates logo image paths work for both custom domain and GitHub Pages basePath
 - ✅ **Image HTTP Status**: Verifies logo images return 200 OK status codes
 - ⏭️ **Image Natural Dimensions** (skipped): Checks image dimensions after load (disabled in CI due to timing issues)
 
 **Test Configuration** (`playwright.config.ts`)
+
 - Uses system Chromium browser to avoid network download issues
 - Runs against built static site (`npm run preview`)
 - Retries failed tests 2x in CI, 0x locally
@@ -159,17 +172,20 @@ Tests run automatically on every push to main via GitHub Actions before deployme
 ### Static Code Analysis
 
 **ESLint** (`eslint.config.mjs`)
+
 - ✅ Next.js core-web-vitals and TypeScript rules enabled
 - ✅ Runs automatically during build process
 - ⚠️ Currently reports 2 expected warnings about `<img>` tags (acceptable for static export)
 
 **TypeScript** (`tsconfig.json`)
+
 - ✅ Strict mode enabled
 - ✅ Type checking runs during build
 
 ### Security Analysis
 
 **GitHub Dependabot**
+
 - ✅ **Configuration File**: `.github/dependabot.yml` enables version updates
   - npm packages (production and development dependencies)
   - GitHub Actions workflow dependencies
@@ -183,12 +199,14 @@ Tests run automatically on every push to main via GitHub Actions before deployme
 - 📖 **Full Guide**: See [DEPENDABOT.md](./DEPENDABOT.md) for comprehensive documentation and setup instructions
 
 **CodeQL Security Scanning** (`.github/workflows/codeql.yml`)
+
 - ✅ Scans JavaScript/TypeScript code for security vulnerabilities
 - ✅ Scans GitHub Actions workflows for security issues
 - ✅ Runs on push to main, pull requests, and weekly schedule
 - 📊 View results in repository Security → Code scanning alerts
 
 **npm audit**
+
 - All dependencies are checked for security vulnerabilities
 - Run `npm audit` locally to check for known security issues
 
@@ -197,6 +215,7 @@ Tests run automatically on every push to main via GitHub Actions before deployme
 **GitHub Actions Workflow** (`.github/workflows/nextjs.yml`)
 
 Current CI/CD pipeline includes:
+
 1. ✅ Node.js 20 setup
 2. ✅ Dependency installation (`npm ci`)
 3. ✅ Next.js build with GitHub Pages basePath
@@ -211,6 +230,7 @@ Current CI/CD pipeline includes:
 The following enhancements could improve the test suite and CI/CD process:
 
 #### Dynamic Analysis Opportunities
+
 - **Accessibility Testing**: Add @axe-core/playwright for WCAG compliance checks
 - **Performance Testing**: Add Lighthouse CI for Core Web Vitals monitoring
 - **Visual Regression Testing**: Add Percy or Playwright screenshots for UI change detection
@@ -218,22 +238,26 @@ The following enhancements could improve the test suite and CI/CD process:
 - **Cross-Browser Testing**: Add Firefox and WebKit browser testing
 
 #### Static Analysis Enhancements
+
 - **TypeScript Strict Mode**: Enable additional strict flags (strictNullChecks, noImplicitAny)
 - **ESLint Extensions**: Add accessibility plugin (eslint-plugin-jsx-a11y)
 - **Code Formatting**: Add Prettier for consistent code style
 - **Import Organization**: Add eslint-plugin-import for import sorting
 
 #### Security Testing
+
 - ✅ **Dependabot**: Enabled for automated dependency updates (npm + GitHub Actions)
 - ✅ **CodeQL**: Enabled for security vulnerability scanning
 - **npm audit**: Add automated npm audit checks to CI with failure threshold
 
 #### Build Quality Gates
+
 - **Bundle Size Analysis**: Add next-bundle-analyzer to track bundle size
 - **Test Coverage Reports**: Add coverage collection and reporting
 - **Performance Budgets**: Set and enforce performance budgets in CI
 
 #### GitHub Actions Enhancements
+
 - **Branch Protection**: Require status checks to pass before merging
 - **Automated PR Comments**: Post test results and coverage to PRs
 - **Deployment Preview**: Add preview deployments for PRs
@@ -290,12 +314,14 @@ src/
 A comprehensive technical analysis comparing this repository to sister sites (freeforcharity-web, ffcadmin.org, KCCF-web) is available in **[SITE_IMPROVEMENTS.md](./SITE_IMPROVEMENTS.md)**.
 
 This document identifies:
+
 - 19 technical capability gaps
 - Detailed implementation guidance for each gap
 - Priority recommendations and implementation roadmap
 - Estimated effort and complexity for each improvement
 
 **Key improvement opportunities:**
+
 - CodeQL security scanning
 - Unit testing with Jest
 - Code formatting with Prettier
@@ -315,6 +341,7 @@ This document identifies:
 The site is configured for static export and deployed to GitHub Pages:
 
 **Production:**
+
 - Live at: [https://ffcworkingsite1.org](https://ffcworkingsite1.org)
 - GitHub Pages URL: [https://freeforcharity.github.io/FFC_Single_Page_Template/](https://freeforcharity.github.io/FFC_Single_Page_Template/)
 - Deployment: Automatic via GitHub Actions (`.github/workflows/nextjs.yml`)
@@ -322,6 +349,7 @@ The site is configured for static export and deployed to GitHub Pages:
 - Build output: Static files in `./out` directory
 
 **Local preview of production build:**
+
 ```bash
 npm run build    # Build static site
 npm run preview  # Preview at http://localhost:3000
@@ -342,18 +370,22 @@ npm run preview  # Preview at http://localhost:3000
 For comprehensive guides and documentation:
 
 ### Getting Started
+
 - **[README.md](./README.md)** - Project overview, setup, and deployment (this file)
 - **[CONTRIBUTING.md](./CONTRIBUTING.md)** - Guidelines for contributing to the project
 
 ### Development & Testing
+
 - **[TESTING.md](./TESTING.md)** - Complete testing guide (Jest unit tests + Playwright E2E tests)
 - **[CODE_QUALITY.md](./CODE_QUALITY.md)** - Code quality standards, linting, and best practices
 
 ### Deployment & Operations
+
 - **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Comprehensive deployment guide for GitHub Pages
 - **[LIGHTHOUSE.md](./LIGHTHOUSE.md)** - Performance monitoring with Lighthouse CI
 - **[SECURITY.md](./SECURITY.md)** - Security policies, branch protection rules, and best practices
 
 ### Troubleshooting & Planning
+
 - **[ISSUE_RESOLUTION.md](./ISSUE_RESOLUTION.md)** - Common issues, troubleshooting, and FAQ
 - **[SITE_IMPROVEMENTS.md](./SITE_IMPROVEMENTS.md)** - Technical analysis and planned improvements (19 gaps identified)

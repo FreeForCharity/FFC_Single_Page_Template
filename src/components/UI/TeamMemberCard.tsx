@@ -1,13 +1,13 @@
-"use client";
+'use client'
 
-import React from "react";
-import Image from "next/image";
+import React from 'react'
+import Image from 'next/image'
 
 interface TeamMemberCardProps {
-  imageUrl: string;
-  name: string;
-  title: string;
-  linkedinUrl: string;
+  imageUrl: string
+  name: string
+  title: string
+  linkedinUrl: string
 }
 
 export default function TeamMemberCard({
@@ -42,18 +42,8 @@ export default function TeamMemberCard({
         </div>
 
         {/* LinkedIn Button */}
-        <a
-          href={linkedinUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-6"
-        >
-          <Image
-            src="/Svgs/linkedin-icon.svg"
-            width={63}
-            height={63}
-            alt="linkedin icon"
-          ></Image>
+        <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="mt-6">
+          <Image src="/Svgs/linkedin-icon.svg" width={63} height={63} alt="linkedin icon"></Image>
         </a>
       </div>
 
@@ -64,5 +54,5 @@ export default function TeamMemberCard({
         }
       `}</style>
     </>
-  );
+  )
 }

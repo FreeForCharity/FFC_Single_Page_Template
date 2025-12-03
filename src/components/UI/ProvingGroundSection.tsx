@@ -1,14 +1,11 @@
-import React from "react";
+import React from 'react'
 
 interface ProvingGroundSectionProps {
-  title: string;
-  children: React.ReactNode;
+  title: string
+  children: React.ReactNode
 }
 
-const ProvingGroundSection: React.FC<ProvingGroundSectionProps> = ({
-  title,
-  children,
-}) => {
+const ProvingGroundSection: React.FC<ProvingGroundSectionProps> = ({ title, children }) => {
   return (
     <section className="w-full mx-auto py-[2em] md:px-[2em]" id="segoe-font">
       {/* Title with Bottom Border */}
@@ -23,7 +20,7 @@ const ProvingGroundSection: React.FC<ProvingGroundSectionProps> = ({
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default ProvingGroundSection;
+export default ProvingGroundSection

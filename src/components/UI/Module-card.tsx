@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react'
 
 interface Modulecard {
-  title: string;
-  children: React.ReactNode;
-  id: string;
+  title: string
+  children: React.ReactNode
+  id: string
 }
 
 const Modulecard: React.FC<Modulecard> = ({ title, children, id }) => {
@@ -21,7 +21,7 @@ const Modulecard: React.FC<Modulecard> = ({ title, children, id }) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Modulecard;
+export default Modulecard

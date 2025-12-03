@@ -1,5 +1,5 @@
-import React from "react";
-import Image from "next/image";
+import React from 'react'
+import Image from 'next/image'
 
 const Hero: React.FC = () => {
   return (
@@ -14,8 +14,7 @@ const Hero: React.FC = () => {
             id="lato-font"
             className="font-medium text-black text-[20px] leading-[30px] sm:text-[28px] sm:leading-[40px] md:text-[35px] md:leading-[49px] mt-4"
           >
-            Connecting Students, Professionals, & Businesses with Charities in
-            Need
+            Connecting Students, Professionals, & Businesses with Charities in Need
           </p>
         </div>
 
@@ -31,7 +30,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero

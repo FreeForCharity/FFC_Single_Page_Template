@@ -1,5 +1,5 @@
-import React from "react";
-import Transparentbtn from "@/components/UI/Transparentbtn";
+import React from 'react'
+import Transparentbtn from '@/components/UI/Transparentbtn'
 
 const index = () => {
   return (
@@ -13,12 +13,18 @@ const index = () => {
         </h1>
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-o sm:gap-6">
-          <Transparentbtn text="501(c)3 Charities Click Here To Get Started!" href="https://freeforcharity.org/hub/store/ffc-consulting/free-for-charity-501c3-onboarding-ffc-nonprofit-charity-onboarding" />
-          <Transparentbtn text="Pre-501(c)3 Charities Click Here to Get Started!" href="https://freeforcharity.org/hub/cart.php?a=confproduct&i=8" />
+          <Transparentbtn
+            text="501(c)3 Charities Click Here To Get Started!"
+            href="https://freeforcharity.org/hub/store/ffc-consulting/free-for-charity-501c3-onboarding-ffc-nonprofit-charity-onboarding"
+          />
+          <Transparentbtn
+            text="Pre-501(c)3 Charities Click Here to Get Started!"
+            href="https://freeforcharity.org/hub/cart.php?a=confproduct&i=8"
+          />
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

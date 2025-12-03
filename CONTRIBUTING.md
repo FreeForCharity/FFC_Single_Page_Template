@@ -43,26 +43,30 @@ We are committed to providing a welcoming and inclusive environment for all cont
 1. **Fork the repository** on GitHub
 
 2. **Clone your fork**:
+
    ```bash
    git clone https://github.com/YOUR_USERNAME/FFC_Single_Page_Template.git
    cd FFC_Single_Page_Template
    ```
 
 3. **Add upstream remote**:
+
    ```bash
    git remote add upstream https://github.com/FreeForCharity/FFC_Single_Page_Template.git
    ```
 
 4. **Install dependencies**:
+
    ```bash
    npm install
    ```
 
 5. **Start the development server**:
+
    ```bash
    npm run dev
    ```
-   
+
    Visit http://localhost:3000 to see the site running locally.
 
 ### Verify Your Setup
@@ -101,6 +105,7 @@ git checkout -b feature/your-feature-name
 ```
 
 Branch naming conventions:
+
 - `feature/description` - New features
 - `fix/description` - Bug fixes
 - `docs/description` - Documentation updates
@@ -111,6 +116,7 @@ Branch naming conventions:
 
 1. **Make your changes** in your feature branch
 2. **Test your changes** locally:
+
    ```bash
    npm run lint        # Check for linting errors
    npm test           # Run unit tests
@@ -131,6 +137,7 @@ Branch naming conventions:
 Before submitting a pull request:
 
 1. **Run all tests**:
+
    ```bash
    npm test              # Unit tests
    npm run test:coverage # Check test coverage
@@ -180,6 +187,7 @@ Before submitting a pull request:
 - Use consistent spacing and sizing scales
 
 Example:
+
 ```tsx
 // Good
 <div className="flex flex-col gap-4 p-6 bg-white rounded-lg shadow-md">
@@ -307,6 +315,7 @@ git commit -m "feat: implement user authentication
 ### Before Submitting
 
 1. **Ensure all tests pass**:
+
    ```bash
    npm run lint
    npm test
@@ -319,6 +328,7 @@ git commit -m "feat: implement user authentication
    - Update TESTING.md for new test approaches
 
 3. **Verify the build works**:
+
    ```bash
    npm run build
    npm run preview
@@ -335,6 +345,7 @@ git commit -m "feat: implement user authentication
 ### Creating a Pull Request
 
 1. **Push your branch** to your fork:
+
    ```bash
    git push origin feature/your-feature-name
    ```
@@ -351,6 +362,7 @@ git commit -m "feat: implement user authentication
 ### PR Title Format
 
 Use the same format as commit messages:
+
 ```
 feat: add new feature
 fix: resolve bug in component
@@ -378,6 +390,7 @@ docs: update contributing guidelines
 ### After Your PR is Merged
 
 1. **Delete your branch**:
+
    ```bash
    git branch -d feature/your-feature-name
    git push origin --delete feature/your-feature-name
@@ -409,6 +422,7 @@ docs: update contributing guidelines
 ### Email
 
 For sensitive matters, contact the maintainers directly:
+
 - **Email**: hello@freeforcharity.org
 
 ---

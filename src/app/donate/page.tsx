@@ -1,8 +1,8 @@
-import React from "react";
-import HeroSection from "@/components/UI/HeroSection";
-import Measurableimpact from "@/components/Donate-components/measurable-impact";
-import FreeForCharityDonationOptions from "@/components/Donate-components/Free-for-Charity-Donation-Options";
-import GeneralDonation from "@/components/Donate-components/General-donation";
+import React from 'react'
+import HeroSection from '@/components/UI/HeroSection'
+import Measurableimpact from '@/components/Donate-components/measurable-impact'
+import FreeForCharityDonationOptions from '@/components/Donate-components/Free-for-Charity-Donation-Options'
+import GeneralDonation from '@/components/Donate-components/General-donation'
 
 const index = () => {
   return (
@@ -20,7 +20,7 @@ const index = () => {
         <GeneralDonation />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

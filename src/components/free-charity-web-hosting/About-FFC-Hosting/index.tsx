@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const index = () => {
   return (
@@ -20,22 +20,17 @@ const index = () => {
           >
             About FFC Hosting
           </h1>
-          <p
-            className="text-[18px] font-[500] leading-[29px] text-center"
-            id="raleway-font"
-          >
-            FFCHosting is a project of Free For Charity. After seeing how small
-            nonprofits were often unaware of the resources available to them as
-            it related to technology and observing how charities were preyed
-            upon while in the up to 18 months leading up to IRS 501(c)3
-            designation; Free For Charity was founded to help charities avoid
-            these costly problems and focus on doing the great work they need to
-            do.
+          <p className="text-[18px] font-[500] leading-[29px] text-center" id="raleway-font">
+            FFCHosting is a project of Free For Charity. After seeing how small nonprofits were
+            often unaware of the resources available to them as it related to technology and
+            observing how charities were preyed upon while in the up to 18 months leading up to IRS
+            501(c)3 designation; Free For Charity was founded to help charities avoid these costly
+            problems and focus on doing the great work they need to do.
           </p>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

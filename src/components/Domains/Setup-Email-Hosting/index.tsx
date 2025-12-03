@@ -1,5 +1,5 @@
-import React from "react";
-import Image from "next/image";
+import React from 'react'
+import Image from 'next/image'
 
 const index = () => {
   return (
@@ -16,8 +16,7 @@ const index = () => {
             className="mb-[13px] w-[85%] mx-auto font-[500] text-[20px] leading-[30px] text-center"
             id="raleway-font"
           >
-            Email hosting means that you can have email addresses at your domain
-            name. e.g.
+            Email hosting means that you can have email addresses at your domain name. e.g.
           </p>
         </div>
       </div>
@@ -84,13 +83,9 @@ const index = () => {
           </p>
 
           {/* Text Content */}
-          <p
-            className="text-[18px] leading-[32px] font-[500]"
-            id="raleway-font"
-          >
-            Free For Charity recommends Microsoft as your email provider as it
-            is free to charities and comes with many additional services at no
-            cost
+          <p className="text-[18px] leading-[32px] font-[500]" id="raleway-font">
+            Free For Charity recommends Microsoft as your email provider as it is free to charities
+            and comes with many additional services at no cost
           </p>
         </div>
 
@@ -120,12 +115,8 @@ const index = () => {
           </p>
 
           {/* Text Content */}
-          <p
-            className="text-[18px] leading-[32px] font-[500] pb-[1em]"
-            id="raleway-font"
-          >
-            Follow the following simple steps to set up your Microsoft 365
-            Business Premium Account
+          <p className="text-[18px] leading-[32px] font-[500] pb-[1em]" id="raleway-font">
+            Follow the following simple steps to set up your Microsoft 365 Business Premium Account
           </p>
           <a
             href="domains/#setupstep2"
@@ -137,7 +128,7 @@ const index = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

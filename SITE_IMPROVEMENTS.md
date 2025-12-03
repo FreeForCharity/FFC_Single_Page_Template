@@ -24,6 +24,7 @@
 ## Executive Summary
 
 This analysis compares FFC_Single_Page_Template against three sister repositories:
+
 - **freeforcharity-web**: Production FFC website (near-identical to current repo)
 - **ffcadmin.org**: Administrative portal with extensive documentation and tooling
 - **KCCF-web**: Client website with advanced context management and features
@@ -33,7 +34,7 @@ This analysis compares FFC_Single_Page_Template against three sister repositorie
 **FFC_Single_Page_Template** is a feature-rich, multi-page Next.js application with 83 components and extensive content pages. However, compared to sister sites, it lacks:
 
 1. **Advanced code quality tooling** (Prettier, Husky, Commitlint) - present in ffcadmin.org
-2. **Unit testing infrastructure** (Jest) - present in ffcadmin.org  
+2. **Unit testing infrastructure** (Jest) - present in ffcadmin.org
 3. **Security scanning** (CodeQL) - present in ffcadmin.org and KCCF-web
 4. **Performance monitoring** (Lighthouse CI) - present in ffcadmin.org
 5. **Dark mode theming** - present in KCCF-web
@@ -47,25 +48,25 @@ This analysis compares FFC_Single_Page_Template against three sister repositorie
 
 ### Technology Stack Comparison
 
-| Feature | FFC_Single_Page_Template | freeforcharity-web | ffcadmin.org | KCCF-web |
-|---------|-------------------------|-------------------|--------------|-----------|
-| **Next.js Version** | 15.5.2 | 15.5.2 | 16.0.3 | 15.4.6 |
-| **React Version** | 19.1.0 | 19.1.0 | 19.2.0 | 19.1.0 |
-| **Node.js Target** | 20.x | 20.x | 20.x | 20.x |
-| **Package Manager** | npm | npm | pnpm | npm |
-| **Static Export** | ✅ | ✅ | ✅ | ✅ |
-| **TypeScript** | ✅ | ✅ | ✅ | ✅ |
-| **Tailwind CSS** | ✅ v4.1.12 | ✅ v4.1.12 | ✅ v4.1.17 | ✅ v4 |
+| Feature             | FFC_Single_Page_Template | freeforcharity-web | ffcadmin.org | KCCF-web |
+| ------------------- | ------------------------ | ------------------ | ------------ | -------- |
+| **Next.js Version** | 15.5.2                   | 15.5.2             | 16.0.3       | 15.4.6   |
+| **React Version**   | 19.1.0                   | 19.1.0             | 19.2.0       | 19.1.0   |
+| **Node.js Target**  | 20.x                     | 20.x               | 20.x         | 20.x     |
+| **Package Manager** | npm                      | npm                | pnpm         | npm      |
+| **Static Export**   | ✅                       | ✅                 | ✅           | ✅       |
+| **TypeScript**      | ✅                       | ✅                 | ✅           | ✅       |
+| **Tailwind CSS**    | ✅ v4.1.12               | ✅ v4.1.12         | ✅ v4.1.17   | ✅ v4    |
 
 ### Dependency Comparison
 
-| Library/Tool | FFC_Single_Page_Template | freeforcharity-web | ffcadmin.org | KCCF-web |
-|--------------|-------------------------|-------------------|--------------|-----------|
-| **framer-motion** | ✅ 12.23.24 | ✅ 12.23.24 | ❌ | ❌ |
-| **lucide-react** | ✅ 0.469.0 | ✅ 0.469.0 | ❌ | ❌ |
-| **react-icons** | ✅ 5.5.0 | ✅ 5.5.0 | ❌ | ❌ |
-| **swiper** | ✅ 12.0.3 | ✅ 12.0.3 | ❌ | ❌ |
-| **@playwright/test** | ✅ 1.56.0 | ✅ 1.56.0 | ❌ | ❌ |
+| Library/Tool         | FFC_Single_Page_Template | freeforcharity-web | ffcadmin.org | KCCF-web |
+| -------------------- | ------------------------ | ------------------ | ------------ | -------- |
+| **framer-motion**    | ✅ 12.23.24              | ✅ 12.23.24        | ❌           | ❌       |
+| **lucide-react**     | ✅ 0.469.0               | ✅ 0.469.0         | ❌           | ❌       |
+| **react-icons**      | ✅ 5.5.0                 | ✅ 5.5.0           | ❌           | ❌       |
+| **swiper**           | ✅ 12.0.3                | ✅ 12.0.3          | ❌           | ❌       |
+| **@playwright/test** | ✅ 1.56.0                | ✅ 1.56.0          | ❌           | ❌       |
 
 **Observation:** FFC_Single_Page_Template and freeforcharity-web are nearly identical in their dependency stacks, suggesting they share similar feature sets.
 
@@ -80,6 +81,7 @@ This analysis compares FFC_Single_Page_Template against three sister repositorie
 **Priority:** HIGH
 
 #### Current State
+
 - No code formatting automation
 - No consistent style enforcement
 - Manual code formatting prone to inconsistencies
@@ -87,6 +89,7 @@ This analysis compares FFC_Single_Page_Template against three sister repositorie
 #### Sister Site Implementation (ffcadmin.org)
 
 **Configuration File (.prettierrc.json):**
+
 ```json
 {
   "semi": false,
@@ -98,26 +101,31 @@ This analysis compares FFC_Single_Page_Template against three sister repositorie
 ```
 
 **Ignore File (.prettierignore):**
+
 - Excludes: node_modules, .next, out, build artifacts
 
 **NPM Scripts:**
+
 ```json
 "format": "prettier --write .",
 "format:check": "prettier --check ."
 ```
 
 #### Benefits
+
 - Automatic code formatting on save
 - Consistent code style across contributors
 - Reduces bike-shedding in code reviews
 - Integrates with VSCode, WebStorm, and other IDEs
 
 #### Implementation Effort
+
 **Estimated Time:** 1-2 hours  
 **Complexity:** LOW  
 **Breaking Changes:** None (formatting only)
 
 #### Technical Requirements
+
 1. Install dependencies: `prettier`, `eslint-config-prettier`, `eslint-plugin-prettier`
 2. Create `.prettierrc.json` configuration
 3. Create `.prettierignore` file
@@ -126,6 +134,7 @@ This analysis compares FFC_Single_Page_Template against three sister repositorie
 6. Format existing codebase (one-time run)
 
 #### Implementation Notes
+
 - Should be done early to establish coding standards
 - May require one-time formatting of entire codebase
 - Can be integrated with pre-commit hooks (see GAP-2)
@@ -139,6 +148,7 @@ This analysis compares FFC_Single_Page_Template against three sister repositorie
 **Priority:** MEDIUM
 
 #### Current State
+
 - No automated pre-commit checks
 - No commit message validation
 - No automated code quality gates before commits
@@ -146,6 +156,7 @@ This analysis compares FFC_Single_Page_Template against three sister repositorie
 #### Sister Site Implementation (ffcadmin.org)
 
 **Husky Configuration (.husky/):**
+
 - `pre-commit`: Runs linting and formatting checks
 - `commit-msg`: Validates commit message format
 
@@ -153,6 +164,7 @@ This analysis compares FFC_Single_Page_Template against three sister repositorie
 Uses `@commitlint/config-conventional` for commit message standards
 
 **Example Commit Message Format:**
+
 ```
 feat: add dark mode toggle component
 fix: resolve cookie consent banner positioning
@@ -161,6 +173,7 @@ chore: update dependencies
 ```
 
 #### Benefits
+
 - Prevents bad code from being committed
 - Enforces conventional commit messages
 - Improves git history readability
@@ -168,11 +181,13 @@ chore: update dependencies
 - Catches errors before CI/CD pipeline
 
 #### Implementation Effort
+
 **Estimated Time:** 2-3 hours  
 **Complexity:** MEDIUM  
 **Breaking Changes:** None (developer workflow only)
 
 #### Technical Requirements
+
 1. Install dependencies: `husky`, `@commitlint/cli`, `@commitlint/config-conventional`
 2. Initialize husky: `npx husky init`
 3. Create pre-commit hook (lint + format check)
@@ -181,6 +196,7 @@ chore: update dependencies
 6. Update CONTRIBUTING.md
 
 #### Implementation Notes
+
 - Requires team buy-in for commit message format
 - May slow down initial commits (runs linting)
 - Can be bypassed with `--no-verify` flag for emergencies
@@ -195,6 +211,7 @@ chore: update dependencies
 **Priority:** MEDIUM
 
 #### Current State
+
 - No commit message standards
 - Inconsistent git history
 - Difficult to generate changelogs automatically
@@ -202,13 +219,15 @@ chore: update dependencies
 #### Sister Site Implementation (ffcadmin.org)
 
 **Configuration (commitlint.config.js):**
+
 ```javascript
 module.exports = {
-  extends: ['@commitlint/config-conventional']
+  extends: ['@commitlint/config-conventional'],
 }
 ```
 
 **Supported Types:**
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
@@ -220,6 +239,7 @@ module.exports = {
 - `ci`: CI/CD changes
 
 #### Benefits
+
 - Standardized commit messages
 - Automatic changelog generation possible
 - Better git history navigation
@@ -227,11 +247,13 @@ module.exports = {
 - Improved team communication
 
 #### Implementation Effort
+
 **Estimated Time:** 1 hour  
 **Complexity:** LOW  
 **Breaking Changes:** None (git workflow only)
 
 #### Technical Requirements
+
 1. Install: `@commitlint/cli`, `@commitlint/config-conventional`
 2. Create `commitlint.config.js`
 3. Integrate with husky commit-msg hook
@@ -247,6 +269,7 @@ module.exports = {
 **Priority:** LOW
 
 #### Current State
+
 - `next.config.ts` has bundle analyzer commented/inactive
 - No regular bundle size monitoring
 - No bundle size CI checks
@@ -254,6 +277,7 @@ module.exports = {
 #### Sister Site Implementation (ffcadmin.org)
 
 **Configuration (next.config.js):**
+
 ```javascript
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
@@ -263,27 +287,32 @@ module.exports = withBundleAnalyzer(nextConfig)
 ```
 
 **Usage:**
+
 ```bash
 ANALYZE=true pnpm build
 ```
 
 **Documentation:**
+
 - Dedicated section in README.md
 - Instructions for running analysis
 - Guidance on interpreting results
 
 #### Benefits
+
 - Identify bloated dependencies
 - Optimize bundle size for faster loading
 - Track bundle size trends over time
 - Catch unintended dependency additions
 
 #### Implementation Effort
+
 **Estimated Time:** 1 hour  
 **Complexity:** LOW  
 **Breaking Changes:** None
 
 #### Technical Requirements
+
 1. Install: `@next/bundle-analyzer`
 2. Update `next.config.ts` to use bundle analyzer
 3. Add npm script: `"analyze": "ANALYZE=true npm run build"`
@@ -301,6 +330,7 @@ ANALYZE=true pnpm build
 **Priority:** HIGH
 
 #### Current State
+
 - Only Playwright E2E tests exist
 - No component unit tests
 - No test coverage tracking
@@ -309,12 +339,14 @@ ANALYZE=true pnpm build
 #### Sister Site Implementation (ffcadmin.org)
 
 **Test Infrastructure:**
+
 - Jest 30.2.0 with Next.js integration
 - React Testing Library 16.3.0
 - Testing Library Jest DOM 6.9.1
 - Coverage thresholds enforced
 
 **Configuration (jest.config.js):**
+
 ```javascript
 const nextJest = require('next/jest')
 
@@ -330,11 +362,7 @@ const customJestConfig = {
     '**/__tests__/**/*.test.ts',
     '**/__tests__/**/*.test.tsx',
   ],
-  collectCoverageFrom: [
-    'app/**/*.{js,jsx,ts,tsx}',
-    '!app/**/*.d.ts',
-    '!**/node_modules/**'
-  ],
+  collectCoverageFrom: ['app/**/*.{js,jsx,ts,tsx}', '!app/**/*.d.ts', '!**/node_modules/**'],
   coverageThreshold: {
     global: {
       branches: 2,
@@ -349,6 +377,7 @@ module.exports = createJestConfig(customJestConfig)
 ```
 
 **Test Files Present (ffcadmin.org):**
+
 - `__tests__/mobile-responsiveness.test.js`
 - `__tests__/seo-metadata.test.js`
 - `__tests__/lighthouse-workflow.test.js`
@@ -361,6 +390,7 @@ module.exports = createJestConfig(customJestConfig)
 - `__tests__/github-pages-config.test.js`
 
 **NPM Scripts:**
+
 ```json
 "test": "jest",
 "test:watch": "jest --watch",
@@ -368,6 +398,7 @@ module.exports = createJestConfig(customJestConfig)
 ```
 
 #### Benefits
+
 - Fast feedback loop for component changes
 - Higher code quality and confidence
 - Easier refactoring with safety net
@@ -376,11 +407,13 @@ module.exports = createJestConfig(customJestConfig)
 - CI/CD integration for quality gates
 
 #### Implementation Effort
+
 **Estimated Time:** 8-16 hours (initial setup + sample tests)  
 **Complexity:** MEDIUM-HIGH  
 **Breaking Changes:** None
 
 #### Technical Requirements
+
 1. Install dependencies:
    - `jest` (^30.2.0)
    - `@testing-library/react` (^16.3.0)
@@ -396,23 +429,28 @@ module.exports = createJestConfig(customJestConfig)
 8. Document testing approach in README.md or TESTING.md
 
 #### Recommended Initial Test Coverage
+
 **Phase 1 - Critical Components (Priority 1):**
+
 - Header/Navigation component
 - Footer component
 - Cookie consent banner
 - Donation/Volunteer popup system
 
 **Phase 2 - Utility Functions (Priority 2):**
+
 - assetPath helper function
 - Data transformation utilities
 - Context providers
 
 **Phase 3 - Page Components (Priority 3):**
+
 - Homepage
 - Key landing pages
 - Error pages
 
 #### Implementation Notes
+
 - Start with simple snapshot tests
 - Gradually add interaction tests
 - Set achievable coverage thresholds initially (10-20%)
@@ -428,6 +466,7 @@ module.exports = createJestConfig(customJestConfig)
 **Priority:** MEDIUM
 
 #### Current State
+
 - No automated accessibility testing
 - Manual accessibility checks only (if any)
 - No WCAG compliance verification
@@ -435,6 +474,7 @@ module.exports = createJestConfig(customJestConfig)
 #### Sister Site Implementation (ffcadmin.org)
 
 **Dependency:**
+
 ```json
 "@axe-core/react": "^4.11.0"
 ```
@@ -443,6 +483,7 @@ module.exports = createJestConfig(customJestConfig)
 Integrated into component tests to catch accessibility violations during development.
 
 #### Benefits
+
 - WCAG 2.1 compliance verification
 - Catch accessibility issues early
 - Better user experience for all users
@@ -450,11 +491,13 @@ Integrated into component tests to catch accessibility violations during develop
 - Automated checks in development and CI
 
 #### Implementation Effort
+
 **Estimated Time:** 4-6 hours  
 **Complexity:** MEDIUM  
 **Breaking Changes:** None (may reveal existing issues)
 
 #### Technical Requirements
+
 1. Install: `@axe-core/react`
 2. Integrate with Jest tests
 3. Add axe checks to E2E tests (Playwright)
@@ -463,6 +506,7 @@ Integrated into component tests to catch accessibility violations during develop
 6. Add CI checks for accessibility
 
 #### Implementation Notes
+
 - Should be combined with unit testing (GAP-5)
 - May reveal existing accessibility issues
 - Requires team training on accessibility
@@ -477,6 +521,7 @@ Integrated into component tests to catch accessibility violations during develop
 **Priority:** MEDIUM
 
 #### Current State
+
 - No automated link checking
 - Broken links may go undetected
 - Manual link verification only
@@ -484,13 +529,10 @@ Integrated into component tests to catch accessibility violations during develop
 #### Sister Site Implementation (ffcadmin.org)
 
 **Configuration (.linkinatorrc.json):**
+
 ```json
 {
-  "skip": [
-    "^https://github.com/.*",
-    "^http://localhost.*",
-    "placeholder patterns"
-  ]
+  "skip": ["^https://github.com/.*", "^http://localhost.*", "placeholder patterns"]
 }
 ```
 
@@ -498,11 +540,13 @@ Integrated into component tests to catch accessibility violations during develop
 Runs after build to detect broken internal and external links.
 
 **NPM Script:**
+
 ```json
 "check-links": "linkinator ./out --config .linkinatorrc.json"
 ```
 
 #### Benefits
+
 - Catch broken links before deployment
 - Improve SEO (no 404s)
 - Better user experience
@@ -510,11 +554,13 @@ Runs after build to detect broken internal and external links.
 - Skip known placeholder links
 
 #### Implementation Effort
+
 **Estimated Time:** 2-3 hours  
 **Complexity:** LOW  
 **Breaking Changes:** None (may reveal existing broken links)
 
 #### Technical Requirements
+
 1. Install: `linkinator`
 2. Create `.linkinatorrc.json` configuration
 3. Add npm script for link checking
@@ -523,6 +569,7 @@ Runs after build to detect broken internal and external links.
 6. Fix identified broken links
 
 #### Implementation Notes
+
 - Should run after `npm run build`
 - Can be integrated into CI/CD pipeline
 - Skip patterns needed for placeholder links
@@ -539,6 +586,7 @@ Runs after build to detect broken internal and external links.
 **Priority:** HIGH
 
 #### Current State
+
 - No automated security scanning
 - Vulnerabilities may go undetected
 - No SAST (Static Application Security Testing)
@@ -548,6 +596,7 @@ Runs after build to detect broken internal and external links.
 **Workflow File (.github/workflows/codeql.yml):**
 
 **Key Features:**
+
 - Scans on every push to main
 - Scans on every pull request
 - Scheduled weekly scans (Mondays at 1:28 AM UTC)
@@ -555,29 +604,32 @@ Runs after build to detect broken internal and external links.
 - Security-events permissions for SARIF upload
 
 **Trigger Configuration:**
+
 ```yaml
 on:
   push:
-    branches: [ "main" ]
+    branches: ['main']
   pull_request:
-    branches: [ "main" ]
+    branches: ['main']
   schedule:
     - cron: '28 1 * * 1'
 ```
 
 **Language Matrix:**
+
 ```yaml
 strategy:
   fail-fast: false
   matrix:
     include:
-    - language: actions
-      build-mode: none
-    - language: javascript-typescript
-      build-mode: none
+      - language: actions
+        build-mode: none
+      - language: javascript-typescript
+        build-mode: none
 ```
 
 #### Benefits
+
 - Early detection of security vulnerabilities
 - Compliance with security best practices
 - GitHub Security Advisories integration
@@ -590,11 +642,13 @@ strategy:
   - Command injection
 
 #### Implementation Effort
+
 **Estimated Time:** 1-2 hours  
 **Complexity:** LOW  
 **Breaking Changes:** None (may reveal existing vulnerabilities)
 
 #### Technical Requirements
+
 1. Copy CodeQL workflow from KCCF-web
 2. Enable GitHub Advanced Security (free for public repos)
 3. Configure language matrix for project
@@ -603,6 +657,7 @@ strategy:
 6. Document security scanning process
 
 #### Implementation Notes
+
 - No additional dependencies needed
 - Runs on GitHub's infrastructure
 - Results appear in Security tab
@@ -618,6 +673,7 @@ strategy:
 **Priority:** MEDIUM
 
 #### Current State
+
 - No automated performance monitoring
 - No Core Web Vitals tracking
 - Manual Lighthouse audits only
@@ -625,12 +681,14 @@ strategy:
 #### Sister Site Implementation (ffcadmin.org)
 
 **Workflow (.github/workflows/lighthouse.yml):**
+
 - Runs after successful deployment
 - Can be triggered manually
 - Tests multiple pages
 - Uploads results as artifacts
 
 **Configuration (lighthouserc.json):**
+
 ```json
 {
   "ci": {
@@ -662,12 +720,14 @@ strategy:
 
 **Documentation:**
 Comprehensive guide in `LIGHTHOUSE.md`:
+
 - How to run locally
 - How to interpret results
 - How to view CI results
 - Performance optimization tips
 
 #### Benefits
+
 - Automated performance audits
 - Core Web Vitals tracking:
   - Largest Contentful Paint (LCP)
@@ -679,11 +739,13 @@ Comprehensive guide in `LIGHTHOUSE.md`:
 - Historical performance tracking
 
 #### Implementation Effort
+
 **Estimated Time:** 4-6 hours  
 **Complexity:** MEDIUM  
 **Breaking Changes:** None
 
 #### Technical Requirements
+
 1. Install: `@lhci/cli`
 2. Create `lighthouserc.json` configuration
 3. Create `.github/workflows/lighthouse.yml`
@@ -693,6 +755,7 @@ Comprehensive guide in `LIGHTHOUSE.md`:
 7. Review initial results and optimize
 
 #### Implementation Notes
+
 - Runs after deployment workflow
 - Can be expensive (time-wise) in CI
 - Results stored as artifacts (30-day retention)
@@ -708,6 +771,7 @@ Comprehensive guide in `LIGHTHOUSE.md`:
 **Priority:** LOW
 
 #### Current State
+
 - Single workflow handles build, test, and deploy
 - No separation of concerns
 - Cannot test without deploying (on main branch)
@@ -715,6 +779,7 @@ Comprehensive guide in `LIGHTHOUSE.md`:
 #### Sister Site Implementation (ffcadmin.org)
 
 **Workflow Structure:**
+
 1. **ci.yml** - Build and Test
    - Runs on pull requests and pushes
    - Linting, formatting, type checking
@@ -735,6 +800,7 @@ Comprehensive guide in `LIGHTHOUSE.md`:
    - Runs Lighthouse audits
 
 #### Benefits
+
 - Faster PR feedback (no deploy overhead)
 - Can test deploy process independently
 - Better workflow organization
@@ -742,11 +808,13 @@ Comprehensive guide in `LIGHTHOUSE.md`:
 - Reusable CI workflow for branches
 
 #### Implementation Effort
+
 **Estimated Time:** 2-3 hours  
 **Complexity:** MEDIUM  
 **Breaking Changes:** Workflow organization only
 
 #### Technical Requirements
+
 1. Split current `nextjs.yml` into two workflows
 2. Create `ci.yml` for testing
 3. Create `deploy.yml` for deployment
@@ -755,6 +823,7 @@ Comprehensive guide in `LIGHTHOUSE.md`:
 6. Test new workflow structure
 
 #### Implementation Notes
+
 - Requires careful workflow dependency management
 - Should maintain same functionality
 - Improves clarity for contributors
@@ -769,6 +838,7 @@ Comprehensive guide in `LIGHTHOUSE.md`:
 **Priority:** LOW
 
 #### Current State
+
 - No automated commit signing
 - Manual GPG signing setup required
 - No verification of commit authenticity
@@ -776,20 +846,24 @@ Comprehensive guide in `LIGHTHOUSE.md`:
 #### Sister Site Implementation (ffcadmin.org)
 
 **Workflows:**
+
 1. **auto-sign-commits.yml** - Auto-signs commits from bots
 2. **sign-commits.yml** - Signs unsigned commits
 
 **Documentation:**
+
 - `GPG_SIGNING.md` - Comprehensive GPG setup guide
 - `QUICK_START.md` - 5-minute GPG setup quickstart
 
 **Features:**
+
 - Automatic bot commit signing
 - Retroactive commit signing
 - GPG key management
 - Public key storage in repo
 
 #### Benefits
+
 - Verified commit authenticity
 - Enhanced security posture
 - Compliance with security policies
@@ -797,11 +871,13 @@ Comprehensive guide in `LIGHTHOUSE.md`:
 - Protection against impersonation
 
 #### Implementation Effort
+
 **Estimated Time:** 4-6 hours  
 **Complexity:** MEDIUM-HIGH  
 **Breaking Changes:** None (optional feature)
 
 #### Technical Requirements
+
 1. Set up GPG signing infrastructure
 2. Create signing workflows
 3. Document GPG setup process
@@ -810,6 +886,7 @@ Comprehensive guide in `LIGHTHOUSE.md`:
 6. Train team on GPG usage
 
 #### Implementation Notes
+
 - Optional feature, not critical
 - Requires team coordination
 - Complex setup for contributors
@@ -827,6 +904,7 @@ Comprehensive guide in `LIGHTHOUSE.md`:
 **Priority:** MEDIUM
 
 #### Current State
+
 - Only light mode available
 - No user preference persistence
 - No system theme detection
@@ -834,10 +912,12 @@ Comprehensive guide in `LIGHTHOUSE.md`:
 #### Sister Site Implementation (KCCF-web)
 
 **Implementation Files:**
+
 1. **src/contexts/ThemeContext.tsx** - Theme state management
 2. **src/components/ThemeToggle.tsx** - Toggle UI component
 
 **ThemeContext Features:**
+
 ```typescript
 type Theme = 'light' | 'dark'
 
@@ -849,6 +929,7 @@ interface ThemeContextType {
 ```
 
 **Key Features:**
+
 - Detects system preference: `prefers-color-scheme`
 - Persists choice in localStorage
 - Applies theme via document class
@@ -856,6 +937,7 @@ interface ThemeContextType {
 - Smooth transitions
 
 **Implementation Pattern:**
+
 ```typescript
 // Check for saved preference or system preference
 const savedTheme = localStorage.getItem('theme')
@@ -872,6 +954,7 @@ localStorage.setItem('theme', theme)
 ```
 
 #### Benefits
+
 - Improved user experience
 - Reduced eye strain in low light
 - Modern web standard
@@ -880,11 +963,13 @@ localStorage.setItem('theme', theme)
 - Battery savings on OLED screens
 
 #### Implementation Effort
+
 **Estimated Time:** 6-8 hours  
 **Complexity:** MEDIUM  
 **Breaking Changes:** CSS may need updates for dark mode
 
 #### Technical Requirements
+
 1. Create `ThemeContext` provider
 2. Create `ThemeToggle` component
 3. Update Tailwind config for dark mode
@@ -894,7 +979,9 @@ localStorage.setItem('theme', theme)
 7. Document dark mode implementation
 
 #### Styling Requirements
+
 **Tailwind Configuration:**
+
 ```javascript
 module.exports = {
   darkMode: 'class', // Use class-based dark mode
@@ -903,12 +990,14 @@ module.exports = {
 ```
 
 **Component Updates:**
+
 - Update all components to support dark mode classes
 - Define dark mode color palette
 - Test contrast ratios for accessibility
 - Update images/logos for dark backgrounds
 
 #### Implementation Notes
+
 - Significant CSS work required (all 83 components)
 - Should use Tailwind dark mode utilities
 - Test thoroughly for contrast and readability
@@ -924,6 +1013,7 @@ module.exports = {
 **Priority:** LOW
 
 #### Current State
+
 - Basic PopupProvider for Donate/Volunteer
 - Limited modal types
 - No form modal system
@@ -933,6 +1023,7 @@ module.exports = {
 #### Sister Site Implementation (KCCF-web)
 
 **Context Providers:**
+
 1. **DonationModalContext** - Manage donation modal state
 2. **FormModalContext** - Multiple form types with config
 3. **ArticleModalContext** - Display article content
@@ -940,10 +1031,11 @@ module.exports = {
 5. **CookieConsentContext** - Advanced consent management
 
 **FormModalContext Example:**
+
 ```typescript
-export type FormType = 
+export type FormType =
   | 'camp-camper'
-  | 'camp-counselor' 
+  | 'camp-counselor'
   | 'crazy-socks-sponsor'
   | 'newsletter-signup'
   | 'book-elana'
@@ -952,17 +1044,18 @@ export type FormType =
   | 'aid-application'
 
 export const FORM_CONFIGS: Record<FormType, FormConfig> = {
-  'volunteer': {
+  volunteer: {
     title: 'Thank you for your interest in becoming a volunteer!',
     subtitle: 'The form may take a few seconds to load.',
     src: 'https://forms.monday.com/forms/embed/...',
-    height: '3100px'
+    height: '3100px',
   },
   // ... other forms
 }
 ```
 
 **Benefits of Advanced System:**
+
 - Centralized modal management
 - Type-safe form configurations
 - Reusable modal components
@@ -970,6 +1063,7 @@ export const FORM_CONFIGS: Record<FormType, FormConfig> = {
 - Easy to add new modal types
 
 #### Benefits
+
 - More flexible modal system
 - Better code organization
 - Easier to extend
@@ -977,11 +1071,13 @@ export const FORM_CONFIGS: Record<FormType, FormConfig> = {
 - Consistent modal behavior
 
 #### Implementation Effort
+
 **Estimated Time:** 8-12 hours  
 **Complexity:** MEDIUM  
 **Breaking Changes:** May require refactoring existing popup system
 
 #### Technical Requirements
+
 1. Analyze KCCF-web modal patterns
 2. Design modal architecture for FFC needs
 3. Create new context providers as needed
@@ -992,6 +1088,7 @@ export const FORM_CONFIGS: Record<FormType, FormConfig> = {
 8. Document modal system
 
 #### Implementation Notes
+
 - Current system may be sufficient for needs
 - Evaluate necessity before implementing
 - Consider incremental migration
@@ -1007,6 +1104,7 @@ export const FORM_CONFIGS: Record<FormType, FormConfig> = {
 **Priority:** MEDIUM
 
 #### Current State
+
 - Basic cookie consent banner exists
 - Limited granular controls
 - Basic consent categories
@@ -1014,6 +1112,7 @@ export const FORM_CONFIGS: Record<FormType, FormConfig> = {
 #### Sister Site Implementation (KCCF-web)
 
 **Advanced Features:**
+
 1. **ConsentPreferencesModal** - Detailed preference management
 2. **Granular Categories:**
    - Necessary (always on)
@@ -1033,6 +1132,7 @@ export const FORM_CONFIGS: Record<FormType, FormConfig> = {
 5. **GTM Integration:** Respects consent for analytics
 
 **Cookie Consent Context:**
+
 ```typescript
 interface CookieConsentContextValue {
   consent: ConsentState
@@ -1047,6 +1147,7 @@ interface CookieConsentContextValue {
 ```
 
 #### Benefits
+
 - GDPR/CCPA compliance
 - User privacy control
 - Granular analytics opt-in
@@ -1055,11 +1156,13 @@ interface CookieConsentContextValue {
 - Legal compliance
 
 #### Implementation Effort
+
 **Estimated Time:** 6-8 hours  
 **Complexity:** MEDIUM  
 **Breaking Changes:** May affect analytics collection
 
 #### Technical Requirements
+
 1. Enhance existing CookieConsent component
 2. Add ConsentPreferencesModal
 3. Implement consent versioning
@@ -1070,6 +1173,7 @@ interface CookieConsentContextValue {
 8. Document consent flow
 
 #### Implementation Notes
+
 - Current implementation may be sufficient
 - Enhanced version provides better UX
 - Important for GDPR compliance
@@ -1087,6 +1191,7 @@ interface CookieConsentContextValue {
 **Priority:** MEDIUM
 
 #### Current State
+
 - **README.md** - Basic project documentation
 - **TESTING.md** - Testing documentation
 - No other documentation files
@@ -1094,6 +1199,7 @@ interface CookieConsentContextValue {
 #### Sister Site Implementation (ffcadmin.org)
 
 **Documentation Files:**
+
 1. **CODE_QUALITY.md** (18,712 bytes)
    - Code quality standards
    - Linting rules
@@ -1161,6 +1267,7 @@ interface CookieConsentContextValue {
     - Writing tests
 
 #### Benefits
+
 - Better onboarding for new contributors
 - Reduced support burden
 - Improved knowledge sharing
@@ -1169,6 +1276,7 @@ interface CookieConsentContextValue {
 - Self-service troubleshooting
 
 #### Implementation Effort
+
 **Estimated Time:** 16-24 hours (spread across multiple documents)  
 **Complexity:** MEDIUM  
 **Breaking Changes:** None
@@ -1176,6 +1284,7 @@ interface CookieConsentContextValue {
 #### Technical Requirements
 
 **Priority 1 (High Value):**
+
 1. **CONTRIBUTING.md** (4 hours)
    - Contribution workflow
    - Code standards
@@ -1194,12 +1303,12 @@ interface CookieConsentContextValue {
    - Domain configuration
    - Troubleshooting
 
-**Priority 2 (Medium Value):**
-4. **CODE_QUALITY.md** (4 hours)
-   - Coding standards
-   - Linting rules
-   - Best practices
-   - Style guide
+**Priority 2 (Medium Value):** 4. **CODE_QUALITY.md** (4 hours)
+
+- Coding standards
+- Linting rules
+- Best practices
+- Style guide
 
 5. **ISSUE_RESOLUTION.md** (3 hours)
    - Common issues
@@ -1213,12 +1322,12 @@ interface CookieConsentContextValue {
    - Testing strategy
    - Mobile guidelines
 
-**Priority 3 (Lower Value):**
-7. **LESSONS_LEARNED.md** (2 hours)
-   - Project retrospective
-   - Successes
-   - Challenges
-   - Future improvements
+**Priority 3 (Lower Value):** 7. **LESSONS_LEARNED.md** (2 hours)
+
+- Project retrospective
+- Successes
+- Challenges
+- Future improvements
 
 8. **QUICK_START.md** (2 hours)
    - Fast setup guide
@@ -1227,6 +1336,7 @@ interface CookieConsentContextValue {
    - Troubleshooting
 
 #### Implementation Notes
+
 - Create incrementally over time
 - Start with highest-priority docs
 - Can be assigned to different contributors
@@ -1242,6 +1352,7 @@ interface CookieConsentContextValue {
 **Priority:** MEDIUM (if external services are used)
 
 #### Current State
+
 - No documentation for external service integrations
 - Integration details scattered in code
 - No central reference for service configuration
@@ -1251,6 +1362,7 @@ interface CookieConsentContextValue {
 **EXTERNAL_SERVICES.md** (14,559 bytes) includes:
 
 **Documented Services:**
+
 1. **Monday.com** - 7 embedded forms
    - Camp registration (camper)
    - Camp counselor applications
@@ -1273,6 +1385,7 @@ interface CookieConsentContextValue {
 7. **Microsoft Clarity** - Session recordings
 
 **Documentation Includes:**
+
 - Service URLs and access information
 - Configuration instructions
 - Embed IDs and credentials (non-sensitive)
@@ -1282,23 +1395,27 @@ interface CookieConsentContextValue {
 - Repository file references
 
 **Example Entry:**
+
 ```markdown
 ### Monday.com
 
 Monday.com powers 7 embedded forms for data collection across the site.
 
 #### Service Details
+
 - **Platform URL**: https://monday.com
 - **Integration Type**: Embedded iframe forms
 - **GTM ID**: GTM-P2SBKM7K
 
 #### Forms in Use
-| Form Type | Purpose | Embed ID |
-|-----------|---------|----------|
+
+| Form Type | Purpose                | Embed ID                         |
+| --------- | ---------------------- | -------------------------------- |
 | volunteer | Volunteer applications | 650d6c93433108a85097471c822b4cbf |
-| contact | General contact form | 7d2a1baf81662443852a38886ac80dd4 |
+| contact   | General contact form   | 7d2a1baf81662443852a38886ac80dd4 |
 
 #### Configuration
+
 1. Log in at https://monday.com
 2. Navigate to workspace containing KCCF forms
 3. Verify email settings
@@ -1306,6 +1423,7 @@ Monday.com powers 7 embedded forms for data collection across the site.
 ```
 
 #### Benefits
+
 - Central reference for all integrations
 - Easier onboarding for developers
 - Clear service dependencies
@@ -1314,11 +1432,13 @@ Monday.com powers 7 embedded forms for data collection across the site.
 - Reduced tribal knowledge
 
 #### Implementation Effort
+
 **Estimated Time:** 4-6 hours  
 **Complexity:** LOW  
 **Breaking Changes:** None
 
 #### Technical Requirements
+
 1. Inventory all external service integrations
 2. Document each service:
    - Service name and purpose
@@ -1334,12 +1454,14 @@ Monday.com powers 7 embedded forms for data collection across the site.
 #### Applicable External Services (Current Repo)
 
 Based on CookieConsent component, this repo may use:
+
 - Google Tag Manager (GTM)
 - Google Analytics
 - Meta Pixel
 - Microsoft Clarity
 
 **Recommended Sections:**
+
 1. Analytics Services (GTM, GA, Clarity, Meta Pixel)
 2. Form Integrations (if any Monday.com/Mailchimp)
 3. Donation Platforms (if any)
@@ -1348,6 +1470,7 @@ Based on CookieConsent component, this repo may use:
 6. Email Services
 
 #### Implementation Notes
+
 - Only document services actually in use
 - Keep credentials out of public docs
 - Use environment variables for sensitive data
@@ -1365,6 +1488,7 @@ Based on CookieConsent component, this repo may use:
 **Priority:** LOW
 
 #### Current State
+
 - `.env.example` exists but not documented
 - No clear guidance on environment variables
 - No documentation of required vs optional variables
@@ -1372,10 +1496,11 @@ Based on CookieConsent component, this repo may use:
 #### Sister Site Implementation (KCCF-web)
 
 **README.md includes:**
-```markdown
+
+````markdown
 ## Environment Variables
 
-Create a `.env.local` file in the project root for local development 
+Create a `.env.local` file in the project root for local development
 (do not commit this file):
 
 ```env
@@ -1389,13 +1514,16 @@ NEXT_PUBLIC_BASE_PATH=
 # GTM only loads when user consents to analytics cookies
 NEXT_PUBLIC_GTM_ID=
 ```
+````
 
 **Notes:**
+
 - The site uses Zeffy for donations which doesn't require API keys
 - Cookie consent and theme preferences are managed client-side
 - All form integrations use Monday.com embedded iframes (no API keys needed)
 - Google Tag Manager respects user cookie consent preferences
-```
+
+````
 
 #### Benefits
 - Clear setup instructions
@@ -1405,8 +1533,8 @@ NEXT_PUBLIC_GTM_ID=
 - Security guidance (what not to commit)
 
 #### Implementation Effort
-**Estimated Time:** 1-2 hours  
-**Complexity:** LOW  
+**Estimated Time:** 1-2 hours
+**Complexity:** LOW
 **Breaking Changes:** None
 
 #### Technical Requirements
@@ -1431,8 +1559,8 @@ NEXT_PUBLIC_GTM_ID=
 
 ### GAP-18: Docker Support
 
-**Status:** ❌ Missing  
-**Present In:** KCCF-web  
+**Status:** ❌ Missing
+**Present In:** KCCF-web
 **Priority:** LOW
 
 #### Current State
@@ -1463,9 +1591,10 @@ docker run -p 3000:3000 kccf-web
 
 # Development mode
 docker run -v $(pwd):/app -p 3000:3000 kccf-web npm run dev
-```
+````
 
 #### Benefits
+
 - Consistent development environment
 - Easier onboarding (no Node.js installation)
 - CI/CD flexibility
@@ -1474,11 +1603,13 @@ docker run -v $(pwd):/app -p 3000:3000 kccf-web npm run dev
 - Cross-platform compatibility
 
 #### Implementation Effort
+
 **Estimated Time:** 2-4 hours  
 **Complexity:** LOW-MEDIUM  
 **Breaking Changes:** None (optional feature)
 
 #### Technical Requirements
+
 1. Create `Dockerfile`:
    - Base image: node:20-alpine
    - Multi-stage build (dependencies, build, production)
@@ -1496,6 +1627,7 @@ docker run -v $(pwd):/app -p 3000:3000 kccf-web npm run dev
 6. Optional: Add Docker to CI/CD
 
 #### Implementation Notes
+
 - Optional feature, not required
 - Useful for complex deployments
 - May be overkill for static site
@@ -1511,6 +1643,7 @@ docker run -v $(pwd):/app -p 3000:3000 kccf-web npm run dev
 **Priority:** LOW
 
 #### Current State
+
 - No editor configuration file
 - Inconsistent formatting across editors
 - Manual configuration for each developer
@@ -1518,6 +1651,7 @@ docker run -v $(pwd):/app -p 3000:3000 kccf-web npm run dev
 #### Sister Site Implementation (ffcadmin.org)
 
 **File: .editorconfig**
+
 ```ini
 root = true
 
@@ -1534,6 +1668,7 @@ trim_trailing_whitespace = false
 ```
 
 #### Benefits
+
 - Consistent formatting across editors
 - Works with VSCode, Vim, Emacs, Sublime, IntelliJ
 - Reduces formatting commits
@@ -1541,11 +1676,13 @@ trim_trailing_whitespace = false
 - Zero configuration for contributors
 
 #### Implementation Effort
+
 **Estimated Time:** 15 minutes  
 **Complexity:** LOW  
 **Breaking Changes:** None
 
 #### Technical Requirements
+
 1. Create `.editorconfig` file
 2. Define settings:
    - Charset (utf-8)
@@ -1558,6 +1695,7 @@ trim_trailing_whitespace = false
 4. Document in README.md (optional)
 
 #### Implementation Notes
+
 - Simple addition
 - Works with most editors
 - Should align with Prettier config
@@ -1571,6 +1709,7 @@ trim_trailing_whitespace = false
 ### Immediate Priority (Implement First)
 
 **GAP-8: CodeQL Security Scanning** ⭐⭐⭐⭐⭐
+
 - **Effort:** 1-2 hours
 - **Impact:** High security value
 - **Risk:** Low (may reveal existing issues)
@@ -1578,6 +1717,7 @@ trim_trailing_whitespace = false
 - **Rationale:** Critical for security, free, easy to implement
 
 **GAP-1: Prettier Code Formatting** ⭐⭐⭐⭐
+
 - **Effort:** 1-2 hours
 - **Impact:** Improves code quality immediately
 - **Risk:** Low (formatting only)
@@ -1585,6 +1725,7 @@ trim_trailing_whitespace = false
 - **Rationale:** Foundation for code quality, easy to implement
 
 **GAP-5: Unit Testing with Jest** ⭐⭐⭐⭐
+
 - **Effort:** 8-16 hours
 - **Impact:** Significant quality improvement
 - **Risk:** Medium (reveals untested code)
@@ -1596,6 +1737,7 @@ trim_trailing_whitespace = false
 ### High Priority (Implement Soon)
 
 **GAP-2: Husky Git Hooks** ⭐⭐⭐
+
 - **Effort:** 2-3 hours
 - **Impact:** Prevents bad commits
 - **Risk:** Low
@@ -1603,6 +1745,7 @@ trim_trailing_whitespace = false
 - **Rationale:** Enforces quality standards automatically
 
 **GAP-15: Documentation Suite** ⭐⭐⭐
+
 - **Effort:** 16-24 hours (incremental)
 - **Impact:** Better contributor experience
 - **Risk:** None
@@ -1610,6 +1753,7 @@ trim_trailing_whitespace = false
 - **Rationale:** Improves project maintainability and onboarding
 
 **GAP-9: Lighthouse CI** ⭐⭐⭐
+
 - **Effort:** 4-6 hours
 - **Impact:** Performance visibility
 - **Risk:** Low
@@ -1621,6 +1765,7 @@ trim_trailing_whitespace = false
 ### Medium Priority (Consider)
 
 **GAP-12: Dark Mode** ⭐⭐⭐
+
 - **Effort:** 6-8 hours
 - **Impact:** Modern UX feature
 - **Risk:** Medium (requires CSS updates)
@@ -1628,6 +1773,7 @@ trim_trailing_whitespace = false
 - **Rationale:** User-requested feature, modern standard
 
 **GAP-6: Accessibility Testing** ⭐⭐
+
 - **Effort:** 4-6 hours
 - **Impact:** WCAG compliance
 - **Risk:** Medium (may reveal issues)
@@ -1635,6 +1781,7 @@ trim_trailing_whitespace = false
 - **Rationale:** Legal compliance, better UX
 
 **GAP-14: Enhanced Cookie Consent** ⭐⭐
+
 - **Effort:** 6-8 hours
 - **Impact:** Better privacy compliance
 - **Risk:** Low
@@ -1642,6 +1789,7 @@ trim_trailing_whitespace = false
 - **Rationale:** GDPR/CCPA compliance improvement
 
 **GAP-16: External Services Documentation** ⭐⭐
+
 - **Effort:** 4-6 hours
 - **Impact:** Clearer integration docs
 - **Risk:** None
@@ -1653,6 +1801,7 @@ trim_trailing_whitespace = false
 ### Lower Priority (Nice to Have)
 
 **GAP-3: Commitlint** ⭐
+
 - **Effort:** 1 hour
 - **Impact:** Better git history
 - **Risk:** Low
@@ -1660,6 +1809,7 @@ trim_trailing_whitespace = false
 - **Rationale:** Improves commit messages
 
 **GAP-7: Link Validation** ⭐
+
 - **Effort:** 2-3 hours
 - **Impact:** Catches broken links
 - **Risk:** Low
@@ -1667,6 +1817,7 @@ trim_trailing_whitespace = false
 - **Rationale:** Improves SEO and UX
 
 **GAP-10: Separate CI/Deploy Workflows** ⭐
+
 - **Effort:** 2-3 hours
 - **Impact:** Better workflow organization
 - **Risk:** Low
@@ -1674,6 +1825,7 @@ trim_trailing_whitespace = false
 - **Rationale:** Cleaner CI/CD
 
 **GAP-13: Advanced Modal System** ⭐
+
 - **Effort:** 8-12 hours
 - **Impact:** More flexible modals
 - **Risk:** Medium (refactoring)
@@ -1684,24 +1836,29 @@ trim_trailing_whitespace = false
 
 ### Optional (Evaluate Need)
 
-**GAP-4: Bundle Analysis** 
+**GAP-4: Bundle Analysis**
+
 - Current repo has basic support
 - May not need enhancement
 
 **GAP-11: Automated Commit Signing**
+
 - Complex setup
 - Optional security feature
 - High learning curve
 
 **GAP-17: Environment Variable Documentation**
+
 - Simple addition
 - Useful for clarity
 
 **GAP-18: Docker Support**
+
 - Overkill for static site
 - Only if team uses Docker
 
 **GAP-19: .editorconfig**
+
 - Simple addition
 - No harm in adding
 
@@ -1712,22 +1869,26 @@ trim_trailing_whitespace = false
 ### Phase 1: Security & Code Quality Foundation (Week 1-2)
 
 **Sprint 1.1: Security Scanning**
+
 - [ ] Implement CodeQL workflow (GAP-8)
 - [ ] Review and address initial findings
 - [ ] Enable branch protection rules
 
 **Sprint 1.2: Code Formatting**
+
 - [ ] Add Prettier configuration (GAP-1)
 - [ ] Format existing codebase
 - [ ] Document formatting standards
 
 **Sprint 1.3: Git Hooks**
+
 - [ ] Install Husky (GAP-2)
 - [ ] Configure pre-commit hooks
 - [ ] Document commit workflow
 
 **Estimated Time:** 8-12 hours  
 **Deliverables:**
+
 - CodeQL active and passing
 - Code formatted consistently
 - Pre-commit checks active
@@ -1738,17 +1899,20 @@ trim_trailing_whitespace = false
 ### Phase 2: Testing Infrastructure (Week 3-4) ✅ COMPLETED
 
 **Sprint 2.1: Jest Setup**
+
 - [x] Configure Jest and React Testing Library (GAP-5)
 - [x] Create test infrastructure
 - [x] Document testing approach
 
 **Sprint 2.2: Initial Test Suite**
+
 - [x] Write tests for critical components (Header, Footer)
 - [x] Write tests for Cookie Consent
 - [x] Write tests for assetPath utility
 - [x] Achieve 5%+ coverage (initial baseline, to be increased)
 
 **Sprint 2.3: CI Integration**
+
 - [x] Add test runs to CI
 - [x] Set coverage thresholds (5% initial)
 - [x] Document testing workflow
@@ -1756,6 +1920,7 @@ trim_trailing_whitespace = false
 **Estimated Time:** 16-24 hours  
 **Actual Time:** ~12 hours  
 **Deliverables:**
+
 - ✅ Jest configured and working
 - ✅ 5%+ test coverage with 22 passing tests
 - ✅ Tests running in CI before build
@@ -1768,17 +1933,20 @@ trim_trailing_whitespace = false
 ### Phase 3: Documentation & Monitoring (Week 5-6) ✅ COMPLETED
 
 **Sprint 3.1: Core Documentation**
+
 - [x] Create CONTRIBUTING.md (GAP-15)
 - [x] SECURITY.md already exists ✓
 - [x] Create DEPLOYMENT.md (GAP-15)
 
 **Sprint 3.2: Performance Monitoring**
+
 - [x] Implement Lighthouse CI (GAP-9)
 - [x] Create LIGHTHOUSE.md
 - [x] Configure lighthouserc.json with 5 pages
 - [x] Set performance baselines (warn thresholds)
 
 **Sprint 3.3: Additional Documentation**
+
 - [x] Create CODE_QUALITY.md (GAP-15)
 - [x] Create ISSUE_RESOLUTION.md (GAP-15)
 - [x] Update TESTING.md with Jest documentation
@@ -1787,6 +1955,7 @@ trim_trailing_whitespace = false
 **Estimated Time:** 24-32 hours  
 **Actual Time:** ~16 hours  
 **Deliverables:**
+
 - ✅ 6 new/updated documentation files
 - ✅ Lighthouse CI workflow active
 - ✅ Performance thresholds configured
@@ -1799,6 +1968,7 @@ trim_trailing_whitespace = false
 ### Phase 4: User Experience Enhancements (Week 7-9)
 
 **Sprint 4.1: Dark Mode (Optional)**
+
 - [ ] Create ThemeContext (GAP-12)
 - [ ] Add ThemeToggle component
 - [ ] Update Tailwind config
@@ -1806,12 +1976,14 @@ trim_trailing_whitespace = false
 - [ ] Update color palette
 
 **Sprint 4.2: Enhanced Cookie Consent (Optional)**
+
 - [ ] Add granular consent controls (GAP-14)
 - [ ] Implement consent versioning
 - [ ] Add ConsentPreferencesModal
 - [ ] Test with analytics integration
 
 **Sprint 4.3: Accessibility Testing**
+
 - [ ] Add axe-core integration (GAP-6)
 - [ ] Run accessibility audits
 - [ ] Address identified issues
@@ -1819,6 +1991,7 @@ trim_trailing_whitespace = false
 
 **Estimated Time:** 20-28 hours  
 **Deliverables:**
+
 - Dark mode implemented (if chosen)
 - Enhanced cookie consent (if chosen)
 - Accessibility testing active
@@ -1829,22 +2002,26 @@ trim_trailing_whitespace = false
 ### Phase 5: Advanced Tooling (Week 10-11)
 
 **Sprint 5.1: Additional Quality Tools**
+
 - [ ] Add Commitlint (GAP-3)
 - [ ] Add Link Validation (GAP-7)
 - [ ] Add .editorconfig (GAP-19)
 
 **Sprint 5.2: Workflow Improvements**
+
 - [ ] Split CI and Deploy workflows (GAP-10)
 - [ ] Optimize workflow performance
 - [ ] Document workflow architecture
 
 **Sprint 5.3: Additional Documentation**
+
 - [ ] Create RESPONSIVE_DESIGN.md (GAP-15)
 - [ ] Create LESSONS_LEARNED.md (GAP-15)
 - [ ] Create QUICK_START.md (GAP-15)
 
 **Estimated Time:** 12-16 hours  
 **Deliverables:**
+
 - Commitlint active
 - Link validation in CI
 - Workflow restructured
@@ -1858,7 +2035,7 @@ trim_trailing_whitespace = false
 **Phase 2:** 16-24 hours  
 **Phase 3:** 24-32 hours  
 **Phase 4:** 20-28 hours (optional features)  
-**Phase 5:** 12-16 hours  
+**Phase 5:** 12-16 hours
 
 **Total:** 80-112 hours (10-14 working days)
 
@@ -1872,22 +2049,26 @@ trim_trailing_whitespace = false
 ### Ongoing Maintenance Requirements
 
 **Weekly:**
+
 - Review CodeQL security alerts
 - Review Lighthouse CI results
 - Monitor test coverage trends
 
 **Monthly:**
+
 - Update dependencies (npm audit)
 - Review and close stale issues
 - Update documentation as needed
 
 **Quarterly:**
+
 - Review and update documentation
 - Performance optimization review
 - Security audit
 - Dependency major version updates
 
 **Annually:**
+
 - Comprehensive security review
 - Architecture review
 - Documentation refresh
@@ -1918,7 +2099,7 @@ A successful implementation of these improvements would result in:
 ✅ **Documentation:** 10+ comprehensive documentation files  
 ✅ **Monitoring:** Lighthouse CI tracking performance  
 ✅ **User Experience:** Dark mode, enhanced consent (optional)  
-✅ **Automation:** Pre-commit hooks, link validation, automated workflows  
+✅ **Automation:** Pre-commit hooks, link validation, automated workflows
 
 ### Next Steps
 

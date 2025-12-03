@@ -1,5 +1,5 @@
-import React from "react";
-import Hero from "@/components/free-for-charity-ffc-web-developer-training-guide-components/Hero";
+import React from 'react'
+import Hero from '@/components/free-for-charity-ffc-web-developer-training-guide-components/Hero'
 
 const index = () => {
   return (
@@ -8,7 +8,7 @@ const index = () => {
         <Hero />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

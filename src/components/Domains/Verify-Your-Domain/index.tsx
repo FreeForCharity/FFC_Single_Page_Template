@@ -1,8 +1,8 @@
-import React from "react";
-import Image from "next/image";
-import DomainCard from "@/components/UI/Domain-Card";
-import { IoCall } from "react-icons/io5";
-import { IoMdMail } from "react-icons/io";
+import React from 'react'
+import Image from 'next/image'
+import DomainCard from '@/components/UI/Domain-Card'
+import { IoCall } from 'react-icons/io5'
+import { IoMdMail } from 'react-icons/io'
 
 const index = () => {
   return (
@@ -19,9 +19,8 @@ const index = () => {
             className="mb-[13px] w-full lg:w-[85%] mx-auto font-[500] text-[20px] leading-[30px] text-center"
             id="raleway-font"
           >
-            Please note that you will now own this domain but several emails
-            from the domain registrar system will need to be accepted as they
-            verify your account to own the domain.
+            Please note that you will now own this domain but several emails from the domain
+            registrar system will need to be accepted as they verify your account to own the domain.
           </p>
           <p
             className="mt-[30px] font-[600] text-[27px] leading-[35px] text-center"
@@ -49,28 +48,19 @@ const index = () => {
 
             {/* Text */}
             <div className="text-center md:text-left">
-              <h4
-                className="text-[31px] font-[700] leading-[31px] pb-[10px]"
-                id="cantata-font"
-              >
+              <h4 className="text-[31px] font-[700] leading-[31px] pb-[10px]" id="cantata-font">
                 Step 1
               </h4>
-              <p
-                className="text-[23px] font-[500] leading-[30px]"
-                id="raleway-font"
-              >
-                Check for emails about verification to the email address you
-                used to register this domain
+              <p className="text-[23px] font-[500] leading-[30px]" id="raleway-font">
+                Check for emails about verification to the email address you used to register this
+                domain
               </p>
             </div>
           </div>
         </div>
 
         {/* Bottom note */}
-        <p
-          className="font-[500] text-[20px] leading-[30px] text-center"
-          id="raleway-font"
-        >
+        <p className="font-[500] text-[20px] leading-[30px] text-center" id="raleway-font">
           There are three main things to keep in mind.
         </p>
       </div>
@@ -110,18 +100,12 @@ const index = () => {
 
             {/* Text */}
             <div className="text-center md:text-left">
-              <h4
-                className="text-[31px] font-[700] leading-[31px] pb-[10px]"
-                id="cantata-font"
-              >
+              <h4 className="text-[31px] font-[700] leading-[31px] pb-[10px]" id="cantata-font">
                 Step 2
               </h4>
-              <p
-                className="text-[23px] font-[500] leading-[30px] pb-[1em]"
-                id="raleway-font"
-              >
-                You can manage your domain anytime by accessing our system with
-                the account you created at checkout.
+              <p className="text-[23px] font-[500] leading-[30px] pb-[1em]" id="raleway-font">
+                You can manage your domain anytime by accessing our system with the account you
+                created at checkout.
               </p>
               <a
                 href="https://freeforcharity.org/hub/"
@@ -150,8 +134,8 @@ const index = () => {
             className="w-full md:w-[85%] mx-auto text-[27px] font-[600] leading-[35px] text-center"
             id="raleway-font"
           >
-            If at anytime 72 hours after your order has been placed you have any
-            questions about these verifications please contact
+            If at anytime 72 hours after your order has been placed you have any questions about
+            these verifications please contact
           </p>
         </div>
 
@@ -187,7 +171,7 @@ const index = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

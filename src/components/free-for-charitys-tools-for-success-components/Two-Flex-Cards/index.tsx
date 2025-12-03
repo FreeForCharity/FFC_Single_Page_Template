@@ -1,27 +1,27 @@
-"use client";
-import React, { useEffect, useRef } from "react";
-import Image from "next/image";
-import { IoIosArrowForward } from "react-icons/io";
+'use client'
+import React, { useEffect, useRef } from 'react'
+import Image from 'next/image'
+import { IoIosArrowForward } from 'react-icons/io'
 
 const Index = () => {
-  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const sectionRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    const section = sectionRef.current;
+    const section = sectionRef.current
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            section?.classList.add("flip-once");
-            observer.unobserve(entry.target);
+            section?.classList.add('flip-once')
+            observer.unobserve(entry.target)
           }
-        });
+        })
       },
       { threshold: 0.3 }
-    );
-    if (section) observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
+    )
+    if (section) observer.observe(section)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <div className="pt-[8px] pb-[54px]">
@@ -51,14 +51,10 @@ const Index = () => {
               Volunteer Match (Free basic account paid upgrades)
             </h3>
 
-            <div
-              className="text-[18px] leading-[24px] font-[500] text-[#666]"
-              id="lato-font"
-            >
-              The best volunteer sourcing tool. Links with linkedin.com, your
-              website, and many other sources creating a job board for your
-              charities needs. Create a profile and post offers for all your
-              needs.
+            <div className="text-[18px] leading-[24px] font-[500] text-[#666]" id="lato-font">
+              The best volunteer sourcing tool. Links with linkedin.com, your website, and many
+              other sources creating a job board for your charities needs. Create a profile and post
+              offers for all your needs.
             </div>
 
             {/* Button */}
@@ -94,19 +90,14 @@ const Index = () => {
             </div>
 
             <h3 className="text-[28px] font-[600] text-[#333] leading-[36px] pb-[10px]">
-              FreeForCharity (No costs for anything we directly provide …
-              really)
+              FreeForCharity (No costs for anything we directly provide … really)
             </h3>
 
-            <div
-              className="text-[18px] leading-[24px] font-[500] text-[#666]"
-              id="lato-font"
-            >
-              My personal charity focused on bridging the gaps between the big
-              players in the charity for charities section. Focus is on IT
-              Project Management support and other business level support. Free
-              For Charity leverages and simplifies the plethora of options each
-              charity has to provide what is needed most by the individual
+            <div className="text-[18px] leading-[24px] font-[500] text-[#666]" id="lato-font">
+              My personal charity focused on bridging the gaps between the big players in the
+              charity for charities section. Focus is on IT Project Management support and other
+              business level support. Free For Charity leverages and simplifies the plethora of
+              options each charity has to provide what is needed most by the individual
               organization.
             </div>
 
@@ -142,7 +133,7 @@ const Index = () => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

@@ -1,5 +1,5 @@
-import { defineConfig, devices } from '@playwright/test';
-import { execSync } from 'child_process';
+import { defineConfig, devices } from '@playwright/test'
+import { execSync } from 'child_process'
 
 /**
  * Finds the system Chromium browser executable.
@@ -20,27 +20,22 @@ import { execSync } from 'child_process';
  * @returns {string | undefined} Path to the Chromium executable, or undefined if not found or unsupported OS.
  */
 function findChromiumExecutable(): string | undefined {
-  const browserNames = [
-    'chromium',
-    'chromium-browser',
-    'google-chrome',
-    'google-chrome-stable'
-  ];
+  const browserNames = ['chromium', 'chromium-browser', 'google-chrome', 'google-chrome-stable']
   for (const name of browserNames) {
     try {
       const path = execSync(`which ${name}`, {
         encoding: 'utf-8',
-        stdio: ['pipe', 'pipe', 'ignore'] // Suppress stderr
-      }).trim();
+        stdio: ['pipe', 'pipe', 'ignore'], // Suppress stderr
+      }).trim()
       if (path) {
-        return path;
+        return path
       }
     } catch {
       // Ignore and try next browser name
     }
   }
   // If none found, return undefined to use Playwright's browser
-  return undefined;
+  return undefined
 }
 
 /**
@@ -59,7 +54,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   // Reporter to use
   reporter: 'html',
-  
+
   use: {
     // Base URL for tests
     baseURL: 'http://localhost:3000',
@@ -71,7 +66,7 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { 
+      use: {
         ...devices['Desktop Chrome'],
         // Use system chromium browser if available to avoid network issues
         // when downloading Playwright browsers in restricted environments
@@ -89,4 +84,4 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
   },
-});
+})

@@ -1,5 +1,5 @@
-import React from "react";
-import Image from "next/image";
+import React from 'react'
+import Image from 'next/image'
 
 const Index = () => {
   return (
@@ -14,17 +14,16 @@ const Index = () => {
           id="aria-font"
           aria-describedby="GuideStar is required for onboarding verification"
         >
-          GuideStar is the main tool for helping you gather the information to
-          complete our onboarding form. Your goal should be to reach the highest
-          level of completion (GuideStar Platinum). Get the highest level you
-          can with the data you have. It takes roughly 2–3 hours to fully reach
-          Platinum the first time and then 30 minutes a year to keep it updated.{" "}
+          GuideStar is the main tool for helping you gather the information to complete our
+          onboarding form. Your goal should be to reach the highest level of completion (GuideStar
+          Platinum). Get the highest level you can with the data you have. It takes roughly 2–3
+          hours to fully reach Platinum the first time and then 30 minutes a year to keep it
+          updated.{' '}
           <strong>
-            To be supported by Free For Charity, we require organizations to be
-            at least Gold
-          </strong>{" "}
-          and to upload info for your board and IRS Designation Documents. See
-          the highlighted areas below.
+            To be supported by Free For Charity, we require organizations to be at least Gold
+          </strong>{' '}
+          and to upload info for your board and IRS Designation Documents. See the highlighted areas
+          below.
         </p>
 
         {/* Responsive Image with Proper Dimensions */}
@@ -39,7 +38,7 @@ const Index = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

@@ -1,5 +1,5 @@
-import React from "react";
-import SlidingCard from "@/components/UI/SlidingCard";
+import React from 'react'
+import SlidingCard from '@/components/UI/SlidingCard'
 
 const index = () => {
   return (
@@ -21,11 +21,10 @@ const index = () => {
             subtitle="Wave Accounting (free: add supported)"
             description={
               <>
-                Wave is the basic accounting that you need as an ultra small
-                business or a consultant. Use this first and if you outgrow it
-                and have to move to the very expensive QuickBooks later then it
-                is no problem. Wave gets better every year and adds more and
-                more features. I use this for several of my small businesses
+                Wave is the basic accounting that you need as an ultra small business or a
+                consultant. Use this first and if you outgrow it and have to move to the very
+                expensive QuickBooks later then it is no problem. Wave gets better every year and
+                adds more and more features. I use this for several of my small businesses
               </>
             }
             buttonText="Available Here"
@@ -37,16 +36,14 @@ const index = () => {
             subtitle="Shoeboxed (free with a paid premium version)"
             description={
               <>
-                Shoeboxed is a North Carolina based document scanning company
-                that takes basically any paper you get for your business and
-                scans it with OCR and human oversight to ensure it is accurate.
-                In the free version you have to upload the documents by tracking
-                a picture but in the paid versions you can just put them in
-                pre-paid envelopes and mail them in for processing. This is an
-                amazing tool if you need more things scanned than just receipts
-                and invoices like what is now included in the free wave
-                accounting software. NOTE: I use the paid version of this for
-                some of my businesses
+                Shoeboxed is a North Carolina based document scanning company that takes basically
+                any paper you get for your business and scans it with OCR and human oversight to
+                ensure it is accurate. In the free version you have to upload the documents by
+                tracking a picture but in the paid versions you can just put them in pre-paid
+                envelopes and mail them in for processing. This is an amazing tool if you need more
+                things scanned than just receipts and invoices like what is now included in the free
+                wave accounting software. NOTE: I use the paid version of this for some of my
+                businesses
               </>
             }
             buttonText="Available Here"
@@ -59,13 +56,11 @@ const index = () => {
             subtitle="Google Apps ($5 a month)"
             description={
               <>
-                This product I have used because I use Google for the personal
-                side. This is the business version. Now that Office 365 has come
-                out I am starting to think of moving my services over to that
-                and may change this recommendation for office productivity and
-                email on a budget. Microsoft Office was always expected on top
-                of this and that moved the needle to thinking Office 365 may
-                overtake it.
+                This product I have used because I use Google for the personal side. This is the
+                business version. Now that Office 365 has come out I am starting to think of moving
+                my services over to that and may change this recommendation for office productivity
+                and email on a budget. Microsoft Office was always expected on top of this and that
+                moved the needle to thinking Office 365 may overtake it.
               </>
             }
             buttonText="Available Here"
@@ -78,10 +73,9 @@ const index = () => {
             subtitle="Fiverr ($5 dollars minimum per gig)"
             description={
               <>
-                Great site for dipping your feet into outsourcing tasks for your
-                business. You can get almost any task done for $5 and many offer
-                upgrades for larger projects. Streamlined billing with your
-                business PayPal or standard credit card.
+                Great site for dipping your feet into outsourcing tasks for your business. You can
+                get almost any task done for $5 and many offer upgrades for larger projects.
+                Streamlined billing with your business PayPal or standard credit card.
               </>
             }
             buttonText="Available Here"
@@ -94,10 +88,9 @@ const index = () => {
             subtitle="UpWork (Pay per job)"
             description={
               <>
-                This is the full services solution to getting access to skills
-                you don’t have. Freelancers of every type and price point are
-                here and you really have to spend the time picking the right
-                people for the right jobs. Be careful with these sites.
+                This is the full services solution to getting access to skills you don’t have.
+                Freelancers of every type and price point are here and you really have to spend the
+                time picking the right people for the right jobs. Be careful with these sites.
               </>
             }
             buttonText="Available Here"
@@ -107,7 +100,7 @@ const index = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

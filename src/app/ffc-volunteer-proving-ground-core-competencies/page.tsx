@@ -1,8 +1,8 @@
-import React from "react";
-import Header from "@/components/ffc-volunteer-proving-ground-core-competencies/Header";
-import ContentSection from "@/components/ffc-volunteer-proving-ground-core-competencies/ContentSection";
-import Modulessection from "@/components/ffc-volunteer-proving-ground-core-competencies/Modules-section";
-import Footer from "@/components/ffc-volunteer-proving-ground-core-competencies/Footer";
+import React from 'react'
+import Header from '@/components/ffc-volunteer-proving-ground-core-competencies/Header'
+import ContentSection from '@/components/ffc-volunteer-proving-ground-core-competencies/ContentSection'
+import Modulessection from '@/components/ffc-volunteer-proving-ground-core-competencies/Modules-section'
+import Footer from '@/components/ffc-volunteer-proving-ground-core-competencies/Footer'
 
 const index = () => {
   return (
@@ -14,7 +14,7 @@ const index = () => {
         <Footer />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

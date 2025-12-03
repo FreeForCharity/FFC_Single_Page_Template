@@ -68,7 +68,7 @@ Tests deployment compatibility for both custom domain and GitHub Pages with base
    - **Status**: Temporarily disabled
    - **Reason**: `naturalWidth`/`naturalHeight` return 0 in CI environment despite image being visible
    - **Expected**: Should verify 512x512 pixel dimensions
-   - **Notes**: 
+   - **Notes**:
      - ✅ Passes locally
      - ❌ Fails in GitHub Actions
      - Needs investigation of CI timing or rendering differences
@@ -86,6 +86,7 @@ Tests deployment compatibility for both custom domain and GitHub Pages with base
 ### Prerequisites
 
 1. **Build the application:**
+
    ```bash
    npm run build
    ```
@@ -129,18 +130,20 @@ npx playwright test --debug
 Tests are configured in `playwright.config.ts` at the project root.
 
 **Key Configuration:**
+
 - **Base URL**: `http://localhost:3000`
 - **Browser**: Chromium (uses system browser when available)
 - **Web Server**: Auto-starts `npm run preview` before tests
 - **Server Timeout**: 120 seconds
 - **Parallel Execution**: Enabled locally, disabled in CI
-- **Retries**: 
+- **Retries**:
   - CI: 2 times
   - Local: 0 times
 - **Trace Collection**: On first retry (for debugging)
 - **Reporter**: HTML (view with `npx playwright show-report`)
 
 **Special Features**:
+
 - Automatically detects and uses system Chromium browser
 - Falls back to Playwright's bundled browser if system browser unavailable
 - Works in restricted network environments
@@ -153,6 +156,7 @@ Tests are automatically run in GitHub Actions on every push to the main branch.
 **Workflow**: `.github/workflows/nextjs.yml`
 
 **CI Pipeline Steps**:
+
 1. ✅ Checkout repository
 2. ✅ Setup Node.js 20
 3. ✅ Install dependencies (`npm ci`)
@@ -163,6 +167,7 @@ Tests are automatically run in GitHub Actions on every push to the main branch.
 8. ✅ Deploy only if tests pass
 
 **Test Failure Handling**:
+
 - If any test fails, the build is marked as failed
 - Deployment to GitHub Pages is blocked
 - Test artifacts and traces are uploaded for debugging
@@ -175,26 +180,29 @@ Tests are automatically run in GitHub Actions on every push to the main branch.
 To add new tests:
 
 1. **Create a new test file** in this directory:
+
    ```bash
    touch tests/my-feature.spec.ts
    ```
 
 2. **Import Playwright utilities**:
+
    ```typescript
-   import { test, expect } from '@playwright/test';
+   import { test, expect } from '@playwright/test'
    ```
 
 3. **Write test cases**:
+
    ```typescript
    test.describe('My Feature', () => {
      test('should do something', async ({ page }) => {
-       await page.goto('/');
-       
+       await page.goto('/')
+
        // Your test code here
-       const element = page.locator('selector');
-       await expect(element).toBeVisible();
-     });
-   });
+       const element = page.locator('selector')
+       await expect(element).toBeVisible()
+     })
+   })
    ```
 
 4. **Run your tests**:
@@ -216,30 +224,30 @@ To add new tests:
 
 ```typescript
 // Navigation
-await page.goto('/path');
-await page.goBack();
-await page.reload();
+await page.goto('/path')
+await page.goBack()
+await page.reload()
 
 // Finding elements
-const element = page.locator('css-selector');
-const byRole = page.getByRole('button', { name: 'Submit' });
-const byText = page.getByText('Hello World');
+const element = page.locator('css-selector')
+const byRole = page.getByRole('button', { name: 'Submit' })
+const byText = page.getByText('Hello World')
 
 // Assertions
-await expect(element).toBeVisible();
-await expect(element).toHaveText('Expected Text');
-await expect(element).toHaveAttribute('href', '/link');
-await expect(page).toHaveURL('/expected-path');
+await expect(element).toBeVisible()
+await expect(element).toHaveText('Expected Text')
+await expect(element).toHaveAttribute('href', '/link')
+await expect(page).toHaveURL('/expected-path')
 
 // Interactions
-await element.click();
-await element.fill('text input');
-await element.selectOption('value');
+await element.click()
+await element.fill('text input')
+await element.selectOption('value')
 
 // Network monitoring
-page.on('response', response => {
-  console.log(response.url(), response.status());
-});
+page.on('response', (response) => {
+  console.log(response.url(), response.status())
+})
 ```
 
 ## Test Debugging
@@ -263,6 +271,7 @@ npx playwright show-trace trace.zip
 ### CI Debugging
 
 When tests fail in CI:
+
 1. Check the GitHub Actions workflow run logs
 2. Download test artifacts (screenshots, traces)
 3. View HTML report: `npx playwright show-report`
