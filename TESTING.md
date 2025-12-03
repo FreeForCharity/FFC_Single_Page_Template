@@ -369,11 +369,49 @@ Key settings:
 
 ### CI/CD Integration
 
-Tests run automatically in GitHub Actions:
+### Test Execution Pipeline
 
-- On every push to main branch
-- Before deployment to GitHub Pages
-- If tests fail, deployment is blocked
+Tests run automatically in GitHub Actions with the following workflow:
+
+**1. Build & Deployment Workflow** (`nextjs.yml`)
+
+- Triggers: Push to main, pull requests, manual
+- Steps:
+  1. Install dependencies
+  2. Run unit tests (Jest)
+  3. Install Playwright browsers
+  4. Build site
+  5. Run E2E tests (Playwright)
+  6. Deploy to GitHub Pages (main branch only)
+- If any test fails, deployment is blocked
+
+**2. Lighthouse CI Workflow** (`lighthouse.yml`)
+
+- Triggers: After successful deployment, on pull requests, manual
+- Steps:
+  1. Install dependencies
+  2. Build site
+  3. Run Lighthouse CI (3 runs per page)
+  4. Display results summary in console
+  5. Upload HTML reports as artifacts
+  6. Post results comment on PR (if applicable)
+- Runs independently after deployment
+- Provides performance metrics without blocking deployment
+- Warning thresholds (not hard failures):
+  - Performance: ≥60%
+  - Accessibility: ≥80%
+  - Best Practices: ≥80%
+  - SEO: ≥90%
+
+### Result Reporting
+
+- **Unit Tests**: Pass/fail in workflow logs
+- **E2E Tests**: Pass/fail in workflow logs, screenshots on failure
+- **Lighthouse** (runs on PRs and after deployment):
+  - Console summary in workflow logs (always)
+  - Detailed PR comments with scores (PRs only)
+  - HTML reports in artifacts (always)
+  - Median scores from 3 runs
 
 ## Static Analysis
 
@@ -697,10 +735,17 @@ FFC_Single_Page_Template/
 
 ### Medium Priority
 
-4. **Performance Testing**
+4. **Performance Testing** ✅ **ENABLED**
    - Tool: Lighthouse CI
-   - Purpose: Monitor Core Web Vitals, SEO, Best Practices
-   - Benefit: Track performance regression over time
+   - Status: Fully configured and integrated into CI/CD
+   - Purpose: Monitor Core Web Vitals, SEO, Best Practices, Accessibility
+   - Features:
+     - Runs on every PR and after deployment
+     - Posts detailed score reports in PR comments
+     - Tracks median scores from multiple runs
+     - Provides threshold-based warnings
+     - Uploads detailed HTML reports as artifacts
+   - Benefit: Track performance regression over time and get immediate feedback on PRs
 
 5. **Visual Regression Testing**
    - Tool: Percy.io or Playwright screenshots
