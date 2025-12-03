@@ -5,6 +5,7 @@ This guide helps you test the Free For Charity web application, including conten
 ## Quick Test Checklist
 
 ### 1. Check Content Structure
+
 ```bash
 # Verify JSON content files
 ls -la src/data/faqs/
@@ -13,26 +14,33 @@ ls -la src/data/testimonials/
 ```
 
 ### 2. Test Development Server
+
 ```bash
 npm run dev
 ```
+
 Then visit http://localhost:3000
 
 ### 3. Test Build
+
 ```bash
 npm run build
 ```
+
 Should complete successfully
 
 ### 4. Test Preview
+
 ```bash
 npm run preview
 ```
+
 Visit http://localhost:3000 to see the built site
 
 ### 5. Run Automated Tests
 
 **Unit Tests (Jest)**:
+
 ```bash
 # Run all unit tests
 npm test
@@ -45,6 +53,7 @@ npm run test:watch
 ```
 
 **E2E Tests (Playwright)**:
+
 ```bash
 # First, ensure the site is built
 npm run build
@@ -117,11 +126,13 @@ __tests__/
 ### Current Test Coverage
 
 **Components Tested**:
+
 - Header (navigation component)
 - Footer (footer component)
 - CookieConsent (cookie consent banner)
 
 **Utilities Tested**:
+
 - assetPath (asset path helper for GitHub Pages)
 
 **Coverage Threshold**: 5% (initial baseline, will be increased over time)
@@ -166,16 +177,71 @@ describe('myUtility', () => {
 })
 ```
 
+### Accessibility Testing
+
+**Framework**: jest-axe - Automated accessibility testing with axe-core
+
+All component tests include accessibility checks using jest-axe to ensure WCAG 2.1 compliance.
+
+**How it works**:
+
+```tsx
+import { axe, toHaveNoViolations } from 'jest-axe'
+
+// Extend Jest matchers
+expect.extend(toHaveNoViolations)
+
+describe('MyComponent', () => {
+  it('should not have accessibility violations', async () => {
+    const { container } = render(<MyComponent />)
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
+  })
+})
+```
+
+**Accessibility checks include**:
+
+- Button and link text (all interactive elements must have accessible names)
+- Color contrast ratios (text must be readable)
+- ARIA attributes (proper use of ARIA roles and labels)
+- Keyboard navigation (all interactive elements must be keyboard accessible)
+- Form labels (all form inputs must have associated labels)
+- Image alt text (all images must have descriptive alt text)
+- Heading hierarchy (proper semantic heading structure)
+
+**Fixed Accessibility Issues**:
+
+- ✅ Footer: Added aria-label to GuideStar logo link
+- ✅ Footer: Added descriptive alt text to GuideStar seal image
+- ✅ Header: Added aria-label to search button
+- ✅ Header: Added aria-label to mobile menu button
+- ✅ Header: Added aria-label to close search button
+- ✅ Header: Added aria-label to search input
+
+**Running Accessibility Tests**:
+
+```bash
+# All tests include accessibility checks by default
+npm test
+
+# Run specific component accessibility test
+npm test -- -t "should not have accessibility violations"
+```
+
 ### Test Configuration
 
 **jest.config.js**: Main Jest configuration
+
 - Uses Next.js Jest integration
 - Configured for jsdom test environment
 - Code coverage collection enabled
 - Module path aliases configured
 
 **jest.setup.js**: Test environment setup
+
 - Imports @testing-library/jest-dom for custom matchers
+- Imports jest-axe/extend-expect for accessibility matchers
 - Can be extended with global test setup
 
 ---
@@ -272,6 +338,7 @@ npm run test:ui       # Interactive Playwright UI
 #### CI/CD Environment
 
 Tests run automatically in GitHub Actions with the following configuration:
+
 - **Trigger**: Every push to main branch
 - **Environment**: Ubuntu latest with Node.js 20
 - **Browser Setup**: `npx playwright install --with-deps chromium`
@@ -284,6 +351,7 @@ Tests run automatically in GitHub Actions with the following configuration:
 **Playwright Config** (`playwright.config.ts`)
 
 Key settings:
+
 - **Test Directory**: `./tests`
 - **Base URL**: `http://localhost:3000`
 - **Parallel Execution**: Enabled (disabled in CI for stability)
@@ -294,6 +362,7 @@ Key settings:
 - **Reporter**: HTML report
 
 **Special Features**:
+
 - Automatically detects and uses system Chromium browser
 - Works in restricted network environments
 - Prevents accidental `test.only` in CI
@@ -301,6 +370,7 @@ Key settings:
 ### CI/CD Integration
 
 Tests run automatically in GitHub Actions:
+
 - On every push to main branch
 - Before deployment to GitHub Pages
 - If tests fail, deployment is blocked
@@ -316,6 +386,7 @@ Tests run automatically in GitHub Actions:
 - **Integration**: Runs automatically during `npm run build`
 
 **Current Warnings**:
+
 - 2 warnings about using `<img>` instead of `<Image />` (expected and acceptable)
   - `src/app/components/NavBar.tsx:17:11`
   - `src/app/page.tsx:82:17`
@@ -353,20 +424,24 @@ GitHub Dependabot provides automated dependency management and security updates 
 **Configuration File**: `.github/dependabot.yml` (✅ configured)
 
 **Repository Settings**: Settings → Security & Analysis (⚙️ must be enabled by repository admin)
+
 - Dependency graph (required)
 - Dependabot alerts (recommended)
 - Dependabot security updates (recommended)
 
 **Monitored Ecosystems**:
+
 1. **npm** - JavaScript/Node.js dependencies in `package.json`
 2. **github-actions** - GitHub Actions workflows in `.github/workflows/`
 
 **Update Schedule**:
+
 - Runs every Monday at 9:00 AM UTC
 - Checks for new versions and security vulnerabilities
 - Creates pull requests automatically
 
 **Features Enabled**:
+
 - ✅ **Version Updates**: Checks for newer versions of dependencies weekly
 - ✅ **Security Updates**: Automatically creates PRs for known vulnerabilities (runs immediately when detected)
 - ✅ **Grouped Updates**: Dependencies grouped by type for easier review
@@ -378,12 +453,14 @@ GitHub Dependabot provides automated dependency management and security updates 
 #### How It Works
 
 **Version Updates**:
+
 1. Dependabot checks for updates based on the weekly schedule
 2. Creates a pull request for each group of updates
 3. PR includes changelog, commits, and compatibility info
 4. Maintainers review and merge the PR
 
 **Security Updates**:
+
 1. GitHub Advisory Database detects a vulnerability
 2. Dependabot creates a PR immediately (bypasses schedule)
 3. PR updates only the affected dependency to a safe version
@@ -392,28 +469,33 @@ GitHub Dependabot provides automated dependency management and security updates 
 #### Monitoring Dependabot
 
 **View Dependabot PRs**:
+
 ```bash
 # Navigate to your repository on GitHub
 # Go to: Pull Requests → Filter by author: dependabot[bot]
 ```
 
 **View Dependabot Insights**:
+
 - Repository → Insights → Dependency graph → Dependabot
 - Shows update frequency, PRs created, and alerts
 
 **View Security Alerts**:
+
 - Repository → Security → Dependabot alerts
 - Lists all known vulnerabilities with severity ratings
 
 #### Working with Dependabot PRs
 
 **Review Process**:
+
 1. Check the PR description for changes and compatibility notes
 2. Review the diff to ensure no breaking changes
 3. Wait for CI/CD to complete (tests must pass)
 4. Merge if tests pass and changes look good
 
 **Common Commands** (in PR comments):
+
 - `@dependabot rebase` - Rebase the PR against the base branch
 - `@dependabot recreate` - Recreate the PR from scratch
 - `@dependabot merge` - Merge the PR (if checks pass)
@@ -423,12 +505,14 @@ GitHub Dependabot provides automated dependency management and security updates 
 #### Best Practices
 
 ✅ **Do**:
+
 - Review Dependabot PRs regularly (weekly recommended)
 - Merge security updates promptly
 - Keep grouped updates together when possible
 - Test locally for major version updates
 
 ⚠️ **Don't**:
+
 - Ignore security alerts
 - Let Dependabot PRs pile up (makes conflicts more likely)
 - Blindly auto-merge without CI checks passing
@@ -437,18 +521,22 @@ GitHub Dependabot provides automated dependency management and security updates 
 #### Troubleshooting
 
 **Issue**: Dependabot PRs not appearing
+
 - **Solution**: Check `.github/dependabot.yml` syntax with a YAML validator
 - **Solution**: Verify Dependabot is enabled in repository settings (Settings → Security & Analysis → Dependabot alerts and Dependabot security updates)
 
 **Issue**: Dependabot creating too many PRs
+
 - **Solution**: Adjust `open-pull-requests-limit` in `dependabot.yml`
 - **Solution**: Increase grouping to combine more updates
 
 **Issue**: Merge conflicts in Dependabot PR
+
 - **Solution**: Comment `@dependabot rebase` on the PR
 - **Solution**: Close and reopen PR to trigger recreation
 
 **Issue**: Tests failing on Dependabot PR
+
 - **Solution**: Review the changes and fix test issues in a separate PR
 - **Solution**: Use `@dependabot ignore` if the update causes breaking changes
 
@@ -459,41 +547,49 @@ GitHub Dependabot provides automated dependency management and security updates 
 **Location**: `.github/workflows/codeql.yml`
 
 **Scans**:
+
 - JavaScript/TypeScript code
 - GitHub Actions workflows
 
 **Schedule**:
+
 - On push to main branch
 - On pull requests to main
 - Weekly on Mondays at 11:17 PM
 
 **View Results**:
+
 - Repository → Security → Code scanning alerts
 
 ### npm audit
 
 Current security status:
+
 ```bash
 npm audit
 ```
 
 **Known Issues**:
+
 - Check for any security vulnerabilities and address them promptly
 - Use `npm audit fix` to automatically fix vulnerabilities when possible
 
 ## What to Verify
 
 ### Visual Elements
+
 - [ ] Logo displays in top left corner (NavBar)
 - [ ] Logo displays in hero section
 - [ ] Both logos are the same image
 
 ### Homepage Content
+
 - [ ] Team members display correctly (5 members)
 - [ ] Testimonials display correctly (3 unique testimonials)
 - [ ] FAQs display correctly (all questions visible)
 
 ### JSON Data Integration
+
 - [ ] Team data imported from JSON files
 - [ ] Testimonial data imported from JSON files
 - [ ] FAQ data imported from JSON files (2 from JSON, rest inline)
@@ -501,6 +597,7 @@ npm audit
 ## Expected Behavior
 
 ### Team Members (from JSON)
+
 1. Clarke Moyer - Founder/President
 2. Chris Rae - Vice President
 3. Tyler Carlotto - Secretary
@@ -508,11 +605,13 @@ npm audit
 5. Rebecca Cook - Member at Large
 
 ### Testimonials (from JSON)
+
 1. Professional online presence testimonial
 2. Free domain and email testimonial
 3. Core mission focus testimonial
 
 ### FAQs (2 from JSON, rest inline)
+
 1. What is the organization aiming to accomplish? (JSON)
 2. Are you really a Charity? (JSON)
 3. Additional FAQs (inline in faqs.ts)
@@ -520,22 +619,27 @@ npm audit
 ## Common Issues
 
 ### Issue: Admin page blank
+
 **Cause**: External CDN (unpkg.com) blocked or inaccessible  
 **Solution**: This is expected in restricted environments. Will work in production.
 
 ### Issue: Build fails
+
 **Cause**: Google Fonts network access (per project instructions)  
 **Solution**: Temporarily comment out font imports in layout.tsx
 
 ### Issue: Content not showing
+
 **Cause**: JSON import error  
 **Solution**: Check TypeScript compilation and JSON validity
 
 ### Issue: Playwright browser download fails
+
 **Cause**: Network restrictions blocking cdn.playwright.dev  
 **Solution**: Uses system Chromium automatically via playwright.config.ts
 
 ### Issue: Test times out
+
 **Cause**: Web server didn't start in time  
 **Solution**: Increase timeout in playwright.config.ts (currently 120s)
 

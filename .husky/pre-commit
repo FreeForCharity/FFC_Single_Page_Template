@@ -1,0 +1,14 @@
+#!/bin/sh
+# Run formatting check first
+npm run format:check || {
+  echo "❌ Code formatting issues detected. Please run 'npm run format' to fix."
+  exit 1
+}
+
+# Run linting
+npm run lint || {
+  echo "❌ Linting errors detected. Please fix the errors and try again."
+  exit 1
+}
+
+echo "✅ Pre-commit checks passed!"

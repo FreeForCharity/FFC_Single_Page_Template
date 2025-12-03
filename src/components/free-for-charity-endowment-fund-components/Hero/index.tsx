@@ -1,5 +1,5 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react'
+import Link from 'next/link'
 
 const Index = () => {
   return (
@@ -39,7 +39,7 @@ const Index = () => {
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

@@ -1,6 +1,10 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
+import { axe, toHaveNoViolations } from 'jest-axe'
 import Footer from '../../src/components/Footer'
+
+// Extend Jest matchers
+expect.extend(toHaveNoViolations)
 
 describe('Footer component', () => {
   it('should render the footer', () => {
@@ -47,7 +51,13 @@ describe('Footer component', () => {
     render(<Footer />)
     // Look for email link
     const links = screen.getAllByRole('link')
-    const emailLink = links.find(link => link.getAttribute('href')?.includes('mailto:'))
+    const emailLink = links.find((link) => link.getAttribute('href')?.includes('mailto:'))
     expect(emailLink).toBeDefined()
+  })
+
+  it('should not have accessibility violations', async () => {
+    const { container } = render(<Footer />)
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
   })
 })

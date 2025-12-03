@@ -1,5 +1,5 @@
-import React from "react";
-import TeamMemberCard from "@/components/UI/TeamMemberCard";
+import React from 'react'
+import TeamMemberCard from '@/components/UI/TeamMemberCard'
 
 const index = () => {
   return (
@@ -48,7 +48,7 @@ const index = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

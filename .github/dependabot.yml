@@ -4,49 +4,48 @@
 version: 2
 updates:
   # Keep npm dependencies up to date
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "09:00"  # UTC timezone (all times in dependabot.yml use UTC)
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00' # UTC timezone (all times in dependabot.yml use UTC)
     open-pull-requests-limit: 10
     commit-message:
-      prefix: "npm"
-      include: "scope"
+      prefix: 'npm'
+      include: 'scope'
     labels:
-      - "dependencies"
-      - "npm"
+      - 'dependencies'
+      - 'npm'
     groups:
       # Group all npm production dependencies together
       # Note: Major version updates are excluded and handled individually
       # to allow careful review of potentially breaking changes
       production-dependencies:
-        dependency-type: "production"
+        dependency-type: 'production'
         update-types:
-          - "minor"
-          - "patch"
+          - 'minor'
+          - 'patch'
       # Group all npm development dependencies together
       # Note: Major version updates are excluded and handled individually
       # to allow careful review of potentially breaking changes
       development-dependencies:
-        dependency-type: "development"
+        dependency-type: 'development'
         update-types:
-          - "minor"
-          - "patch"
+          - 'minor'
+          - 'patch'
 
   # Keep GitHub Actions up to date
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: 'github-actions'
+    directory: '/'
     schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "09:00"  # UTC timezone (all times in dependabot.yml use UTC)
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00' # UTC timezone (all times in dependabot.yml use UTC)
     open-pull-requests-limit: 5
     commit-message:
-      prefix: "ci"
-      include: "scope"
+      prefix: 'ci'
+      include: 'scope'
     labels:
-      - "dependencies"
-      - "github-actions"
-
+      - 'dependencies'
+      - 'github-actions'

@@ -1,52 +1,50 @@
-"use client";
+'use client'
 
-import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useState, useEffect } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const testimonials = [
   {
     id: 1,
-    text: "Chris Rae has been a mentor for the Buena High School robotics team for the three years I have been involved with the team. His service to the team continues to be vital to the growth of the team. He uses his knowledge and expertise to teach our young programmers what they need to be successful in our program and beyond. His work with Free for Charity has also benefited the team in many ways, including the donation of several computers to the team. I rely on his knowledge of non-profit organizations and the community as well as his technical ability constantly",
-    author: "Nathan Bogardt",
-    role: "Head Coach, FRC Team 1726",
+    text: 'Chris Rae has been a mentor for the Buena High School robotics team for the three years I have been involved with the team. His service to the team continues to be vital to the growth of the team. He uses his knowledge and expertise to teach our young programmers what they need to be successful in our program and beyond. His work with Free for Charity has also benefited the team in many ways, including the donation of several computers to the team. I rely on his knowledge of non-profit organizations and the community as well as his technical ability constantly',
+    author: 'Nathan Bogardt',
+    role: 'Head Coach, FRC Team 1726',
   },
   {
     id: 2,
-    text: "When the Grafton Historical Society started in 2016, we needed a web presence. But as a new non-profit organization, we did not have any funds. As we searched for non-profit support services, we found Free for Charity. Free for Charity was able to provide and setup our domain and web site builder at no cost for us. The sign-up process was easy and I was able to create and publish our site right away. When I needed help, the Free for Charity team was always there to assist me. A year later, we still rely on Free for Charity and we use the funds we save towards the preservation of history for Grafton, Wisconsin.",
-    author: "John Bernd",
-    role: "Board Member, Grafton Historical Society",
+    text: 'When the Grafton Historical Society started in 2016, we needed a web presence. But as a new non-profit organization, we did not have any funds. As we searched for non-profit support services, we found Free for Charity. Free for Charity was able to provide and setup our domain and web site builder at no cost for us. The sign-up process was easy and I was able to create and publish our site right away. When I needed help, the Free for Charity team was always there to assist me. A year later, we still rely on Free for Charity and we use the funds we save towards the preservation of history for Grafton, Wisconsin.',
+    author: 'John Bernd',
+    role: 'Board Member, Grafton Historical Society',
   },
-];
+]
 
 export default function TestimonialSlider() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const [transitioning, setTransitioning] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isHovered, setIsHovered] = useState(false)
+  const [transitioning, setTransitioning] = useState(false)
 
   useEffect(() => {
     if (!isHovered) {
-      const interval = setInterval(() => handleNext(), 5000);
-      return () => clearInterval(interval);
+      const interval = setInterval(() => handleNext(), 5000)
+      return () => clearInterval(interval)
     }
-  }, [isHovered]);
+  }, [isHovered])
 
   const handlePrev = () => {
-    startTransition(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
-    );
-  };
+    startTransition((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+  }
 
   const handleNext = () => {
-    startTransition((prev) => (prev + 1) % testimonials.length);
-  };
+    startTransition((prev) => (prev + 1) % testimonials.length)
+  }
 
   const startTransition = (getNextIndex: (prev: number) => number) => {
-    setTransitioning(true);
+    setTransitioning(true)
     setTimeout(() => {
-      setCurrentIndex(getNextIndex);
-      setTimeout(() => setTransitioning(false), 300);
-    }, 300);
-  };
+      setCurrentIndex(getNextIndex)
+      setTimeout(() => setTransitioning(false), 300)
+    }, 300)
+  }
 
   return (
     <div className="py-16 bg-white">
@@ -77,7 +75,7 @@ export default function TestimonialSlider() {
           {/* Fade-to-white overlay during transition */}
           <div
             className={`absolute inset-0 bg-white transition-opacity duration-500 pointer-events-none ${
-              transitioning ? "opacity-70" : "opacity-0"
+              transitioning ? 'opacity-70' : 'opacity-0'
             }`}
           ></div>
 
@@ -89,8 +87,8 @@ export default function TestimonialSlider() {
                   key={testimonial.id}
                   className={`absolute inset-0 transition-all duration-700 ease-in-out flex flex-col items-center justify-center ${
                     idx === currentIndex
-                      ? "opacity-100 translate-y-0 delay-200"
-                      : "opacity-0 translate-y-6"
+                      ? 'opacity-100 translate-y-0 delay-200'
+                      : 'opacity-0 translate-y-6'
                   }`}
                 >
                   <p
@@ -125,7 +123,7 @@ export default function TestimonialSlider() {
                   key={idx}
                   onClick={() => startTransition(() => idx)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    idx === currentIndex ? "bg-white" : "bg-white/40"
+                    idx === currentIndex ? 'bg-white' : 'bg-white/40'
                   }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />
@@ -137,9 +135,7 @@ export default function TestimonialSlider() {
           <button
             onClick={handlePrev}
             className={`cursor-pointer absolute left-4 top-1/2 -translate-y-1/2 z-30 transition-all duration-300 text-white ${
-              isHovered
-                ? "translate-x-0 opacity-100"
-                : "-translate-x-10 opacity-0"
+              isHovered ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
             }`}
             aria-label="Previous testimonial"
           >
@@ -149,9 +145,7 @@ export default function TestimonialSlider() {
           <button
             onClick={handleNext}
             className={`cursor-pointer absolute right-4 top-1/2 -translate-y-1/2 z-30 transition-all duration-300 text-white ${
-              isHovered
-                ? "translate-x-0 opacity-100"
-                : "translate-x-10 opacity-0"
+              isHovered ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
             }`}
             aria-label="Next testimonial"
           >
@@ -160,5 +154,5 @@ export default function TestimonialSlider() {
         </div>
       </div>
     </div>
-  );
+  )
 }

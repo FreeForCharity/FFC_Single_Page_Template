@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const index = () => {
   return (
@@ -26,9 +26,8 @@ const index = () => {
               className="text-[#0e0c19] text-[18px] mb-[10px] leading-[32px] font-[700]"
               id="fauna-font"
             >
-              “Thanks to Free For Charity, our organization now has a
-              professional online presence, which has significantly increased
-              our visibility and donor engagement.”
+              “Thanks to Free For Charity, our organization now has a professional online presence,
+              which has significantly increased our visibility and donor engagement.”
             </p>
             <p
               className="text-[#000000a3] text-[16px] mb-[10px] leading-[32px] font-[500]"
@@ -53,9 +52,8 @@ const index = () => {
               className="text-[#0e0c19] text-[18px] mb-[10px] leading-[32px] font-[700]"
               id="fauna-font"
             >
-              “The free domain and email setup provided by Free For Charity have
-              been invaluable in helping us streamline our communications and
-              expand our reach.”
+              “The free domain and email setup provided by Free For Charity have been invaluable in
+              helping us streamline our communications and expand our reach.”
             </p>
             <p
               className="text-[#000000a3] text-[16px] mb-[10px] leading-[32px] font-[500]"
@@ -80,9 +78,8 @@ const index = () => {
               className="text-[#0e0c19] text-[18px] mb-[10px] leading-[32px] font-[700]"
               id="fauna-font"
             >
-              “We are grateful for the support from Free For Charity. Their
-              services have allowed us to focus more on our core mission and
-              less on administrative tasks.”
+              “We are grateful for the support from Free For Charity. Their services have allowed us
+              to focus more on our core mission and less on administrative tasks.”
             </p>
             <p
               className="text-[#000000a3] text-[16px] mb-[10px] leading-[32px] font-[500]"
@@ -94,7 +91,7 @@ const index = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

@@ -31,9 +31,9 @@ export default function CookiePolicy() {
           <p className="text-[14px] text-[#666] pb-[10px] leading-[24px] font-[500]">
             Cookies are small text files that are placed on your device when you visit a website.
             They are widely used to make websites work more efficiently and provide information to
-            website owners. Cookies can be &quot;persistent&quot; or &quot;session&quot; cookies. Persistent cookies
-            remain on your device after you close your browser, while session cookies are deleted
-            when you close your browser.
+            website owners. Cookies can be &quot;persistent&quot; or &quot;session&quot; cookies.
+            Persistent cookies remain on your device after you close your browser, while session
+            cookies are deleted when you close your browser.
           </p>
 
           {/* Section 2 */}
@@ -76,9 +76,9 @@ export default function CookiePolicy() {
             <strong>3.1 Necessary Cookies (Always Active)</strong>
           </p>
           <p className="text-[14px] text-[#666] pb-[10px] leading-[24px] font-[500]">
-            These cookies are essential for the website to function properly. They enable
-            basic features like storing your cookie consent preferences. These cookies do not
-            store any personally identifiable information and cannot be disabled.
+            These cookies are essential for the website to function properly. They enable basic
+            features like storing your cookie consent preferences. These cookies do not store any
+            personally identifiable information and cannot be disabled.
           </p>
           <div className="bg-gray-50 p-4 rounded-lg mb-4 overflow-x-auto">
             <table className="w-full text-sm">
@@ -104,18 +104,18 @@ export default function CookiePolicy() {
             <strong>3.2 Analytics Cookies (Requires Consent)</strong>
           </p>
           <p className="text-[14px] text-[#666] pb-[10px] leading-[24px] font-[500]">
-            These cookies help us understand how visitors interact with our website by
-            collecting and reporting information anonymously. We use this information to
-            improve our website and user experience.
+            These cookies help us understand how visitors interact with our website by collecting
+            and reporting information anonymously. We use this information to improve our website
+            and user experience.
           </p>
 
           {/* Google Analytics */}
           <div className="bg-gray-50 p-4 rounded-lg mb-4">
             <h4 className="font-semibold mb-2 text-[#333]">Google Analytics</h4>
             <p className="text-sm mb-2 text-[#666]">
-              Google Analytics is a web analytics service offered by Google that tracks and
-              reports website traffic. We use Google Analytics to understand how users
-              interact with our website.
+              Google Analytics is a web analytics service offered by Google that tracks and reports
+              website traffic. We use Google Analytics to understand how users interact with our
+              website.
             </p>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -162,8 +162,8 @@ export default function CookiePolicy() {
           <div className="bg-gray-50 p-4 rounded-lg mb-4">
             <h4 className="font-semibold mb-2 text-[#333]">Microsoft Clarity</h4>
             <p className="text-sm mb-2 text-[#666]">
-              Microsoft Clarity is a user behavior analytics tool that helps us understand how
-              users interact with our website through session recordings and heatmaps.
+              Microsoft Clarity is a user behavior analytics tool that helps us understand how users
+              interact with our website through session recordings and heatmaps.
             </p>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -206,9 +206,9 @@ export default function CookiePolicy() {
             <strong>3.3 Marketing Cookies (Requires Consent)</strong>
           </p>
           <p className="text-[14px] text-[#666] pb-[10px] leading-[24px] font-[500]">
-            These cookies are used to track visitors across websites. The intention is to
-            display ads that are relevant and engaging for users and thereby more valuable for
-            publishers and advertisers.
+            These cookies are used to track visitors across websites. The intention is to display
+            ads that are relevant and engaging for users and thereby more valuable for publishers
+            and advertisers.
           </p>
 
           {/* Meta Pixel */}
@@ -354,10 +354,10 @@ export default function CookiePolicy() {
             </li>
           </ol>
           <p className="text-[14px] text-[#666] pb-[10px] leading-[24px] font-[500]">
-            Some browsers have a &quot;Do Not Track&quot; feature that lets you tell websites that you do
-            not want to have your online activities tracked. At this time, we do not respond to
-            browser &quot;Do Not Track&quot; signals. However, you can control cookies through our cookie
-            consent banner.
+            Some browsers have a &quot;Do Not Track&quot; feature that lets you tell websites that
+            you do not want to have your online activities tracked. At this time, we do not respond
+            to browser &quot;Do Not Track&quot; signals. However, you can control cookies through
+            our cookie consent banner.
           </p>
 
           {/* Section 6 */}
@@ -388,10 +388,7 @@ export default function CookiePolicy() {
           <ul className="list-inside list-disc space-y-[4px] pb-[1em]">
             <li className="text-[14px] text-[#666] leading-[24px] font-[500]">
               <strong>Email:</strong>{' '}
-              <a
-                href="mailto:privacy@freeforcharity.org"
-                className="text-blue-600 hover:underline"
-              >
+              <a href="mailto:privacy@freeforcharity.org" className="text-blue-600 hover:underline">
                 privacy@freeforcharity.org
               </a>
             </li>

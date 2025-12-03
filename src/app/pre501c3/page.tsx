@@ -1,10 +1,10 @@
-import React from "react";
-import HeroSection from "@/components/UI/HeroSection";
-import ReadyToGetStarted from "@/components/help-for-charities-components/Ready-to-Get-Started-Now";
-import CharityNonprofitDirectorFaq from "@/components/help-for-charities-components/Charity-Nonprofit-Director-Faq";
-import CallSection from "@/components/help-for-charities-components/call-section";
-import Faqs from "@/components/pre501c3-components/Faqs";
-import Charity from "@/components/pre501c3-components/charity";
+import React from 'react'
+import HeroSection from '@/components/UI/HeroSection'
+import ReadyToGetStarted from '@/components/help-for-charities-components/Ready-to-Get-Started-Now'
+import CharityNonprofitDirectorFaq from '@/components/help-for-charities-components/Charity-Nonprofit-Director-Faq'
+import CallSection from '@/components/help-for-charities-components/call-section'
+import Faqs from '@/components/pre501c3-components/Faqs'
+import Charity from '@/components/pre501c3-components/charity'
 
 const index = () => {
   return (
@@ -21,7 +21,7 @@ const index = () => {
       <ReadyToGetStarted />
       <CallSection />
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

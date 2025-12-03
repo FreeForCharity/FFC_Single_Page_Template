@@ -1,42 +1,37 @@
-"use client";
-import React, { useEffect, useRef } from "react";
-import Image, { StaticImageData } from "next/image";
-import { IoIosArrowForward } from "react-icons/io"; // Import arrow
+'use client'
+import React, { useEffect, useRef } from 'react'
+import Image, { StaticImageData } from 'next/image'
+import { IoIosArrowForward } from 'react-icons/io' // Import arrow
 
 type ToolCardProps = {
-  logo?: string | StaticImageData;
-  title: string;
-  description?: string;
-  link: string;
-};
+  logo?: string | StaticImageData
+  title: string
+  description?: string
+  link: string
+}
 
-export default function ToolCard({
-  logo,
-  title,
-  description,
-  link,
-}: ToolCardProps) {
-  const cardRef = useRef<HTMLDivElement | null>(null);
+export default function ToolCard({ logo, title, description, link }: ToolCardProps) {
+  const cardRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    const card = cardRef.current;
-    if (!card) return;
+    const card = cardRef.current
+    if (!card) return
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            card.classList.add("flip-once");
-            observer.unobserve(entry.target);
+            card.classList.add('flip-once')
+            observer.unobserve(entry.target)
           }
-        });
+        })
       },
       { threshold: 0.3 }
-    );
+    )
 
-    observer.observe(card);
-    return () => observer.disconnect();
-  }, []);
+    observer.observe(card)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <div
@@ -46,12 +41,7 @@ export default function ToolCard({
       <div className="flex items-center mb-[15px]">
         {logo && (
           <div className="relative w-full mx-auto h-[200px]">
-            <Image
-              src={logo}
-              alt={`${title} logo`}
-              fill
-              className="object-conver"
-            />
+            <Image src={logo} alt={`${title} logo`} fill className="object-conver" />
           </div>
         )}
       </div>
@@ -78,9 +68,7 @@ export default function ToolCard({
           className="relative group inline-flex items-center justify-center gap-2 px-[30px] py-[6px] text-white border border-[#f27022] rounded-[10px] text-[18px] bg-[#f27022] transition-all duration-300 ease-in-out shadow-md leading-[31px] font-[600] hover:shadow-[0px_12px_18px_-6px_#f27022]"
           id="montserrat-font"
         >
-          <span className="transition-all duration-300 group-hover:translate-x-1">
-            Get Started
-          </span>
+          <span className="transition-all duration-300 group-hover:translate-x-1">Get Started</span>
           <IoIosArrowForward className="opacity-0 translate-x-[-8px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out w-[20px] h-[20px]" />
         </a>
       </div>
@@ -101,5 +89,5 @@ export default function ToolCard({
         }
       `}</style>
     </div>
-  );
+  )
 }

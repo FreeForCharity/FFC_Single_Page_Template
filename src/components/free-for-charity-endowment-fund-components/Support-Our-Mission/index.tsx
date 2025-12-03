@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react'
 
 interface SupportMissionSectionProps {
-  title?: string;
-  description1?: string;
-  description2?: string;
+  title?: string
+  description1?: string
+  description2?: string
 }
 
 const SupportMissionSection: React.FC<SupportMissionSectionProps> = ({
-  title = "Support Our Mission",
-  description1 = "Join us in reaching our $1,000,000 Endowment goal to ensure sustainable support for our US based 501c3 charities.",
-  description2 = "Your contribution will help provide free domain names and essential email services to nonprofits, enabling them to focus on their missions without the burden of digital costs. Every donation brings us closer to empowering more charities with the tools they need to succeed.",
+  title = 'Support Our Mission',
+  description1 = 'Join us in reaching our $1,000,000 Endowment goal to ensure sustainable support for our US based 501c3 charities.',
+  description2 = 'Your contribution will help provide free domain names and essential email services to nonprofits, enabling them to focus on their missions without the burden of digital costs. Every donation brings us closer to empowering more charities with the tools they need to succeed.',
 }) => {
   return (
     <section
@@ -20,9 +20,9 @@ const SupportMissionSection: React.FC<SupportMissionSectionProps> = ({
           linear-gradient(90deg, #003566 40%, rgba(0, 0, 0, 0.5) 100%),
           url('https://images.unsplash.com/photo-1624953901718-e24ee7200b85?ixid=M3w1ODkyNzF8MHwxfHNlYXJjaHw2fHxwZW9wbGUlMjBkb25hdGluZ3xlbnwwfDB8fHwxNzM2MjE0MTc4fDA&ixlib=rb-4.0.3&fm=webp&fit=crop&crop=entropy&w=1920&h=1080&q=20&dpr=2')
         `,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
       }}
     >
       <div
@@ -52,7 +52,7 @@ const SupportMissionSection: React.FC<SupportMissionSectionProps> = ({
         </p>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default SupportMissionSection;
+export default SupportMissionSection

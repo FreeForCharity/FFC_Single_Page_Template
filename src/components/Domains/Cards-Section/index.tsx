@@ -1,5 +1,5 @@
-import StepsCard from "@/components/UI/StepContentCard";
-import Image from "next/image";
+import StepsCard from '@/components/UI/StepContentCard'
+import Image from 'next/image'
 
 export default function CloudflareSetup() {
   return (
@@ -12,7 +12,7 @@ export default function CloudflareSetup() {
           <li>
             Use your organizational outlook.com account
             <br />
-            e.g.{" "}
+            e.g.{' '}
             <a href="mailto:yourcharity@outlook.com" className="text-[#2ea3f2]">
               yourcharity@outlook.com
             </a>
@@ -51,48 +51,38 @@ export default function CloudflareSetup() {
             <ol className="list-lower-roman list-inside ml-6">
               <li>i. Follow all steps for the checkout</li>
               <li>
-                ii. Do not forget to put in the coupon code found in the email
-                you received from the FFC Onboarding Acceptance or it will
-                charge you money. This is required to stop spam purchases and to
-                ensure only charities use the service
+                ii. Do not forget to put in the coupon code found in the email you received from the
+                FFC Onboarding Acceptance or it will charge you money. This is required to stop spam
+                purchases and to ensure only charities use the service
               </li>
             </ol>
           </li>
 
           <li>
-            NOTE: You must include payment method as this is a commercial system
-            and even with a $0 invoice it will not run each year if it does not
-            see payment. We recommend Paypal and ACH as these are the most
-            stable.
+            NOTE: You must include payment method as this is a commercial system and even with a $0
+            invoice it will not run each year if it does not see payment. We recommend Paypal and
+            ACH as these are the most stable.
           </li>
 
           <li>
             <strong>
-              NOTE: If you have a domain already with another domain registrar
-              (e.g. godaddy, enom){" "}
+              NOTE: If you have a domain already with another domain registrar (e.g. godaddy, enom){' '}
               <span className="underline">
-                we do not recommend that you move your domain name without
-                calling us first.
-              </span>{" "}
-              In either case make sure it is already verified in your Cloudflare
-              account{" "}
+                we do not recommend that you move your domain name without calling us first.
+              </span>{' '}
+              In either case make sure it is already verified in your Cloudflare account{' '}
             </strong>
           </li>
 
           <li>
-            NOTE: As soon as you complete the purchase you will be brought into
-            the account area.{" "}
+            NOTE: As soon as you complete the purchase you will be brought into the account area.{' '}
             <strong>
-              It is very important that you create an additional user in the
-              users tab.{" "}
-            </strong>{" "}
-            We require at least 2 points for contact for a domain name and to
-            support recovery for your charity.
+              It is very important that you create an additional user in the users tab.{' '}
+            </strong>{' '}
+            We require at least 2 points for contact for a domain name and to support recovery for
+            your charity.
             <ol className="list-lower-roman list-inside">
-              <li>
-                i. Check your junk mail and spam boxes for all notices and mark
-                as not spam
-              </li>
+              <li>i. Check your junk mail and spam boxes for all notices and mark as not spam</li>
             </ol>
           </li>
         </ul>
@@ -148,5 +138,5 @@ export default function CloudflareSetup() {
         </div>
       </StepsCard>
     </div>
-  );
+  )
 }

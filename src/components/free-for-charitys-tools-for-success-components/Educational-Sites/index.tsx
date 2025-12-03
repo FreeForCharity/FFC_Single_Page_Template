@@ -1,32 +1,32 @@
-"use client";
+'use client'
 
-import React from "react";
-import Image from "next/image";
-import { IoIosArrowForward } from "react-icons/io";
-import { motion, Variants } from "framer-motion";
+import React from 'react'
+import Image from 'next/image'
+import { IoIosArrowForward } from 'react-icons/io'
+import { motion, Variants } from 'framer-motion'
 
 const cardVariants: Variants = {
   offscreen: { opacity: 0, scale: 0.8 },
   onscreen: {
     opacity: 1,
     scale: 1,
-    transition: { type: "spring", bounce: 0.3, duration: 1 }, // slower duration
+    transition: { type: 'spring', bounce: 0.3, duration: 1 }, // slower duration
   },
-};
+}
 
 const EducationalSitesSection = () => {
   const cards = [
     {
-      title: "iwillteachyoutoberich.com Best for automation and earning more",
-      link: "https://www.iwillteachyoutoberich.com/blog/",
-      image: "/Images/googleLogo.webp",
+      title: 'iwillteachyoutoberich.com Best for automation and earning more',
+      link: 'https://www.iwillteachyoutoberich.com/blog/',
+      image: '/Images/googleLogo.webp',
     },
     {
-      title: "fourhourworkweek.com Another prime automation book and website",
-      link: "https://tim.blog/overview/",
-      image: "/Images/googleLogo.webp",
+      title: 'fourhourworkweek.com Another prime automation book and website',
+      link: 'https://tim.blog/overview/',
+      image: '/Images/googleLogo.webp',
     },
-  ];
+  ]
 
   return (
     <div className="py-[91px] bg-[linear-gradient(180deg,#0068b7_0%,rgba(44,96,118,0.75)_100%),url('https://staging.freeforcharity.org/wp-content/uploads/2021/07/pexels-cottonbro-4064840.jpg')] bg-[#0f82af] bg-cover bg-center bg-no-repeat">
@@ -55,12 +55,7 @@ const EducationalSitesSection = () => {
             >
               {/* Icon */}
               <div className="relative w-full h-[180px] mb-6">
-                <Image
-                  src={card.image}
-                  alt="Automation"
-                  fill
-                  className="object-contain"
-                />
+                <Image src={card.image} alt="Automation" fill className="object-contain" />
               </div>
 
               {/* Text */}
@@ -106,7 +101,7 @@ const EducationalSitesSection = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default EducationalSitesSection;
+export default EducationalSitesSection

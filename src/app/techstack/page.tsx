@@ -1,8 +1,8 @@
-import React from "react";
-import Hero from "@/components/techstack-components/Hero";
+import React from 'react'
+import Hero from '@/components/techstack-components/Hero'
 
 const index = () => {
-  return <Hero />;
-};
+  return <Hero />
+}
 
-export default index;
+export default index

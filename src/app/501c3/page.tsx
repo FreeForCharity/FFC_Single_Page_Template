@@ -1,7 +1,7 @@
-import HeroSection from "@/components/UI/HeroSection";
-import HelpForCharitiesandNonprofit from "@/components/501c3-components/Help-For-Charities-and-Nonprofit";
-import ReadyToGetStartedAndFaq from "@/components/501c3-components/Ready-to-get-started-and-faqs";
-import CallSection from "@/components/help-for-charities-components/call-section";
+import HeroSection from '@/components/UI/HeroSection'
+import HelpForCharitiesandNonprofit from '@/components/501c3-components/Help-For-Charities-and-Nonprofit'
+import ReadyToGetStartedAndFaq from '@/components/501c3-components/Ready-to-get-started-and-faqs'
+import CallSection from '@/components/help-for-charities-components/call-section'
 
 const page = () => {
   return (
@@ -15,7 +15,7 @@ const page = () => {
       <ReadyToGetStartedAndFaq />
       <CallSection />
     </div>
-  );
-};
+  )
+}
 
-export default page;
+export default page

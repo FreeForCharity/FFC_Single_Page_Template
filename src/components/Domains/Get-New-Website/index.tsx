@@ -1,5 +1,5 @@
-import React from "react";
-import Transparentbtn from "@/components/UI/Transparentbtn";
+import React from 'react'
+import Transparentbtn from '@/components/UI/Transparentbtn'
 
 const index = () => {
   return (
@@ -14,8 +14,14 @@ const index = () => {
           </h1>
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-o sm:gap-6">
-            <Transparentbtn text="501(c)3 Charities Click Here To Get Started!" href="https://freeforcharity.org/hub/store/ffc-consulting/free-for-charity-501c3-onboarding-ffc-nonprofit-charity-onboarding"/>
-            <Transparentbtn text="Pre-501(c)3 Charities Click Here to Get Started!" href="https://freeforcharity.org/hub/store/ffc-consulting/nonprofit-charity-onboarding" />
+            <Transparentbtn
+              text="501(c)3 Charities Click Here To Get Started!"
+              href="https://freeforcharity.org/hub/store/ffc-consulting/free-for-charity-501c3-onboarding-ffc-nonprofit-charity-onboarding"
+            />
+            <Transparentbtn
+              text="Pre-501(c)3 Charities Click Here to Get Started!"
+              href="https://freeforcharity.org/hub/store/ffc-consulting/nonprofit-charity-onboarding"
+            />
           </div>
         </div>
 
@@ -31,18 +37,16 @@ const index = () => {
               className="mb-[13px] w-[85%] mx-auto font-[500] text-[20px] leading-[30px] text-center"
               id="raleway-font"
             >
-              New site design has a backlog with Free for Charity but please
-              reach out to get on the list for a new free charity website. We
-              try to support 100 Charities a year. If you have your own design
-              team and just need our hosting, plugins, and themes; follow the
-              steps at either the 501c3 or pre-501c3 onboarding pages to
-              complete next steps.
+              New site design has a backlog with Free for Charity but please reach out to get on the
+              list for a new free charity website. We try to support 100 Charities a year. If you
+              have your own design team and just need our hosting, plugins, and themes; follow the
+              steps at either the 501c3 or pre-501c3 onboarding pages to complete next steps.
             </p>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

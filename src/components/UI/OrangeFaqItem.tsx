@@ -1,25 +1,25 @@
-"use client";
+'use client'
 
-import React, { useState, useRef, useEffect } from "react";
-import Image from "next/image";
+import React, { useState, useRef, useEffect } from 'react'
+import Image from 'next/image'
 
 interface AccordionItemProps {
-  title: string;
-  children: React.ReactNode;
+  title: string
+  children: React.ReactNode
 }
 
 const AccordionItem: React.FC<AccordionItemProps> = ({ title, children }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [height, setHeight] = useState("0px");
-  const contentRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState(false)
+  const [height, setHeight] = useState('0px')
+  const contentRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (contentRef.current) {
-      setHeight(isOpen ? `${contentRef.current.scrollHeight}px` : "0px");
+      setHeight(isOpen ? `${contentRef.current.scrollHeight}px` : '0px')
     }
-  }, [isOpen]);
+  }, [isOpen])
 
-  const toggle = () => setIsOpen(!isOpen);
+  const toggle = () => setIsOpen(!isOpen)
 
   return (
     <div
@@ -30,7 +30,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, children }) => {
       <button
         onClick={toggle}
         className={`w-full px-4 py-3 flex items-center justify-between text-left transition-colors duration-300 cursor-pointer ${
-          isOpen ? "bg-white/90" : "bg-none"
+          isOpen ? 'bg-white/90' : 'bg-none'
         }`}
         aria-expanded={isOpen}
       >
@@ -52,7 +52,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, children }) => {
       {/* Content */}
       <div
         className={`overflow-hidden transition-all duration-800 ease-in-out ${
-          isOpen ? "bg-white/90" : "bg-white"
+          isOpen ? 'bg-white/90' : 'bg-white'
         }`}
         style={{ maxHeight: height }}
       >
@@ -65,7 +65,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, children }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AccordionItem;
+export default AccordionItem

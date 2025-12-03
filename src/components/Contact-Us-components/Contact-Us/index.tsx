@@ -1,5 +1,5 @@
-import React from "react";
-import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md";
+import React from 'react'
+import { MdEmail, MdLocationOn, MdPhone } from 'react-icons/md'
 
 const ContactSection = () => {
   return (
@@ -13,8 +13,8 @@ const ContactSection = () => {
             className="text-[18px] font-[500] leading-[27px] text-black text-center"
             id="lato-font"
           >
-            Have questions about consultation or hosting? Want to know more
-            about nonprofits? Looking to chat? Give a real person a call:
+            Have questions about consultation or hosting? Want to know more about nonprofits?
+            Looking to chat? Give a real person a call:
           </p>
         </div>
 
@@ -36,26 +36,16 @@ const ContactSection = () => {
           <div className="flex flex-col gap-6">
             <div className="w-full text-center">
               <MdLocationOn className="w-[55px] h-[55px] text-[#2680A7] mx-auto mb-4" />
-              <p className="font-[600] text-[24px] text-black mb-2">
-                Main Address
-              </p>
-              <p
-                className="font-[600] text-[18px] text-[#666666]"
-                id="lato-font"
-              >
+              <p className="font-[600] text-[24px] text-black mb-2">Main Address</p>
+              <p className="font-[600] text-[18px] text-[#666666]" id="lato-font">
                 4030 Wake Forrest Road STE 349 Raleigh North Carolina 27609
               </p>
             </div>
 
             <div className="text-center">
               <MdLocationOn className="w-[55px] h-[55px] text-[#2680A7] mx-auto mb-4" />
-              <p className="font-[600] text-[24px] text-black mb-2">
-                PA Office Address
-              </p>
-              <p
-                className="font-[600] text-[18px] text-[#666666]"
-                id="lato-font"
-              >
+              <p className="font-[600] text-[24px] text-black mb-2">PA Office Address</p>
+              <p className="font-[600] text-[18px] text-[#666666]" id="lato-font">
                 301 Science Park Road Suite 119 State College PA 16803
               </p>
             </div>
@@ -76,7 +66,7 @@ const ContactSection = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ContactSection;
+export default ContactSection

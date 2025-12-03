@@ -9,6 +9,7 @@ The `main` branch is protected by a ruleset named **"Protect Main"** that enforc
 ### Active Branch Protection Settings
 
 #### 1. ✅ Restrict Deletions
+
 **Status**: Enabled
 
 Only users with bypass permission can delete the `main` branch.
@@ -20,18 +21,21 @@ Only users with bypass permission can delete the `main` branch.
 ---
 
 #### 2. ✅ Require Signed Commits
+
 **Status**: Enabled
 
 All commits pushed to `main` must have verified GPG/SSH signatures.
 
 **Why this matters**: Ensures that every commit comes from a verified author, preventing unauthorized code injection and maintaining a trusted commit history.
 
-**For developers**: 
+**For developers**:
+
 - You must configure commit signing on your local machine
 - See [GitHub's guide on signing commits](https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits)
 - Unsigned commits will be rejected when pushing to `main` (typically via pull requests)
 
 **How to set up commit signing**:
+
 ```bash
 # For GPG signing
 git config --global user.signingkey YOUR_GPG_KEY_ID
@@ -46,6 +50,7 @@ git config --global commit.gpgsign true
 ---
 
 #### 3. ✅ Require a Pull Request Before Merging
+
 **Status**: Enabled
 
 All commits must be made to a non-target branch and submitted via a pull request before being merged into `main`.
@@ -53,6 +58,7 @@ All commits must be made to a non-target branch and submitted via a pull request
 **Why this matters**: Ensures that all changes go through a review process and prevents direct commits to the main branch, which could bypass quality checks and introduce bugs or security issues.
 
 **For developers**:
+
 - Create a feature branch for your work: `git checkout -b feature/your-feature-name`
 - Push your branch to GitHub: `git push origin feature/your-feature-name`
 - Open a pull request to merge your changes into `main`
@@ -60,6 +66,7 @@ All commits must be made to a non-target branch and submitted via a pull request
 - Never attempt to push directly to `main` - it will be rejected
 
 **Typical workflow**:
+
 ```bash
 # Create and switch to a new branch
 git checkout -b feature/add-new-component
@@ -78,6 +85,7 @@ git push origin feature/add-new-component
 ---
 
 #### 4. ✅ Require Code Scanning Results
+
 **Status**: Enabled
 
 Code scanning tools must successfully analyze the code before changes can be merged.
@@ -85,6 +93,7 @@ Code scanning tools must successfully analyze the code before changes can be mer
 **Why this matters**: Automated security analysis catches potential vulnerabilities, code quality issues, and security flaws before they reach production.
 
 **For developers**:
+
 - Code scanning tools are configured in the repository and must pass before merging
 - GitHub runs code scanning checks when configured (e.g., CodeQL, third-party tools)
 - Wait for the scanning to complete - this usually takes a few minutes
@@ -92,6 +101,7 @@ Code scanning tools must successfully analyze the code before changes can be mer
 - Code scanning failures will block the merge until resolved
 
 **What's being scanned**:
+
 - Security vulnerabilities (SQL injection, XSS, etc.)
 - Code quality issues
 - Dependency vulnerabilities
@@ -100,6 +110,7 @@ Code scanning tools must successfully analyze the code before changes can be mer
 ---
 
 #### 5. ✅ Block Force Pushes
+
 **Status**: Enabled
 
 Users are prevented from force pushing to `main`, even with bypass permissions.
@@ -107,11 +118,13 @@ Users are prevented from force pushing to `main`, even with bypass permissions.
 **Why this matters**: Force pushing can rewrite commit history, potentially losing work from other developers and breaking the continuous integration/deployment pipeline.
 
 **For developers**:
+
 - You cannot use `git push --force` or `git push --force-with-lease` to the main branch
 - If you need to modify commits, do so on your feature branch before merging
 - Once code is merged to `main`, it becomes part of the permanent history
 
 **If you need to fix something after merging**:
+
 ```bash
 # Don't try to force push! Instead, create a new fix:
 git checkout -b fix/correct-previous-merge
@@ -128,6 +141,7 @@ git push origin fix/correct-previous-merge
 The following protections are available in GitHub but are **not currently enabled** for this repository:
 
 #### ⭕ Restrict Creations
+
 **Status**: Not enabled
 
 Without this setting, developers can create branches that match the protected branch pattern.
@@ -137,6 +151,7 @@ Without this setting, developers can create branches that match the protected br
 ---
 
 #### ⭕ Restrict Updates
+
 **Status**: Not enabled
 
 Without this setting, developers can update refs that match the protected branch pattern (through PRs).
@@ -146,6 +161,7 @@ Without this setting, developers can update refs that match the protected branch
 ---
 
 #### ⭕ Require Linear History
+
 **Status**: Not enabled
 
 Without this setting, merge commits are allowed in the commit history.
@@ -155,6 +171,7 @@ Without this setting, merge commits are allowed in the commit history.
 ---
 
 #### ⭕ Require Merge Queue
+
 **Status**: Not enabled
 
 Without this setting, pull requests merge directly without going through a merge queue.
@@ -164,6 +181,7 @@ Without this setting, pull requests merge directly without going through a merge
 ---
 
 #### ⭕ Require Deployments to Succeed
+
 **Status**: Not enabled
 
 Without this setting, code can be merged without waiting for successful deployment to specific environments.
@@ -300,18 +318,24 @@ git push origin feature/your-feature-name
 ### Common Issues and Solutions
 
 #### Issue: "Required status check has not been met"
+
 **Solution**: Wait for all CI/CD checks to complete. If they fail, review the logs and fix the issues.
 
 #### Issue: "Unsigned commits are not allowed"
+
 **Solution**: Set up commit signing (see instructions above) and amend your commits:
+
 ```bash
 git commit --amend --no-edit -S
 git push --force-with-lease origin your-branch-name
 ```
+
 **Note**: Using `--force-with-lease` is safe on your feature branches but is blocked on the `main` branch due to branch protection rules.
 
 #### Issue: "Direct push to main is not allowed"
+
 **Solution**: You should be working on a feature branch. If you accidentally committed to main:
+
 ```bash
 # Create a new branch from your current main
 git checkout -b feature/my-changes

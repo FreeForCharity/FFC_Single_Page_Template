@@ -43,6 +43,7 @@ Code quality is essential for maintainability, collaboration, and long-term succ
 **Configuration**: `eslint.config.mjs`
 
 **Running ESLint**:
+
 ```bash
 # Check for errors
 npm run lint
@@ -52,6 +53,7 @@ npm run lint -- --fix
 ```
 
 **Key Rules**:
+
 - No unused variables
 - No console.log in production code
 - Consistent import order
@@ -65,6 +67,7 @@ npm run lint -- --fix
 **Configuration**: `tsconfig.json`
 
 **Type Checking**:
+
 ```bash
 # Type checking is automatic during build
 npm run build
@@ -74,6 +77,7 @@ npx tsc --noEmit
 ```
 
 **Best Practices**:
+
 - Use explicit types for function parameters
 - Avoid `any` type where possible
 - Use interfaces for object shapes
@@ -87,6 +91,7 @@ npx tsc --noEmit
 **Configuration**: `jest.config.js`
 
 **Running Tests**:
+
 ```bash
 # Run all tests
 npm test
@@ -99,6 +104,7 @@ npm run test:watch
 ```
 
 **Coverage Requirements**:
+
 - **Current Minimum**: 5% (initial baseline)
 - **Target**: 15-20% for Phase 2
 - **Long-term Goal**: 50%+
@@ -110,6 +116,7 @@ npm run test:watch
 **Configuration**: `playwright.config.ts`
 
 **Running E2E Tests**:
+
 ```bash
 # Build first
 npm run build
@@ -128,6 +135,7 @@ npm run test:e2e:ui
 **Configuration**: `.github/workflows/codeql.yml`
 
 **Automatic Scanning**:
+
 - Runs on every push to main
 - Runs on every pull request
 - Weekly scheduled scans
@@ -150,6 +158,7 @@ src/
 ### Import Order
 
 Organize imports in this order:
+
 1. React and Next.js imports
 2. Third-party library imports
 3. Internal component imports
@@ -191,12 +200,14 @@ import type { MenuItem } from '@/types'
 ### Type Annotations
 
 **Always annotate**:
+
 - Function parameters
 - Function return types (for exported functions)
 - Component props
 - Complex objects
 
 **Example**:
+
 ```tsx
 // Good
 interface Props {
@@ -210,7 +221,8 @@ export function Modal({ title, count, onClose }: Props): JSX.Element {
 }
 
 // Avoid
-export function Modal(props) {  // ❌ No types
+export function Modal(props) {
+  // ❌ No types
   return <div>{props.title}</div>
 }
 ```
@@ -221,12 +233,14 @@ Use specific types or `unknown` when the type is genuinely unknown:
 
 ```tsx
 // Bad
-function process(data: any) {  // ❌
+function process(data: any) {
+  // ❌
   return data.value
 }
 
 // Good
-function process(data: unknown) {  // ✅
+function process(data: unknown) {
+  // ✅
   if (typeof data === 'object' && data !== null && 'value' in data) {
     return data.value
   }
@@ -238,7 +252,8 @@ interface Data {
   value: string
 }
 
-function process(data: Data) {  // ✅✅
+function process(data: Data) {
+  // ✅✅
   return data.value
 }
 ```
@@ -301,10 +316,10 @@ describe('ComponentName or functionName', () => {
     it('should do expected behavior', () => {
       // Arrange
       const props = { title: 'Test' }
-      
+
       // Act
       render(<Component {...props} />)
-      
+
       // Assert
       expect(screen.getByText('Test')).toBeInTheDocument()
     })
@@ -315,6 +330,7 @@ describe('ComponentName or functionName', () => {
 ### What to Test
 
 **Do test**:
+
 - Component rendering
 - User interactions (clicks, typing, etc.)
 - State changes
@@ -323,6 +339,7 @@ describe('ComponentName or functionName', () => {
 - Edge cases and error conditions
 
 **Don't test**:
+
 - Implementation details
 - Third-party libraries
 - Styling (use visual regression tests instead)
@@ -363,27 +380,32 @@ beforeEach(() => {
 ### What Reviewers Look For
 
 #### Correctness
+
 - Does the code solve the problem?
 - Are there any bugs or edge cases not handled?
 - Does it work as intended?
 
 #### Design
+
 - Is the solution well-designed?
 - Is it the simplest solution?
 - Does it follow existing patterns?
 - Is it maintainable?
 
 #### Complexity
+
 - Is the code easy to understand?
 - Are there overly complex sections?
 - Can it be simplified?
 
 #### Tests
+
 - Are there sufficient tests?
 - Do tests cover edge cases?
 - Are tests clear and maintainable?
 
 #### Style
+
 - Does it follow our coding standards?
 - Is it consistent with the rest of the codebase?
 - Is it well-documented?
@@ -405,13 +427,15 @@ Before requesting review:
 ### Giving Good Feedback
 
 **Do**:
+
 - Be respectful and constructive
-- Explain *why* something should change
+- Explain _why_ something should change
 - Suggest alternatives or improvements
 - Ask questions to understand the approach
 - Praise good solutions
 
 **Don't**:
+
 - Be dismissive or rude
 - Just say "this is wrong" without explanation
 - Make it personal
@@ -422,7 +446,7 @@ Before requesting review:
 
 ```
 # Good
-"This function is doing too many things. Consider extracting 
+"This function is doing too many things. Consider extracting
 the validation logic into a separate function for better testability."
 
 # Not helpful
@@ -435,13 +459,13 @@ the validation logic into a separate function for better testability."
 
 ### Performance Budget
 
-| Metric | Target | Maximum |
-|--------|--------|---------|
-| **First Contentful Paint** | < 1.8s | < 3.0s |
-| **Largest Contentful Paint** | < 2.5s | < 4.0s |
-| **Time to Interactive** | < 3.8s | < 7.3s |
-| **Total Bundle Size** | < 500KB | < 1MB |
-| **Lighthouse Performance Score** | > 80 | > 60 |
+| Metric                           | Target  | Maximum |
+| -------------------------------- | ------- | ------- |
+| **First Contentful Paint**       | < 1.8s  | < 3.0s  |
+| **Largest Contentful Paint**     | < 2.5s  | < 4.0s  |
+| **Time to Interactive**          | < 3.8s  | < 7.3s  |
+| **Total Bundle Size**            | < 500KB | < 1MB   |
+| **Lighthouse Performance Score** | > 80    | > 60    |
 
 ### Performance Best Practices
 
@@ -482,18 +506,21 @@ npm run build
 ### Environment Variables
 
 **Never commit**:
+
 - API keys
 - Passwords
 - Tokens
 - Private keys
 
 **Use environment variables**:
+
 ```env
 # .env.local (never committed)
 NEXT_PUBLIC_API_KEY=your-key-here
 ```
 
 **Public variables** (safe to commit):
+
 ```env
 # .env (can be committed)
 NEXT_PUBLIC_APP_NAME=Free For Charity
@@ -502,6 +529,7 @@ NEXT_PUBLIC_APP_NAME=Free For Charity
 ### Content Security Policy
 
 Be cautious with:
+
 - `dangerouslySetInnerHTML`
 - Dynamic script loading
 - External iframe embedding

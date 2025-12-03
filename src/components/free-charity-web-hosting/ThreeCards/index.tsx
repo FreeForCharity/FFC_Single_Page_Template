@@ -1,7 +1,7 @@
-"use client";
+'use client'
 
-import React from "react";
-import Image from "next/image";
+import React from 'react'
+import Image from 'next/image'
 
 const DonateSection: React.FC = () => {
   return (
@@ -34,13 +34,9 @@ const DonateSection: React.FC = () => {
           >
             Help us in our cause
           </h1>
-          <p
-            className="text-[18px] leading-[32px] font-medium text-center"
-            id="raleway-font"
-          >
-            If you don’t need a domain name today but want to support us please
-            share this page or donate directly so we can provide more and more
-            services to non-profits
+          <p className="text-[18px] leading-[32px] font-medium text-center" id="raleway-font">
+            If you don’t need a domain name today but want to support us please share this page or
+            donate directly so we can provide more and more services to non-profits
           </p>
         </div>
 
@@ -64,7 +60,7 @@ const DonateSection: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default DonateSection;
+export default DonateSection

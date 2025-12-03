@@ -1,15 +1,15 @@
-"use client";
+'use client'
 
-import React from "react";
-import { IoIosArrowForward } from "react-icons/io";
+import React from 'react'
+import { IoIosArrowForward } from 'react-icons/io'
 
 interface BecomePartOfOurMissionCardProps {
-  bgImage: string;
-  heading: string;
-  description1: string;
-  description2: string;
-  buttonText: string;
-  buttonLink: string;
+  bgImage: string
+  heading: string
+  description1: string
+  description2: string
+  buttonText: string
+  buttonLink: string
 }
 
 const BecomePartOfOurMissionCard: React.FC<BecomePartOfOurMissionCardProps> = ({
@@ -25,15 +25,12 @@ const BecomePartOfOurMissionCard: React.FC<BecomePartOfOurMissionCardProps> = ({
       className="w-full rounded-[10px] overflow-hidden pt-[100px] pr-[50px] pb-[100px] pl-[50px] shadow-[0px_2px_18px_0px_rgba(0,0,0,0.3)] bg-white text-center"
       style={{
         backgroundImage: `linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.55) 100%), url('${bgImage}')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}
     >
       <div className="mb-[13px]">
-        <h1
-          className="pb-[10px] text-[31px] font-[700] leading-[31px]"
-          id="cantata-font"
-        >
+        <h1 className="pb-[10px] text-[31px] font-[700] leading-[31px]" id="cantata-font">
           {heading}
         </h1>
         <p className="text-[18px] font-[500] leading-[32px]" id="raleway-font">
@@ -71,7 +68,7 @@ const BecomePartOfOurMissionCard: React.FC<BecomePartOfOurMissionCardProps> = ({
         />
       </a>
     </div>
-  );
-};
+  )
+}
 
-export default BecomePartOfOurMissionCard;
+export default BecomePartOfOurMissionCard

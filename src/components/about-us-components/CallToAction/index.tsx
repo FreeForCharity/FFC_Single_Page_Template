@@ -1,8 +1,8 @@
-import React from "react";
-import CallToActionCard from "@/components/UI/CallToActionCard";
-import { IoIosHome } from "react-icons/io";
-import { IoHeart } from "react-icons/io5";
-import { FaUser } from "react-icons/fa6";
+import React from 'react'
+import CallToActionCard from '@/components/UI/CallToActionCard'
+import { IoIosHome } from 'react-icons/io'
+import { IoHeart } from 'react-icons/io5'
+import { FaUser } from 'react-icons/fa6'
 
 const Index = () => {
   return (
@@ -36,7 +36,7 @@ const Index = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

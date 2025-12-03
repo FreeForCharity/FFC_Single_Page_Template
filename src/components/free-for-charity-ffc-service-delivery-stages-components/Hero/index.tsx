@@ -1,12 +1,9 @@
-import React from "react";
+import React from 'react'
 
 const index = () => {
   return (
     <div className="pt-[135px] pb-[50px]">
-      <div
-        className="py-[24px] w-[90%] md:w-[80%] max-w-[1080px] mx-auto"
-        id="aria-font"
-      >
+      <div className="py-[24px] w-[90%] md:w-[80%] max-w-[1080px] mx-auto" id="aria-font">
         {/* header  */}
         <div
           className="bg-[#1f2937] text-white p-8 text-center shadow-lg shadow-black/20"
@@ -28,11 +25,10 @@ const index = () => {
               Onboarding Philosophy
             </h2>
             <p className="text-[#374151] text-[14px] leading-[24px] font-[500]">
-              Given the limited resources of FFC, we are currently operating on
-              a <strong>‘filter out’ not ‘filter in’</strong> basis for
-              selecting which charities will receive support. To show that your
-              organization is ready to receive services, you must pass the
-              charity onboarding validation steps outlined below.
+              Given the limited resources of FFC, we are currently operating on a{' '}
+              <strong>‘filter out’ not ‘filter in’</strong> basis for selecting which charities will
+              receive support. To show that your organization is ready to receive services, you must
+              pass the charity onboarding validation steps outlined below.
             </p>
           </div>
 
@@ -52,27 +48,23 @@ const index = () => {
                     Initial Contact &amp; Onboarding
                   </h3>
                   <p className="mt-[18px] text-[#374151] text-[14px] leading-[24px] font-[500]">
-                    A charity discovers FFC services through any means (web,
-                    phone, personal referral, etc.).
+                    A charity discovers FFC services through any means (web, phone, personal
+                    referral, etc.).
                   </p>
 
                   <ul className=" text-[14px] leading-[24px] font-[500] mt-[8px] text-[#374151] list-disc list-inside space-y-[10px] pb-[23px] pl-[1em]">
                     <li>
-                      The charity navigates to the WHMCS portal and selects the
-                      “Charity Onboarding &amp; Validation” product.
+                      The charity navigates to the WHMCS portal and selects the “Charity Onboarding
+                      &amp; Validation” product.
                     </li>
                     <li>
-                      A full account creation and checkout process is completed
-                      (at a $0 fee).
+                      A full account creation and checkout process is completed (at a $0 fee).
                     </li>
-                    <li>
-                      The charity answers required prompts from the FFC Intake
-                      Guide Page.
-                    </li>
+                    <li>The charity answers required prompts from the FFC Intake Guide Page.</li>
                     <li>Direct Link: Shopping Cart.</li>
                     <li>
-                      The charitys Point of Contact and declared status are
-                      saved to their new account.
+                      The charitys Point of Contact and declared status are saved to their new
+                      account.
                     </li>
                   </ul>
                 </div>
@@ -88,21 +80,13 @@ const index = () => {
                     FFC Validation Checks
                   </h3>
                   <p className="mt-[18px] text-[#374151] text-[14px] leading-[24px] font-[500]">
-                    FFC begins the validation process based on the submitted
-                    information.
+                    FFC begins the validation process based on the submitted information.
                   </p>
 
                   <ul className=" text-[14px] leading-[24px] font-[500] mt-[8px] text-[#374151] list-disc list-inside space-y-[10px] pb-[23px] pl-[1em]">
-                    <li>
-                      Verify the declared status of the organization (e.g.,
-                      501c3).
-                    </li>
-                    <li>
-                      Review the charitys mission statement for alignment.
-                    </li>
-                    <li>
-                      Check external validation URLs for trust indicators.
-                    </li>
+                    <li>Verify the declared status of the organization (e.g., 501c3).</li>
+                    <li>Review the charitys mission statement for alignment.</li>
+                    <li>Check external validation URLs for trust indicators.</li>
                   </ul>
                 </div>
               </div>
@@ -117,33 +101,28 @@ const index = () => {
                     FFC Offers Services
                   </h3>
                   <p className="mt-[18px] text-[#374151] text-[14px] leading-[24px] font-[500]">
-                    Charities are offered services based on mission alignment
-                    and operational capacity.
+                    Charities are offered services based on mission alignment and operational
+                    capacity.
                   </p>
 
                   <ul className=" text-[14px] leading-[24px] font-[500] mt-[8px] text-[#374151] list-disc list-inside space-y-[10px] pb-[23px] pl-[1em]">
                     <li>
-                      We prioritize charities with revenue under $1 million that
-                      are not federally grant-funded.
+                      We prioritize charities with revenue under $1 million that are not federally
+                      grant-funded.
                     </li>
-                    <li>
-                      FFC can currently manage up to 100 organizations
-                      simultaneously.
-                    </li>
+                    <li>FFC can currently manage up to 100 organizations simultaneously.</li>
                   </ul>
                   <div className="bg-[#fffbeb] border-l-4 border-[#facc15] p-4 my-4 rounded text-[14px] leading-[24px] font-[500] w-[100%] text-[#374151]">
                     <p>
-                      <strong className="text-[#ca8a04]">NOTE:</strong> FFC is
-                      restricted to serving only US-based charities with a US
-                      citizen as the Point of Contact.
+                      <strong className="text-[#ca8a04]">NOTE:</strong> FFC is restricted to serving
+                      only US-based charities with a US citizen as the Point of Contact.
                     </p>
                   </div>
                   <div className="bg-[#fffbeb] border-l-4 border-[#facc15] p-4 my-4 rounded text-[14px] leading-[24px] font-[500] w-[100%] text-[#374151]">
                     <p>
-                      <strong className="text-[#ca8a04]">NOTE:</strong> FFC does
-                      not provide design services but does provide the Divi
-                      Builder and training resources for organizations to
-                      self-build their website or hire a designer.
+                      <strong className="text-[#ca8a04]">NOTE:</strong> FFC does not provide design
+                      services but does provide the Divi Builder and training resources for
+                      organizations to self-build their website or hire a designer.
                     </p>
                   </div>
                 </div>
@@ -159,28 +138,26 @@ const index = () => {
                     Receiving Basic Services Package
                   </h3>
                   <p className="mt-[18px] text-[#374151] text-[14px] leading-[24px] font-[500]">
-                    Once approved, charities begin receiving the core package of
-                    services.
+                    Once approved, charities begin receiving the core package of services.
                   </p>
 
                   <ul className=" text-[14px] leading-[24px] font-[500] mt-[8px] text-[#374151] list-disc list-inside space-y-[10px] pb-[23px] pl-[1em]">
                     <li>
-                      <strong>Free Domain Name:</strong> Paid in full by FFC,
-                      owned by the charity, and connected to the FFC Cloudflare
-                      account for security. We assist with transfers if needed.
+                      <strong>Free Domain Name:</strong> Paid in full by FFC, owned by the charity,
+                      and connected to the FFC Cloudflare account for security. We assist with
+                      transfers if needed.
                     </li>
                     <li>
-                      <strong>Microsoft 365 Tenant:</strong> We establish the
-                      organizations Microsoft 365 for Nonprofits presence and
-                      validate domain records.
+                      <strong>Microsoft 365 Tenant:</strong> We establish the organizations
+                      Microsoft 365 for Nonprofits presence and validate domain records.
                     </li>
                   </ul>
                   <div className="bg-[#fffbeb] border-l-4 border-[#facc15] p-4 my-4 rounded text-[14px] leading-[24px] font-[500] w-[100%] text-[#374151]">
                     <p>
-                      <strong className="text-[#ca8a04]">NOTE:</strong> FFC is
-                      Pre-501c3 organizations must purchase these services until
-                      Microsoft validation is complete. Organizations must add
-                      FFC as a guest to their tenant for collaboration.
+                      <strong className="text-[#ca8a04]">NOTE:</strong> FFC is Pre-501c3
+                      organizations must purchase these services until Microsoft validation is
+                      complete. Organizations must add FFC as a guest to their tenant for
+                      collaboration.
                     </p>
                   </div>
                 </div>
@@ -201,14 +178,12 @@ const index = () => {
 
                   <ul className=" text-[14px] leading-[24px] font-[500] mt-[8px] text-[#374151] list-disc list-inside space-y-[10px] pb-[23px] pl-[1em]">
                     <li>
-                      <strong>Pre-501c3: </strong> Completes the FFC website
-                      product checkout. The system auto-builds the WordPress
-                      site on shared hosting.
+                      <strong>Pre-501c3: </strong> Completes the FFC website product checkout. The
+                      system auto-builds the WordPress site on shared hosting.
                     </li>
                     <li>
-                      <strong>501c3: </strong> Completes the Interserver
-                      nonprofit application process and agrees to have FFC as
-                      its technology sponsor.
+                      <strong>501c3: </strong> Completes the Interserver nonprofit application
+                      process and agrees to have FFC as its technology sponsor.
                     </li>
                   </ul>
                 </div>
@@ -224,18 +199,14 @@ const index = () => {
                     Technical Stack Assignment
                   </h3>
                   <p className="mt-[18px] text-[#374151] text-[14px] leading-[24px] font-[500]">
-                    Volunteers assign the site to the approved tech stack and
-                    configure access.
+                    Volunteers assign the site to the approved tech stack and configure access.
                   </p>
 
                   <ul className=" text-[14px] leading-[24px] font-[500] mt-[8px] text-[#374151] list-disc list-inside space-y-[10px] pb-[23px] pl-[1em]">
+                    <li>Create WordPress core install and Single Sign-On accounts.</li>
                     <li>
-                      Create WordPress core install and Single Sign-On accounts.
-                    </li>
-                    <li>
-                      Validate `/wp-admin` access and resolve common SSL
-                      redirect issues with the following code in
-                      `wp-config.php`:
+                      Validate `/wp-admin` access and resolve common SSL redirect issues with the
+                      following code in `wp-config.php`:
                     </li>
                   </ul>
                   <pre
@@ -251,17 +222,16 @@ if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)
 
                   <ul className=" text-[14px] leading-[24px] font-[500] mt-[8px] text-[#374151] list-disc list-inside space-y-[10px] pb-[23px] pl-[1em]">
                     <li>
-                      Assign admin rights to global, volunteer, designer, and
-                      charity POC accounts.
+                      Assign admin rights to global, volunteer, designer, and charity POC accounts.
                     </li>
                   </ul>
 
                   <div className="bg-[#fffbeb] border-l-4 border-[#facc15] p-4 my-4 rounded text-[14px] leading-[24px] font-[500] w-[100%] text-[#374151]">
                     <p>
                       <strong className="text-[#ca8a04]">NOTE:</strong> The
-                      `GlobalAdmin@freeforcharity.org` account is a root tenant
-                      account used by highly trusted individuals for continuity,
-                      with credentials managed via a shared password manager.
+                      `GlobalAdmin@freeforcharity.org` account is a root tenant account used by
+                      highly trusted individuals for continuity, with credentials managed via a
+                      shared password manager.
                     </p>
                   </div>
                 </div>
@@ -277,29 +247,18 @@ if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)
                     Plugin & Theme Deployment
                   </h3>
                   <p className="mt-[18px] text-[#374151] text-[14px] leading-[24px] font-[500]">
-                    The site is equipped with essential tools for management and
-                    design.
+                    The site is equipped with essential tools for management and design.
                   </p>
 
                   <ul className=" text-[14px] leading-[24px] font-[500] mt-[8px] text-[#374151] list-disc list-inside space-y-[10px] pb-[23px] pl-[1em]">
+                    <li>Install and authenticate the WPMUDEV Dashboard plugin.</li>
                     <li>
-                      Install and authenticate the WPMUDEV Dashboard plugin.
+                      Automatically install remaining WPMUDEV plugins from pre-set configurations.
                     </li>
+                    <li>Configure weekly backups, security scans, and admin email reports.</li>
+                    <li>Provide WPMUDEV Dashboard access to the charitys technical POC.</li>
                     <li>
-                      Automatically install remaining WPMUDEV plugins from
-                      pre-set configurations.
-                    </li>
-                    <li>
-                      Configure weekly backups, security scans, and admin email
-                      reports.
-                    </li>
-                    <li>
-                      Provide WPMUDEV Dashboard access to the charitys technical
-                      POC.
-                    </li>
-                    <li>
-                      Install and authenticate the Divi Theme using the assigned
-                      designers API key.
+                      Install and authenticate the Divi Theme using the assigned designers API key.
                     </li>
                     <li>Deploy the default Divi Child Layout.</li>
                   </ul>
@@ -316,33 +275,29 @@ if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)
                     Initial Site Launch & Configuration
                   </h3>
                   <p className="mt-[18px] text-[#374151] text-[14px] leading-[24px] font-[500]">
-                    A functional, single-page website is published within
-                    minutes.
+                    A functional, single-page website is published within minutes.
                   </p>
 
                   <ul className=" text-[14px] leading-[24px] font-[500] mt-[8px] text-[#374151] list-disc list-inside space-y-[10px] pb-[23px] pl-[1em]">
                     <li>
-                      Populate the default charity template with details from
-                      the onboarding form.
+                      Populate the default charity template with details from the onboarding form.
                     </li>
                     <li>
-                      Upgrade PHP to version 8.x and check for compatibility
-                      issues in the Divi Support pane.
+                      Upgrade PHP to version 8.x and check for compatibility issues in the Divi
+                      Support pane.
                     </li>
                   </ul>
                   <div className="bg-[#fffbeb] border-l-4 border-[#facc15] p-4 my-4 rounded text-[14px] leading-[24px] font-[500] w-[100%] text-[#374151]">
                     <p>
-                      <strong className="text-[#ca8a04]">NOTE:</strong> This
-                      default page acts as a coming soon page while the full
-                      design is completed on a staging site.
+                      <strong className="text-[#ca8a04]">NOTE:</strong> This default page acts as a
+                      coming soon page while the full design is completed on a staging site.
                     </p>
                   </div>
                   <div className="bg-[#fffbeb] border-l-4 border-[#facc15] p-4 my-4 rounded text-[14px] leading-[24px] font-[500] w-[100%] text-[#374151]">
                     <p>
-                      <strong className="text-[#ca8a04]">NOTE:</strong> All
-                      organizations must agree to use the default Divi footer
-                      with a link back to FFC for validation and network
-                      effects.
+                      <strong className="text-[#ca8a04]">NOTE:</strong> All organizations must agree
+                      to use the default Divi footer with a link back to FFC for validation and
+                      network effects.
                     </p>
                   </div>
                 </div>
@@ -356,9 +311,9 @@ if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)
               Service Expansion
             </h2>
             <p className="text-[#374151] text-[14px] leading-[24px] font-[500]">
-              FFC will expand available service offerings to those organizations
-              that were successful with establishing the basic services and have
-              demonstrated effective use of the initial package.
+              FFC will expand available service offerings to those organizations that were
+              successful with establishing the basic services and have demonstrated effective use of
+              the initial package.
             </p>
           </div>
         </div>
@@ -369,7 +324,7 @@ if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

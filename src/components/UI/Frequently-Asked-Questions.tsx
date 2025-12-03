@@ -1,28 +1,25 @@
-"use client";
+'use client'
 
-import React, { useState, useRef, useEffect } from "react";
-import Image from "next/image";
+import React, { useState, useRef, useEffect } from 'react'
+import Image from 'next/image'
 
 interface AccordionItemProps {
-  title: string;
-  children: React.ReactNode;
+  title: string
+  children: React.ReactNode
 }
 
-const FrequentlyAskedQuestions: React.FC<AccordionItemProps> = ({
-  title,
-  children,
-}) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [height, setHeight] = useState("0px");
-  const contentRef = useRef<HTMLDivElement>(null);
+const FrequentlyAskedQuestions: React.FC<AccordionItemProps> = ({ title, children }) => {
+  const [isOpen, setIsOpen] = useState(false)
+  const [height, setHeight] = useState('0px')
+  const contentRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (contentRef.current) {
-      setHeight(isOpen ? `${contentRef.current.scrollHeight}px` : "0px");
+      setHeight(isOpen ? `${contentRef.current.scrollHeight}px` : '0px')
     }
-  }, [isOpen]);
+  }, [isOpen])
 
-  const toggle = () => setIsOpen(!isOpen);
+  const toggle = () => setIsOpen(!isOpen)
 
   return (
     <div className="mb-5 overflow-hidden" id="lato-font">
@@ -33,29 +30,16 @@ const FrequentlyAskedQuestions: React.FC<AccordionItemProps> = ({
         aria-expanded={isOpen}
       >
         {/* Text takes remaining space */}
-        <span
-          className={`font-[400] text-[20px] md:text-[32px] flex-1 pr-3`}
-          id="lato-font"
-        >
+        <span className={`font-[400] text-[20px] md:text-[32px] flex-1 pr-3`} id="lato-font">
           {title}
         </span>
 
         {/* Icon container with fixed width */}
         <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center">
           {isOpen ? (
-            <Image
-              src="/Svgs/up-arrow.svg"
-              alt="up arrow"
-              width={40}
-              height={13}
-            ></Image>
+            <Image src="/Svgs/up-arrow.svg" alt="up arrow" width={40} height={13}></Image>
           ) : (
-            <Image
-              src="/Svgs/down-arrow.svg"
-              alt="up arrow"
-              width={40}
-              height={16}
-            ></Image>
+            <Image src="/Svgs/down-arrow.svg" alt="up arrow" width={40} height={16}></Image>
           )}
         </span>
       </button>
@@ -74,7 +58,7 @@ const FrequentlyAskedQuestions: React.FC<AccordionItemProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default FrequentlyAskedQuestions;
+export default FrequentlyAskedQuestions

@@ -1,5 +1,5 @@
-import React from "react";
-import HelpForCharities from "@/components/UI/help-for-charity";
+import React from 'react'
+import HelpForCharities from '@/components/UI/help-for-charity'
 
 const index = () => {
   return (
@@ -11,10 +11,7 @@ const index = () => {
             description="Free for Charity is working every day to provide your charity, and you the charity or nonprofit director with the tools and techniques needed to thrive, FREE. Sign up today to get access to all of this for your nonprofit or charity group today even if you are still pending final 501c3 status."
           />
           <div className="h-[75px] w-full"></div>
-          <HelpForCharities
-            title="Free For Charity Products and Services"
-            description=""
-          />
+          <HelpForCharities title="Free For Charity Products and Services" description="" />
           <HelpForCharities
             title="–Establishment and Governance Support–"
             description="At Free For Charity, we understand the importance of Non Profit Establishment and Governance Support. We are here to provide help for charities by offering expertise in effective business and technology management. Our dedicated team of volunteers works to manage all aspects of your charity’s projects, we help you find the software and tools you need to thrive."
@@ -28,7 +25,7 @@ const index = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

@@ -1,19 +1,19 @@
 // components/ui/BlueBtn.tsx
-"use client";
-import React from "react";
-import { IoIosArrowForward } from "react-icons/io";
+'use client'
+import React from 'react'
+import { IoIosArrowForward } from 'react-icons/io'
 
 interface BlueBtnProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children?: React.ReactNode;
-  href?: string; // new prop for the link
+  children?: React.ReactNode
+  href?: string // new prop for the link
 }
 
-const BlueBtn: React.FC<BlueBtnProps> = ({ children = "Learn More", href, ...props }) => {
+const BlueBtn: React.FC<BlueBtnProps> = ({ children = 'Learn More', href, ...props }) => {
   const handleClick = () => {
     if (href) {
-      window.open(href, "_blank"); // opens link in new tab
+      window.open(href, '_blank') // opens link in new tab
     }
-  };
+  }
 
   return (
     <button
@@ -45,7 +45,7 @@ const BlueBtn: React.FC<BlueBtnProps> = ({ children = "Learn More", href, ...pro
         "
       />
     </button>
-  );
-};
+  )
+}
 
-export default BlueBtn;
+export default BlueBtn

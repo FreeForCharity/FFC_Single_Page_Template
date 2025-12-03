@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 // import HomePage from './Home/page'
-import FigmaHomePage from "@/app/Figma-Home-page";
+import FigmaHomePage from '@/app/Figma-Home-page'
 
 const page = () => {
   return (
@@ -8,7 +8,7 @@ const page = () => {
       {/* <HomePage /> */}
       <FigmaHomePage />
     </div>
-  );
-};
+  )
+}
 
-export default page;
+export default page

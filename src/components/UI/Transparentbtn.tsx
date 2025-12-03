@@ -1,23 +1,19 @@
-import React from "react";
-import { IoIosArrowForward } from "react-icons/io";
+import React from 'react'
+import { IoIosArrowForward } from 'react-icons/io'
 
 interface TransparentbtnProps {
-  text: string;
-  href?: string;
-  color?: string; // new color prop
+  text: string
+  href?: string
+  color?: string // new color prop
 }
 
-const Transparentbtn: React.FC<TransparentbtnProps> = ({
-  text,
-  href,
-  color = "#2ea3f2",
-}) => {
+const Transparentbtn: React.FC<TransparentbtnProps> = ({ text, href, color = '#2ea3f2' }) => {
   return (
     <div>
       <a
-        href={href || "#"}
-        target={href ? "_blank" : undefined}
-        rel={href ? "noopener noreferrer" : undefined}
+        href={href || '#'}
+        target={href ? '_blank' : undefined}
+        rel={href ? 'noopener noreferrer' : undefined}
         className={`
           group relative my-4 flex w-full items-center justify-between
           border-2 px-4 py-2.5 transition-all duration-300 rounded
@@ -37,7 +33,7 @@ const Transparentbtn: React.FC<TransparentbtnProps> = ({
         />
       </a>
     </div>
-  );
-};
+  )
+}
 
-export default Transparentbtn;
+export default Transparentbtn

@@ -1,5 +1,5 @@
-import React from "react";
-import BlueBtn from "../../UI/Bluebtn";
+import React from 'react'
+import BlueBtn from '../../UI/Bluebtn'
 
 const Mission: React.FC = () => {
   return (
@@ -13,18 +13,17 @@ const Mission: React.FC = () => {
           className="font-bold text-[16px] sm:text-[17px] md:text-[18px] leading-[26px] sm:leading-[27px] my-3 text-black px-2 sm:px-0"
           id="lato-font"
         >
-          Reduce costs and increase revenues for nonprofits; putting that money
-          back into their charitable mission where it belongs.
+          Reduce costs and increase revenues for nonprofits; putting that money back into their
+          charitable mission where it belongs.
         </p>
 
         <p
           className="font-medium text-[16px] sm:text-[17px] md:text-[18px] leading-[26px] sm:leading-[27px] text-black px-2 sm:px-0"
           id="lato-font"
         >
-          This charity for charities seeks to replace as many functions as
-          possible that current nonprofits pay for to for-profit companies with
-          free or at cost work from our campus, on site projects, or partnerships
-          with other entities.
+          This charity for charities seeks to replace as many functions as possible that current
+          nonprofits pay for to for-profit companies with free or at cost work from our campus, on
+          site projects, or partnerships with other entities.
         </p>
 
         <div className="mt-6">
@@ -32,7 +31,7 @@ const Mission: React.FC = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Mission;
+export default Mission

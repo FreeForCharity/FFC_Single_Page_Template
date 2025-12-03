@@ -1,49 +1,49 @@
-"use client";
+'use client'
 
-import React from "react";
-import EducationalSitesCard from "@/components/UI/EducationalSitesCard";
-import { motion, Variants } from "framer-motion";
+import React from 'react'
+import EducationalSitesCard from '@/components/UI/EducationalSitesCard'
+import { motion, Variants } from 'framer-motion'
 
 const cardVariants: Variants = {
   offscreen: { opacity: 0, scale: 0.8 },
   onscreen: {
     opacity: 1,
     scale: 1,
-    transition: { type: "spring", bounce: 0.3, duration: 0.6 },
+    transition: { type: 'spring', bounce: 0.3, duration: 0.6 },
   },
-};
+}
 
 const index = () => {
   const firstGrid = [
     {
-      imageSrc: "/Images/upwork.webp",
-      title: "ittybiz.com Great site for ultra small business info",
-      link: "http://ittybiz.com/about/",
+      imageSrc: '/Images/upwork.webp',
+      title: 'ittybiz.com Great site for ultra small business info',
+      link: 'http://ittybiz.com/about/',
     },
     {
-      imageSrc: "/Images/upwork.webp",
-      title: "earn1k.com Program for earning your for $1000 on the side by Ramit",
-      link: "http://earn1k.com/",
+      imageSrc: '/Images/upwork.webp',
+      title: 'earn1k.com Program for earning your for $1000 on the side by Ramit',
+      link: 'http://earn1k.com/',
     },
     {
-      imageSrc: "/Images/upwork.webp",
-      title: "appsumo.com Another program for earning your first money online",
-      link: "https://appsumo.com/courses-learning/",
+      imageSrc: '/Images/upwork.webp',
+      title: 'appsumo.com Another program for earning your first money online',
+      link: 'https://appsumo.com/courses-learning/',
     },
-  ];
+  ]
 
   const secondGrid = [
     {
-      imageSrc: "/Images/upwork.webp",
-      title: "100startup.com First book on starting a business",
-      link: "https://100startup.com/",
+      imageSrc: '/Images/upwork.webp',
+      title: '100startup.com First book on starting a business',
+      link: 'https://100startup.com/',
     },
     {
-      imageSrc: "/Images/upwork.webp",
-      title: "theleanstartup.com The next step up book on starting a business",
-      link: "http://theleanstartup.com/",
+      imageSrc: '/Images/upwork.webp',
+      title: 'theleanstartup.com The next step up book on starting a business',
+      link: 'http://theleanstartup.com/',
     },
-  ];
+  ]
 
   return (
     <div className="bg-[linear-gradient(180deg,rgba(232,141,51,0.5)_0%,rgba(44,96,118,0.89)_100%),url('https://staging.freeforcharity.org/wp-content/uploads/2021/07/pexels-serpstat-572056.jpg'))] bg-cover bg-center pt-[67px] pb-[67px]">
@@ -84,7 +84,7 @@ const index = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

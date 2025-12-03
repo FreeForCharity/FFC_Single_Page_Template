@@ -1,5 +1,5 @@
-import React from "react";
-import BecomePartOfOurMissionCard from "@/components/UI/BecomePartOfOurMissionCard";
+import React from 'react'
+import BecomePartOfOurMissionCard from '@/components/UI/BecomePartOfOurMissionCard'
 
 const index = () => {
   return (
@@ -32,7 +32,7 @@ const index = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

@@ -1,85 +1,78 @@
-"use client";
+'use client'
 
-import React, { useState, useRef, useEffect } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
-import type { Swiper as SwiperInstance } from "swiper";
-import "swiper/css";
-import "swiper/css/navigation";
-import {
-  MdOutlineArrowBackIos,
-  MdOutlineArrowForwardIos,
-} from "react-icons/md";
-import Image from "next/image";
-import QuoteLeft from "../../../../public/Svgs/quote-left.svg";
-import QuoteRight from "../../../../public/Svgs/quote-right.svg";
+import React, { useState, useRef, useEffect } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, Autoplay } from 'swiper/modules'
+import type { Swiper as SwiperInstance } from 'swiper'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from 'react-icons/md'
+import Image from 'next/image'
+import QuoteLeft from '../../../../public/Svgs/quote-left.svg'
+import QuoteRight from '../../../../public/Svgs/quote-right.svg'
 
 interface Testimonial {
-  heading: string;
-  text: string;
-  name?: string;
-  location?: string;
+  heading: string
+  text: string
+  name?: string
+  location?: string
 }
 
 const testimonials: Testimonial[] = [
   {
-    heading: "American Legion Ahwatukee Post 64",
-    text: "Knowing that I can reach out to the owner of another veteran to aid with our website’s charities’ needs completely across the country has been amazing for this disabled veteran.",
-    name: "David Green, Public Affairs Officer",
-    location: "American Legion Ahwatukee Post 64",
+    heading: 'American Legion Ahwatukee Post 64',
+    text: 'Knowing that I can reach out to the owner of another veteran to aid with our website’s charities’ needs completely across the country has been amazing for this disabled veteran.',
+    name: 'David Green, Public Affairs Officer',
+    location: 'American Legion Ahwatukee Post 64',
   },
   {
-    heading: "TaShonda Payne",
-    text: "…I’m so glad the universe aligned me with you",
-    name: "Melanin Magic Foundation",
+    heading: 'TaShonda Payne',
+    text: '…I’m so glad the universe aligned me with you',
+    name: 'Melanin Magic Foundation',
   },
   {
-    heading: "Pardhasaradhi Namburi",
-    text: "Free For Charity was absolutely and outstanding — they really did a terrific job for us, they provided us the proper tech guidance and tools in order to help support the nonprofits that we support at Online Impacts.",
+    heading: 'Pardhasaradhi Namburi',
+    text: 'Free For Charity was absolutely and outstanding — they really did a terrific job for us, they provided us the proper tech guidance and tools in order to help support the nonprofits that we support at Online Impacts.',
   },
   {
-    heading: "Keith Ray",
-    text: "An awesome charity that helps and supports other charities with technology support",
+    heading: 'Keith Ray',
+    text: 'An awesome charity that helps and supports other charities with technology support',
   },
-];
+]
 
 const TestimonialSlider: React.FC = () => {
-  const [swiperInstance, setSwiperInstance] = useState<SwiperInstance | null>(
-    null
-  );
-  const [activeIndex, setActiveIndex] = useState(0);
-  const prevRef = useRef<HTMLButtonElement>(null);
-  const nextRef = useRef<HTMLButtonElement>(null);
+  const [swiperInstance, setSwiperInstance] = useState<SwiperInstance | null>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
+  const prevRef = useRef<HTMLButtonElement>(null)
+  const nextRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     if (swiperInstance && prevRef.current && nextRef.current) {
       if (swiperInstance.params.navigation) {
         const navigationParams = swiperInstance.params.navigation as {
-          prevEl?: HTMLElement | null;
-          nextEl?: HTMLElement | null;
-        };
-        navigationParams.prevEl = prevRef.current;
-        navigationParams.nextEl = nextRef.current;
+          prevEl?: HTMLElement | null
+          nextEl?: HTMLElement | null
+        }
+        navigationParams.prevEl = prevRef.current
+        navigationParams.nextEl = nextRef.current
       }
-      swiperInstance.navigation.init();
-      swiperInstance.navigation.update();
+      swiperInstance.navigation.init()
+      swiperInstance.navigation.update()
     }
-  }, [swiperInstance]);
+  }, [swiperInstance])
 
   const handleSlideChange = (swiper: SwiperInstance) => {
-    setActiveIndex(swiper.activeIndex);
-  };
+    setActiveIndex(swiper.activeIndex)
+  }
 
   const handleDotClick = (index: number) => {
-    swiperInstance?.slideTo(index);
-  };
+    swiperInstance?.slideTo(index)
+  }
 
   return (
     <section className="py-16 pb-25 bg-[#FCFCFC]">
       <div className="container mx-auto px-4 max-w-[1150px] text-center">
-        <h2 className="font-bold text-[#F27022] text-[40px] leading-[44px] mb-7">
-          Testimonials
-        </h2>
+        <h2 className="font-bold text-[#F27022] text-[40px] leading-[44px] mb-7">Testimonials</h2>
 
         <div className="relative">
           <Swiper
@@ -100,12 +93,7 @@ const TestimonialSlider: React.FC = () => {
                 <div className="px-12 md:px-20 relative">
                   {/* Left Quote */}
                   <div className="absolute left-[10px] md:left-[50px] top-0 opacity-20 w-6 md:w-9 h-6 md:h-9">
-                    <Image
-                      src={QuoteLeft}
-                      alt="Opening quote"
-                      width={36}
-                      height={36}
-                    />
+                    <Image src={QuoteLeft} alt="Opening quote" width={36} height={36} />
                   </div>
 
                   <h3
@@ -122,20 +110,14 @@ const TestimonialSlider: React.FC = () => {
                   </p>
 
                   {t.name && (
-                    <p
-                      className="text-[14px] font-medium my-2 text-[#666666]"
-                      id="aria-font"
-                    >
+                    <p className="text-[14px] font-medium my-2 text-[#666666]" id="aria-font">
                       {t.name}
                     </p>
                   )}
 
                   {t.location && (
                     <a href="https://americanlegionpost64.org/">
-                      <p
-                        className="text-[14px] font-medium text-[#2EA3F2]"
-                        id="aria-font"
-                      >
+                      <p className="text-[14px] font-medium text-[#2EA3F2]" id="aria-font">
                         {t.location}
                       </p>
                     </a>
@@ -143,12 +125,7 @@ const TestimonialSlider: React.FC = () => {
 
                   {/* Right Quote */}
                   <div className="absolute right-[10px] md:right-[50px] bottom-0 opacity-20 w-6 md:w-9 h-6 md:h-9">
-                    <Image
-                      src={QuoteRight}
-                      alt="Closing quote"
-                      width={36}
-                      height={36}
-                    />
+                    <Image src={QuoteRight} alt="Closing quote" width={36} height={36} />
                   </div>
                 </div>
               </SwiperSlide>
@@ -183,9 +160,7 @@ const TestimonialSlider: React.FC = () => {
               key={i}
               onClick={() => handleDotClick(i)}
               className={`h-2 rounded-full transition-all cursor-pointer ${
-                activeIndex === i
-                  ? "bg-orange-600 w-8"
-                  : "bg-gray-300 w-2 hover:bg-gray-400"
+                activeIndex === i ? 'bg-orange-600 w-8' : 'bg-gray-300 w-2 hover:bg-gray-400'
               }`}
               aria-label={`Go to testimonial ${i + 1}`}
             />
@@ -193,7 +168,7 @@ const TestimonialSlider: React.FC = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default TestimonialSlider;
+export default TestimonialSlider

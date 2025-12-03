@@ -27,12 +27,12 @@ Lighthouse CI is integrated into our CI/CD pipeline to automatically audit the w
 
 Our Lighthouse CI is configured with the following warning thresholds:
 
-| Category | Threshold | Priority |
-|----------|-----------|----------|
-| **Performance** | 60% | Medium |
-| **Accessibility** | 80% | High |
-| **Best Practices** | 80% | High |
-| **SEO** | 90% | High |
+| Category           | Threshold | Priority |
+| ------------------ | --------- | -------- |
+| **Performance**    | 60%       | Medium   |
+| **Accessibility**  | 80%       | High     |
+| **Best Practices** | 80%       | High     |
+| **SEO**            | 90%       | High     |
 
 These are **warning** levels, not hard failures. They help identify areas for improvement without blocking deployments.
 
@@ -198,30 +198,34 @@ Each report shows:
 
 ### Score Ranges
 
-| Score | Rating | Color | Meaning |
-|-------|--------|-------|---------|
-| 90-100 | Good | Green | Excellent performance |
-| 50-89 | Needs Improvement | Orange | Some issues to address |
-| 0-49 | Poor | Red | Significant problems |
+| Score  | Rating            | Color  | Meaning                |
+| ------ | ----------------- | ------ | ---------------------- |
+| 90-100 | Good              | Green  | Excellent performance  |
+| 50-89  | Needs Improvement | Orange | Some issues to address |
+| 0-49   | Poor              | Red    | Significant problems   |
 
 ### Key Performance Metrics
 
 #### First Contentful Paint (FCP)
+
 - **Good**: < 1.8s
 - **Needs Improvement**: 1.8s - 3.0s
 - **Poor**: > 3.0s
 
 #### Largest Contentful Paint (LCP)
+
 - **Good**: < 2.5s
 - **Needs Improvement**: 2.5s - 4.0s
 - **Poor**: > 4.0s
 
 #### Cumulative Layout Shift (CLS)
+
 - **Good**: < 0.1
 - **Needs Improvement**: 0.1 - 0.25
 - **Poor**: > 0.25
 
 #### Time to Interactive (TTI)
+
 - **Good**: < 3.8s
 - **Needs Improvement**: 3.8s - 7.3s
 - **Poor**: > 7.3s
@@ -239,13 +243,7 @@ Each report shows:
 
 ```tsx
 // Good
-<img 
-  src="/images/hero.webp" 
-  alt="Hero" 
-  width={1200} 
-  height={600}
-  loading="lazy"
-/>
+<img src="/images/hero.webp" alt="Hero" width={1200} height={600} loading="lazy" />
 ```
 
 ### JavaScript Optimization
@@ -291,7 +289,8 @@ Each report shows:
 
 **Issue**: Workflow fails with "Cannot connect to Chrome"
 
-**Solution**: 
+**Solution**:
+
 - This usually resolves itself on retry
 - Ensure the build step completed successfully
 - Check that the `./out` directory exists
@@ -301,11 +300,13 @@ Each report shows:
 **Issue**: Scores vary significantly between runs
 
 **Causes**:
+
 - Network conditions
 - Server load
 - Background processes
 
 **Solution**:
+
 - Lighthouse runs 3 times and takes the median score
 - Focus on trends, not individual run variations
 - Run locally on a quiet system for consistent results
@@ -313,6 +314,7 @@ Each report shows:
 ### Low Performance Scores
 
 **Common Causes**:
+
 1. Large images not optimized
 2. Too many third-party scripts
 3. Render-blocking resources
@@ -320,6 +322,7 @@ Each report shows:
 5. Unminified JavaScript/CSS
 
 **Actions**:
+
 1. Review the **Opportunities** section in the report
 2. Address the top 3 opportunities first
 3. Re-run Lighthouse to measure improvement
@@ -328,6 +331,7 @@ Each report shows:
 ### Low Accessibility Scores
 
 **Common Issues**:
+
 1. Missing alt text on images
 2. Insufficient color contrast
 3. Missing form labels
@@ -335,6 +339,7 @@ Each report shows:
 5. Missing ARIA attributes
 
 **Actions**:
+
 1. Review the **Accessibility** section in detail
 2. Use browser extensions like axe DevTools
 3. Test with screen readers
@@ -346,6 +351,7 @@ Each report shows:
 **Issue**: No HTML reports in artifacts
 
 **Solution**:
+
 1. Check that `lhci autorun` completed without errors
 2. Verify the `.lighthouseci` directory exists
 3. Check workflow logs for error messages

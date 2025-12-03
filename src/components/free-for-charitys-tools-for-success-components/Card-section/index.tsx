@@ -1,4 +1,4 @@
-import SlidingCard from "@/components/UI/SlidingCard";
+import SlidingCard from '@/components/UI/SlidingCard'
 
 export default function Page() {
   return (
@@ -9,13 +9,11 @@ export default function Page() {
           subtitle="LastPass (free with paid premium version)"
           description={
             <>
-              LastPass is a must have for absolutely everyone. Use this first
-              before creating accounts with the other tools so you do it
-              securely. We all know that we should use complex passwords and
-              change them regularly but we don’t do it. Also we know that we
-              should not use the same PW for every site we go to. Last pass
-              solves both of these problems for FREE. NOTE: I use the paid
-              version on my systems.
+              LastPass is a must have for absolutely everyone. Use this first before creating
+              accounts with the other tools so you do it securely. We all know that we should use
+              complex passwords and change them regularly but we don’t do it. Also we know that we
+              should not use the same PW for every site we go to. Last pass solves both of these
+              problems for FREE. NOTE: I use the paid version on my systems.
             </>
           }
           buttonText="Available Here"
@@ -27,7 +25,10 @@ export default function Page() {
           subtitle="Mint (free ad supported)"
           description={
             <>
-              Mint is a FREE tool that allows you to truly see how you earn and spend money. It runs in the background of your life and gets better and better over time especially after 3 years. I have used mint for years and the insights that it provides helps in creating conscious spending and catching bank problems before they get out of hand.
+              Mint is a FREE tool that allows you to truly see how you earn and spend money. It runs
+              in the background of your life and gets better and better over time especially after 3
+              years. I have used mint for years and the insights that it provides helps in creating
+              conscious spending and catching bank problems before they get out of hand.
             </>
           }
           buttonText="Available Here"
@@ -36,5 +37,5 @@ export default function Page() {
         />
       </div>
     </div>
-  );
+  )
 }

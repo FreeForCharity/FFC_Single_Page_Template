@@ -1,5 +1,5 @@
-import React from "react";
-import SlidingCard from "@/components/UI/SlidingCard";
+import React from 'react'
+import SlidingCard from '@/components/UI/SlidingCard'
 
 const index = () => {
   return (
@@ -21,14 +21,13 @@ const index = () => {
             subtitle="Guidestar (free with paid options)"
             description={
               <>
-                This charity provides profiles of nearly every charity in the
-                world. It also provides an API that lets others check on the
-                nonprofit status of any charity by name, EIN, or other metrics.
-                Many of the charity for charity sites as well as indirect sites
-                that provide discounts to nonprofits require a completed profile
-                on Guide Star before giving free or discounted items to your
-                organization. Create your profile and have it validated at the
-                highest level possible here before seeking the other services.
+                This charity provides profiles of nearly every charity in the world. It also
+                provides an API that lets others check on the nonprofit status of any charity by
+                name, EIN, or other metrics. Many of the charity for charity sites as well as
+                indirect sites that provide discounts to nonprofits require a completed profile on
+                Guide Star before giving free or discounted items to your organization. Create your
+                profile and have it validated at the highest level possible here before seeking the
+                other services.
               </>
             }
             buttonText="Available Here"
@@ -40,12 +39,11 @@ const index = () => {
             subtitle="Techsoup (Free to join, admin fees for most items offered)"
             description={
               <>
-                My personal charity focused on bridging the gaps between the big
-                players in the charity for charities section. Focus is on IT
-                Project Management support and other business level support.
-                Free For Charity leverages and simplifies the plethora of
-                options each charity has to provide what is needed most by the
-                individual organization.
+                My personal charity focused on bridging the gaps between the big players in the
+                charity for charities section. Focus is on IT Project Management support and other
+                business level support. Free For Charity leverages and simplifies the plethora of
+                options each charity has to provide what is needed most by the individual
+                organization.
               </>
             }
             buttonText="Available Here"
@@ -59,7 +57,7 @@ const index = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index

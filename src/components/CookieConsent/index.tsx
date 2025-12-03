@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
@@ -38,7 +38,8 @@ export default function CookieConsent() {
     analytics: false,
     marketing: false,
   })
-  const [savedPreferencesBackup, setSavedPreferencesBackup] = useState<CookiePreferences>(preferences)
+  const [savedPreferencesBackup, setSavedPreferencesBackup] =
+    useState<CookiePreferences>(preferences)
   const modalRef = useRef<HTMLDivElement>(null)
   const previousFocusRef = useRef<HTMLElement | null>(null)
 
@@ -136,86 +137,92 @@ export default function CookieConsent() {
     }
   }, [])
 
-  const applyConsent = useCallback((prefs: CookiePreferences, previousPrefs?: CookiePreferences) => {
-    // Set a cookie to indicate consent status with Secure flag (only on HTTPS)
-    const cookieValue = JSON.stringify(prefs)
-    const secureFlag =
-      typeof window !== 'undefined' && window.location.protocol === 'https:' ? '; Secure' : ''
-    document.cookie = `cookie-consent=${encodeURIComponent(cookieValue)}; path=/; max-age=31536000; SameSite=Lax${secureFlag}`
+  const applyConsent = useCallback(
+    (prefs: CookiePreferences, previousPrefs?: CookiePreferences) => {
+      // Set a cookie to indicate consent status with Secure flag (only on HTTPS)
+      const cookieValue = JSON.stringify(prefs)
+      const secureFlag =
+        typeof window !== 'undefined' && window.location.protocol === 'https:' ? '; Secure' : ''
+      document.cookie = `cookie-consent=${encodeURIComponent(cookieValue)}; path=/; max-age=31536000; SameSite=Lax${secureFlag}`
 
-    // Check if consent was withdrawn and delete cookies if needed
-    if (previousPrefs) {
-      if (
-        (previousPrefs.analytics && !prefs.analytics) ||
-        (previousPrefs.marketing && !prefs.marketing)
-      ) {
-        deleteAnalyticsCookies()
+      // Check if consent was withdrawn and delete cookies if needed
+      if (previousPrefs) {
+        if (
+          (previousPrefs.analytics && !prefs.analytics) ||
+          (previousPrefs.marketing && !prefs.marketing)
+        ) {
+          deleteAnalyticsCookies()
+        }
       }
-    }
 
-    // Push consent update to GTM dataLayer
-    if (typeof window !== 'undefined') {
-      window.dataLayer = window.dataLayer || []
-      window.dataLayer.push({
-        event: 'consent_update',
-        functional_consent: prefs.functional ? 'granted' : 'denied',
-        analytics_consent: prefs.analytics ? 'granted' : 'denied',
-        marketing_consent: prefs.marketing ? 'granted' : 'denied',
-      })
-    }
+      // Push consent update to GTM dataLayer
+      if (typeof window !== 'undefined') {
+        window.dataLayer = window.dataLayer || []
+        window.dataLayer.push({
+          event: 'consent_update',
+          functional_consent: prefs.functional ? 'granted' : 'denied',
+          analytics_consent: prefs.analytics ? 'granted' : 'denied',
+          marketing_consent: prefs.marketing ? 'granted' : 'denied',
+        })
+      }
 
-    // Load scripts based on consent independently
-    if (prefs.analytics) {
-      loadGoogleAnalytics()
-      loadMicrosoftClarity()
-    }
-    if (prefs.marketing) {
-      loadMetaPixel()
-    }
-  }, [deleteAnalyticsCookies, loadGoogleAnalytics, loadMetaPixel, loadMicrosoftClarity])
+      // Load scripts based on consent independently
+      if (prefs.analytics) {
+        loadGoogleAnalytics()
+        loadMicrosoftClarity()
+      }
+      if (prefs.marketing) {
+        loadMetaPixel()
+      }
+    },
+    [deleteAnalyticsCookies, loadGoogleAnalytics, loadMetaPixel, loadMicrosoftClarity]
+  )
 
   // Helper to load preferences from localStorage and update state
-  const loadPreferencesFromLocalStorage = useCallback((showBannerIfMissing = true) => {
-    try {
-      const consent = localStorage.getItem('cookie-consent')
-      if (!consent) {
-        if (showBannerIfMissing) setShowBanner(true)
-        return
-      }
-      let savedPreferences: CookiePreferences
+  const loadPreferencesFromLocalStorage = useCallback(
+    (showBannerIfMissing = true) => {
       try {
-        savedPreferences = JSON.parse(consent)
-      } catch {
-        if (showBannerIfMissing) setShowBanner(true)
-        return
-      }
-
-      // Validate the structure (functional is optional for backward compatibility)
-      if (
-        typeof savedPreferences === 'object' &&
-        savedPreferences !== null &&
-        typeof savedPreferences.necessary === 'boolean' &&
-        typeof savedPreferences.analytics === 'boolean' &&
-        typeof savedPreferences.marketing === 'boolean'
-      ) {
-        // Ensure functional is always true (for backward compatibility with old saved preferences)
-        // Create a new object to avoid mutation
-        const updatedPreferences: CookiePreferences = {
-          ...savedPreferences,
-          functional: true
+        const consent = localStorage.getItem('cookie-consent')
+        if (!consent) {
+          if (showBannerIfMissing) setShowBanner(true)
+          return
         }
-        setPreferences(updatedPreferences)
-        setSavedPreferencesBackup(updatedPreferences)
-        applyConsent(updatedPreferences)
-      } else {
-        // Invalid data, show banner again
+        let savedPreferences: CookiePreferences
+        try {
+          savedPreferences = JSON.parse(consent)
+        } catch {
+          if (showBannerIfMissing) setShowBanner(true)
+          return
+        }
+
+        // Validate the structure (functional is optional for backward compatibility)
+        if (
+          typeof savedPreferences === 'object' &&
+          savedPreferences !== null &&
+          typeof savedPreferences.necessary === 'boolean' &&
+          typeof savedPreferences.analytics === 'boolean' &&
+          typeof savedPreferences.marketing === 'boolean'
+        ) {
+          // Ensure functional is always true (for backward compatibility with old saved preferences)
+          // Create a new object to avoid mutation
+          const updatedPreferences: CookiePreferences = {
+            ...savedPreferences,
+            functional: true,
+          }
+          setPreferences(updatedPreferences)
+          setSavedPreferencesBackup(updatedPreferences)
+          applyConsent(updatedPreferences)
+        } else {
+          // Invalid data, show banner again
+          if (showBannerIfMissing) setShowBanner(true)
+        }
+      } catch {
+        // If localStorage is unavailable or data is corrupted, show banner
         if (showBannerIfMissing) setShowBanner(true)
       }
-    } catch {
-      // If localStorage is unavailable or data is corrupted, show banner
-      if (showBannerIfMissing) setShowBanner(true)
-    }
-  }, [applyConsent])
+    },
+    [applyConsent]
+  )
 
   const handleCancelPreferences = useCallback(() => {
     // Restore the backed-up preferences
@@ -488,9 +495,9 @@ export default function CookieConsent() {
             <h3 className="text-lg font-bold text-gray-900 mb-2">We Value Your Privacy</h3>
             <p className="text-sm text-gray-600 mb-3">
               We use cookies to improve your experience on our site, analyze traffic, and enable
-              certain features. By clicking &quot;Accept All&quot;, you consent to our use of cookies for
-              analytics and marketing purposes. You can manage your preferences or decline
-              non-essential cookies.
+              certain features. By clicking &quot;Accept All&quot;, you consent to our use of
+              cookies for analytics and marketing purposes. You can manage your preferences or
+              decline non-essential cookies.
             </p>
             <div className="flex items-center gap-4 text-xs text-gray-500">
               <Link href="/privacy-policy" className="text-blue-600 hover:underline">

@@ -1,5 +1,5 @@
-import React from "react";
-import Transparentbtn from "@/components/UI/Transparentbtn";
+import React from 'react'
+import Transparentbtn from '@/components/UI/Transparentbtn'
 
 const FFCOnboardingNotice = () => {
   return (
@@ -18,9 +18,8 @@ const FFCOnboardingNotice = () => {
           className="font-[500] text-[20px] leading-[30px] mb-[16px] md:w-[65%] mx-auto"
           id="raleway-font"
         >
-          ** Please read this full page top to bottom before taking any actions
-          as it has several follow-on tasks for you as a new domain owner /
-          domain transfer to freeforcharty.org**
+          ** Please read this full page top to bottom before taking any actions as it has several
+          follow-on tasks for you as a new domain owner / domain transfer to freeforcharty.org**
         </p>
 
         {/* Step 1 */}
@@ -28,8 +27,7 @@ const FFCOnboardingNotice = () => {
           className="font-[600] text-[20px] md:text-[27px] leading-[35px] w-[85%] mx-auto mt-[30px] pb-[1em]"
           id="raleway-font"
         >
-          You will have to perform several steps to get full use of your domain
-          once ordered.
+          You will have to perform several steps to get full use of your domain once ordered.
         </p>
 
         {/* Step 2 */}
@@ -61,7 +59,7 @@ const FFCOnboardingNotice = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default FFCOnboardingNotice;
+export default FFCOnboardingNotice

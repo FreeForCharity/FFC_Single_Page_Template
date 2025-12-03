@@ -1,37 +1,37 @@
-"use client";
-import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+'use client'
+import React, { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 
 interface Step {
-  number: number;
-  title: string;
-  description: string;
-  linkText: string;
-  innerbg: string;
-  outerbg: string;
-  linkUrl: string;
+  number: number
+  title: string
+  description: string
+  linkText: string
+  innerbg: string
+  outerbg: string
+  linkUrl: string
 }
 
 const StepCard: React.FC<{ step: Step }> = ({ step }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.disconnect();
+            setIsVisible(true)
+            observer.disconnect()
           }
-        });
+        })
       },
       { threshold: 0.3 }
-    );
+    )
 
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <div
@@ -40,7 +40,7 @@ const StepCard: React.FC<{ step: Step }> = ({ step }) => {
     >
       <div
         className={`${step.innerbg} text-black text-center`}
-        style={{ fontFamily: "Raleway, sans-serif" }}
+        style={{ fontFamily: 'Raleway, sans-serif' }}
       >
         <div className="flex justify-center mb-[30px]">
           <div className="relative w-[100px] h-[100px]">
@@ -49,23 +49,17 @@ const StepCard: React.FC<{ step: Step }> = ({ step }) => {
               alt={`Step ${step.number}`}
               fill
               className={`object-contain drop-shadow-lg transition-all duration-700 ${
-                isVisible ? "animate-fadeTop" : "opacity-0 translate-y-6"
+                isVisible ? 'animate-fadeTop' : 'opacity-0 translate-y-6'
               }`}
             />
           </div>
         </div>
 
-        <h4
-          className="text-[31px] font-bold leading-[31px] pb-[10px]"
-          id="cantata-font"
-        >
+        <h4 className="text-[31px] font-bold leading-[31px] pb-[10px]" id="cantata-font">
           {step.title}
         </h4>
 
-        <p
-          className="text-[25px] font-bold leading-[33px] pb-[1em]"
-          id="raleway-font"
-        >
+        <p className="text-[25px] font-bold leading-[33px] pb-[1em]" id="raleway-font">
           {step.description}
         </p>
 
@@ -78,7 +72,7 @@ const StepCard: React.FC<{ step: Step }> = ({ step }) => {
         </a>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default StepCard;
+export default StepCard
