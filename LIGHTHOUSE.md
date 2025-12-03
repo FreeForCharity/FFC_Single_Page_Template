@@ -137,16 +137,18 @@ The Lighthouse CI configuration is in `lighthouserc.json`:
       "staticDistDir": "./out",
       "url": [
         "http://localhost/index.html",
-        "http://localhost/about-us/index.html",
-        "http://localhost/donate/index.html",
-        "http://localhost/volunteer/index.html",
-        "http://localhost/help-for-charities/index.html"
+        "http://localhost/about-us.html",
+        "http://localhost/donate.html",
+        "http://localhost/volunteer.html",
+        "http://localhost/help-for-charities.html"
       ],
       "numberOfRuns": 3
     }
   }
 }
 ```
+
+**Important**: URLs should point to the actual `.html` files in the `out` directory (e.g., `about-us.html`), not to subdirectories with `index.html`. Next.js static export generates flat HTML files at the root level.
 
 You can add more pages to audit by adding URLs to the `url` array.
 
