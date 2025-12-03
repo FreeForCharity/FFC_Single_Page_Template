@@ -302,10 +302,22 @@ Test with browser DevTools or use [WebAIM Contrast Checker](https://webaim.org/r
 
 ### Image Optimization
 
-**Desktop**: Serve high-resolution images
-**Mobile**: Serve appropriately sized images
+**Current Implementation**: Using `<img>` tags with `assetPath()` helper for GitHub Pages compatibility. This is acceptable for the static export use case.
 
-Currently using `<img>` tags with the `assetPath()` helper for GitHub Pages compatibility. Consider implementing responsive images:
+**When to Implement Responsive Images:**
+
+- Images larger than 500KB
+- Hero images and featured graphics
+- Images that appear at different sizes across breakpoints
+- High-traffic pages where performance is critical
+
+**Priority**: LOW - Current implementation is acceptable. Only implement if:
+
+1. Lighthouse scores drop below 90 for performance
+2. Specific images are identified as performance bottlenecks
+3. Users report slow loading on mobile devices
+
+**Implementation Example** (for future reference):
 
 ```tsx
 <img
@@ -319,6 +331,14 @@ Currently using `<img>` tags with the `assetPath()` helper for GitHub Pages comp
   alt="Hero image"
 />
 ```
+
+**Steps to Implement:**
+
+1. Identify problematic images with Lighthouse audit
+2. Generate multiple sizes of each image (640px, 768px, 1280px widths)
+3. Add srcset and sizes attributes
+4. Test on various devices
+5. Measure improvement with Lighthouse
 
 ### Lazy Loading
 
