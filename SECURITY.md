@@ -222,7 +222,8 @@ If you're new to this project, follow these security guidelines:
    - Check `.gitignore` to ensure sensitive files are excluded
 
 3. **Keep dependencies updated**
-   - Run `npm audit` to check for vulnerabilities (or use `npm audit --audit-level=moderate` to focus on moderate and higher severity issues)
+   - Run `npm audit` to check for vulnerabilities
+   - Use `npm audit --audit-level=moderate` to focus on moderate and higher severity issues
    - Update dependencies promptly when security patches are released
    - Review dependency changes in pull requests
 
