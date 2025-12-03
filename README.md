@@ -222,6 +222,8 @@ The following enhancements could improve the test suite and CI/CD process:
 
 **Full Testing Guide:** See [TESTING.md](./TESTING.md) for complete documentation.
 
+**Security Documentation:** See [SECURITY.md](./SECURITY.md) for branch protection rules and security best practices.
+
 ## Key Features
 
 - **Comprehensive Page Structure:** 29 pages covering programs, services, guides, and legal content
@@ -314,3 +316,12 @@ npm run preview  # Preview at http://localhost:3000
 - Cookie consent implementation tracks user preferences in localStorage
 - All images use `unoptimized` setting for static export compatibility
 - ESLint warnings about `<img>` tags are expected and acceptable for static export configuration
+
+## Documentation
+
+For comprehensive guides and documentation:
+
+- **[README.md](./README.md)** - Project overview, setup, and deployment (this file)
+- **[TESTING.md](./TESTING.md)** - Complete testing guide with automated test suite documentation
+- **[SECURITY.md](./SECURITY.md)** - Security policies, branch protection rules, and best practices
+- **[SITE_IMPROVEMENTS.md](./SITE_IMPROVEMENTS.md)** - Technical analysis and capability gaps compared to sister sites
