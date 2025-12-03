@@ -211,6 +211,129 @@ npm run build
 
 ## Security Testing
 
+### GitHub Dependabot
+
+**Status**: ✅ Enabled and configured
+
+GitHub Dependabot provides automated dependency management and security updates for this project.
+
+#### Configuration
+
+**Location**: `.github/dependabot.yml`
+
+**Monitored Ecosystems**:
+1. **npm** - JavaScript/Node.js dependencies in `package.json`
+2. **github-actions** - GitHub Actions workflows in `.github/workflows/`
+
+**Update Schedule**:
+- Runs every Monday at 9:00 AM
+- Checks for new versions and security vulnerabilities
+- Creates pull requests automatically
+
+**Features Enabled**:
+- ✅ **Version Updates**: Checks for newer versions of dependencies weekly
+- ✅ **Security Updates**: Automatically creates PRs for known vulnerabilities (runs immediately when detected)
+- ✅ **Grouped Updates**: Dependencies grouped by type for easier review
+  - Production dependencies (minor + patch updates)
+  - Development dependencies (minor + patch updates)
+- ✅ **Customized PRs**: Labeled with "dependencies" + ecosystem tags, commit messages prefixed
+- ✅ **Rate Limiting**: Maximum 10 open PRs for npm, 5 for GitHub Actions
+
+#### How It Works
+
+**Version Updates**:
+1. Dependabot checks for updates based on the weekly schedule
+2. Creates a pull request for each group of updates
+3. PR includes changelog, commits, and compatibility info
+4. Maintainers review and merge the PR
+
+**Security Updates**:
+1. GitHub Advisory Database detects a vulnerability
+2. Dependabot creates a PR immediately (bypasses schedule)
+3. PR updates only the affected dependency to a safe version
+4. Marked with security labels for prioritization
+
+#### Monitoring Dependabot
+
+**View Dependabot PRs**:
+```bash
+# Navigate to your repository on GitHub
+# Go to: Pull Requests → Filter by author: dependabot[bot]
+```
+
+**View Dependabot Insights**:
+- Repository → Insights → Dependency graph → Dependabot
+- Shows update frequency, PRs created, and alerts
+
+**View Security Alerts**:
+- Repository → Security → Dependabot alerts
+- Lists all known vulnerabilities with severity ratings
+
+#### Working with Dependabot PRs
+
+**Review Process**:
+1. Check the PR description for changes and compatibility notes
+2. Review the diff to ensure no breaking changes
+3. Wait for CI/CD to complete (tests must pass)
+4. Merge if tests pass and changes look good
+
+**Common Commands** (in PR comments):
+- `@dependabot rebase` - Rebase the PR against the base branch
+- `@dependabot recreate` - Recreate the PR from scratch
+- `@dependabot merge` - Merge the PR (if checks pass)
+- `@dependabot ignore this dependency` - Stop updates for this dependency
+- `@dependabot ignore this major version` - Ignore major version updates
+
+#### Best Practices
+
+✅ **Do**:
+- Review Dependabot PRs regularly (weekly recommended)
+- Merge security updates promptly
+- Keep grouped updates together when possible
+- Test locally for major version updates
+
+⚠️ **Don't**:
+- Ignore security alerts
+- Let Dependabot PRs pile up (makes conflicts more likely)
+- Blindly auto-merge without CI checks passing
+- Disable Dependabot without a good reason
+
+#### Troubleshooting
+
+**Issue**: Dependabot PRs not appearing
+- **Solution**: Check `.github/dependabot.yml` syntax with a YAML validator
+- **Solution**: Verify Dependabot is enabled in repository settings (Settings → Code security → Dependabot)
+
+**Issue**: Dependabot creating too many PRs
+- **Solution**: Adjust `open-pull-requests-limit` in `dependabot.yml`
+- **Solution**: Increase grouping to combine more updates
+
+**Issue**: Merge conflicts in Dependabot PR
+- **Solution**: Comment `@dependabot rebase` on the PR
+- **Solution**: Close and reopen PR to trigger recreation
+
+**Issue**: Tests failing on Dependabot PR
+- **Solution**: Review the changes and fix test issues in a separate PR
+- **Solution**: Use `@dependabot ignore` if the update causes breaking changes
+
+### CodeQL Security Scanning
+
+**Status**: ✅ Enabled
+
+**Location**: `.github/workflows/codeql.yml`
+
+**Scans**:
+- JavaScript/TypeScript code
+- GitHub Actions workflows
+
+**Schedule**:
+- On push to main branch
+- On pull requests to main
+- Weekly on Mondays at 11:17 PM
+
+**View Results**:
+- Repository → Security → Code scanning alerts
+
 ### npm audit
 
 Current security status:
@@ -220,6 +343,7 @@ npm audit
 
 **Known Issues**:
 - Check for any security vulnerabilities and address them promptly
+- Use `npm audit fix` to automatically fix vulnerabilities when possible
 
 ## What to Verify
 
@@ -360,10 +484,11 @@ FFC_Single_Page_Template/
    - Purpose: Track bundle size over time
    - Benefit: Prevent performance degradation from large bundles
 
-9. **Dependency Vulnerability Scanning**
+9. **Dependency Vulnerability Scanning** ✅ **ENABLED**
    - Tool: GitHub Dependabot + CodeQL
-   - Purpose: Automated security vulnerability detection
-   - Benefit: Early warning of security issues
+   - Status: Fully configured for npm and GitHub Actions
+   - Purpose: Automated security vulnerability detection and version updates
+   - Benefit: Early warning of security issues, automated dependency management
 
 ### GitHub Actions Enhancements
 
