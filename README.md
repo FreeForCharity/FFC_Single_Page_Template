@@ -48,7 +48,7 @@ The site is deployed to its live domain (ffcworkingsite1.org) but some functiona
 
 ## Overview
 
-This is a comprehensive multi-page website with **29 pages** and **83 components** that showcases Free For Charity's programs, services, and resources. The site enables donations and volunteer signups via global popups accessible from any page.
+This is a comprehensive multi-page website with **29 pages** and **83 components** that showcases Free For Charity's programs, services, and resources. The site is designed to enable donations and volunteer signups via global popups (currently disabled in code).
 
 ### Site Structure
 
