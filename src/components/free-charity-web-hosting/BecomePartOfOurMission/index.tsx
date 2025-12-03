@@ -28,7 +28,7 @@ const index = () => {
           description1="FREE FOR CHARITY DOMAIN PACKAGE"
           description2="(NOT-FOR-PROFIT, PRE-501(C)3, FULL 501(C)3)"
           buttonText="Get Started"
-          buttonLink="/help-for-charities"
+          buttonLink="/501c3"
         />
       </div>
     </div>

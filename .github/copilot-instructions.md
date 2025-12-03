@@ -96,7 +96,7 @@ To test the GitHub Pages deployment locally with basePath:
 
 ```bash
 # Build with basePath for GitHub Pages
-NEXT_PUBLIC_BASE_PATH=/FreeForCharity-web npm run build
+NEXT_PUBLIC_BASE_PATH=/FFC_Single_Page_Template npm run build
 
 # Preview the site
 npm run preview
@@ -197,8 +197,8 @@ import { assetPath } from "../lib/assetPath";
 
 **Why this is needed:**
 
-- Custom domain (freeforcharity.org): images at `/my-image.png`
-- GitHub Pages: images at `/FreeForCharity-web/my-image.png`
+- Custom domain (ffcworkingsite1.org): images at `/my-image.png`
+- GitHub Pages: images at `/FFC_Single_Page_Template/my-image.png`
 - The helper automatically handles both scenarios based on the `NEXT_PUBLIC_BASE_PATH` environment variable
 
 **Files using assetPath:**
@@ -212,15 +212,15 @@ The site auto-deploys to GitHub Pages via `.github/workflows/deploy.yml` when pu
 
 1. Node.js 20 setup
 2. `npm ci` for clean install
-3. `NEXT_PUBLIC_BASE_PATH=/FreeForCharity-web` is set for GitHub Pages deployment
+3. `NEXT_PUBLIC_BASE_PATH=/FFC_Single_Page_Template` is set for GitHub Pages deployment
 4. `next build` builds the site with proper basePath
 5. Playwright tests run to validate the build
 6. Static files deployed from `./out` directory
 
 **Dual Deployment:**
 
-- **Custom domain**: https://www.freeforcharity.org (CNAME configured, no basePath needed)
-- **GitHub Pages**: https://freeforcharity.github.io/FreeForCharity-web/ (basePath required)
+- **Custom domain**: https://ffcworkingsite1.org (CNAME configured, no basePath needed)
+- **GitHub Pages**: https://freeforcharity.github.io/FFC_Single_Page_Template/ (basePath required)
 
 ## Known Issues and Limitations
 
@@ -259,7 +259,7 @@ npm run build        # 20 seconds when fonts disabled
 npm run preview      # http://localhost:3000
 
 # Test GitHub Pages deployment locally
-NEXT_PUBLIC_BASE_PATH=/FreeForCharity-web npm run build
+NEXT_PUBLIC_BASE_PATH=/FFC_Single_Page_Template npm run build
 npm run preview      # Test with basePath
 
 # File structure overview

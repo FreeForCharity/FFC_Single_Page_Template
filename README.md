@@ -78,7 +78,6 @@ This is a comprehensive multi-page website with **29 pages** and **111 component
 - Free Charity Web Hosting
 - Free For Charity Endowment Fund
 - FFC Tools for Success
-- Help for Charities
 - Domains
 
 **Guide & Documentation Pages:**

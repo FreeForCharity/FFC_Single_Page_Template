@@ -56,7 +56,7 @@ const CharityHeroBackground = () => {
               className="top-[442px] w-[173px] h-[54px] opacity-100 rounded-[27px] px-[32px] py-[18px] flex items-center justify-center gap-[10px] bg-[#FFFFFF] text-[#113563] text-[20px] font-[400] leading-[100%] whitespace-nowrap"
               id="lato-font"
             >
-              Help for Charities
+              Our Programs
             </a>
           </div>
         </div>
