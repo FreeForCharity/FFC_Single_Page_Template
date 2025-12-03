@@ -80,7 +80,7 @@ jobs:
         env:
           # Set basePath for GitHub Pages deployment
           # This ensures images and assets work correctly at the subpath
-          NEXT_PUBLIC_BASE_PATH: /freeforcharity-web
+          NEXT_PUBLIC_BASE_PATH: /FFC_Single_Page_Template
       - name: Run tests
         run: npm test
         env:
