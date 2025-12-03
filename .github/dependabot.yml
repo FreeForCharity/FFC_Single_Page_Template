@@ -9,7 +9,7 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
-      time: "09:00"
+      time: "09:00"  # UTC timezone (all times in dependabot.yml use UTC)
     open-pull-requests-limit: 10
     commit-message:
       prefix: "npm"
@@ -41,7 +41,7 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
-      time: "09:00"
+      time: "09:00"  # UTC timezone (all times in dependabot.yml use UTC)
     open-pull-requests-limit: 5
     commit-message:
       prefix: "ci"
