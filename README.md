@@ -1,4 +1,6 @@
-Free For Charity website built with Next.js App Router.
+# Free For Charity Website
+
+Multi-page Next.js website built with App Router for Free For Charity nonprofit organization.
 
 ## Organization
 
@@ -46,7 +48,48 @@ The site is deployed to its live domain (ffcworkingsite1.org) but some functiona
 
 ## Overview
 
-This site showcases programs, enables donations, and lets visitors volunteer via global popups.
+This is a comprehensive multi-page website with **29 pages** and **83 components** that showcases Free For Charity's programs, services, and resources. The site enables donations and volunteer signups via global popups accessible from any page.
+
+### Site Structure
+
+**Core Pages:**
+- Homepage (Figma-Home-page)
+- About Us
+- Contact Us
+- Donate
+- Volunteer
+
+**Program & Service Pages:**
+- Free Charity Web Hosting
+- Free For Charity Endowment Fund
+- FFC Tools for Success
+- Help for Charities
+- Domains
+
+**Guide & Documentation Pages:**
+- GuideStar Guide
+- Online Impacts Onboarding Guide
+- Charity Validation Guide
+- FFC Service Delivery Stages
+- FFC Web Developer Training Guide
+- FFC Volunteer Proving Ground Core Competencies
+- FFCAdmin cPanel Backup SOP
+
+**Nonprofit Status Pages:**
+- 501(c)(3) Information
+- Pre-501(c)(3) Information
+
+**Legal & Policy Pages:**
+- Privacy Policy
+- Cookie Policy
+- Terms of Service
+- Donation Policy
+- Vulnerability Disclosure Policy
+- Security Acknowledgements
+
+**Technical Pages:**
+- Tech Stack
+- FFCAdmin Portal
 
 ## Tech Stack
 
@@ -181,26 +224,63 @@ The following enhancements could improve the test suite and CI/CD process:
 
 ## Key Features
 
-- Global popups for Donate and Volunteer
-  - Context provider: `src/app/components/PopupProvider.tsx`
-  - Mounted via: `src/app/components/PopupsRootClient.tsx`
-  - Open from anywhere using `usePopups()` or shared buttons:
-    - `DonateButton.tsx`, `VolunteerButton.tsx`
-
-- Mobile slide-out navigation
-  - `src/app/components/NavBar.tsx`
-  - Hamburger opens a right-side panel with overlay; actions wired to popups
-
-- SEO
+- **Comprehensive Page Structure:** 29 pages covering programs, services, guides, and legal content
+- **Component Library:** 83 reusable components organized by feature/page
+- **Responsive Navigation:** Mobile and desktop navigation with Header/Footer components
+- **Cookie Consent System:** GDPR-compliant cookie consent management
+- **SEO Optimization:**
   - Global metadata in `src/app/layout.tsx` (title template, description, OG/Twitter, robots)
-  - `src/app/sitemap.ts` and `src/app/robots.ts`
+  - Dynamic sitemap: `src/app/sitemap.ts`
+  - Robots configuration: `src/app/robots.ts`
+- **Static Site Generation:** Full static export for GitHub Pages deployment
+- **TypeScript:** Full TypeScript implementation for type safety
+- **Modern Styling:** Tailwind CSS 4.x with utility-first approach
+- **Animation:** Framer Motion for smooth transitions
+- **Icons:** Lucide React and React Icons libraries
+- **Carousels:** Swiper for image carousels and sliders
+
+**Note:** Global Donate/Volunteer popup system is present in codebase but currently commented out in `layout.tsx`.
 
 ## Project Structure
 
-- `src/app/page.tsx` – Home page
-- `src/app/components/*` – UI components and popups
-- `src/app/data/*` – Static content (FAQs, team, testimonials)
-- `public/*` – Static assets (icons, images)
+```
+src/
+├── app/                    # Next.js App Router pages (29 pages)
+│   ├── page.tsx           # Homepage
+│   ├── layout.tsx         # Root layout with global config
+│   ├── globals.css        # Global styles
+│   ├── [page-name]/       # Individual page directories
+│   ├── sitemap.ts         # Dynamic sitemap generation
+│   └── robots.ts          # Robots.txt configuration
+├── components/            # Reusable components (83 components)
+│   ├── Header/           # Site header/navigation
+│   ├── Footer/           # Site footer
+│   ├── CookieConsent/    # Cookie consent banner
+│   ├── UI/               # Reusable UI components
+│   └── [feature]/        # Feature-specific component groups
+├── data/                 # Static content (if present)
+├── lib/                  # Utility functions (if present)
+└── public/               # Static assets (icons, images, fonts)
+```
+
+## Site Improvements & Capability Gaps
+
+A comprehensive technical analysis comparing this repository to sister sites (freeforcharity-web, ffcadmin.org, KCCF-web) is available in **[SITE_IMPROVEMENTS.md](./SITE_IMPROVEMENTS.md)**.
+
+This document identifies:
+- 19 technical capability gaps
+- Detailed implementation guidance for each gap
+- Priority recommendations and implementation roadmap
+- Estimated effort and complexity for each improvement
+
+**Key improvement opportunities:**
+- CodeQL security scanning
+- Unit testing with Jest
+- Code formatting with Prettier
+- Lighthouse CI performance monitoring
+- Dark mode theming
+- Enhanced documentation suite
+- And more...
 
 ## Common Tasks
 
@@ -229,5 +309,8 @@ npm run preview  # Preview at http://localhost:3000
 
 ## Notes
 
-- Popups are globally available modals; avoid fixed floating buttons. Use `DonateButton`/`VolunteerButton` or `usePopups()` to open.
-- If you add new routes, consider updating `sitemap.ts` accordingly.
+- When adding new pages, update `sitemap.ts` to include them in the sitemap
+- Static export configuration in `next.config.ts` supports GitHub Pages deployment with basePath
+- Cookie consent implementation tracks user preferences in localStorage
+- All images use `unoptimized` setting for static export compatibility
+- ESLint warnings about `<img>` tags are expected and acceptable for static export configuration
