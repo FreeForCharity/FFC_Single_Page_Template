@@ -50,6 +50,63 @@ jobs:
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
+      - name: Display Lighthouse Results Summary
+        if: always()
+        run: |
+          echo "📊 Lighthouse CI Results Summary"
+          echo "=================================="
+
+          if [ ! -d ".lighthouseci" ]; then
+            echo "❌ No Lighthouse results directory found"
+            exit 1
+          fi
+
+          # Find all JSON reports
+          json_files=$(find .lighthouseci -name "lhr-*.json" | sort)
+
+          if [ -z "$json_files" ]; then
+            echo "❌ No Lighthouse JSON reports found"
+            exit 1
+          fi
+
+          echo "Found $(echo "$json_files" | wc -l) report files"
+          echo ""
+
+          # Install jq if not available
+          which jq > /dev/null || sudo apt-get update && sudo apt-get install -y jq
+
+          # Process each unique URL
+          urls=$(echo "$json_files" | xargs -I {} jq -r '.requestedUrl // .finalDisplayedUrl' {} | sort -u)
+
+          for url in $urls; do
+            page_name=$(echo "$url" | sed 's|http://localhost:[0-9]*/||' | sed 's|/index.html||' | sed 's|/$||')
+            if [ -z "$page_name" ]; then
+              page_name="Home"
+            fi
+            
+            echo "📄 Page: $page_name"
+            echo "   URL: $url"
+            
+            # Find all reports for this URL
+            reports=$(echo "$json_files" | xargs -I {} sh -c "jq -r 'select(.requestedUrl == \"$url\" or .finalDisplayedUrl == \"$url\") | input_filename' {} 2>/dev/null" || echo "$json_files" | head -3)
+            
+            # Extract scores from all reports for this URL
+            for report_file in $reports; do
+              if [ -f "$report_file" ]; then
+                perf=$(jq -r '.categories.performance.score * 100 | round' "$report_file" 2>/dev/null || echo "N/A")
+                acc=$(jq -r '.categories.accessibility.score * 100 | round' "$report_file" 2>/dev/null || echo "N/A")
+                bp=$(jq -r '.categories["best-practices"].score * 100 | round' "$report_file" 2>/dev/null || echo "N/A")
+                seo=$(jq -r '.categories.seo.score * 100 | round' "$report_file" 2>/dev/null || echo "N/A")
+                
+                echo "   Run: Performance: ${perf}% | Accessibility: ${acc}% | Best Practices: ${bp}% | SEO: ${seo}%"
+              fi
+            done
+            echo ""
+          done
+
+          echo "✅ Lighthouse CI completed successfully"
+          echo "📥 Full reports available in workflow artifacts"
+
       - name: Upload Lighthouse reports
         uses: actions/upload-artifact@v4
         if: always()
@@ -73,27 +130,120 @@ jobs:
               return;
             }
 
-            // Find the manifest file
-            const manifestPath = path.join(resultsDir, 'manifest.json');
-            if (!fs.existsSync(manifestPath)) {
-              console.log('No manifest file found');
+            // Find all JSON report files
+            const files = fs.readdirSync(resultsDir).filter(f => f.endsWith('.json'));
+            if (files.length === 0) {
+              console.log('No Lighthouse JSON reports found');
               return;
             }
 
-            const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+            // Parse all reports and organize by URL
+            const reportsByUrl = {};
+            for (const file of files) {
+              const filePath = path.join(resultsDir, file);
+              const report = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+              const url = report.requestedUrl || report.finalDisplayedUrl;
+              
+              if (!reportsByUrl[url]) {
+                reportsByUrl[url] = [];
+              }
+              reportsByUrl[url].push(report);
+            }
 
-            // Create a comment with results summary
+            // Helper function to get median score
+            function getMedianScore(scores) {
+              const sorted = scores.sort((a, b) => a - b);
+              const mid = Math.floor(sorted.length / 2);
+              return sorted.length % 2 === 0 
+                ? (sorted[mid - 1] + sorted[mid]) / 2 
+                : sorted[mid];
+            }
+
+            // Helper function to get score emoji and status
+            function getScoreDisplay(score) {
+              const percentage = Math.round(score * 100);
+              if (percentage >= 90) return { emoji: '🟢', status: 'Good', color: 'green' };
+              if (percentage >= 50) return { emoji: '🟡', status: 'Needs Improvement', color: 'orange' };
+              return { emoji: '🔴', status: 'Poor', color: 'red' };
+            }
+
+            // Thresholds from lighthouserc.json
+            const thresholds = {
+              performance: 0.6,
+              accessibility: 0.8,
+              'best-practices': 0.8,
+              seo: 0.9
+            };
+
+            // Create comment header
             let comment = '## 🔦 Lighthouse CI Results\n\n';
-            comment += 'Performance audits completed. ';
-            comment += 'View detailed reports in the workflow artifacts.\n\n';
-            comment += `📊 **Pages Audited**: ${manifest.length}\n`;
-            comment += `🏃 **Runs Per Page**: 3\n\n`;
-            comment += 'Download the full reports from the workflow artifacts for detailed analysis.';
+            comment += `**Pages Audited**: ${Object.keys(reportsByUrl).length} | `;
+            comment += `**Runs Per Page**: 3 (showing median scores)\n\n`;
+
+            // Process each URL
+            let allPassed = true;
+            for (const [url, reports] of Object.entries(reportsByUrl)) {
+              const urlPath = new URL(url).pathname;
+              const pageName = urlPath === '/' || urlPath === '/index.html' 
+                ? 'Home' 
+                : urlPath.replace('/index.html', '').replace(/\//g, ' ').trim();
+              
+              comment += `### 📄 ${pageName}\n\n`;
+              comment += '| Category | Score | Status | Threshold |\n';
+              comment += '|----------|-------|--------|----------|\n';
+
+              const categories = ['performance', 'accessibility', 'best-practices', 'seo'];
+              
+              for (const category of categories) {
+                const scores = reports.map(r => r.categories[category]?.score ?? 0);
+                const medianScore = getMedianScore(scores);
+                const percentage = Math.round(medianScore * 100);
+                const display = getScoreDisplay(medianScore);
+                const threshold = Math.round((thresholds[category] || 0) * 100);
+                const passed = medianScore >= (thresholds[category] || 0);
+                
+                if (!passed) allPassed = false;
+                
+                const categoryName = category.split('-').map(w => 
+                  w.charAt(0).toUpperCase() + w.slice(1)
+                ).join(' ');
+                
+                const passIcon = passed ? '✅' : '⚠️';
+                comment += `| ${display.emoji} ${categoryName} | **${percentage}%** | ${display.status} ${passIcon} | ≥${threshold}% |\n`;
+              }
+              
+              comment += '\n';
+            }
+
+            // Add summary
+            comment += '---\n\n';
+            if (allPassed) {
+              comment += '✅ **All categories meet or exceed the configured thresholds!**\n\n';
+            } else {
+              comment += '⚠️ **Some categories are below the configured thresholds.**\n\n';
+              comment += 'Categories below threshold are marked with ⚠️. These are warning levels, not failures.\n\n';
+            }
+
+            // Add helpful links
+            comment += '**Legend:**\n';
+            comment += '- 🟢 **Good** (90-100%): Excellent performance\n';
+            comment += '- 🟡 **Needs Improvement** (50-89%): Some issues to address\n';
+            comment += '- 🔴 **Poor** (0-49%): Significant problems\n\n';
+            comment += '**Thresholds:**\n';
+            comment += '- Performance: ≥60% (warn)\n';
+            comment += '- Accessibility: ≥80% (warn)\n';
+            comment += '- Best Practices: ≥80% (warn)\n';
+            comment += '- SEO: ≥90% (warn)\n\n';
+            comment += '📥 Download the detailed HTML reports from the [workflow artifacts](';
+            comment += `${context.payload.repository.html_url}/actions/runs/${context.runId}) for in-depth analysis.\n\n`;
+            comment += '📖 Learn more about [Lighthouse scoring](https://developer.chrome.com/docs/lighthouse/performance/performance-scoring/)';
 
             // Post comment on PR
-            github.rest.issues.createComment({
+            await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: comment
             });
+
+            console.log('Lighthouse results comment posted successfully');
