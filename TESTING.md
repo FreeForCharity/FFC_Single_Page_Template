@@ -213,13 +213,18 @@ npm run build
 
 ### GitHub Dependabot
 
-**Status**: ✅ Enabled and configured
+**Status**: ✅ Configuration file created, repository settings required
 
 GitHub Dependabot provides automated dependency management and security updates for this project.
 
 #### Configuration
 
-**Location**: `.github/dependabot.yml`
+**Configuration File**: `.github/dependabot.yml` (✅ configured)
+
+**Repository Settings**: Settings → Security & Analysis (⚙️ must be enabled by repository admin)
+- Dependency graph (required)
+- Dependabot alerts (recommended)
+- Dependabot security updates (recommended)
 
 **Monitored Ecosystems**:
 1. **npm** - JavaScript/Node.js dependencies in `package.json`

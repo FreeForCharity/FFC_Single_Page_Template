@@ -169,15 +169,18 @@ Tests run automatically on every push to main via GitHub Actions before deployme
 
 ### Security Analysis
 
-**GitHub Dependabot** (`.github/dependabot.yml`)
-- ✅ **Version Updates**: Automatically checks for dependency updates weekly
+**GitHub Dependabot**
+- ✅ **Configuration File**: `.github/dependabot.yml` enables version updates
   - npm packages (production and development dependencies)
   - GitHub Actions workflow dependencies
-- ✅ **Security Updates**: Automatically creates PRs for known vulnerabilities
-- ✅ **Grouped Updates**: Dependencies grouped by type (production/development) for easier review
-- ✅ **Configuration**: Updates checked every Monday at 9:00 AM
+  - Weekly updates every Monday at 9:00 AM
+  - Grouped updates for easier review
+- ⚙️ **Repository Settings**: Must be enabled for security alerts and security updates
+  - Settings → Security & Analysis → Dependabot alerts (enable this)
+  - Settings → Security & Analysis → Dependabot security updates (enable this)
+  - Security updates run immediately when vulnerabilities are detected
 - 📊 Monitor Dependabot PRs in the repository's Pull Requests tab
-- 📖 **Full Guide**: See [DEPENDABOT.md](./DEPENDABOT.md) for comprehensive documentation
+- 📖 **Full Guide**: See [DEPENDABOT.md](./DEPENDABOT.md) for comprehensive documentation and setup instructions
 
 **CodeQL Security Scanning** (`.github/workflows/codeql.yml`)
 - ✅ Scans JavaScript/TypeScript code for security vulnerabilities
