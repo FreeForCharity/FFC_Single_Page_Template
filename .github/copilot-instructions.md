@@ -8,7 +8,7 @@ Free For Charity is a Next.js 15.5.2 static website that connects students, prof
 
 ### Environment Setup
 
-- **Node.js Version**: Requires Node.js 20.x (validated with v20.19.4)
+- **Node.js Version**: Requires Node.js 20.x (validated with v20.19.5)
 - **Package Manager**: Uses npm with package-lock.json
 
 ### Bootstrap and Build Process
@@ -155,7 +155,10 @@ src/app/
 - `tsconfig.json` - TypeScript configuration with path aliases
 - `eslint.config.mjs` - ESLint with Next.js rules
 - `postcss.config.mjs` - Tailwind CSS PostCSS configuration
-- `.github/workflows/nextjs.yml` - GitHub Pages deployment
+- `.github/workflows/ci.yml` - CI workflow for testing
+- `.github/workflows/deploy.yml` - GitHub Pages deployment
+- `.github/workflows/codeql.yml` - Security scanning
+- `.github/workflows/lighthouse.yml` - Performance monitoring
 
 ## Common Tasks
 
@@ -205,7 +208,7 @@ import { assetPath } from "../lib/assetPath";
 
 ### Deployment Process
 
-The site auto-deploys to GitHub Pages via `.github/workflows/nextjs.yml` when pushed to main branch:
+The site auto-deploys to GitHub Pages via `.github/workflows/deploy.yml` when pushed to main branch:
 
 1. Node.js 20 setup
 2. `npm ci` for clean install

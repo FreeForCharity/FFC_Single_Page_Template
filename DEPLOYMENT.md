@@ -61,9 +61,12 @@ The helper uses the `NEXT_PUBLIC_BASE_PATH` environment variable to determine th
 
 ## Automated Deployment
 
-### GitHub Actions Workflow
+### GitHub Actions Workflows
 
-Deployment is fully automated through GitHub Actions. The workflow is defined in `.github/workflows/nextjs.yml`.
+Deployment is fully automated through GitHub Actions with two separate workflows:
+
+1. **CI Workflow** (`.github/workflows/ci.yml`) - Runs on all PRs and pushes
+2. **Deploy Workflow** (`.github/workflows/deploy.yml`) - Runs only on push to main branch
 
 #### Trigger Conditions
 
@@ -72,21 +75,32 @@ The deployment workflow runs automatically when:
 1. **Push to main branch**: Any commit to the `main` branch triggers a deployment
 2. **Manual trigger**: Can be triggered manually from the Actions tab
 
-#### Deployment Steps
+#### CI Workflow Steps (`.github/workflows/ci.yml`)
+
+Runs on all pull requests and pushes to main:
 
 1. **Checkout code**: Retrieves the latest code from the repository
 2. **Setup Node.js**: Installs Node.js 20.x
 3. **Install dependencies**: Runs `npm ci` for a clean installation
-4. **Run unit tests**: Executes Jest tests to verify code quality
-5. **Install Playwright**: Sets up E2E testing environment
-6. **Build site**: Runs `next build` with appropriate environment variables
-7. **Run E2E tests**: Validates the built site with Playwright tests
-8. **Upload artifact**: Packages the `./out` directory
-9. **Deploy to GitHub Pages**: Publishes the site to GitHub Pages
+4. **Check formatting**: Runs Prettier format check
+5. **Run linting**: Executes ESLint to catch code issues
+6. **Run unit tests**: Executes Jest tests to verify code quality
+7. **Install Playwright**: Sets up E2E testing environment
+8. **Build site**: Runs `next build` with appropriate environment variables
+9. **Run E2E tests**: Validates the built site with Playwright tests
 
-#### Workflow File Location
+#### Deploy Workflow Steps (`.github/workflows/deploy.yml`)
 
-`.github/workflows/nextjs.yml`
+Runs only on push to main branch:
+
+1. **Checkout code**: Retrieves the latest code from the repository
+2. **Setup Node.js**: Installs Node.js 20.x
+3. **Setup Pages**: Configures GitHub Pages settings
+4. **Restore Next.js cache**: Restores build cache for faster builds
+5. **Install dependencies**: Runs `npm ci` for a clean installation
+6. **Build site**: Runs `next build` with basePath for GitHub Pages
+7. **Upload artifact**: Packages the `./out` directory
+8. **Deploy to GitHub Pages**: Publishes the site to GitHub Pages (separate job)
 
 #### Environment Variables in CI
 

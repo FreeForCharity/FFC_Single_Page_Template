@@ -392,5 +392,6 @@ npm run prepare             # Setup git hooks
 
 ---
 
-**Last Updated**: 2025-12-03
-**Version**: 1.0.0
+**Last Updated**: 2025-12-03  
+**Version**: 1.0.0  
+**Node.js**: 20.x (validated with v20.19.5)

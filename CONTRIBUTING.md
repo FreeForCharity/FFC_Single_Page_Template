@@ -30,7 +30,7 @@ We are committed to providing a welcoming and inclusive environment for all cont
 
 ### Prerequisites
 
-- **Node.js**: Version 20.x or higher (validated with v20.19.5)
+- **Node.js**: Version 20.x (validated with v20.19.5)
 - **npm**: Package manager (comes with Node.js)
 - **Git**: Version control
 - **Code Editor**: We recommend VS Code with the following extensions:
