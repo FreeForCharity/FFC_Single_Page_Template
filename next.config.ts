@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
     unoptimized: true,
     // You can still list specific domains if needed, but with unoptimized it’s optional
     domains: [
+      "ffcworkingsite1.org",
       "staging.freeforcharity.org",
       "freeforcharity.org",
       "static.vecteezy.com",

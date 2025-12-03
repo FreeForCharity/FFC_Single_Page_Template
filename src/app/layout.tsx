@@ -9,7 +9,7 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.freeforcharity.org"),
+  metadataBase: new URL("https://ffcworkingsite1.org"),
   title: {
     default: "Free For Charity | Reduce Costs, Increase Impact",
     template: "%s | Free For Charity",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    url: "https://www.freeforcharity.org/",
+    url: "https://ffcworkingsite1.org/",
     siteName: "Free For Charity",
     title: "Free For Charity | Reduce Costs, Increase Impact",
     description:

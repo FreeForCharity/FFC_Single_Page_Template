@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
-  const base = "https://www.freeforcharity.org";
+  const base = "https://ffcworkingsite1.org";
   return {
     rules: {
       userAgent: "*",
