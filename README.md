@@ -17,8 +17,8 @@ The site features two primary CTAs accessible throughout the experience via glob
 
 ## Deployment
 
-- **Live Site**: [https://www.freeforcharity.org](https://www.freeforcharity.org)
-- **GitHub Pages**: [https://freeforcharity.github.io/freeforcharity-web/](https://freeforcharity.github.io/freeforcharity-web/)
+- **Live Site**: [https://ffcworkingsite1.org](https://ffcworkingsite1.org)
+- **GitHub Pages**: [https://freeforcharity.github.io/FFC_Single_Page_Template/](https://freeforcharity.github.io/FFC_Single_Page_Template/)
 - **Hosting**: GitHub Pages
 - **Deployment**: Automated via GitHub Actions on push to `main` branch
 
@@ -42,7 +42,7 @@ The site is actively being developed with the following status:
 - Policy pages (Privacy, Terms, etc.) need to be created
 - Form submissions are simulated (backend integration pending)
 
-The site is deployed to its live domain (freeforcharity.org) but some functionality is still being completed.
+The site is deployed to its live domain (ffcworkingsite1.org) but some functionality is still being completed.
 
 ## Overview
 
@@ -213,8 +213,8 @@ The following enhancements could improve the test suite and CI/CD process:
 The site is configured for static export and deployed to GitHub Pages:
 
 **Production:**
-- Live at: [https://www.freeforcharity.org](https://www.freeforcharity.org)
-- GitHub Pages URL: [https://freeforcharity.github.io/freeforcharity-web/](https://freeforcharity.github.io/freeforcharity-web/)
+- Live at: [https://ffcworkingsite1.org](https://ffcworkingsite1.org)
+- GitHub Pages URL: [https://freeforcharity.github.io/FFC_Single_Page_Template/](https://freeforcharity.github.io/FFC_Single_Page_Template/)
 - Deployment: Automatic via GitHub Actions (`.github/workflows/nextjs.yml`)
 - Trigger: Push to `main` branch
 - Build output: Static files in `./out` directory
