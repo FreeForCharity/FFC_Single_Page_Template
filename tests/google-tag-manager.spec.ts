@@ -107,21 +107,21 @@ test.describe('Google Tag Manager Integration', () => {
   })
 })
 
-test.describe('Google Tag Manager Environment Configuration', () => {
-  test('should not load GTM script if GTM_ID is not set', async ({ page }) => {
-    // This test verifies graceful handling when GTM_ID is empty
-    // In the actual implementation, if NEXT_PUBLIC_GTM_ID is not set,
-    // the component returns null and doesn't render anything
+test.describe('Google Tag Manager Configuration', () => {
+  test('should load GTM script with hardcoded ID', async ({ page }) => {
+    // This test verifies that GTM loads with the hardcoded ID GTM-TQ5H8HPR
+    // The GTM_ID is hardcoded in the component (not from environment variable)
 
     await page.goto('/')
 
-    // If GTM_ID is set (as it is in our test with GTM-TEST123),
-    // the script should be present
+    // GTM script should always be present with the hardcoded ID
     const gtmScript = await page.locator('script[id="gtm-script"]').count()
 
-    // In production without GTM_ID, this would be 0
-    // With GTM_ID set, it should be > 0
-    // We're just verifying the component handles both cases
-    expect(gtmScript).toBeGreaterThanOrEqual(0)
+    // Script should be present
+    expect(gtmScript).toBeGreaterThan(0)
+
+    // Verify the script contains the correct GTM ID
+    const scriptContent = await page.locator('script[id="gtm-script"]').innerHTML()
+    expect(scriptContent).toContain('GTM-TQ5H8HPR')
   })
 })
