@@ -337,23 +337,14 @@ npm run test:ui       # Interactive Playwright UI
 
 #### CI/CD Environment
 
-Tests run automatically in GitHub Actions with two workflows:
+Tests run automatically in GitHub Actions with the following configuration:
 
-**CI Workflow** (`.github/workflows/ci.yml`)
-
-- **Trigger**: Every pull request and push to main branch
+- **Trigger**: Every push to main branch
 - **Environment**: Ubuntu latest with Node.js 20
-- **Steps**: Format check → Lint → Unit tests → Build → E2E tests
 - **Browser Setup**: `npx playwright install --with-deps chromium`
 - **Build**: Built with `NEXT_PUBLIC_BASE_PATH=/FFC_Single_Page_Template`
-- **Retry Logic**: Failed tests retry 2 times in CI
-- **Failure Handling**: PR cannot be merged if tests fail
-
-**Deploy Workflow** (`.github/workflows/deploy.yml`)
-
-- **Trigger**: Only on push to main branch (after CI passes)
-- **Steps**: Build → Upload artifact → Deploy to GitHub Pages
-- **Deployment**: Blocked if build fails
+- **Retry Logic**: Failed tests retry 2 times
+- **Failure Handling**: Deployment blocked if tests fail
 
 ### Test Configuration
 
@@ -378,19 +369,60 @@ Key settings:
 
 ### CI/CD Integration
 
-Tests run automatically in GitHub Actions workflows:
+### Test Execution Pipeline
 
-**CI Workflow** (`.github/workflows/ci.yml`):
+Tests run automatically in GitHub Actions with the following workflows:
 
-- Runs on all pull requests and pushes to main
-- Includes format checking, linting, unit tests, build, and E2E tests
-- Must pass before PRs can be merged
+**1. CI Workflow** (`ci.yml`)
 
-**Deploy Workflow** (`.github/workflows/deploy.yml`):
+- Triggers: Pull requests and pushes to main
+- Steps:
+  1. Install dependencies
+  2. Check code formatting (Prettier)
+  3. Run linting (ESLint)
+  4. Run unit tests (Jest)
+  5. Install Playwright browsers
+  6. Build site
+  7. Run E2E tests (Playwright)
+- If any test fails, the build is marked as failed
+- Runs before deployment
 
-- Runs only on push to main branch
-- Deploys to GitHub Pages after successful build
+**2. Deploy Workflow** (`deploy.yml`)
+
+- Triggers: Push to main branch only (after CI passes)
+- Steps:
+  1. Install dependencies
+  2. Build site for GitHub Pages
+  3. Deploy to GitHub Pages
 - Deployment is blocked if build fails
+
+**3. Lighthouse CI Workflow** (`lighthouse.yml`)
+
+- Triggers: After successful deployment, on pull requests, manual
+- Steps:
+  1. Install dependencies
+  2. Build site
+  3. Run Lighthouse CI (3 runs per page)
+  4. Display results summary in console
+  5. Upload HTML reports as artifacts
+  6. Post results comment on PR (if applicable)
+- Runs independently after deployment
+- Provides performance metrics without blocking deployment
+- Warning thresholds (not hard failures):
+  - Performance: ≥60%
+  - Accessibility: ≥80%
+  - Best Practices: ≥80%
+  - SEO: ≥90%
+
+### Result Reporting
+
+- **Unit Tests**: Pass/fail in workflow logs
+- **E2E Tests**: Pass/fail in workflow logs, screenshots on failure
+- **Lighthouse** (runs on PRs and after deployment):
+  - Console summary in workflow logs (always)
+  - Detailed PR comments with scores (PRs only)
+  - HTML reports in artifacts (always)
+  - Median scores from 3 runs
 
 ## Static Analysis
 
@@ -717,10 +749,17 @@ FFC_Single_Page_Template/
 
 ### Medium Priority
 
-4. **Performance Testing**
+4. **Performance Testing** ✅ **ENABLED**
    - Tool: Lighthouse CI
-   - Purpose: Monitor Core Web Vitals, SEO, Best Practices
-   - Benefit: Track performance regression over time
+   - Status: Fully configured and integrated into CI/CD
+   - Purpose: Monitor Core Web Vitals, SEO, Best Practices, Accessibility
+   - Features:
+     - Runs on every PR and after deployment
+     - Posts detailed score reports in PR comments
+     - Tracks median scores from multiple runs
+     - Provides threshold-based warnings
+     - Uploads detailed HTML reports as artifacts
+   - Benefit: Track performance regression over time and get immediate feedback on PRs
 
 5. **Visual Regression Testing**
    - Tool: Percy.io or Playwright screenshots
