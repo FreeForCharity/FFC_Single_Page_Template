@@ -1,7 +1,7 @@
 import React from "react";
 import ReadyToGetStarted from "@/components/help-for-charities-components/Ready-to-Get-Started-Now";
 import AccordionItem from "@/components/UI/Accordian";
-import Link from "next/link";
+
 const index = () => {
   return (
     <div className="w-full max-w-[100%]">

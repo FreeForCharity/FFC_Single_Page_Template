@@ -67,7 +67,7 @@ const index = () => {
           >
             The State and Local Nonprofit Establishment Support Product, powered
             by Northwest Registered Agent. With our State Level C Corp setup,
-            you can set up your initial company documents and regeneter with the
+            you can set up your initial company documents and register with the
             state of your founding. We also help with setting up your
             nonprofit’s charitable solicitation registration at the state level.
             We understand the unique needs of nonprofits and are dedicated to
@@ -79,8 +79,8 @@ const index = () => {
             title=" Charity Banking Services Consultation"
           >
             Setting up your first nonprofit bank account is an important step
-            towards managing your organization’s finances. At Free For CHarity
-            we reccomend both a Ground Bank, Wells Fargo and an online brokerage
+            towards managing your organization’s finances. At Free For Charity
+            we recommend both a Ground Bank, Wells Fargo and an online brokerage
             account, Edward Jones. We understand the unique needs of nonprofit
             organizations. With our expertise and dedicated support, we can help
             you navigate through the process and ensure that your funds are

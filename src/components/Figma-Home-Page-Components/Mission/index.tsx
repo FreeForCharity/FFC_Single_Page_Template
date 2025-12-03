@@ -1,5 +1,4 @@
 import React from "react";
-import { assetPath } from "@/lib/assetPath";
 
 const index = () => {
   return (

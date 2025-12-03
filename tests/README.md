@@ -341,5 +341,5 @@ When tests fail in CI:
 ---
 
 **Test Suite Status**: ✅ 5 passing, 1 skipped  
-**Last Updated**: October 2025  
+**Last Updated**: December 2025  
 **Framework**: Playwright v1.56.0

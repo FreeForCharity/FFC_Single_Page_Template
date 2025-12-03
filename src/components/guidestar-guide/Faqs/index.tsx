@@ -47,9 +47,9 @@ const index = () => {
               </li>
             </ul>
             <p>
-              NOTE: If you nonprofit is alreay claimed then the current
+              NOTE: If you nonprofit is already claimed then the current
               management has to “Add Managers” to allow your email to update the
-              profie.
+              profile.
             </p>
           </AccordianBold>
 
