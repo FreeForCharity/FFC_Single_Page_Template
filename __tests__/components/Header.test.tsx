@@ -1,6 +1,10 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
+import { axe, toHaveNoViolations } from 'jest-axe'
 import Header from '../../src/components/Header'
+
+// Extend Jest matchers
+expect.extend(toHaveNoViolations)
 
 // Mock next/navigation
 jest.mock('next/navigation', () => ({
@@ -51,5 +55,11 @@ describe('Header component', () => {
     const buttons = screen.getAllByRole('button')
     // Should have at least menu and search buttons
     expect(buttons.length).toBeGreaterThanOrEqual(2)
+  })
+
+  it('should not have accessibility violations', async () => {
+    const { container } = render(<Header />)
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
   })
 })

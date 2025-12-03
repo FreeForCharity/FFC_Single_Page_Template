@@ -36,8 +36,11 @@ const Footer: React.FC = () => {
           <h3 className="text-[28px] text-white">Endorsements</h3>
 
           <div className="space-y-4">
-            <a href="https://www.guidestar.org/profile/46-2471893">
-              <img src="/Svgs/footerImage.svg" alt="" />
+            <a
+              href="https://www.guidestar.org/profile/46-2471893"
+              aria-label="View Free For Charity GuideStar Profile"
+            >
+              <img src="/Svgs/footerImage.svg" alt="GuideStar Platinum Seal of Transparency" />
             </a>
             <Link
               href="https://www.guidestar.org/profile/shared/bbbe173a-87b9-4af9-a8a2-cae255a95742"

@@ -177,6 +177,58 @@ describe('myUtility', () => {
 })
 ```
 
+### Accessibility Testing
+
+**Framework**: jest-axe - Automated accessibility testing with axe-core
+
+All component tests include accessibility checks using jest-axe to ensure WCAG 2.1 compliance.
+
+**How it works**:
+
+```tsx
+import { axe, toHaveNoViolations } from 'jest-axe'
+
+// Extend Jest matchers
+expect.extend(toHaveNoViolations)
+
+describe('MyComponent', () => {
+  it('should not have accessibility violations', async () => {
+    const { container } = render(<MyComponent />)
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
+  })
+})
+```
+
+**Accessibility checks include**:
+
+- Button and link text (all interactive elements must have accessible names)
+- Color contrast ratios (text must be readable)
+- ARIA attributes (proper use of ARIA roles and labels)
+- Keyboard navigation (all interactive elements must be keyboard accessible)
+- Form labels (all form inputs must have associated labels)
+- Image alt text (all images must have descriptive alt text)
+- Heading hierarchy (proper semantic heading structure)
+
+**Fixed Accessibility Issues**:
+
+- ✅ Footer: Added aria-label to GuideStar logo link
+- ✅ Footer: Added descriptive alt text to GuideStar seal image
+- ✅ Header: Added aria-label to search button
+- ✅ Header: Added aria-label to mobile menu button
+- ✅ Header: Added aria-label to close search button
+- ✅ Header: Added aria-label to search input
+
+**Running Accessibility Tests**:
+
+```bash
+# All tests include accessibility checks by default
+npm test
+
+# Run specific component accessibility test
+npm test -- -t "should not have accessibility violations"
+```
+
 ### Test Configuration
 
 **jest.config.js**: Main Jest configuration
@@ -189,6 +241,7 @@ describe('myUtility', () => {
 **jest.setup.js**: Test environment setup
 
 - Imports @testing-library/jest-dom for custom matchers
+- Imports jest-axe/extend-expect for accessibility matchers
 - Can be extended with global test setup
 
 ---
