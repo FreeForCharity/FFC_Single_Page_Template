@@ -1,0 +1,169 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Faustina:ital,wght@0,300..800;1,300..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&display=swap");
+@import url("https://fonts.cdnfonts.com/css/segoe-ui-4?styles=18006,18005,18004,18003");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fauna+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cantata+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Faustina:ital,wght@0,300..800;1,300..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fauna+One&display=swap");
+@import "tailwindcss";
+
+:root {
+  /* Brand tokens */
+  --ffc-primary: #2a6682;
+  --ffc-accent: #f58629;
+  --ffc-yellow: #f5c045;
+  --ffc-black: #000000;
+  --ffc-white: #ffffff;
+
+  /* Layout */
+  --ffc-container: 1248px;
+  --ffc-radius-xl: 20px;
+}
+
+html,
+body {
+  scroll-behavior: smooth !important;
+}
+
+@theme inline {
+  /* Tailwind design tokens mapped to brand variables */
+  --color-primary: var(--ffc-primary);
+  --color-accent: var(--ffc-accent);
+  --color-yellow: var(--ffc-yellow);
+  --color-ink: var(--ffc-black);
+  --color-paper: var(--ffc-white);
+
+  --radius-xl: var(--ffc-radius-xl);
+  --container: var(--ffc-container);
+
+  /* Fonts (provided via next/font and CSS variables on <body>) */
+  --font-serif-display: var(--font-faustina);
+  --font-serif: var(--font-fauna-one);
+  --font-sans: var(--font-lato);
+  --font-alt: var(--font-inter);
+}
+
+body {
+  /* font-family: "Open Sans", sans-serif !important; */
+  font-family: "Faustina", serif !important;
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+#header {
+  font-family: "Open Sans", sans-serif !important;
+}
+#aria-font {
+  font-family: "Open Sans", sans-serif !important;
+}
+#lato-font {
+  font-family: "Lato", sans-serif !important;
+}
+#montserrat-font {
+  font-family: "Montserrat", sans-serif !important;
+}
+#abeezee {
+  font-family: "ABeeZee", sans-serif !important;
+}
+#segoe-font {
+  font-family: "Segoe UI", sans-serif !important;
+}
+#cinzel {
+  font-family: "Cinzel", sans-serif !important;
+}
+#fauna-font {
+  font-family: "Fauna One", sans-serif !important;
+}
+#cantata-font {
+  font-family: "Cantata One", sans-serif !important;
+}
+#raleway-font {
+  font-family: "Raleway", sans-serif !important;
+}
+#montserrat-font {
+  font-family: "Montserrat", sans-serif !important;
+}
+#courier-font {
+  font-family: "Montserrat", sans-serif !important;
+}
+#faustina-font {
+  font-family: "Faustina", sans-serif !important;
+}
+#fauna-font {
+  font-family: "Fauna One", sans-serif !important;
+}
+
+@keyframes fadeTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeRight {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeTop {
+  animation: fadeTop 1s cubic-bezier(0.77, 0, 0.175, 1) 1;
+}
+
+.animate-fadeLeft {
+  animation: fadeLeft 1s cubic-bezier(0.77, 0, 0.175, 1) 1;
+}
+
+.animate-fadeRight {
+  animation: fadeRight 1s cubic-bezier(0.77, 0, 0.175, 1) 1;
+}
+
+/* Utilities aligned to Figma */
+.ffc-container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+.clip-diagonal {
+  clip-path: polygon(0 80%, 100% 50%, 100% 100%, 0% 100%);
+}
+
+.ffc-card {
+  @apply bg-paper border-4 rounded-xl shadow;
+}
+
+/* Hide scrollbar globally */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
