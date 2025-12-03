@@ -1,0 +1,18 @@
+{
+  "skip": [
+    "^https://github.com/(?!FreeForCharity/FFC_Single_Page_Template).*",
+    "^http://localhost.*",
+    "^https://www.linkedin.com/.*",
+    "^https://twitter.com/.*",
+    "^https://www.facebook.com/.*",
+    "^https://forms.monday.com/.*",
+    "^mailto:.*",
+    "^tel:.*"
+  ],
+  "timeout": 10000,
+  "retry": true,
+  "retryErrors": true,
+  "retryErrorsCount": 3,
+  "retryErrorsJitter": 500,
+  "directoryListing": false
+}
