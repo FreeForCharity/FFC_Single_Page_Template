@@ -85,9 +85,10 @@ Code scanning tools must successfully analyze the code before changes can be mer
 **Why this matters**: Automated security analysis catches potential vulnerabilities, code quality issues, and security flaws before they reach production.
 
 **For developers**:
-- Pull requests will automatically trigger code scanning via CodeQL or other configured tools
+- Code scanning tools are configured in the repository and must pass before merging
+- GitHub runs code scanning checks when configured (e.g., CodeQL, third-party tools)
 - Wait for the scanning to complete - this usually takes a few minutes
-- If issues are found, review the security alerts and fix them before the PR can be merged
+- If issues are found, review the security alerts and fix them before merging
 - Code scanning failures will block the merge until resolved
 
 **What's being scanned**:
@@ -173,11 +174,11 @@ Without this setting, code can be merged without waiting for successful deployme
 
 ## Required Status Checks
 
-Before any pull request can be merged into `main`, the following automated checks must pass:
+Before any changes can be merged into `main`, automated quality checks help ensure code quality.
 
 ### Automated CI/CD Pipeline
 
-The GitHub Actions workflow (`.github/workflows/nextjs.yml`) runs on every pull request and includes:
+The GitHub Actions workflow (`.github/workflows/nextjs.yml`) runs on pushes to `main` branch and can be manually triggered. The pipeline includes:
 
 1. **Build Process**
    - Node.js 20 environment setup
@@ -189,11 +190,11 @@ The GitHub Actions workflow (`.github/workflows/nextjs.yml`) runs on every pull 
    - Playwright end-to-end tests
    - Logo visibility verification
    - GitHub Pages deployment compatibility checks
-   - All tests must pass (5 active tests)
+   - All tests must pass
 
 3. **Code Scanning**
-   - CodeQL security analysis (if configured)
-   - Dependency vulnerability scanning
+   - Security scanning tools (when configured via GitHub security settings)
+   - Dependency vulnerability checks
    - Must have no high-severity issues
 
 **For developers**: 
@@ -221,7 +222,7 @@ If you're new to this project, follow these security guidelines:
    - Check `.gitignore` to ensure sensitive files are excluded
 
 3. **Keep dependencies updated**
-   - Run `npm audit` regularly to check for vulnerabilities
+   - Run `npm audit` to check for vulnerabilities (or use `npm audit --audit-level=moderate` to focus on moderate and higher severity issues)
    - Update dependencies promptly when security patches are released
    - Review dependency changes in pull requests
 
@@ -302,6 +303,7 @@ git push origin feature/your-feature-name
 git commit --amend --no-edit -S
 git push --force-with-lease origin your-branch-name
 ```
+**Note**: Using `--force-with-lease` is safe on your feature branches but is blocked on the `main` branch due to branch protection rules.
 
 #### Issue: "Direct push to main is not allowed"
 **Solution**: You should be working on a feature branch. If you accidentally committed to main:
