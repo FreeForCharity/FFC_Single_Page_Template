@@ -308,6 +308,34 @@ git commit -m "feat: implement user authentication
 - Use the body to explain **what** and **why**, not **how**
 - Reference issues and pull requests when relevant
 
+### Automated Validation
+
+**Git hooks are configured to enforce code quality standards:**
+
+- **Pre-commit hook**: Runs before every commit
+  - Checks code formatting with Prettier
+  - Runs ESLint to catch errors
+  - Prevents commits with formatting or linting issues
+- **Commit-msg hook**: Validates commit message format
+  - Enforces conventional commit format
+  - Ensures commit messages follow the type format above
+  - Prevents commits with improperly formatted messages
+
+**If a hook fails:**
+
+```bash
+# Fix formatting issues
+npm run format
+
+# Check linting
+npm run lint
+
+# If you need to bypass hooks in an emergency (NOT RECOMMENDED)
+git commit --no-verify -m "your message"
+```
+
+**Note**: Husky git hooks are automatically installed when you run `npm install`.
+
 ---
 
 ## Pull Request Process
