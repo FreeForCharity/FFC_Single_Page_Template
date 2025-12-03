@@ -7,7 +7,7 @@ import { test, expect } from '@playwright/test'
  * 1. GTM script is loaded in the head section
  * 2. dataLayer is initialized
  * 3. GTM noscript fallback exists in body
- * 4. GTM ID is configurable via environment variable
+ * 4. GTM ID is hardcoded in the component
  */
 
 test.describe('Google Tag Manager Integration', () => {
