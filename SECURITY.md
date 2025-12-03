@@ -174,34 +174,38 @@ Without this setting, code can be merged without waiting for successful deployme
 
 ## Required Status Checks
 
-Before any changes can be merged into `main`, automated quality checks help ensure code quality.
+The repository uses automated quality checks to ensure code quality and security. These checks run at different stages of the development and deployment workflow:
 
-### Automated CI/CD Pipeline
+### 1. Pre-merge Checks (on Pull Requests)
 
-The GitHub Actions workflow (`.github/workflows/nextjs.yml`) runs on pushes to `main` branch and can be manually triggered. The pipeline includes:
+- **CodeQL Code Scanning** (`.github/workflows/codeql.yml`)
+  - Runs automatically on every pull request targeting `main`
+  - Scans for security vulnerabilities and code quality issues
+  - Must pass before merging
 
-1. **Build Process**
-   - Node.js 20 environment setup
-   - Clean dependency installation (`npm ci`)
-   - Next.js static site build with proper basePath configuration
-   - Build must complete without errors
+- **Status Visibility**
+  - You can see the status of these checks in your pull request
+  - Click "Details" next to any check to see the full logs
+  - If a check fails, review the error messages and fix the issue
+  - Push new commits to your branch to re-trigger the checks
 
-2. **Automated Testing**
-   - Playwright end-to-end tests
-   - Logo visibility verification
-   - GitHub Pages deployment compatibility checks
-   - All tests must pass
+### 2. Post-merge CI/CD Pipeline (on Push to Main)
 
-3. **Code Scanning**
-   - Security scanning tools (when configured via GitHub security settings)
-   - Dependency vulnerability checks
-   - Must have no high-severity issues
+- **Build and Test Workflow** (`.github/workflows/nextjs.yml`)
+  - Runs automatically after code is merged to `main` (on push to `main`)
+  - Can also be triggered manually via workflow dispatch
+  - Steps include:
+    - Node.js 20 environment setup
+    - Clean dependency installation (`npm ci`)
+    - Next.js static site build with proper basePath configuration
+    - Playwright end-to-end tests (logo visibility, GitHub Pages compatibility)
+    - Deployment to GitHub Pages from `./out` directory
+  - All build and test steps must pass for successful deployment
 
-**For developers**: 
-- You can see the status of these checks in your pull request
-- Click "Details" next to any check to see the full logs
-- If a check fails, review the error messages and fix the issue
-- Push new commits to your branch to re-trigger the checks
+- **Security Scanning**
+  - Additional security scanning tools may run as configured in GitHub security settings
+  - Dependency vulnerability checks are performed
+  - Must have no high-severity issues
 
 ---
 
@@ -223,7 +227,7 @@ If you're new to this project, follow these security guidelines:
 
 3. **Keep dependencies updated**
    - Run `npm audit` to check for vulnerabilities
-   - Use `npm audit --audit-level=moderate` to focus on moderate and higher severity issues
+   - Use `npm audit --audit-level=moderate` to set the CI exit threshold to moderate and higher severity issues
    - Update dependencies promptly when security patches are released
    - Review dependency changes in pull requests
 
@@ -339,7 +343,7 @@ Beyond branch protection, this repository uses:
 
 3. **Automated Testing**
    - Playwright end-to-end tests
-   - Tests run on every pull request
+   - Tests run after merge to main as part of the deployment pipeline
 
 4. **Static Site Security**
    - No server-side code reduces attack surface
