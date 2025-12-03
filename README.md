@@ -220,9 +220,10 @@ Tests run automatically on every push to main via GitHub Actions before deployme
 - All dependencies are checked for security vulnerabilities
 - Run `npm audit` locally to check for known security issues
 - ⚠️ **Known Issues**: As of December 2025, there are 5 vulnerabilities (4 low, 1 critical)
-  - Critical: Next.js RCE vulnerability (GHSA-9qr9-h5gf-34mp) - fix available via `npm audit fix --force`
+  - Critical: Next.js RCE vulnerability (GHSA-9qr9-h5gf-34mp) - fix available via `npm audit fix --force` (⚠️ test thoroughly before deploying)
   - Low: tmp package vulnerabilities affecting Lighthouse CI dev dependency
   - These are being monitored and will be addressed through regular Dependabot updates
+  - See [SECURITY.md](./SECURITY.md) for detailed information and mitigation steps
 
 ### CI/CD Integration
 

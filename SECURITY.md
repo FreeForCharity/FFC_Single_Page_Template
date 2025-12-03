@@ -400,7 +400,7 @@ The project currently has **5 known vulnerabilities** identified by npm audit:
 - **1 critical**: Next.js RCE vulnerability in React flight protocol (GHSA-9qr9-h5gf-34mp)
   - Affects: next@15.5.1-canary.0 through 15.5.6
   - Fix: Update to next@15.5.7 via `npm audit fix --force`
-  - Note: This requires manual update as it may involve breaking changes
+  - ⚠️ **Warning**: This requires manual update as it may involve breaking changes. Test thoroughly in a development environment before deploying to production.
 
 - **4 low severity**: tmp package vulnerabilities
   - Affects: @lhci/cli (Lighthouse CI - dev dependency only)
@@ -427,9 +427,17 @@ npm audit --json
 # Automatically fix vulnerabilities (use with caution)
 npm audit fix
 
-# Fix including breaking changes (test thoroughly after)
+# Fix including breaking changes (⚠️ WARNING: Test thoroughly in development first!)
 npm audit fix --force
 ```
+
+**Important**: Always test security updates thoroughly before deploying to production:
+
+1. Run updates in a development environment first
+2. Run all tests: `npm test` and `npm run test:e2e`
+3. Build and preview: `npm run build && npm run preview`
+4. Manually test critical functionality
+5. Only deploy after confirming everything works correctly
 
 ---
 
