@@ -341,7 +341,19 @@ npm run preview  # Preview at http://localhost:3000
 
 For comprehensive guides and documentation:
 
+### Getting Started
 - **[README.md](./README.md)** - Project overview, setup, and deployment (this file)
-- **[TESTING.md](./TESTING.md)** - Complete testing guide with automated test suite documentation
+- **[CONTRIBUTING.md](./CONTRIBUTING.md)** - Guidelines for contributing to the project
+
+### Development & Testing
+- **[TESTING.md](./TESTING.md)** - Complete testing guide (Jest unit tests + Playwright E2E tests)
+- **[CODE_QUALITY.md](./CODE_QUALITY.md)** - Code quality standards, linting, and best practices
+
+### Deployment & Operations
+- **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Comprehensive deployment guide for GitHub Pages
+- **[LIGHTHOUSE.md](./LIGHTHOUSE.md)** - Performance monitoring with Lighthouse CI
 - **[SECURITY.md](./SECURITY.md)** - Security policies, branch protection rules, and best practices
-- **[SITE_IMPROVEMENTS.md](./SITE_IMPROVEMENTS.md)** - Technical analysis and capability gaps compared to sister sites
+
+### Troubleshooting & Planning
+- **[ISSUE_RESOLUTION.md](./ISSUE_RESOLUTION.md)** - Common issues, troubleshooting, and FAQ
+- **[SITE_IMPROVEMENTS.md](./SITE_IMPROVEMENTS.md)** - Technical analysis and planned improvements (19 gaps identified)
