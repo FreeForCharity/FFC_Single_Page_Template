@@ -391,6 +391,48 @@ Beyond branch protection, this repository uses:
 
 ---
 
+## Known Security Vulnerabilities
+
+### Current Status (December 2025)
+
+The project currently has **5 known vulnerabilities** identified by npm audit:
+
+- **1 critical**: Next.js RCE vulnerability in React flight protocol (GHSA-9qr9-h5gf-34mp)
+  - Affects: next@15.5.1-canary.0 through 15.5.6
+  - Fix: Update to next@15.5.7 via `npm audit fix --force`
+  - Note: This requires manual update as it may involve breaking changes
+
+- **4 low severity**: tmp package vulnerabilities
+  - Affects: @lhci/cli (Lighthouse CI - dev dependency only)
+  - Vulnerability: Arbitrary temporary file/directory write via symbolic link
+  - Impact: Limited to development environment, does not affect production site
+  - Fix available via `npm audit fix --force` (may involve breaking changes)
+
+### Monitoring and Updates
+
+- Dependencies are monitored through GitHub Dependabot
+- Security updates are automatically proposed via pull requests
+- Critical vulnerabilities should be addressed promptly
+- Low severity vulnerabilities in dev dependencies are lower priority
+
+### Checking for Vulnerabilities
+
+```bash
+# Check for known vulnerabilities
+npm audit
+
+# View detailed vulnerability information
+npm audit --json
+
+# Automatically fix vulnerabilities (use with caution)
+npm audit fix
+
+# Fix including breaking changes (test thoroughly after)
+npm audit fix --force
+```
+
+---
+
 ## Questions?
 
 If you have questions about these security measures or need help setting up your development environment:
@@ -402,5 +444,5 @@ If you have questions about these security measures or need help setting up your
 
 ---
 
-**Last Updated**: December 2024  
+**Last Updated**: December 2025  
 **Applies to**: All contributors with write access to the repository
