@@ -1,28 +1,11 @@
 'use client'
 
 import Script from 'next/script'
-import { useEffect } from 'react'
 
-// Get GTM ID from environment variable
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || ''
+// Google Tag Manager ID
+const GTM_ID = 'GTM-TQ5H8HPR'
 
 export default function GoogleTagManager() {
-  // Initialize dataLayer before GTM loads
-  useEffect(() => {
-    if (typeof window !== 'undefined' && GTM_ID) {
-      window.dataLayer = window.dataLayer || []
-      window.dataLayer.push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js',
-      })
-    }
-  }, [])
-
-  // Don't render if no GTM ID is configured
-  if (!GTM_ID) {
-    return null
-  }
-
   return (
     <>
       {/* Google Tag Manager Script */}
@@ -45,11 +28,6 @@ export default function GoogleTagManager() {
 
 // Export a component for the noscript iframe that goes in the body
 export function GoogleTagManagerNoScript() {
-  // Don't render if no GTM ID is configured
-  if (!GTM_ID) {
-    return null
-  }
-
   return (
     <noscript>
       <iframe
