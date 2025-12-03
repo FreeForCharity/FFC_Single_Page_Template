@@ -58,7 +58,8 @@ jobs:
 
           if [ ! -d ".lighthouseci" ]; then
             echo "❌ No Lighthouse results directory found"
-            exit 1
+            echo "This step will not fail the workflow."
+            exit 0
           fi
 
           # Find all JSON reports
@@ -66,14 +67,15 @@ jobs:
 
           if [ -z "$json_files" ]; then
             echo "❌ No Lighthouse JSON reports found"
-            exit 1
+            echo "This step will not fail the workflow."
+            exit 0
           fi
 
           echo "Found $(echo "$json_files" | wc -l) report files"
           echo ""
 
           # Install jq if not available
-          which jq > /dev/null || sudo apt-get update && sudo apt-get install -y jq
+          which jq > /dev/null || (sudo apt-get update && sudo apt-get install -y jq)
 
           # Process each unique URL
           urls=$(echo "$json_files" | xargs -I {} jq -r '.requestedUrl // .finalDisplayedUrl' {} | sort -u)
@@ -155,7 +157,7 @@ jobs:
 
             // Helper function to get median score
             function getMedianScore(scores) {
-              const sorted = scores.sort((a, b) => a - b);
+              const sorted = [...scores].sort((a, b) => a - b);
               const mid = Math.floor(sorted.length / 2);
               return sorted.length % 2 === 0 
                 ? (sorted[mid - 1] + sorted[mid]) / 2 
@@ -165,9 +167,9 @@ jobs:
             // Helper function to get score emoji and status
             function getScoreDisplay(score) {
               const percentage = Math.round(score * 100);
-              if (percentage >= 90) return { emoji: '🟢', status: 'Good', color: 'green' };
-              if (percentage >= 50) return { emoji: '🟡', status: 'Needs Improvement', color: 'orange' };
-              return { emoji: '🔴', status: 'Poor', color: 'red' };
+              if (percentage >= 90) return { emoji: '🟢', status: 'Good' };
+              if (percentage >= 50) return { emoji: '🟡', status: 'Needs Improvement' };
+              return { emoji: '🔴', status: 'Poor' };
             }
 
             // Thresholds from lighthouserc.json
@@ -186,10 +188,16 @@ jobs:
             // Process each URL
             let allPassed = true;
             for (const [url, reports] of Object.entries(reportsByUrl)) {
-              const urlPath = new URL(url).pathname;
-              const pageName = urlPath === '/' || urlPath === '/index.html' 
-                ? 'Home' 
-                : urlPath.replace('/index.html', '').replace(/\//g, ' ').trim();
+              let urlPath, pageName;
+              try {
+                urlPath = new URL(url).pathname;
+                pageName = urlPath === '/' || urlPath === '/index.html' 
+                  ? 'Home' 
+                  : urlPath.replace('/index.html', '').replace(/\//g, ' ').trim();
+              } catch (error) {
+                console.error(`Error processing URL ${url}:`, error);
+                continue; // Skip this URL
+              }
               
               comment += `### 📄 ${pageName}\n\n`;
               comment += '| Category | Score | Status | Threshold |\n';

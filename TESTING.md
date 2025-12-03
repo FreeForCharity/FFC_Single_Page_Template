@@ -407,10 +407,10 @@ Tests run automatically in GitHub Actions with the following workflow:
 
 - **Unit Tests**: Pass/fail in workflow logs
 - **E2E Tests**: Pass/fail in workflow logs, screenshots on failure
-- **Lighthouse**:
-  - Console summary in workflow logs
-  - Detailed PR comments with scores
-  - HTML reports in artifacts
+- **Lighthouse** (runs on PRs and after deployment):
+  - Console summary in workflow logs (always)
+  - Detailed PR comments with scores (PRs only)
+  - HTML reports in artifacts (always)
   - Median scores from 3 runs
 
 ## Static Analysis
