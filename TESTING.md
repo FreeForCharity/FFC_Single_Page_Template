@@ -670,7 +670,10 @@ FFC_Single_Page_Template/
 │   └── README.md                  # Test documentation
 ├── playwright.config.ts            # Playwright configuration
 ├── .github/workflows/
-│   └── nextjs.yml                 # CI/CD pipeline with automated tests
+│   ├── ci.yml                     # CI pipeline with linting, testing
+│   ├── deploy.yml                 # Deployment pipeline to GitHub Pages
+│   ├── codeql.yml                 # Security scanning
+│   └── lighthouse.yml             # Performance monitoring
 ├── public/                         # Static assets
 ├── src/data/
 │   ├── faqs/
