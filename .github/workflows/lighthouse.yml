@@ -87,11 +87,13 @@ jobs:
             echo "📄 Page: $page_name"
             echo "   URL: $url"
             
-            # Find all reports for this URL
-            reports=$(echo "$json_files" | xargs -I {} sh -c "jq -r 'select(.requestedUrl == \"$url\" or .finalDisplayedUrl == \"$url\") | input_filename' {} 2>/dev/null" || echo "$json_files" | head -3)
-            
             # Extract scores from all reports for this URL
-            for report_file in $reports; do
+            for report_file in $json_files; do
+              # Check if this report matches the current URL
+              report_url=$(jq -r '.requestedUrl // .finalDisplayedUrl' "$report_file" 2>/dev/null || echo "")
+              if [ "$report_url" != "$url" ]; then
+                continue
+              fi
               if [ -f "$report_file" ]; then
                 perf=$(jq -r '.categories.performance.score * 100 | round' "$report_file" 2>/dev/null || echo "N/A")
                 acc=$(jq -r '.categories.accessibility.score * 100 | round' "$report_file" 2>/dev/null || echo "N/A")
@@ -120,6 +122,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            async function run() {
             const fs = require('fs');
             const path = require('path');
 
@@ -247,3 +250,6 @@ jobs:
             });
 
             console.log('Lighthouse results comment posted successfully');
+            }
+
+            await run();
