@@ -129,25 +129,70 @@ npm test     # Run automated tests (requires build first)
 
 ### Project Structure
 
+**Note: Folder structure was refactored to use consistent kebab-case naming and remove redundant suffixes.**
+
 ```
-src/app/
-├── page.tsx              # Homepage content
-├── layout.tsx            # Root layout with fonts (problematic), metadata, providers
-├── globals.css           # Global styles
-├── lib/                  # Utility functions
-│   └── assetPath.ts     # Helper for GitHub Pages basePath support
-├── components/           # All UI components
-│   ├── PopupProvider.tsx # Global popup state management
-│   ├── NavBar.tsx       # Navigation with mobile menu
-│   ├── DonateButton.tsx # Donation popup trigger
-│   ├── VolunteerButton.tsx # Volunteer popup trigger
-│   └── [other components]
-├── data/                 # Static content
-│   ├── faqs.ts          # FAQ data
-│   ├── team.ts          # Team member data
-│   └── testimonials.ts  # Testimonial data
-└── sitemap.ts           # SEO sitemap generation
+src/
+├── app/                           # Next.js app directory
+│   ├── page.tsx                   # Main homepage entry point
+│   ├── layout.tsx                 # Root layout with metadata, providers
+│   ├── globals.css                # Global styles
+│   ├── home-page/                 # Homepage components (formerly Figma-Home-page)
+│   ├── cookie-policy/             # Cookie policy page
+│   ├── privacy-policy/            # Privacy policy page
+│   └── [other policy pages]
+├── components/                    # All UI components (kebab-case naming)
+│   ├── header/                    # Site header/navigation
+│   ├── footer/                    # Site footer
+│   ├── cookie-consent/            # Cookie consent banner
+│   ├── google-tag-manager/        # Analytics integration
+│   ├── ui/                        # Reusable UI components
+│   ├── home-page/                 # Homepage-specific components
+│   ├── home/                      # Alternative home components
+│   ├── domains/                   # Domain-related components
+│   ├── donate/                    # Donation components
+│   ├── volunteer/                 # Volunteer components
+│   ├── 501c3/                     # 501c3 charity components
+│   ├── about-us/                  # About page components
+│   ├── endowment-fund/            # Endowment fund components
+│   ├── help-for-charities/        # Help resources
+│   ├── tools-for-success/         # Tools and resources
+│   └── [other feature folders]
+├── data/                          # Static content
+│   ├── faqs/                      # FAQ JSON files
+│   ├── team/                      # Team member data
+│   └── testimonials/              # Testimonial data
+└── lib/                           # Utility functions
+    └── assetPath.ts               # Helper for GitHub Pages basePath support
 ```
+
+**Naming Conventions:**
+
+**IMPORTANT: All folders MUST use kebab-case (lowercase with hyphens)**
+
+- All component folders use kebab-case (e.g., `home-page`, `cookie-consent`)
+- All app route folders use kebab-case (e.g., `cookie-policy`, `privacy-policy`)
+- Removed redundant `-components` suffix from folder names
+- Removed Figma references from folder names
+- Consistent structure makes imports clearer and more maintainable
+
+**Why kebab-case is Required:**
+
+1. **SEO Best Practice**: Search engines prefer kebab-case URLs as they clearly separate words and improve readability
+   - Source: Google Search Central - "Use hyphens to separate words in URLs" (https://developers.google.com/search/docs/crawling-indexing/url-structure)
+   - Source: Moz SEO Guide - "Hyphens are treated as space by search engines" (https://moz.com/learn/seo/url)
+
+2. **URL Readability**: Kebab-case URLs are more readable to both users and search engines
+   - Example: `/cookie-policy` is clearer than `/cookiepolicy` or `/CookiePolicy`
+   - Hyphens act as word separators, improving keyword recognition
+
+3. **Industry Standard**: Kebab-case is the web standard for URLs and file paths
+   - Used by major frameworks (Next.js, React Router, Vue Router)
+   - Consistent with HTTP/REST API conventions
+
+4. **Accessibility**: Screen readers handle hyphenated text better than camelCase or PascalCase
+
+**Never use PascalCase or camelCase for folder names** - it negatively impacts SEO and URL readability.
 
 ### Configuration Files
 
