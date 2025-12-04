@@ -53,7 +53,7 @@ Tests deployment compatibility for both custom domain and GitHub Pages with base
      - Both logos use identical path
    - **Deployment Scenarios**:
      - ✅ Custom domain: `/web-app-manifest-512x512.png`
-     - ✅ GitHub Pages: `/FreeForCharity-web/web-app-manifest-512x512.png`
+     - ✅ GitHub Pages: `/FFC_Single_Page_Template/web-app-manifest-512x512.png`
 
 5. **`images should return 200 status code`**
    - **Purpose**: Verifies images load successfully via HTTP requests
