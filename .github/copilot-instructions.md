@@ -168,10 +168,31 @@ src/
 
 **Naming Conventions:**
 
+**IMPORTANT: All folders MUST use kebab-case (lowercase with hyphens)**
+
 - All component folders use kebab-case (e.g., `home-page`, `cookie-consent`)
+- All app route folders use kebab-case (e.g., `cookie-policy`, `privacy-policy`)
 - Removed redundant `-components` suffix from folder names
 - Removed Figma references from folder names
 - Consistent structure makes imports clearer and more maintainable
+
+**Why kebab-case is Required:**
+
+1. **SEO Best Practice**: Search engines prefer kebab-case URLs as they clearly separate words and improve readability
+   - Source: Google Search Central - "Use hyphens to separate words in URLs" (https://developers.google.com/search/docs/crawling-indexing/url-structure)
+   - Source: Moz SEO Guide - "Hyphens are treated as space by search engines" (https://moz.com/learn/seo/url)
+
+2. **URL Readability**: Kebab-case URLs are more readable to both users and search engines
+   - Example: `/cookie-policy` is clearer than `/cookiepolicy` or `/CookiePolicy`
+   - Hyphens act as word separators, improving keyword recognition
+
+3. **Industry Standard**: Kebab-case is the web standard for URLs and file paths
+   - Used by major frameworks (Next.js, React Router, Vue Router)
+   - Consistent with HTTP/REST API conventions
+
+4. **Accessibility**: Screen readers handle hyphenated text better than camelCase or PascalCase
+
+**Never use PascalCase or camelCase for folder names** - it negatively impacts SEO and URL readability.
 
 ### Configuration Files
 

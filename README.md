@@ -12,6 +12,7 @@ Multi-page Next.js website built with App Router for Free For Charity nonprofit 
 - 📋 [Site Improvements Summary](./SITE_IMPROVEMENTS.md) - See what was implemented (13 of 19 gaps closed)
 - 🧪 [Testing Guide](./TESTING.md) - Unit + E2E + Accessibility tests
 - 🎨 [Responsive Design Guide](./RESPONSIVE_DESIGN.md) - Mobile-first design principles
+- 📝 [Naming Conventions](./NAMING_CONVENTIONS.md) - **Required**: kebab-case for SEO (Google-recommended)
 
 ## Organization
 
