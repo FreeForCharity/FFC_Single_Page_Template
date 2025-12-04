@@ -28,7 +28,7 @@ const index = () => {
               for supported charities.
             </p>
           </FrequentlyAskedQuestions>
-          <FrequentlyAskedQuestions title="What are the organizations key strategies for making this happen?">
+          <FrequentlyAskedQuestions title="What are the organization's key strategies for making this happen?">
             <p className="mb-[30px]">
               FFC assists by paying the full cost of the .org domain name if available. This reduces
               a charity&apos;s direct hard cost instantly and increases adoption of many other
