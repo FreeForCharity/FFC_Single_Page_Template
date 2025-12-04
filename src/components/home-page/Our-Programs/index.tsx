@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import OrangeFaqItem from '@/components/UI/OrangeFaqItem'
+import OrangeFaqItem from '@/components/ui/OrangeFaqItem'
 
 const index = () => {
   return (

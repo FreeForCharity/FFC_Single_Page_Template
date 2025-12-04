@@ -1,5 +1,5 @@
 import React from 'react'
-import { SustainableFundingCard } from '@/components/UI/SustainableFundingCard'
+import { SustainableFundingCard } from '@/components/ui/SustainableFundingCard'
 
 const Home: React.FC = () => {
   return (

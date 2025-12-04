@@ -1,5 +1,5 @@
 import React from 'react'
-import FrequentlyAskedQuestions from '@/components/UI/Frequently-Asked-Questions'
+import FrequentlyAskedQuestions from '@/components/ui/Frequently-Asked-Questions'
 
 const index = () => {
   return (

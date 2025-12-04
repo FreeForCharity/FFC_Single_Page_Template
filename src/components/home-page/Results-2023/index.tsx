@@ -1,5 +1,5 @@
 import React from 'react'
-import ResultCard from '@/components/UI/ResultCard'
+import ResultCard from '@/components/ui/ResultCard'
 
 const index = () => {
   return (

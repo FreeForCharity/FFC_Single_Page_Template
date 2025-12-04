@@ -1,5 +1,5 @@
 import React from 'react'
-import TeamMemberCard from '@/components/UI/TeamMemberCard'
+import TeamMemberCard from '@/components/ui/TeamMemberCard'
 
 const index = () => {
   return (

@@ -1,7 +1,7 @@
 import React from 'react'
-import AccordianBold from '@/components/UI/AccordianBold'
+import AccordianBold from '@/components/ui/AccordianBold'
 import Image from 'next/image'
-import Transparentbtn from '@/components/UI/Transparentbtn'
+import Transparentbtn from '@/components/ui/Transparentbtn'
 
 const index = () => {
   return (

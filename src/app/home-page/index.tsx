@@ -6,7 +6,7 @@ import EndowmentFeatures from '@/components/home-page/Endowment-Features'
 import OurPrograms from '@/components/home-page/Our-Programs'
 import VolunteerwithUs from '@/components/home-page/Volunteer-with-Us'
 import Results2023 from '@/components/home-page/Results-2023'
-import Testimonials from '@/components/Home/Testimonials'
+import Testimonials from '@/components/home/Testimonials'
 import TheFreeForCharityTeam from '@/components/home-page/TheFreeForCharityTeam'
 import FrequentlyAskedQuestions from '@/components/home-page/FrequentlyAskedQuestions'
 
