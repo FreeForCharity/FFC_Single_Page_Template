@@ -185,7 +185,7 @@ Tests run automatically on every push to main via GitHub Actions before deployme
 
 - ✅ Next.js core-web-vitals and TypeScript rules enabled
 - ✅ Runs automatically during build process
-- ⚠️ Currently reports 2 expected warnings about `<img>` tags (acceptable for static export)
+- ⚠️ Currently reports 8 warnings (6 about `<img>` tags, 2 React hooks - acceptable for static export)
 
 **TypeScript** (`tsconfig.json`)
 
@@ -219,6 +219,11 @@ Tests run automatically on every push to main via GitHub Actions before deployme
 
 - All dependencies are checked for security vulnerabilities
 - Run `npm audit` locally to check for known security issues
+- ⚠️ **Known Issues**: As of December 2025, there are 5 vulnerabilities (4 low, 1 critical)
+  - Critical: Next.js RCE vulnerability (GHSA-9qr9-h5gf-34mp) - fix available via `npm audit fix --force` (⚠️ test thoroughly before deploying)
+  - Low: tmp package vulnerabilities affecting Lighthouse CI dev dependency
+  - These are being monitored and will be addressed through regular Dependabot updates
+  - See [SECURITY.md](./SECURITY.md) for detailed information and mitigation steps
 
 ### CI/CD Integration
 
@@ -255,7 +260,7 @@ The following quality improvements have been successfully implemented:
 
 #### ✅ Testing Infrastructure (Phases 2 & 4)
 
-- ✅ **Unit Testing**: Jest + React Testing Library with 25 tests passing
+- ✅ **Unit Testing**: Jest + React Testing Library with 26 tests passing (4 test suites)
 - ✅ **Accessibility Testing**: jest-axe for WCAG compliance checks (3 components tested)
 - ✅ **E2E Testing**: Playwright for critical user paths
 - ✅ **Performance Testing**: Lighthouse CI monitoring Core Web Vitals

@@ -619,4 +619,4 @@ If you have questions about code quality standards:
 
 **Last Updated**: 2025-12-03  
 **Repository**: FreeForCharity/FFC_Single_Page_Template  
-**Node.js**: 20.x (validated with v20.19.5)
+**Node.js**: 20.x (validated with v20.19.6)
