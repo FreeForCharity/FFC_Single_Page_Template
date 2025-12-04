@@ -14,31 +14,31 @@ const index = () => {
         <div>
           <FrequentlyAskedQuestions title="What is the organization aiming to accomplish?">
             <p className="mb-[30px]">
-              While in the technical process of setting up free charity hosting we discovered than
+              While in the technical process of setting up free charity hosting we discovered that
               many small or new organizations are stuck well below the need for full web hosting. As
-              an example assistance with setting up a charity email address with Microsoft at the
-              charities domain name is needed as a first step. FFC is has refactored our charity
+              an example, assistance with setting up a charity email address with Microsoft at the
+              charity&apos;s domain name is needed as a first step. FFC has refactored our charity
               on-boarding process to address email and other basic communication needs with free
-              guides and hosted on our project site ffcdomains.org
+              guides hosted on our project site ffcdomains.org.
             </p>
             <p>
-              As a follow on need we identified that most charities and pre 501c3 non profits do not
-              create an email because they fear buying the wrong domain name or do not want to pay
-              for a domain name. We now cover these costs and help with buying the domain name for
-              supported charities.
+              As a follow-on need, we identified that most charities and pre 501c3 non-profits do
+              not create an email because they fear buying the wrong domain name or do not want to
+              pay for a domain name. We now cover these costs and help with buying the domain name
+              for supported charities.
             </p>
           </FrequentlyAskedQuestions>
-          <FrequentlyAskedQuestions title="What are the organizations key strategies for making this happen?">
+          <FrequentlyAskedQuestions title="What are the organization's key strategies for making this happen?">
             <p className="mb-[30px]">
               FFC assists by paying the full cost of the .org domain name if available. This reduces
-              a charitys direct hard cost instantly and increases adoption of formal IT systems at a
-              very low cost per charity (~$16.50 per year).
+              a charity&apos;s direct hard cost instantly and increases adoption of many other
+              formal IT systems at very low cost per charity (~$16.50 per year).
             </p>
             <p>
-              FFC is also employing a premium subscription to volunteer match to source additional
-              IT project managers, IT Webmasters, and Graphic designers to expand how many charities
-              we can support at one time. as well as working on partnerships with other charities
-              and technology vendors for additional services not offered by Free For Charity.
+              FFC is also employing a premium subscription to Idealist to source additional IT
+              project managers, IT Webmasters, and Graphic designers to expand how many charities we
+              can support at one time, as well as working on partnerships with other charities and
+              technology vendors for additional services not offered by Free For Charity.
             </p>
           </FrequentlyAskedQuestions>
 
@@ -188,14 +188,14 @@ const index = () => {
             </p>
           </FrequentlyAskedQuestions>
 
-          <FrequentlyAskedQuestions title="Are you like volunteermatch.org or other matching agencies?">
+          <FrequentlyAskedQuestions title="Are you like Idealist.org or other matching agencies?">
             <p className="mb-[30px]">
               Not exactly. That type of charity matches workers with charities but then leaves the
               management of the work to the individual nonprofit or charity group. Many small and
               medium charities do not have the time to manage a volunteer or group of volunteers.
-              Even charities with a volunteer coordinator who works with entry level volunteers may
-              not have the skills to manage highly technical or high level business volunteers such
-              as those with MBA’s or decades in high level information technology. This can result
+              Even charities with a volunteer coordinator who works with entry-level volunteers may
+              not have the skills to manage highly technical or high-level business volunteers such
+              as those with MBA’s or decades in high-level information technology. This can result
               in your best volunteers leaving before a project is completed.
             </p>
             <p className="mb-[30px]">
