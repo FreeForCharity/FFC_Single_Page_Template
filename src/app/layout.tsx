@@ -108,9 +108,6 @@ export default function RootLayout({
           fetchPriority="high"
         />
 
-        {/* Preload critical fonts */}
-        <link rel="preload" href={`${basePath}/_next/static/css/app/layout.css`} as="style" />
-
         <GoogleTagManager />
       </head>
       <body
