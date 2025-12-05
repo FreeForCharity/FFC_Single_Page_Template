@@ -1,6 +1,8 @@
 # Technical Debt
 
-**Document Purpose:** This document consolidates all known technical debt items across the Free For Charity website repository, including code quality issues, security vulnerabilities, dependency updates, and deferred improvements.
+**Document Purpose:** This document tracks backend and React application technical debt - code quality issues, security vulnerabilities, component fixes, and internal application improvements that are hidden from users but important for maintainability.
+
+**Scope:** This document covers technical items that affect the **internal workings** of the React application, not user-facing features. For UI/UX enhancements and user-visible improvements, see [SITE_IMPROVEMENTS.md](./SITE_IMPROVEMENTS.md).
 
 **Last Updated:** December 2025  
 **Status:** Active Tracking  
@@ -14,8 +16,8 @@
 2. [ESLint Warnings (React Hooks)](#eslint-warnings-react-hooks)
 3. [Security Vulnerabilities](#security-vulnerabilities)
 4. [Dependency Management (Dependabot)](#dependency-management-dependabot)
-5. [Future Enhancements](#future-enhancements)
-6. [Deferred Improvements](#deferred-improvements)
+5. [Backend & Application Improvements](#backend--application-improvements)
+6. [Architecture Decisions](#architecture-decisions)
 7. [Tracking and Prioritization](#tracking-and-prioritization)
 
 ---
@@ -229,100 +231,93 @@ Monitor active Dependabot PRs for:
 
 ---
 
-## Future Enhancements
+## Backend & Application Improvements
 
-### Potential Improvements (From README.md)
+### Code Quality Enhancements
 
-These are nice-to-have features that could improve code quality but aren't critical:
+These are internal code quality improvements that don't affect user experience:
 
-#### Testing Enhancements
+#### TypeScript & Linting
 
-- **Visual Regression Testing**: Add Percy or Playwright screenshots for UI change detection
-- **Mobile Device Testing**: Test on real mobile devices via BrowserStack
-- **Cross-Browser Testing**: Add Firefox and WebKit browser testing
-- **Increased Test Coverage**: Target 25-50% coverage for critical components
-
-**Current Status:** 5% test coverage baseline established  
-**Priority:** Low-Medium
-
----
-
-#### Code Quality Improvements
-
-- **TypeScript Strict Mode**: Enable additional strict flags
-- **Import Organization**: Add eslint-plugin-import for import sorting
+- **TypeScript Strict Mode**: Enable additional strict flags for better type safety
+- **Import Organization**: Add eslint-plugin-import for consistent import sorting
 - **npm audit CI Integration**: Add automated npm audit checks with failure threshold
 
-**Priority:** Low
+**Priority:** Low  
+**Impact:** Improves code maintainability and catches bugs earlier
 
 ---
 
 #### Build Quality Gates
 
 - **Bundle Size Analysis**: Add next-bundle-analyzer to track bundle size
-- **Test Coverage Reports**: Add coverage collection and reporting
+- **Test Coverage Reports**: Add coverage collection and reporting to CI
 - **Performance Budgets**: Set and enforce performance budgets in CI
 
-**Priority:** Low
+**Priority:** Low  
+**Impact:** Prevents performance regressions and monitors build health
 
 ---
 
 #### CI/CD Improvements
 
 - **Branch Protection**: Require status checks to pass before merging
-- **Automated PR Comments**: Post test results and coverage to PRs
 - **Cache Optimization**: Improve caching strategy for faster builds
 - **Parallel Testing**: Run test suites in parallel for faster feedback
 
-**Priority:** Low-Medium
+**Priority:** Low-Medium  
+**Impact:** Faster development feedback loops and better code quality gates
 
 ---
 
-## Deferred Improvements
+#### Testing Infrastructure
+
+- **Increased Test Coverage**: Target 25-50% coverage for critical components
+- **Component Unit Tests**: Add more Jest tests for complex components
+
+**Current Status:** 5% test coverage baseline established  
+**Priority:** Medium  
+**Impact:** Catches bugs earlier in development cycle
+
+---
+
+## Architecture Decisions
 
 ### Intentionally Not Implemented
 
-These items from SITE_IMPROVEMENTS.md analysis are intentionally not implemented:
+These architectural patterns are not needed for this static site:
 
-#### 1. Dark Mode Theming
-
-**Status:** Not implemented  
-**Reason:** Not required for current use case, adds complexity  
-**Source:** SITE_IMPROVEMENTS.md GAP-12
-
----
-
-#### 2. Advanced Context Management
+#### 1. Advanced Context Management
 
 **Status:** Not needed  
 **Reason:** Single-page architecture doesn't require complex state management  
-**Source:** Comparison with KCCF-web
+**Impact:** Simpler codebase, easier maintenance
 
 ---
 
-#### 3. Server-Side API Routes
+#### 2. Server-Side API Routes
 
 **Status:** Not applicable  
 **Reason:** Static export architecture doesn't support API routes  
-**Source:** next.config.ts output: "export"
+**Alternative:** External API integration if needed
 
 ---
 
-#### 4. Database Integration
+#### 3. Database Integration
 
 **Status:** Not needed  
 **Reason:** Static site, no database required for current scope
 
 ---
 
-#### 5. Authentication System
+#### 4. Authentication System
 
 **Status:** Not needed  
 **Reason:** Public website, no login functionality required
 
 ---
 
-#### 6. Advanced Form Handling
+#### 5. Advanced Form Handling
 
 **Status:** Simplified  
 **Reason:** Current form submissions are simulated (backend integration pending)
