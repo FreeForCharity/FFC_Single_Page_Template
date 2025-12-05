@@ -116,7 +116,7 @@ const Footer: React.FC = () => {
                   href: '/terms-of-service',
                 },
                 {
-                  name: 'Free For Charirty Vulnerability Disclosure Policy',
+                  name: 'Free For Charity Vulnerability Disclosure Policy',
                   href: '/vulnerability-disclosure-policy',
                 },
                 {
