@@ -1,8 +1,11 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Only runs on pushes to main branch
-  push:
+  # Runs after CI workflow completes successfully on main branch
+  workflow_run:
+    workflows: ['CI - Build and Test']
+    types:
+      - completed
     branches: ['main']
 
   # Allows manual deployment from Actions tab
@@ -24,10 +27,12 @@ jobs:
   build:
     name: Build for GitHub Pages
     runs-on: ubuntu-latest
+    # Only run if CI workflow succeeded or if manually triggered
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -64,7 +69,7 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: /FFC_Single_Page_Template
 
       - name: Upload artifact for Pages
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./out
 

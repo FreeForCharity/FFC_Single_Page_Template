@@ -1,8 +1,10 @@
-# Site Improvements - Technical Capability Gap Analysis
+# Site Improvements - User Experience & Feature Enhancements
 
-**Document Purpose:** This document originally identified technical capabilities and features present in sister repositories (freeforcharity-web, ffcadmin.org, KCCF-web) that were missing from the FFC_Single_Page_Template repository. It has been updated to reflect the completion of Phase 5 implementation, showing what has been implemented and what remains different between repositories.
+**Document Purpose:** This document tracks user-facing improvements and features - UI/UX enhancements, graphics, external integrations, and capabilities that users will directly see and interact with. It originally identified capability gaps compared to sister repositories (freeforcharity-web, ffcadmin.org, KCCF-web) and has been updated to reflect Phase 5 completion plus future user-facing enhancements.
 
-**Last Updated:** 2025-12-03  
+**Scope:** This document covers improvements that enhance the **user experience**. For backend/technical improvements (ESLint warnings, security, React internals), see [TECHNICAL_DEBT.md](./TECHNICAL_DEBT.md).
+
+**Last Updated:** December 2025  
 **Status:** Phase 5 Complete - All Critical Gaps Closed  
 **Repository:** FreeForCharity/FFC_Single_Page_Template  
 **Node.js:** 20.x (validated with v20.19.6)
@@ -41,6 +43,7 @@ This document is maintained for historical reference and future planning.
 8. [Architecture & Infrastructure Gaps](#architecture--infrastructure-gaps)
 9. [Priority Recommendations](#priority-recommendations)
 10. [Implementation Roadmap](#implementation-roadmap)
+11. [Future User-Facing Enhancements](#future-user-facing-enhancements)
 
 ---
 
@@ -2208,6 +2211,229 @@ These could be implemented in future iterations if needed:
 2. **Dark Mode** (GAP-12) - User experience enhancement (6-8 hours)
 3. **Enhanced Cookie Consent** (GAP-14) - Better privacy controls (6-8 hours)
 4. **Environment Variable Documentation** (GAP-17) - Simple addition (1-2 hours)
+
+---
+
+## Future User-Facing Enhancements
+
+**Scope:** This section tracks potential improvements that enhance the **user experience** - features, UI/UX improvements, graphics, and external integrations that users will directly see and interact with. For backend/technical improvements, see [TECHNICAL_DEBT.md](./TECHNICAL_DEBT.md).
+
+### Testing & Quality Assurance (User-Facing)
+
+#### Visual Regression Testing
+
+**Description:** Add Percy or Playwright screenshots for UI change detection
+
+**User Benefit:** Ensures visual consistency and prevents unintended UI changes  
+**Priority:** Low-Medium  
+**Effort:** 8-12 hours  
+**Tools:** Percy, Playwright visual comparisons, or Chromatic
+
+**Why It Matters:** Automatically catches visual bugs like:
+
+- Broken layouts
+- CSS regressions
+- Font rendering issues
+- Color inconsistencies
+
+---
+
+#### Mobile Device Testing
+
+**Description:** Test on real mobile devices via BrowserStack or similar service
+
+**User Benefit:** Ensures site works correctly on actual iOS and Android devices  
+**Priority:** Medium  
+**Effort:** 4-6 hours setup + ongoing maintenance  
+**Tools:** BrowserStack, Sauce Labs, or AWS Device Farm
+
+**Why It Matters:**
+
+- Desktop emulation doesn't catch all mobile issues
+- Touch interactions differ from mouse
+- Real device performance varies
+- Different mobile browsers have quirks
+
+---
+
+#### Cross-Browser Testing
+
+**Description:** Add Firefox and WebKit browser testing to CI
+
+**User Benefit:** Ensures site works for users on all major browsers  
+**Priority:** Low-Medium  
+**Effort:** 2-4 hours  
+**Current:** Only Chromium tested
+
+**Browsers to Add:**
+
+- Firefox (Gecko engine)
+- Safari/WebKit (WebKit engine)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+---
+
+### User Experience Features
+
+#### Dark Mode Theming (GAP-12)
+
+**Description:** Add dark mode toggle with user preference persistence
+
+**User Benefit:** Reduces eye strain in low-light conditions, modern user expectation  
+**Priority:** Low  
+**Effort:** 6-8 hours  
+**Status:** Not implemented (intentionally deferred)
+
+**Implementation Considerations:**
+
+- Tailwind dark mode classes
+- localStorage for preference
+- System preference detection
+- Toggle UI component
+
+---
+
+#### Enhanced Cookie Consent (GAP-14)
+
+**Description:** More granular cookie consent controls
+
+**User Benefit:** Better privacy controls, GDPR/CCPA compliance  
+**Priority:** Low  
+**Effort:** 6-8 hours  
+**Current:** Basic cookie consent banner exists
+
+**Potential Improvements:**
+
+- Granular consent categories (analytics, marketing, functional)
+- Cookie preference center
+- Easy opt-out mechanisms
+- Consent history tracking
+
+---
+
+#### Automated PR Comments (Preview Deployments)
+
+**Description:** Post preview deployment links and test results to PRs automatically
+
+**User Benefit:** Reviewers can see live previews without local setup  
+**Priority:** Medium  
+**Effort:** 4-6 hours (if using Vercel/Cloudflare, mostly automatic)
+
+**See Also:** [README.md Preview Deployments section](./README.md#preview-deployments-for-static-sites)
+
+---
+
+### Performance & Accessibility
+
+#### Performance Monitoring Dashboard
+
+**Description:** Public-facing performance metrics and trends
+
+**User Benefit:** Transparency about site performance, faster loading times  
+**Priority:** Low  
+**Effort:** 8-10 hours  
+**Current:** Lighthouse CI runs in CI but no public dashboard
+
+**Potential Features:**
+
+- Core Web Vitals trends
+- Page load time history
+- Mobile vs desktop performance
+- Geographic performance data
+
+---
+
+### External Integrations
+
+#### Analytics Dashboard
+
+**Description:** Integrate Google Analytics or privacy-focused alternative
+
+**User Benefit:** Organization can track user engagement and improve content  
+**Priority:** Medium  
+**Effort:** 2-4 hours  
+**Current:** Google Tag Manager structure exists
+
+**Options:**
+
+- Google Analytics 4
+- Plausible Analytics (privacy-focused)
+- Fathom Analytics (privacy-focused)
+
+---
+
+#### Newsletter Integration
+
+**Description:** Email signup form integrated with email service provider
+
+**User Benefit:** Users can subscribe to updates  
+**Priority:** Medium  
+**Effort:** 6-8 hours  
+**Current:** Form UI exists but not connected
+
+**Integration Options:**
+
+- Mailchimp
+- SendGrid
+- ConvertKit
+- Buttondown
+
+---
+
+### Content & Design
+
+#### Content Management System Integration
+
+**Description:** Headless CMS for easier content updates without code changes
+
+**User Benefit:** Non-technical team members can update content  
+**Priority:** Low  
+**Effort:** 20-30 hours  
+**Current:** Content hardcoded in components and JSON files
+
+**CMS Options:**
+
+- Contentful
+- Sanity.io
+- Strapi
+- Ghost (headless mode)
+
+---
+
+#### Multilingual Support (i18n)
+
+**Description:** Support multiple languages for international users
+
+**User Benefit:** Broader reach, accessibility for non-English speakers  
+**Priority:** Low  
+**Effort:** 30-40 hours initial + ongoing translation  
+**Tools:** next-i18next, react-intl
+
+---
+
+### Impact Summary
+
+These enhancements focus on improving the **user experience** - what visitors see, how they interact, and the overall quality of their experience. Implementation priority should be based on user feedback and organizational goals.
+
+**High User Impact:**
+
+- Mobile device testing
+- Cross-browser testing
+- Analytics integration
+- Preview deployments
+
+**Medium User Impact:**
+
+- Visual regression testing
+- Dark mode
+- Newsletter integration
+
+**Lower User Impact (but valuable):**
+
+- Performance dashboard
+- Enhanced cookie consent
+- CMS integration
+- Multilingual support
 
 #### Current Status vs ffcadmin.org (Primary Reference)
 
