@@ -231,7 +231,8 @@ The project uses separate workflows for better separation of concerns:
 
 **Deploy Workflow** (`.github/workflows/deploy.yml`)
 
-- ✅ Runs only on push to main branch
+- ✅ Runs only after CI workflow completes successfully
+- ✅ Ensures all tests pass before deployment
 - ✅ Node.js 20 setup
 - ✅ Dependency installation (`npm ci`)
 - ✅ Next.js build with GitHub Pages basePath

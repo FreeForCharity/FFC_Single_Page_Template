@@ -389,12 +389,17 @@ Tests run automatically in GitHub Actions with the following workflows:
 
 **2. Deploy Workflow** (`deploy.yml`)
 
-- Triggers: Push to main branch only (after CI passes)
+- Triggers: After CI workflow completes successfully on push to main branch
+- **Waits for CI workflow** to finish all tests before starting
+- **Only runs if CI workflow succeeds** (all tests pass)
 - Steps:
-  1. Install dependencies
-  2. Build site for GitHub Pages
-  3. Deploy to GitHub Pages
-- Deployment is blocked if build fails
+  1. Wait for CI workflow completion
+  2. Verify CI success status
+  3. Install dependencies
+  4. Build site for GitHub Pages
+  5. Deploy to GitHub Pages
+- Deployment is skipped if CI workflow fails or is cancelled
+- Can be manually triggered to bypass CI wait (for emergency deployments)
 
 **3. Lighthouse CI Workflow** (`lighthouse.yml`)
 
