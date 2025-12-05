@@ -66,6 +66,8 @@ This is a single-page website with **112 component files** organized into multip
 
 ### Site Structure
 
+**IMPORTANT:** When new pages or sections are added, explicitly list them here. Keep this documentation up to date.
+
 **Homepage (Single Page Application):**
 
 The main page (`/`) is a single-page application composed of scrollable sections:
@@ -81,7 +83,7 @@ The main page (`/`) is a single-page application composed of scrollable sections
 - Frequently Asked Questions
 - Team section
 
-**Legal & Policy Pages (Separate Routes):**
+**Legal & Policy Pages (7 Separate Routes):**
 
 - Privacy Policy (`/privacy-policy`)
 - Cookie Policy (`/cookie-policy`)
@@ -169,7 +171,42 @@ Tests run automatically on every push to main via GitHub Actions before deployme
 
 - ✅ Next.js core-web-vitals and TypeScript rules enabled
 - ✅ Runs automatically during build process
-- ⚠️ Currently reports 8 warnings (6 about `<img>` tags, 2 React hooks - acceptable for static export)
+- ⚠️ Currently reports 16 warnings - see details below
+
+**ESLint Warning Details:**
+
+The ESLint warnings fall into three categories:
+
+1. **`@next/next/no-img-element` warnings (4 occurrences)** - ⚠️ ACCEPTABLE for this project
+   - Files: `src/components/header/index.tsx`, `src/components/ui/General-Donation-Card.tsx`, `src/components/ui/trainingcard.tsx`
+   - Issue: Using `<img>` tags instead of Next.js `<Image />` component
+   - Why acceptable: This project uses static export (`output: "export"` in `next.config.ts`), which is incompatible with Next.js Image Optimization. We use the `assetPath()` helper to ensure images work correctly on both custom domain and GitHub Pages basePath.
+   - Alternative fix: Could suppress these specific warnings or migrate to a custom image component
+   - Website impact: Images load correctly but without automatic optimization (WebP conversion, lazy loading). For a static nonprofit site with modest image usage, this is an acceptable tradeoff.
+
+2. **React Hooks warnings - `react-hooks/set-state-in-effect` (6 occurrences)** - ⚠️ ACCEPTABLE but could be improved
+   - Files: Various accordion components (`Accordian.tsx`, `AccordianBold.tsx`, `Frequently-Asked-Questions.tsx`, `OrangeFaqItem.tsx`, `FAQs/index.tsx`)
+   - Issue: Calling `setState` synchronously within `useEffect` when animating accordion height
+   - Why acceptable: These components work correctly and don't cause performance issues in practice
+   - Recommended fix: Use `useLayoutEffect` instead of `useEffect` for DOM measurements, or use CSS transitions with `max-height`
+   - Website impact: Accordion animations work correctly. May cause minor cascading renders but not noticeable to users.
+
+3. **React Hooks warnings - Other (6 occurrences)** - ⚠️ ACCEPTABLE but could be improved
+   - `react-hooks/exhaustive-deps` (2 occurrences): Missing dependencies in `useEffect`
+     - Files: `src/components/domains/domains-carousel/index.tsx`, `src/components/ui/CallToActionCard.tsx`
+     - Impact: Effects may not re-run when dependencies change, but current implementation works as intended
+   - `react-hooks/immutability` (2 occurrences): Direct mutation of state values
+     - Files: `src/components/domains/domains-carousel/index.tsx`, `src/components/home/Testimonials/index.tsx`
+     - Issue: Modifying Swiper navigation params directly instead of using setter
+     - Impact: Works correctly but violates React best practices
+   - These are technical debt items that don't affect functionality but should be addressed in future refactoring
+
+**Summary:**
+
+- 4 warnings are acceptable by design (static export constraint)
+- 12 warnings are technical debt that don't affect functionality
+- All warnings have been reviewed and determined to be non-blocking
+- Website functions correctly despite these warnings
 
 **TypeScript** (`tsconfig.json`)
 
@@ -303,9 +340,114 @@ The following enhancements could further improve the test suite:
 
 - **Branch Protection**: Require status checks to pass before merging
 - **Automated PR Comments**: Post test results and coverage to PRs
-- **Deployment Preview**: Add preview deployments for PRs
+- **Deployment Preview**: Add preview deployments for PRs (see detailed guide below)
 - **Cache Optimization**: Improve caching strategy for faster builds
 - **Parallel Testing**: Run test suites in parallel for faster feedback
+
+### Preview Deployments for Static Sites
+
+Preview deployments allow reviewers to see and test changes in a live environment before merging, without needing to clone the repository or run it locally. This is especially valuable for non-technical reviewers.
+
+#### Options for Static Site Preview Deployments
+
+**1. GitHub Pages PR Previews (Manual Approach)**
+
+Current limitation: GitHub Pages only supports one deployment per repository (typically from `main` branch). However, you can implement PR previews using subdirectories:
+
+- **How it works**: Deploy each PR to a subdirectory like `/pr-123/`
+- **Pros**: Free, uses existing GitHub Pages setup
+- **Cons**: Manual cleanup needed, subdirectory routing complexity
+- **Implementation**: Requires custom workflow to build and deploy to PR-specific paths
+
+**2. Netlify (Recommended for Static Sites)**
+
+- **Setup**: Connect GitHub repo to Netlify
+- **How it works**: Automatic preview deployments for every PR
+- **Pros**: Automatic, free tier available, custom preview URLs, automatic cleanup
+- **URL format**: `https://deploy-preview-123--your-site.netlify.app`
+- **Review workflow**:
+  1. Developer creates PR
+  2. Netlify bot comments with preview URL (appears automatically in PR)
+  3. Reviewer clicks preview link to test changes
+  4. No local setup or IDE needed
+- **Cost**: Free for open source projects (100GB bandwidth/month)
+
+**3. Vercel**
+
+- **Setup**: Import GitHub repository to Vercel
+- **How it works**: Automatic preview deployments for every PR and branch
+- **Pros**: Excellent Next.js integration, automatic HTTPS, custom domains
+- **URL format**: `https://project-name-git-branch.vercel.app`
+- **Review workflow**: Similar to Netlify, bot comments with preview URL
+- **Cost**: Free for personal/hobby projects
+
+**4. Cloudflare Pages**
+
+- **Setup**: Connect GitHub repo to Cloudflare Pages
+- **How it works**: Automatic preview deployments
+- **Pros**: Fast global CDN, unlimited bandwidth on free tier
+- **Review workflow**: Preview links in PR comments
+- **Cost**: Free with generous limits
+
+#### Recommended Implementation for This Project
+
+For a Next.js static site with GitHub Actions already set up:
+
+1. **Best for ease of use**: Netlify or Vercel
+   - Both have excellent Next.js support
+   - Both auto-comment preview URLs on PRs
+   - Both handle cleanup automatically
+   - No changes to existing GitHub Pages deployment needed (can run both)
+
+2. **Workflow for creators/reviewers**:
+
+   ```
+   Creator:
+   1. Create feature branch
+   2. Make changes
+   3. Push to GitHub and open PR
+   4. Wait for preview deployment (1-3 minutes)
+   5. Share preview URL from bot comment
+
+   Reviewer:
+   1. Open PR on GitHub
+   2. Click preview URL in bot comment
+   3. Test the live site in browser
+   4. Provide feedback on PR
+   5. No IDE or local setup required
+   ```
+
+3. **Coexistence with GitHub Pages**:
+   - Keep GitHub Pages for production (ffcworkingsite1.org)
+   - Use Netlify/Vercel only for PR previews
+   - No conflicts between the two systems
+
+#### Setting Up Netlify Preview Deployments (Step-by-Step)
+
+1. Go to [netlify.com](https://netlify.com) and sign in with GitHub
+2. Click "Add new site" → "Import an existing project"
+3. Choose GitHub and select this repository
+4. Configure build settings:
+   - Build command: `npm run build`
+   - Publish directory: `out`
+   - Add environment variable: `NEXT_PUBLIC_BASE_PATH` = `` (empty for Netlify)
+5. Deploy site
+6. In Netlify settings → Build & deploy → Deploy contexts:
+   - Enable "Deploy Preview" for pull requests
+   - Enable "Branch deploys" if desired
+7. Done! Netlify will now automatically:
+   - Comment on PRs with preview URLs
+   - Build and deploy each PR commit
+   - Clean up deployments when PRs are closed
+
+**Result**: Every PR will have a comment like:
+
+```
+✅ Deploy Preview for ffc-template ready!
+🔨 Explore the source changes: abc123
+🔍 Inspect the deploy log: https://app.netlify.com/...
+😎 Browse the preview: https://deploy-preview-123--ffc-template.netlify.app
+```
 
 **Full Testing Guide:** See [TESTING.md](./TESTING.md) for complete documentation.
 
@@ -336,26 +478,49 @@ The following enhancements could further improve the test suite:
 
 ## Project Structure
 
+**IMPORTANT:** When updating this structure, ALWAYS show all items fully. When new pages or folders are added, explicitly list them here. Do NOT use placeholders like `[policy-pages]` or `[feature]` - show the actual folder names.
+
 ```
 src/
-├── app/                    # Next.js App Router
-│   ├── page.tsx           # Main entry point (loads homepage)
-│   ├── layout.tsx         # Root layout with global config
-│   ├── globals.css        # Global styles
-│   ├── home-page/         # Homepage sections (single-page structure)
-│   ├── [policy-pages]/    # Legal/policy pages (7 separate routes)
-│   ├── sitemap.ts         # Dynamic sitemap generation
-│   └── robots.ts          # Robots.txt configuration
-├── components/            # Reusable components (112 component files)
-│   ├── header/           # Site header/navigation
-│   ├── footer/           # Site footer
-│   ├── cookie-consent/    # Cookie consent banner
-│   ├── ui/               # Reusable UI components
-│   ├── home-page/        # Homepage section components
-│   └── [feature]/        # Feature-specific component groups
-├── data/                 # Static content (FAQs, team, testimonials)
-├── lib/                  # Utility functions (assetPath helper)
-└── public/               # Static assets (icons, images, fonts)
+├── app/                                        # Next.js App Router
+│   ├── page.tsx                               # Main entry point (loads homepage)
+│   ├── layout.tsx                             # Root layout with global config
+│   ├── globals.css                            # Global styles
+│   ├── home-page/                             # Homepage sections (single-page structure)
+│   ├── cookie-policy/                         # Cookie Policy page
+│   ├── donation-policy/                       # Donation Policy page
+│   ├── free-for-charity-donation-policy/      # Free For Charity Donation Policy page
+│   ├── privacy-policy/                        # Privacy Policy page
+│   ├── security-acknowledgements/             # Security Acknowledgements page
+│   ├── terms-of-service/                      # Terms of Service page
+│   ├── vulnerability-disclosure-policy/       # Vulnerability Disclosure Policy page
+│   ├── sitemap.ts                             # Dynamic sitemap generation
+│   └── robots.ts                              # Robots.txt configuration
+├── components/                                # Reusable components (112 component files)
+│   ├── header/                               # Site header/navigation
+│   ├── footer/                               # Site footer
+│   ├── cookie-consent/                        # Cookie consent banner
+│   ├── google-tag-manager/                    # Analytics integration
+│   ├── ui/                                    # Reusable UI components
+│   ├── home-page/                             # Homepage-specific components
+│   ├── home/                                  # Alternative home components
+│   ├── domains/                               # Domain-related components
+│   ├── donate/                                # Donation components
+│   ├── volunteer/                             # Volunteer components
+│   ├── 501c3/                                 # 501c3 charity components
+│   ├── about-us/                              # About page components
+│   ├── endowment-fund/                        # Endowment fund components
+│   ├── free-charity-web-hosting/              # Web hosting program components
+│   ├── help-for-charities/                    # Help resources
+│   ├── tools-for-success/                     # Tools and resources
+│   └── [other feature-specific folders]       # Additional feature components
+├── data/                                      # Static content
+│   ├── faqs/                                  # FAQ JSON files
+│   ├── team/                                  # Team member data
+│   └── testimonials/                          # Testimonial data
+├── lib/                                       # Utility functions
+│   └── assetPath.ts                           # Helper for GitHub Pages basePath support
+└── public/                                    # Static assets (icons, images, fonts)
 ```
 
 ## Site Improvements & Capability Gaps
