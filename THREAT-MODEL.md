@@ -438,8 +438,8 @@ This threat model should be reviewed:
 
 ---
 
-**Last Updated**: December 2024  
+**Last Updated**: December 2025  
 **Version**: 1.0  
-**Next Review**: December 2025
+**Next Review**: December 2026
 
 For security policies and vulnerability reporting, see [SECURITY.md](./SECURITY.md).
