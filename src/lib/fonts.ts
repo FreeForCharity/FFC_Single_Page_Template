@@ -14,14 +14,14 @@ export const openSans = Open_Sans({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-open-sans',
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['400', '500', '600', '700', '800'],
 })
 
 export const lato = Lato({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-lato',
-  weight: ['100', '300', '400', '700', '900'],
+  weight: ['400', '700'],
 })
 
 export const raleway = Raleway({
@@ -35,7 +35,7 @@ export const faustina = Faustina({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-faustina',
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['400', '500', '600', '700'],
 })
 
 export const cantataOne = Cantata_One({
