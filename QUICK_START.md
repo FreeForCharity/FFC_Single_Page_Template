@@ -50,7 +50,7 @@ npm test
 npm run build
 ```
 
-**Expected**: All checks pass with 0 errors (warnings about `<img>` tags are expected)
+**Expected**: All checks pass with 0 errors (8 warnings about `<img>` tags and React hooks are expected)
 
 ---
 
@@ -392,5 +392,6 @@ npm run prepare             # Setup git hooks
 
 ---
 
-**Last Updated**: 2025-12-03
-**Version**: 1.0.0
+**Last Updated**: 2025-12-03  
+**Version**: 0.1.0  
+**Node.js**: 20.x (validated with v20.19.6)

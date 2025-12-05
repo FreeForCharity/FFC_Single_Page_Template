@@ -423,7 +423,7 @@ npm run test:e2e
    ```bash
    # Should be in public/CNAME
    cat public/CNAME
-   # Should contain: www.freeforcharity.org
+   # Should contain: ffcworkingsite1.org
    ```
 
 ### Issue: Images Load Locally but Not in Production
@@ -699,6 +699,8 @@ If your issue isn't covered here:
 
 ---
 
-**Last Updated**: 2025-12-03
+**Last Updated**: 2025-12-03  
+**Repository**: FreeForCharity/FFC_Single_Page_Template  
+**Node.js**: 20.x (validated with v20.19.6)
 
 _This document is continuously updated. If you solve an issue not listed here, please contribute by adding it!_

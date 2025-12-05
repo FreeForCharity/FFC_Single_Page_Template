@@ -371,21 +371,32 @@ Key settings:
 
 ### Test Execution Pipeline
 
-Tests run automatically in GitHub Actions with the following workflow:
+Tests run automatically in GitHub Actions with the following workflows:
 
-**1. Build & Deployment Workflow** (`nextjs.yml`)
+**1. CI Workflow** (`ci.yml`)
 
-- Triggers: Push to main, pull requests, manual
+- Triggers: Pull requests and pushes to main
 - Steps:
   1. Install dependencies
-  2. Run unit tests (Jest)
-  3. Install Playwright browsers
-  4. Build site
-  5. Run E2E tests (Playwright)
-  6. Deploy to GitHub Pages (main branch only)
-- If any test fails, deployment is blocked
+  2. Check code formatting (Prettier)
+  3. Run linting (ESLint)
+  4. Run unit tests (Jest)
+  5. Install Playwright browsers
+  6. Build site
+  7. Run E2E tests (Playwright)
+- If any test fails, the build is marked as failed
+- Runs before deployment
 
-**2. Lighthouse CI Workflow** (`lighthouse.yml`)
+**2. Deploy Workflow** (`deploy.yml`)
+
+- Triggers: Push to main branch only (after CI passes)
+- Steps:
+  1. Install dependencies
+  2. Build site for GitHub Pages
+  3. Deploy to GitHub Pages
+- Deployment is blocked if build fails
+
+**3. Lighthouse CI Workflow** (`lighthouse.yml`)
 
 - Triggers: After successful deployment, on pull requests, manual
 - Steps:
@@ -425,10 +436,10 @@ Tests run automatically in GitHub Actions with the following workflow:
 
 **Current Warnings**:
 
-- 2 warnings about using `<img>` instead of `<Image />` (expected and acceptable)
-  - `src/app/components/NavBar.tsx:17:11`
-  - `src/app/page.tsx:82:17`
-- These warnings are intentional for static export with GitHub Pages basePath support
+- 8 warnings about using `<img>` instead of `<Image />` and React hooks (expected and acceptable)
+  - 6 warnings about `<img>` tags in various components (Footer, Header, UI components)
+  - 2 warnings about React hooks exhaustive dependencies
+- These warnings are intentional for static export with GitHub Pages basePath support and are not blocking issues
 
 ### TypeScript
 
@@ -691,7 +702,10 @@ FFC_Single_Page_Template/
 │   └── README.md                  # Test documentation
 ├── playwright.config.ts            # Playwright configuration
 ├── .github/workflows/
-│   └── nextjs.yml                 # CI/CD pipeline with automated tests
+│   ├── ci.yml                     # CI pipeline with linting, testing
+│   ├── deploy.yml                 # Deployment pipeline to GitHub Pages
+│   ├── codeql.yml                 # Security scanning
+│   └── lighthouse.yml             # Performance monitoring
 ├── public/                         # Static assets
 ├── src/data/
 │   ├── faqs/
@@ -817,6 +831,6 @@ FFC_Single_Page_Template/
 
 ---
 
-**Test Suite Status**: ✅ 5 passing, 1 skipped  
+**Test Suite Status**: ✅ 26 unit tests passing (4 test suites), 5 E2E passing, 1 E2E skipped  
 **Integration Status**: ✅ Complete  
-**Last Tested**: October 2025
+**Last Tested**: December 2025
