@@ -4,7 +4,16 @@ import Header from './../components/header'
 import Footer from './../components/footer'
 import CookieConsent from './../components/cookie-consent'
 import GoogleTagManager, { GoogleTagManagerNoScript } from './../components/google-tag-manager'
-import { openSans, lato, raleway, faustina, cantataOne, faunaOne, montserrat } from '@/lib/fonts'
+import {
+  openSans,
+  lato,
+  raleway,
+  faustina,
+  cantataOne,
+  faunaOne,
+  montserrat,
+  cinzel,
+} from '@/lib/fonts'
 
 // Get basePath for GitHub Pages deployment
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
@@ -89,7 +98,7 @@ export default function RootLayout({
         <GoogleTagManager />
       </head>
       <body
-        className={`antialiased ${openSans.variable} ${lato.variable} ${raleway.variable} ${faustina.variable} ${cantataOne.variable} ${faunaOne.variable} ${montserrat.variable}`}
+        className={`antialiased ${openSans.variable} ${lato.variable} ${raleway.variable} ${faustina.variable} ${cantataOne.variable} ${faunaOne.variable} ${montserrat.variable} ${cinzel.variable}`}
         suppressHydrationWarning={true}
       >
         <GoogleTagManagerNoScript />

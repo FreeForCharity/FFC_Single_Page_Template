@@ -57,11 +57,12 @@ body {
 #abeezee {
   font-family: var(--font-open-sans), sans-serif !important;
 }
+/* Segoe UI is a system font - use native system font stack for best performance (only used 2x) */
 #segoe-font {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
 }
 #cinzel {
-  font-family: var(--font-raleway), serif !important;
+  font-family: var(--font-cinzel), serif !important;
 }
 #fauna-font {
   font-family: var(--font-fauna-one), serif !important;

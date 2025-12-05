@@ -6,6 +6,7 @@ import {
   Cantata_One,
   Fauna_One,
   Montserrat,
+  Cinzel,
 } from 'next/font/google'
 
 // Configure fonts with proper subsets and display strategy
@@ -56,4 +57,11 @@ export const montserrat = Montserrat({
   display: 'swap',
   variable: '--font-montserrat',
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+})
+
+export const cinzel = Cinzel({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-cinzel',
+  weight: ['400', '500', '600', '700', '800', '900'],
 })
