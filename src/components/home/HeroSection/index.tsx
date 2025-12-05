@@ -26,7 +26,7 @@ const Hero: React.FC = () => {
             width={800}
             height={540}
             className="w-full max-w-[90%] h-auto max-h-[540px]"
-            loading="lazy"
+            priority
           />
         </div>
       </div>
