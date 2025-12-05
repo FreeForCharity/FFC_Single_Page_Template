@@ -139,8 +139,7 @@ The Lighthouse CI configuration is in `lighthouserc.json`:
         "http://localhost/index.html",
         "http://localhost/about-us.html",
         "http://localhost/donate.html",
-        "http://localhost/volunteer.html",
-        "http://localhost/help-for-charities.html"
+        "http://localhost/volunteer.html"
       ],
       "numberOfRuns": 3
     }
@@ -424,13 +423,20 @@ Each report shows:
 
 The Lighthouse CI is integrated into the deployment pipeline with the following execution order:
 
-1. **Build & Test** (nextjs.yml workflow)
+1. **CI Workflow** (ci.yml)
+   - Runs on pull requests and pushes to main
+   - Format check with Prettier
+   - Linting with ESLint
    - Unit tests run with Jest
    - Site is built with `npm run build`
    - E2E tests run with Playwright
-   - Site is deployed to GitHub Pages (on main branch)
 
-2. **Lighthouse CI** (lighthouse.yml workflow)
+2. **Deploy Workflow** (deploy.yml)
+   - Runs only on pushes to main branch
+   - Builds site for GitHub Pages
+   - Deploys to GitHub Pages
+
+3. **Lighthouse CI** (lighthouse.yml workflow)
    - Triggered automatically after successful deployment
    - Also runs on pull requests (before merge)
    - Builds the site locally
@@ -460,7 +466,7 @@ This prevents unnecessary runs and saves CI/CD resources.
 
 **Last Updated**: 2025-12-03
 
-**Pages Monitored**: 5 key pages (Home, About, Donate, Volunteer, Help for Charities)
+**Pages Monitored**: 4 key pages (Home, About, Donate, Volunteer)
 
 **Monitoring Frequency**:
 

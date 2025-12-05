@@ -1,6 +1,6 @@
 # Free For Charity Website
 
-Multi-page Next.js website built with App Router for Free For Charity nonprofit organization.
+Single-page Next.js 16.0.7 website built with App Router for Free For Charity nonprofit organization.
 
 ## 🎉 Phase 5 Implementation Complete
 
@@ -12,6 +12,7 @@ Multi-page Next.js website built with App Router for Free For Charity nonprofit 
 - 📋 [Site Improvements Summary](./SITE_IMPROVEMENTS.md) - See what was implemented (13 of 19 gaps closed)
 - 🧪 [Testing Guide](./TESTING.md) - Unit + E2E + Accessibility tests
 - 🎨 [Responsive Design Guide](./RESPONSIVE_DESIGN.md) - Mobile-first design principles
+- 📝 [Naming Conventions](./NAMING_CONVENTIONS.md) - **Required**: kebab-case for SEO (Google-recommended)
 
 ## Organization
 
@@ -61,54 +62,36 @@ The site is deployed to its live domain (ffcworkingsite1.org) but some functiona
 
 ## Overview
 
-This is a comprehensive multi-page website with **29 pages** and **83 components** that showcases Free For Charity's programs, services, and resources. The site is designed to enable donations and volunteer signups via global popups (currently disabled in code).
+This is a single-page website with **112 component files** organized into multiple sections that showcase Free For Charity's programs, services, and resources. The homepage is composed of scrollable sections (Hero, Mission, Programs, Team, FAQ, etc.), with additional policy pages for legal content. The site is designed to enable donations and volunteer signups via global popups (currently disabled in code).
 
 ### Site Structure
 
-**Core Pages:**
+**Homepage (Single Page Application):**
 
-- Homepage (Figma-Home-page)
-- About Us
-- Contact Us
-- Donate
-- Volunteer
+The main page (`/`) is a single-page application composed of scrollable sections:
 
-**Program & Service Pages:**
+- Hero section
+- Mission statement
+- 2023 Results
+- Testimonials
+- Volunteer call-to-action
+- Support/Donate section
+- Endowment Fund features
+- Programs overview
+- Frequently Asked Questions
+- Team section
 
-- Free Charity Web Hosting
-- Free For Charity Endowment Fund
-- FFC Tools for Success
-- Help for Charities
-- Domains
+**Legal & Policy Pages (Separate Routes):**
 
-**Guide & Documentation Pages:**
+- Privacy Policy (`/privacy-policy`)
+- Cookie Policy (`/cookie-policy`)
+- Terms of Service (`/terms-of-service`)
+- Donation Policy (`/donation-policy`)
+- Free For Charity Donation Policy (`/free-for-charity-donation-policy`)
+- Vulnerability Disclosure Policy (`/vulnerability-disclosure-policy`)
+- Security Acknowledgements (`/security-acknowledgements`)
 
-- GuideStar Guide
-- Online Impacts Onboarding Guide
-- Charity Validation Guide
-- FFC Service Delivery Stages
-- FFC Web Developer Training Guide
-- FFC Volunteer Proving Ground Core Competencies
-- FFCAdmin cPanel Backup SOP
-
-**Nonprofit Status Pages:**
-
-- 501(c)(3) Information
-- Pre-501(c)(3) Information
-
-**Legal & Policy Pages:**
-
-- Privacy Policy
-- Cookie Policy
-- Terms of Service
-- Donation Policy
-- Vulnerability Disclosure Policy
-- Security Acknowledgements
-
-**Technical Pages:**
-
-- Tech Stack
-- FFCAdmin Portal
+**Note:** All the program information, services, guides, and content are presented as sections within the single-page homepage rather than as separate page routes.
 
 ## Tech Stack
 
@@ -186,7 +169,7 @@ Tests run automatically on every push to main via GitHub Actions before deployme
 
 - ✅ Next.js core-web-vitals and TypeScript rules enabled
 - ✅ Runs automatically during build process
-- ⚠️ Currently reports 2 expected warnings about `<img>` tags (acceptable for static export)
+- ⚠️ Currently reports 8 warnings (6 about `<img>` tags, 2 React hooks - acceptable for static export)
 
 **TypeScript** (`tsconfig.json`)
 
@@ -220,6 +203,12 @@ Tests run automatically on every push to main via GitHub Actions before deployme
 
 - All dependencies are checked for security vulnerabilities
 - Run `npm audit` locally to check for known security issues
+- ⚠️ **Known Issues**: As of December 2025, there are 4 low severity vulnerabilities
+  - Low: tmp package vulnerabilities affecting Lighthouse CI dev dependency only
+  - Impact: Limited to development environment, does not affect production site
+  - Fix available via `npm audit fix --force` (may involve breaking changes)
+  - These are being monitored and will be addressed through regular Dependabot updates
+  - See [SECURITY.md](./SECURITY.md) for detailed information and mitigation steps
 
 ### CI/CD Integration
 
@@ -256,7 +245,7 @@ The following quality improvements have been successfully implemented:
 
 #### ✅ Testing Infrastructure (Phases 2 & 4)
 
-- ✅ **Unit Testing**: Jest + React Testing Library with 25 tests passing
+- ✅ **Unit Testing**: Jest + React Testing Library with 26 tests passing (4 test suites)
 - ✅ **Accessibility Testing**: jest-axe for WCAG compliance checks (3 components tested)
 - ✅ **E2E Testing**: Playwright for critical user paths
 - ✅ **Performance Testing**: Lighthouse CI monitoring Core Web Vitals
@@ -324,8 +313,8 @@ The following enhancements could further improve the test suite:
 
 ## Key Features
 
-- **Comprehensive Page Structure:** 29 pages covering programs, services, guides, and legal content
-- **Component Library:** 83 reusable components organized by feature/page
+- **Single-Page Architecture:** One main scrollable page with multiple sections plus 7 policy pages
+- **Component Library:** 112 component files organized by feature/section
 - **Responsive Navigation:** Mobile and desktop navigation with Header/Footer components
 - **Cookie Consent System:** GDPR-compliant cookie consent management
 - **SEO Optimization:**
@@ -339,27 +328,33 @@ The following enhancements could further improve the test suite:
 - **Icons:** Lucide React and React Icons libraries
 - **Carousels:** Swiper for image carousels and sliders
 
-**Note:** Global Donate/Volunteer popup system is present in codebase but currently commented out in `layout.tsx`.
+**Note:**
+
+- This is a single-page application where all main content is displayed on one scrollable page with navigation anchors
+- Global Donate/Volunteer popup system is present in codebase but currently commented out in `layout.tsx`
+- Components are organized by feature/section but rendered within the single homepage
 
 ## Project Structure
 
 ```
 src/
-├── app/                    # Next.js App Router pages (29 pages)
-│   ├── page.tsx           # Homepage
+├── app/                    # Next.js App Router
+│   ├── page.tsx           # Main entry point (loads homepage)
 │   ├── layout.tsx         # Root layout with global config
 │   ├── globals.css        # Global styles
-│   ├── [page-name]/       # Individual page directories
+│   ├── home-page/         # Homepage sections (single-page structure)
+│   ├── [policy-pages]/    # Legal/policy pages (7 separate routes)
 │   ├── sitemap.ts         # Dynamic sitemap generation
 │   └── robots.ts          # Robots.txt configuration
-├── components/            # Reusable components (83 components)
-│   ├── Header/           # Site header/navigation
-│   ├── Footer/           # Site footer
-│   ├── CookieConsent/    # Cookie consent banner
-│   ├── UI/               # Reusable UI components
+├── components/            # Reusable components (112 component files)
+│   ├── header/           # Site header/navigation
+│   ├── footer/           # Site footer
+│   ├── cookie-consent/    # Cookie consent banner
+│   ├── ui/               # Reusable UI components
+│   ├── home-page/        # Homepage section components
 │   └── [feature]/        # Feature-specific component groups
-├── data/                 # Static content (if present)
-├── lib/                  # Utility functions (if present)
+├── data/                 # Static content (FAQs, team, testimonials)
+├── lib/                  # Utility functions (assetPath helper)
 └── public/               # Static assets (icons, images, fonts)
 ```
 
@@ -398,7 +393,7 @@ The site is configured for static export and deployed to GitHub Pages:
 
 - Live at: [https://ffcworkingsite1.org](https://ffcworkingsite1.org)
 - GitHub Pages URL: [https://freeforcharity.github.io/FFC_Single_Page_Template/](https://freeforcharity.github.io/FFC_Single_Page_Template/)
-- Deployment: Automatic via GitHub Actions (`.github/workflows/nextjs.yml`)
+- Deployment: Automatic via GitHub Actions (`.github/workflows/deploy.yml`)
 - Trigger: Push to `main` branch
 - Build output: Static files in `./out` directory
 
