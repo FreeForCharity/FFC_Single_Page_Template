@@ -19,12 +19,16 @@ Thank you for your interest in contributing to Free For Charity! This document p
 
 ## Code of Conduct
 
-We are committed to providing a welcoming and inclusive environment for all contributors. By participating in this project, you agree to abide by our code of conduct:
+We are committed to providing a welcoming and inclusive environment for all contributors. By participating in this project, you agree to abide by our [Code of Conduct](./CODE_OF_CONDUCT.md).
+
+**Key principles**:
 
 - **Be respectful**: Treat all contributors with respect and courtesy
 - **Be collaborative**: Work together to improve the project
 - **Be constructive**: Provide helpful feedback and be open to receiving it
 - **Be inclusive**: Welcome contributors from all backgrounds and experience levels
+
+For full details on community standards and reporting procedures, please read the complete [Code of Conduct](./CODE_OF_CONDUCT.md)
 
 ---
 

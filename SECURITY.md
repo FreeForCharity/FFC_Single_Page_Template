@@ -282,12 +282,42 @@ If you're new to this project, follow these security guidelines:
 If you discover a security vulnerability in this repository:
 
 1. **Do NOT open a public issue** - this could put the live site at risk
-2. Report privately through GitHub's Security Advisories feature
+2. **Report privately** using one of these methods:
+   - **Preferred**: Use GitHub's [Security Advisories feature](https://github.com/FreeForCharity/FFC_Single_Page_Template/security/advisories/new)
+   - **Alternative**: Email clarkemoyer@freeforcharity.org with subject line "Security Vulnerability Report"
 3. Include as much detail as possible:
    - Description of the vulnerability
    - Steps to reproduce
    - Potential impact
+   - Affected versions (if known)
    - Suggested fix (if you have one)
+
+#### Response Timeline
+
+- **Initial Response**: Within 48 hours of receipt
+- **Assessment**: Within 5 business days
+- **Fix Development**: Timeframe depends on severity
+  - Critical: Within 7 days
+  - High: Within 14 days
+  - Medium: Within 30 days
+  - Low: Best effort basis
+- **Public Disclosure**: After fix is deployed and users have time to update
+
+#### Supported Versions
+
+We support security updates for:
+
+- **Current release**: Latest version deployed to production
+- **Previous release**: One version back (if applicable)
+
+Older versions may not receive security updates. We recommend always using the latest version.
+
+#### Security Contact
+
+**Primary Contact**: Clarke Moyer, Founder  
+**Email**: clarkemoyer@freeforcharity.org  
+**Phone**: 520-222-8104 (text preferred)  
+**Response Window**: 48 hours for initial acknowledgment
 
 ---
 
