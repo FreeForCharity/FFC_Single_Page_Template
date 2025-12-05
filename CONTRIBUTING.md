@@ -80,13 +80,13 @@ Follow these best practices when using GitHub Copilot:
 7. **Use inline suggestions wisely** - Accept partial suggestions when they're helpful, modify or reject when they're not
 8. **Leverage Copilot for documentation** - Use it to generate JSDoc comments, README updates, and code documentation
 
-### Integrating Other AI Providers in VS Code
+### Accessing Multiple AI Models in GitHub Copilot (VS Code)
 
-For experienced developers who want to leverage additional AI capabilities, GitHub Copilot in VS Code supports integration with other AI providers. This enables access to models from **OpenAI**, **Google Gemini**, **Anthropic Claude**, and others.
+GitHub Copilot in VS Code provides access to multiple advanced AI models—including **OpenAI GPT-4**, **Google Gemini**, and **Anthropic Claude**—directly through GitHub's infrastructure. You do not need to integrate external AI providers or supply your own API keys; model selection is managed within Copilot's interface.
 
-#### Setting Up Alternative AI Providers
+#### Model Selection and Availability
 
-GitHub Copilot supports multiple AI models through its model selector feature. Available models vary based on your subscription and GitHub's current offerings.
+You can choose among available AI models using Copilot's model selector feature. The specific models offered depend on your subscription tier and GitHub's current offerings.
 
 1. **Install GitHub Copilot Chat Extension**
    - Ensure you have the GitHub Copilot Chat extension installed in VS Code
