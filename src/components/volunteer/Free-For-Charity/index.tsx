@@ -1,5 +1,5 @@
 import React from 'react'
-import Transparentbtn from '@/components/UI/Transparentbtn'
+import Transparentbtn from '@/components/ui/Transparentbtn'
 
 const Index = () => {
   return (

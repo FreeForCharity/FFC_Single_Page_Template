@@ -84,25 +84,47 @@ Lighthouse is an open-source, automated tool developed by Google for improving t
 
 Lighthouse CI runs automatically:
 
-1. **After successful deployment** to the main branch
-2. **On manual trigger** from the Actions tab
-3. **Multiple runs per page** (3 runs) to get median scores
+1. **After successful deployment** to the main branch (via `workflow_run` trigger)
+2. **On pull requests** to the main branch (with results posted as PR comments)
+3. **On manual trigger** from the Actions tab
+4. **Multiple runs per page** (3 runs) to calculate and report median scores
 
 ### Viewing CI Results
 
-#### In GitHub Actions
+#### In Pull Request Comments
+
+When Lighthouse runs on a pull request, it automatically posts a comprehensive comment showing:
+
+- **Median scores** for each category (Performance, Accessibility, Best Practices, SEO)
+- **Visual indicators** (🟢 Good, 🟡 Needs Improvement, 🔴 Poor)
+- **Threshold comparison** showing if scores meet configured thresholds
+- **Summary status** indicating if all thresholds are met
+
+The comment includes a table for each audited page with:
+
+- Current scores vs. thresholds
+- Pass/warn indicators (✅/⚠️)
+- Links to download detailed reports
+
+#### In GitHub Actions Logs
 
 1. Go to the **Actions** tab in the repository
 2. Look for **"Lighthouse CI"** workflow runs
-3. Click on a workflow run to see the summary
-4. Download artifacts to view detailed HTML reports
+3. Click on a workflow run to see the detailed logs
+4. Check the **"Display Lighthouse Results Summary"** step for scores
+5. View all individual run scores in the console output
 
 #### Downloading Reports
 
 1. In the workflow run, scroll to the **Artifacts** section
 2. Download **"lighthouse-reports"** artifact
 3. Extract the ZIP file
-4. Open HTML files in your browser to view detailed reports
+4. Open HTML files in your browser to view detailed reports with:
+   - Performance metrics breakdown
+   - Opportunities for improvement
+   - Diagnostics and recommendations
+   - Accessibility issues (if any)
+   - SEO checks
 
 ### Configuration File
 
@@ -115,16 +137,17 @@ The Lighthouse CI configuration is in `lighthouserc.json`:
       "staticDistDir": "./out",
       "url": [
         "http://localhost/index.html",
-        "http://localhost/about-us/index.html",
-        "http://localhost/donate/index.html",
-        "http://localhost/volunteer/index.html",
-        "http://localhost/help-for-charities/index.html"
+        "http://localhost/about-us.html",
+        "http://localhost/donate.html",
+        "http://localhost/volunteer.html"
       ],
       "numberOfRuns": 3
     }
   }
 }
 ```
+
+**Important**: URLs should point to the actual `.html` files in the `out` directory (e.g., `about-us.html`), not to subdirectories with `index.html`. Next.js static export generates flat HTML files at the root level.
 
 You can add more pages to audit by adding URLs to the `url` array.
 
@@ -394,15 +417,70 @@ Each report shows:
 
 ---
 
+## CI/CD Pipeline Integration
+
+### Workflow Execution Order
+
+The Lighthouse CI is integrated into the deployment pipeline with the following execution order:
+
+1. **CI Workflow** (ci.yml)
+   - Runs on pull requests and pushes to main
+   - Format check with Prettier
+   - Linting with ESLint
+   - Unit tests run with Jest
+   - Site is built with `npm run build`
+   - E2E tests run with Playwright
+
+2. **Deploy Workflow** (deploy.yml)
+   - Runs only on pushes to main branch
+   - Builds site for GitHub Pages
+   - Deploys to GitHub Pages
+
+3. **Lighthouse CI** (lighthouse.yml workflow)
+   - Triggered automatically after successful deployment
+   - Also runs on pull requests (before merge)
+   - Builds the site locally
+   - Runs Lighthouse audits on all configured pages
+   - Posts results as PR comments (on PRs)
+   - Uploads detailed reports as artifacts
+
+### Why This Order?
+
+- **After deployment**: Ensures Lighthouse audits the actual deployed site
+- **On PRs**: Provides performance feedback before merging changes
+- **Independent build**: Lighthouse uses its own build to ensure consistency
+
+### Conditional Execution
+
+The Lighthouse workflow only runs when:
+
+- The deployment workflow succeeded (for main branch)
+- A pull request is opened/updated (for PRs)
+- Manually triggered (for on-demand audits)
+
+This prevents unnecessary runs and saves CI/CD resources.
+
+---
+
 ## Current Status
 
 **Last Updated**: 2025-12-03
 
-**Pages Monitored**: 5 key pages (Home, About, Donate, Volunteer, Help for Charities)
+**Pages Monitored**: 4 key pages (Home, About, Donate, Volunteer)
 
-**Monitoring Frequency**: After each deployment to main branch
+**Monitoring Frequency**:
+
+- After each deployment to main branch
+- On every pull request to main branch
 
 **Report Retention**: 30 days in GitHub Actions artifacts
+
+**Score Reporting**:
+
+- Median scores from 3 runs per page
+- Detailed scores in PR comments
+- Console output in workflow logs
+- Full HTML reports in artifacts
 
 ---
 

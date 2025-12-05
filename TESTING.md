@@ -369,11 +369,60 @@ Key settings:
 
 ### CI/CD Integration
 
-Tests run automatically in GitHub Actions:
+### Test Execution Pipeline
 
-- On every push to main branch
-- Before deployment to GitHub Pages
-- If tests fail, deployment is blocked
+Tests run automatically in GitHub Actions with the following workflows:
+
+**1. CI Workflow** (`ci.yml`)
+
+- Triggers: Pull requests and pushes to main
+- Steps:
+  1. Install dependencies
+  2. Check code formatting (Prettier)
+  3. Run linting (ESLint)
+  4. Run unit tests (Jest)
+  5. Install Playwright browsers
+  6. Build site
+  7. Run E2E tests (Playwright)
+- If any test fails, the build is marked as failed
+- Runs before deployment
+
+**2. Deploy Workflow** (`deploy.yml`)
+
+- Triggers: Push to main branch only (after CI passes)
+- Steps:
+  1. Install dependencies
+  2. Build site for GitHub Pages
+  3. Deploy to GitHub Pages
+- Deployment is blocked if build fails
+
+**3. Lighthouse CI Workflow** (`lighthouse.yml`)
+
+- Triggers: After successful deployment, on pull requests, manual
+- Steps:
+  1. Install dependencies
+  2. Build site
+  3. Run Lighthouse CI (3 runs per page)
+  4. Display results summary in console
+  5. Upload HTML reports as artifacts
+  6. Post results comment on PR (if applicable)
+- Runs independently after deployment
+- Provides performance metrics without blocking deployment
+- Warning thresholds (not hard failures):
+  - Performance: ≥60%
+  - Accessibility: ≥80%
+  - Best Practices: ≥80%
+  - SEO: ≥90%
+
+### Result Reporting
+
+- **Unit Tests**: Pass/fail in workflow logs
+- **E2E Tests**: Pass/fail in workflow logs, screenshots on failure
+- **Lighthouse** (runs on PRs and after deployment):
+  - Console summary in workflow logs (always)
+  - Detailed PR comments with scores (PRs only)
+  - HTML reports in artifacts (always)
+  - Median scores from 3 runs
 
 ## Static Analysis
 
@@ -387,10 +436,10 @@ Tests run automatically in GitHub Actions:
 
 **Current Warnings**:
 
-- 2 warnings about using `<img>` instead of `<Image />` (expected and acceptable)
-  - `src/app/components/NavBar.tsx:17:11`
-  - `src/app/page.tsx:82:17`
-- These warnings are intentional for static export with GitHub Pages basePath support
+- 8 warnings about using `<img>` instead of `<Image />` and React hooks (expected and acceptable)
+  - 6 warnings about `<img>` tags in various components (Footer, Header, UI components)
+  - 2 warnings about React hooks exhaustive dependencies
+- These warnings are intentional for static export with GitHub Pages basePath support and are not blocking issues
 
 ### TypeScript
 
@@ -653,7 +702,10 @@ FFC_Single_Page_Template/
 │   └── README.md                  # Test documentation
 ├── playwright.config.ts            # Playwright configuration
 ├── .github/workflows/
-│   └── nextjs.yml                 # CI/CD pipeline with automated tests
+│   ├── ci.yml                     # CI pipeline with linting, testing
+│   ├── deploy.yml                 # Deployment pipeline to GitHub Pages
+│   ├── codeql.yml                 # Security scanning
+│   └── lighthouse.yml             # Performance monitoring
 ├── public/                         # Static assets
 ├── src/data/
 │   ├── faqs/
@@ -697,10 +749,17 @@ FFC_Single_Page_Template/
 
 ### Medium Priority
 
-4. **Performance Testing**
+4. **Performance Testing** ✅ **ENABLED**
    - Tool: Lighthouse CI
-   - Purpose: Monitor Core Web Vitals, SEO, Best Practices
-   - Benefit: Track performance regression over time
+   - Status: Fully configured and integrated into CI/CD
+   - Purpose: Monitor Core Web Vitals, SEO, Best Practices, Accessibility
+   - Features:
+     - Runs on every PR and after deployment
+     - Posts detailed score reports in PR comments
+     - Tracks median scores from multiple runs
+     - Provides threshold-based warnings
+     - Uploads detailed HTML reports as artifacts
+   - Benefit: Track performance regression over time and get immediate feedback on PRs
 
 5. **Visual Regression Testing**
    - Tool: Percy.io or Playwright screenshots
@@ -772,6 +831,6 @@ FFC_Single_Page_Template/
 
 ---
 
-**Test Suite Status**: ✅ 5 passing, 1 skipped  
+**Test Suite Status**: ✅ 26 unit tests passing (4 test suites), 5 E2E passing, 1 E2E skipped  
 **Integration Status**: ✅ Complete  
-**Last Tested**: October 2025
+**Last Tested**: December 2025
