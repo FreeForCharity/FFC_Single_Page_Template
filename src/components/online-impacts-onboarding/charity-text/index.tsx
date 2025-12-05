@@ -1,6 +1,6 @@
 import React from 'react'
 import HelpForCharities from '@/components/ui/help-for-charity'
-import AccordionItem from '@/components/ui/Accordian'
+import AccordionItem from '@/components/ui/Accordion'
 import Link from 'next/link'
 
 const index = () => {

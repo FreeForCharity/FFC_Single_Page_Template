@@ -66,6 +66,8 @@ This is a single-page website with **112 component files** organized into multip
 
 ### Site Structure
 
+**IMPORTANT:** When new pages or sections are added, explicitly list them here. Keep this documentation up to date.
+
 **Homepage (Single Page Application):**
 
 The main page (`/`) is a single-page application composed of scrollable sections:
@@ -81,7 +83,7 @@ The main page (`/`) is a single-page application composed of scrollable sections
 - Frequently Asked Questions
 - Team section
 
-**Legal & Policy Pages (Separate Routes):**
+**Legal & Policy Pages (7 Separate Routes):**
 
 - Privacy Policy (`/privacy-policy`)
 - Cookie Policy (`/cookie-policy`)
@@ -169,7 +171,44 @@ Tests run automatically on every push to main via GitHub Actions before deployme
 
 - ✅ Next.js core-web-vitals and TypeScript rules enabled
 - ✅ Runs automatically during build process
-- ⚠️ Currently reports 8 warnings (6 about `<img>` tags, 2 React hooks - acceptable for static export)
+- ⚠️ Currently reports 16 warnings - see details below
+
+**ESLint Warning Details:**
+
+The ESLint warnings fall into three categories:
+
+1. **`@next/next/no-img-element` warnings (6 occurrences)** - ⚠️ ACCEPTABLE for this project
+   - Files: `header/index.tsx`, `footer/index.tsx`, `endowment-fund/Hero/index.tsx`, `free-charity-web-hosting/About-FFC-Hosting/index.tsx`, `ui/General-Donation-Card.tsx`, `ui/trainingcard.tsx`
+   - Issue: Using `<img>` tags instead of Next.js `<Image />` component
+   - Why acceptable: This project uses static export (`output: "export"` in `next.config.ts`), which is incompatible with Next.js Image Optimization. We use the `assetPath()` helper to ensure images work correctly on both custom domain and GitHub Pages basePath.
+   - Alternative fix: Could suppress these specific warnings or migrate to a custom image component
+   - Website impact: Images load correctly but without automatic optimization (WebP conversion, lazy loading). For a static nonprofit site with modest image usage, this is an acceptable tradeoff.
+
+2. **React Hooks warnings - `react-hooks/set-state-in-effect` (6 occurrences)** - ⚠️ ACCEPTABLE but could be improved
+   - Files: Various accordion components (`Accordion.tsx`, `AccordionBold.tsx`, `Frequently-Asked-Questions.tsx`, `OrangeFaqItem.tsx`, `free-charity-web-hosting/FAQs/index.tsx`) and `cookie-consent/index.tsx`
+   - Issue: Calling `setState` synchronously within `useEffect` when animating accordion height or loading preferences
+   - Why acceptable: These components work correctly and don't cause performance issues in practice
+   - Recommended fix: Use `useLayoutEffect` instead of `useEffect` for DOM measurements, or use CSS transitions with `max-height`
+   - Website impact: Accordion animations work correctly. May cause minor cascading renders but not noticeable to users.
+
+3. **React Hooks warnings - Other (4 occurrences)** - ⚠️ ACCEPTABLE but could be improved
+   - `react-hooks/exhaustive-deps` (2 occurrences): Missing dependencies in `useEffect`
+     - Files: `free-charity-web-hosting/ClientTestimonials/index.tsx`, `ui/CallToActionCard.tsx`
+     - Impact: Effects may not re-run when dependencies change, but current implementation works as intended
+   - `react-hooks/immutability` (2 occurrences): Direct mutation of state values
+     - Files: `free-charity-web-hosting/ClientTestimonials/index.tsx`, `home/Testimonials/index.tsx`
+     - Issue: Modifying Swiper navigation params directly instead of using setter
+     - Impact: Works correctly but violates React best practices
+   - These are technical debt items that don't affect functionality but should be addressed in future refactoring
+
+**Summary:**
+
+- 6 warnings are acceptable by design (static export constraint)
+- 10 warnings are technical debt that don't affect functionality
+- All warnings have been reviewed and determined to be non-blocking
+- Website functions correctly despite these warnings
+
+**For detailed technical debt tracking:** See [TECHNICAL_DEBT.md](./TECHNICAL_DEBT.md) for comprehensive documentation of all technical debt items, including these React Hooks warnings, security vulnerabilities, and future refactoring plans.
 
 **TypeScript** (`tsconfig.json`)
 
@@ -208,6 +247,7 @@ Tests run automatically on every push to main via GitHub Actions before deployme
   - Impact: Limited to development environment, does not affect production site
   - Fix available via `npm audit fix --force` (may involve breaking changes)
   - These are being monitored and will be addressed through regular Dependabot updates
+  - See [TECHNICAL_DEBT.md](./TECHNICAL_DEBT.md) for tracking and prioritization
   - See [SECURITY.md](./SECURITY.md) for detailed information and mitigation steps
 
 ### CI/CD Integration
@@ -231,7 +271,8 @@ The project uses separate workflows for better separation of concerns:
 
 **Deploy Workflow** (`.github/workflows/deploy.yml`)
 
-- ✅ Runs only on push to main branch
+- ✅ Runs only after CI workflow completes successfully
+- ✅ Ensures all tests pass before deployment
 - ✅ Node.js 20 setup
 - ✅ Dependency installation (`npm ci`)
 - ✅ Next.js build with GitHub Pages basePath
@@ -303,9 +344,144 @@ The following enhancements could further improve the test suite:
 
 - **Branch Protection**: Require status checks to pass before merging
 - **Automated PR Comments**: Post test results and coverage to PRs
-- **Deployment Preview**: Add preview deployments for PRs
+- **Deployment Preview**: Add preview deployments for PRs (see detailed guide below)
 - **Cache Optimization**: Improve caching strategy for faster builds
 - **Parallel Testing**: Run test suites in parallel for faster feedback
+
+### Preview Deployments for Static Sites
+
+Preview deployments allow reviewers to see and test changes in a live environment before merging, without needing to clone the repository or run it locally. This is especially valuable for non-technical reviewers.
+
+#### Recommended Options for Nonprofits: Vercel vs Cloudflare Pages
+
+For Free For Charity as a nonprofit organization, we evaluated the best preview deployment platforms based on free tier sustainability and features.
+
+**Platform Comparison for Nonprofits:**
+
+| Feature                           | Vercel                                             | Cloudflare Pages                          |
+| --------------------------------- | -------------------------------------------------- | ----------------------------------------- |
+| **Free Tier Sustainability**      | 🟡 Hobby tier may have future changes              | 🟢 Most likely to remain free             |
+| **Bandwidth Limit**               | 100GB/month                                        | ✅ Unlimited                              |
+| **Build Minutes**                 | 6,000 minutes/month                                | 500 builds/month                          |
+| **Preview Deployments**           | ✅ Unlimited                                       | ✅ Unlimited                              |
+| **Custom Domains**                | ✅ Unlimited                                       | ✅ Unlimited                              |
+| **Next.js Optimization**          | ✅ Excellent (created by Vercel)                   | ✅ Good                                   |
+| **Edge Network**                  | Global CDN                                         | Global CDN (270+ cities)                  |
+| **Nonprofit Program**             | ❌ No specific program                             | ❌ No specific program                    |
+| **Sustainability for Nonprofits** | 🟡 Personal/hobby use, not official nonprofit tier | 🟢 Generous free tier, unlikely to change |
+| **Bot Comments on PRs**           | ✅ Automatic                                       | ✅ Automatic                              |
+| **Build Time (typical)**          | ~2 minutes                                         | ~2-3 minutes                              |
+| **Ease of Setup**                 | 🟢 Very easy (GitHub integration)                  | 🟢 Easy (GitHub integration)              |
+
+**🏆 Recommendation: Cloudflare Pages**
+
+For Free For Charity, **Cloudflare Pages is the better choice** for these reasons:
+
+1. **Most Likely to Stay Free Long-Term**
+   - Cloudflare's business model is built on enterprise customers, not small sites
+   - Unlimited bandwidth makes it sustainable even as traffic grows
+   - No history of restricting free tier features
+
+2. **Unlimited Bandwidth**
+   - Vercel's 100GB/month may become restrictive as the nonprofit grows
+   - Cloudflare has no bandwidth limits on free tier
+   - Better for handling traffic spikes during fundraising campaigns
+
+3. **Better Sustainability Model**
+   - Cloudflare Pages is positioned as a competitive feature, not a revenue source
+   - Vercel's focus on monetization through usage limits may tighten over time
+
+4. **Good Next.js Support**
+   - While Vercel created Next.js, Cloudflare Pages handles static exports excellently
+   - This project uses static export (`output: "export"`), so Vercel's edge runtime advantages don't apply
+
+**⚠️ Vercel Considerations**
+
+Vercel is still a good option if you prioritize:
+
+- Slightly better Next.js-specific tooling
+- Simpler initial setup for Next.js projects
+- Current free tier is adequate for foreseeable traffic
+
+However, the "hobby" designation may be subject to future policy changes, and the 100GB bandwidth limit could become restrictive.
+
+#### Workflow for Creators and Reviewers
+
+Both platforms provide identical workflows:
+
+**Creator:**
+
+1. Create feature branch
+2. Make changes and push to GitHub
+3. Open pull request
+4. Wait for automatic preview deployment (1-3 minutes)
+5. Share preview URL from bot comment
+
+**Reviewer:**
+
+1. Open PR on GitHub
+2. Click preview URL in bot comment
+3. Test the live site in browser (no IDE or local setup needed)
+4. Provide feedback on PR
+5. Changes automatically deploy on new commits
+
+**Coexistence with GitHub Pages:**
+
+- Keep GitHub Pages for production (ffcworkingsite1.org)
+- Use Cloudflare Pages or Vercel for PR previews only
+- No conflicts between systems
+
+#### Setting Up Cloudflare Pages (Recommended)
+
+1. **Sign Up/Sign In**
+   - Go to [pages.cloudflare.com](https://pages.cloudflare.com)
+   - Sign in with GitHub (or create Cloudflare account)
+
+2. **Connect Repository**
+   - Click "Create a project" → "Connect to Git"
+   - Select "GitHub" and authorize Cloudflare Pages
+   - Choose this repository
+
+3. **Configure Build Settings**
+   - Framework preset: Select "Next.js (Static HTML Export)"
+   - Build command: `npm run build`
+   - Build output directory: `out`
+   - Environment variables: Leave `NEXT_PUBLIC_BASE_PATH` unset
+     - GitHub Pages needs `/FFC_Single_Page_Template` for subdirectory routing
+     - Cloudflare Pages deploys to root, no basePath needed
+
+4. **Enable Preview Deployments**
+   - In project settings → Builds & deployments
+   - Enable "Enable automatic preview deployments" (should be on by default)
+   - Enable "Enable comments on pull requests"
+
+5. **Deploy**
+   - Click "Save and Deploy"
+   - First build will take 2-3 minutes
+   - Future PR preview deployments are automatic
+
+**Result**: Every PR will have a comment like:
+
+```
+✅ Preview deployed to https://abc123.ffc-template.pages.dev
+🔗 Production: https://ffc-template.pages.dev
+```
+
+#### Setting Up Vercel (Alternative)
+
+If you prefer Vercel:
+
+1. Go to [vercel.com](https://vercel.com) and sign in with GitHub
+2. Click "Add New..." → "Project"
+3. Import this repository
+4. Configure:
+   - Framework Preset: Next.js
+   - Build Command: `npm run build`
+   - Output Directory: `out`
+   - Leave `NEXT_PUBLIC_BASE_PATH` unset
+5. Deploy
+
+Vercel automatically enables PR preview deployments and comments.
 
 **Full Testing Guide:** See [TESTING.md](./TESTING.md) for complete documentation.
 
@@ -336,26 +512,57 @@ The following enhancements could further improve the test suite:
 
 ## Project Structure
 
+**IMPORTANT:** When updating this structure, ALWAYS show all items fully. When new pages or folders are added, explicitly list them here. Do NOT use placeholders like `[policy-pages]` or `[feature]` - show the actual folder names.
+
 ```
 src/
-├── app/                    # Next.js App Router
-│   ├── page.tsx           # Main entry point (loads homepage)
-│   ├── layout.tsx         # Root layout with global config
-│   ├── globals.css        # Global styles
-│   ├── home-page/         # Homepage sections (single-page structure)
-│   ├── [policy-pages]/    # Legal/policy pages (7 separate routes)
-│   ├── sitemap.ts         # Dynamic sitemap generation
-│   └── robots.ts          # Robots.txt configuration
-├── components/            # Reusable components (112 component files)
-│   ├── header/           # Site header/navigation
-│   ├── footer/           # Site footer
-│   ├── cookie-consent/    # Cookie consent banner
-│   ├── ui/               # Reusable UI components
-│   ├── home-page/        # Homepage section components
-│   └── [feature]/        # Feature-specific component groups
-├── data/                 # Static content (FAQs, team, testimonials)
-├── lib/                  # Utility functions (assetPath helper)
-└── public/               # Static assets (icons, images, fonts)
+├── app/                                        # Next.js App Router
+│   ├── page.tsx                               # Main entry point (loads homepage)
+│   ├── layout.tsx                             # Root layout with global config
+│   ├── globals.css                            # Global styles
+│   ├── home-page/                             # Homepage sections (single-page structure)
+│   ├── cookie-policy/                         # Cookie Policy page
+│   ├── donation-policy/                       # Donation Policy page
+│   ├── free-for-charity-donation-policy/      # Free For Charity Donation Policy page
+│   ├── privacy-policy/                        # Privacy Policy page
+│   ├── security-acknowledgements/             # Security Acknowledgements page
+│   ├── terms-of-service/                      # Terms of Service page
+│   ├── vulnerability-disclosure-policy/       # Vulnerability Disclosure Policy page
+│   ├── sitemap.ts                             # Dynamic sitemap generation
+│   └── robots.ts                              # Robots.txt configuration
+├── components/                                # Reusable components (112 component files)
+│   ├── header/                               # Site header/navigation
+│   ├── footer/                               # Site footer
+│   ├── cookie-consent/                        # Cookie consent banner
+│   ├── google-tag-manager/                    # Analytics integration
+│   ├── ui/                                    # Reusable UI components
+│   ├── home-page/                             # Homepage-specific components
+│   ├── home/                                  # Alternative home components
+│   ├── domains/                               # Domain-related components
+│   ├── donate/                                # Donation components
+│   ├── volunteer/                             # Volunteer components
+│   ├── 501c3/                                 # 501c3 charity components
+│   ├── about-us/                              # About page components
+│   ├── charity-validation-guide/              # Charity validation guide components
+│   ├── contact-us/                            # Contact form components
+│   ├── endowment-fund/                        # Endowment fund components
+│   ├── free-charity-web-hosting/              # Web hosting program components
+│   ├── guidestar-guide/                       # GuideStar guide components
+│   ├── help-for-charities/                    # Help resources
+│   ├── online-impacts-onboarding/             # Online impacts onboarding components
+│   ├── pre501c3/                              # Pre-501c3 charity components
+│   ├── service-delivery-stages/               # Service delivery stages components
+│   ├── techstack/                             # Technology stack components
+│   ├── tools-for-success/                     # Tools and resources
+│   ├── volunteer-proving-ground/              # Volunteer proving ground components
+│   └── web-developer-training-guide/          # Web developer training guide components
+├── data/                                      # Static content
+│   ├── faqs/                                  # FAQ JSON files
+│   ├── team/                                  # Team member data
+│   └── testimonials/                          # Testimonial data
+├── lib/                                       # Utility functions
+│   └── assetPath.ts                           # Helper for GitHub Pages basePath support
+└── public/                                    # Static assets (icons, images, fonts)
 ```
 
 ## Site Improvements & Capability Gaps
@@ -492,3 +699,4 @@ For comprehensive guides and documentation:
 - **[ISSUE_RESOLUTION.md](./ISSUE_RESOLUTION.md)** - Common issues, troubleshooting, and FAQ
 - **[LESSONS_LEARNED.md](./LESSONS_LEARNED.md)** - Project retrospective, what worked, what didn't
 - **[SITE_IMPROVEMENTS.md](./SITE_IMPROVEMENTS.md)** - ✅ Phase 5 Complete: Technical analysis showing repository comparison and implemented improvements
+- **[TECHNICAL_DEBT.md](./TECHNICAL_DEBT.md)** - Consolidated tracking of technical debt items, security vulnerabilities, and future refactoring plans

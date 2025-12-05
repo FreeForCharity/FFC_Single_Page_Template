@@ -128,39 +128,56 @@ npm test     # Run automated tests (requires build first)
 
 **Note: Folder structure was refactored to use consistent kebab-case naming and remove redundant suffixes.**
 
+**IMPORTANT:** When updating this structure, ALWAYS show all items fully. When new pages or folders are added, explicitly list them here. Do NOT use placeholders like `[other policy pages]` or `[other feature folders]` - show the actual folder names.
+
 ```
 src/
-├── app/                           # Next.js app directory
-│   ├── page.tsx                   # Main homepage entry point
-│   ├── layout.tsx                 # Root layout with metadata, providers
-│   ├── globals.css                # Global styles
-│   ├── home-page/                 # Homepage components (formerly Figma-Home-page)
-│   ├── cookie-policy/             # Cookie policy page
-│   ├── privacy-policy/            # Privacy policy page
-│   └── [other policy pages]
-├── components/                    # All UI components (kebab-case naming)
-│   ├── header/                    # Site header/navigation
-│   ├── footer/                    # Site footer
-│   ├── cookie-consent/            # Cookie consent banner
-│   ├── google-tag-manager/        # Analytics integration
-│   ├── ui/                        # Reusable UI components
-│   ├── home-page/                 # Homepage-specific components
-│   ├── home/                      # Alternative home components
-│   ├── domains/                   # Domain-related components
-│   ├── donate/                    # Donation components
-│   ├── volunteer/                 # Volunteer components
-│   ├── 501c3/                     # 501c3 charity components
-│   ├── about-us/                  # About page components
-│   ├── endowment-fund/            # Endowment fund components
-│   ├── help-for-charities/        # Help resources
-│   ├── tools-for-success/         # Tools and resources
-│   └── [other feature folders]
-├── data/                          # Static content
-│   ├── faqs/                      # FAQ JSON files
-│   ├── team/                      # Team member data
-│   └── testimonials/              # Testimonial data
-└── lib/                           # Utility functions
-    └── assetPath.ts               # Helper for GitHub Pages basePath support
+├── app/                                        # Next.js app directory
+│   ├── page.tsx                               # Main homepage entry point
+│   ├── layout.tsx                             # Root layout with metadata, providers
+│   ├── globals.css                            # Global styles
+│   ├── home-page/                             # Homepage components (formerly Figma-Home-page)
+│   ├── cookie-policy/                         # Cookie Policy page
+│   ├── donation-policy/                       # Donation Policy page
+│   ├── free-for-charity-donation-policy/      # Free For Charity Donation Policy page
+│   ├── privacy-policy/                        # Privacy Policy page
+│   ├── security-acknowledgements/             # Security Acknowledgements page
+│   ├── terms-of-service/                      # Terms of Service page
+│   ├── vulnerability-disclosure-policy/       # Vulnerability Disclosure Policy page
+│   ├── sitemap.ts                             # Dynamic sitemap generation
+│   └── robots.ts                              # Robots.txt configuration
+├── components/                                # All UI components (kebab-case naming)
+│   ├── header/                               # Site header/navigation
+│   ├── footer/                               # Site footer
+│   ├── cookie-consent/                        # Cookie consent banner
+│   ├── google-tag-manager/                    # Analytics integration
+│   ├── ui/                                    # Reusable UI components
+│   ├── home-page/                             # Homepage-specific components
+│   ├── home/                                  # Alternative home components
+│   ├── domains/                               # Domain-related components
+│   ├── donate/                                # Donation components
+│   ├── volunteer/                             # Volunteer components
+│   ├── 501c3/                                 # 501c3 charity components
+│   ├── about-us/                              # About page components
+│   ├── charity-validation-guide/              # Charity validation guide components
+│   ├── contact-us/                            # Contact form components
+│   ├── endowment-fund/                        # Endowment fund components
+│   ├── free-charity-web-hosting/              # Web hosting program components
+│   ├── guidestar-guide/                       # GuideStar guide components
+│   ├── help-for-charities/                    # Help resources
+│   ├── online-impacts-onboarding/             # Online impacts onboarding components
+│   ├── pre501c3/                              # Pre-501c3 charity components
+│   ├── service-delivery-stages/               # Service delivery stages components
+│   ├── techstack/                             # Technology stack components
+│   ├── tools-for-success/                     # Tools and resources
+│   ├── volunteer-proving-ground/              # Volunteer proving ground components
+│   └── web-developer-training-guide/          # Web developer training guide components
+├── data/                                      # Static content
+│   ├── faqs/                                  # FAQ JSON files
+│   ├── team/                                  # Team member data
+│   └── testimonials/                          # Testimonial data
+└── lib/                                       # Utility functions
+    └── assetPath.ts                           # Helper for GitHub Pages basePath support
 ```
 
 **Naming Conventions:**
@@ -275,9 +292,22 @@ The site auto-deploys to GitHub Pages via `.github/workflows/deploy.yml` when pu
 
 ### ESLint Warnings
 
-- **Expected warnings**: `@next/next/no-img-element` in `NavBar.tsx` and `page.tsx`
-- **Cause**: Using `<img>` instead of Next.js `<Image>` component
-- **Status**: Acceptable for static export configuration. We use `assetPath()` helper to ensure images work on GitHub Pages.
+The project currently has 16 ESLint warnings. All have been reviewed and are acceptable:
+
+**1. `@next/next/no-img-element` warnings (6 occurrences)** - ✅ ACCEPTABLE
+
+- **Files**: `header/index.tsx`, `footer/index.tsx`, `endowment-fund/Hero/index.tsx`, `free-charity-web-hosting/About-FFC-Hosting/index.tsx`, `ui/General-Donation-Card.tsx`, `ui/trainingcard.tsx`
+- **Cause**: Using `<img>` tags instead of Next.js `<Image />` component
+- **Why acceptable**: Static export (`output: "export"`) is incompatible with Next.js Image Optimization. We use `assetPath()` helper to ensure images work on GitHub Pages.
+- **Impact**: Images load correctly but without automatic optimization
+
+**2. React Hooks warnings (10 occurrences)** - ⚠️ ACCEPTABLE but technical debt
+
+- `react-hooks/set-state-in-effect` (6): Setting state in `useEffect` for accordion animations and cookie consent - works correctly
+- `react-hooks/exhaustive-deps` (2): Missing effect dependencies - intentional for current implementation
+- `react-hooks/immutability` (2): Direct mutation in Swiper setup - works correctly but violates best practices
+
+**Running `npm run lint` will show these warnings - this is expected and does not indicate a problem.**
 
 ## Quick Reference Commands
 
