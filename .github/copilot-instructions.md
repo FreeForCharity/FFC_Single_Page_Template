@@ -159,10 +159,19 @@ src/
 │   ├── volunteer/                             # Volunteer components
 │   ├── 501c3/                                 # 501c3 charity components
 │   ├── about-us/                              # About page components
+│   ├── charity-validation-guide/              # Charity validation guide components
+│   ├── contact-us/                            # Contact form components
 │   ├── endowment-fund/                        # Endowment fund components
 │   ├── free-charity-web-hosting/              # Web hosting program components
+│   ├── guidestar-guide/                       # GuideStar guide components
 │   ├── help-for-charities/                    # Help resources
-│   └── tools-for-success/                     # Tools and resources
+│   ├── online-impacts-onboarding/             # Online impacts onboarding components
+│   ├── pre501c3/                              # Pre-501c3 charity components
+│   ├── service-delivery-stages/               # Service delivery stages components
+│   ├── techstack/                             # Technology stack components
+│   ├── tools-for-success/                     # Tools and resources
+│   ├── volunteer-proving-ground/              # Volunteer proving ground components
+│   └── web-developer-training-guide/          # Web developer training guide components
 ├── data/                                      # Static content
 │   ├── faqs/                                  # FAQ JSON files
 │   ├── team/                                  # Team member data
