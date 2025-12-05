@@ -11,9 +11,10 @@ const compat = new FlatCompat({
 })
 
 const eslintConfig = [
-  // Use Next.js config directly without compat for ESLint 9+ support
+  // eslint-config-next@16.0.7 exports a flat config array natively for ESLint 9+.
+  // Import directly to avoid FlatCompat circular structure errors with react-hooks@7.0.1.
   ...nextPlugin,
-  // Use compat only for prettier which doesn't have circular structure issues
+  // Prettier config can still use FlatCompat without issues
   ...compat.extends('plugin:prettier/recommended'),
   {
     ignores: [
@@ -33,9 +34,11 @@ const eslintConfig = [
     },
   },
   {
-    // eslint-plugin-react-hooks@7.0.1 introduced stricter rules that cause
-    // errors in existing code. Downgrade these to warnings to avoid breaking
-    // the build while still surfacing the issues for future improvement.
+    // TODO: Address React hooks rule violations and remove this override.
+    // eslint-plugin-react-hooks@7.0.1 (bundled with eslint-config-next@16.0.7)
+    // introduced stricter rules that flag existing patterns in multiple components.
+    // Temporarily downgraded to 'warn' to unblock the upgrade while we refactor.
+    // Affected: cookie-consent, FAQs, Accordian components, and others.
     rules: {
       'react-hooks/set-state-in-effect': 'warn',
       'react-hooks/immutability': 'warn',
