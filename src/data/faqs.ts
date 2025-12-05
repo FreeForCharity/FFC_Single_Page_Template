@@ -9,9 +9,9 @@ export const faqs: Faq[] = [
   faq2,
   {
     question: "What are the organization's key strategies for making this happen?",
-    answer: `FFC assists by paying the full cost of the .org domain name if available. This reduces a charity direct hard cost instantly and increases adoption of many other formal IT systems as a very low cost per charity (~$16.50 per year)
+    answer: `FFC assists by paying the full cost of the .org domain name if available. This reduces a charity's direct hard cost instantly and increases adoption of many other formal IT systems at very low cost per charity (~$16.50 per year).
 
-FFC is also employing a premium subscription to volunteer match to source additional IT project managers, IT Webmasters, and Graphic designers to expand how many charities we can support at one time. as well as working on partnerships with other charities and technology vendors for additional services not offered by Free For Charity.`,
+FFC is also employing a premium subscription to Idealist to source additional IT project managers, IT Webmasters, and Graphic designers to expand how many charities we can support at one time, as well as working on partnerships with other charities and technology vendors for additional services not offered by Free For Charity.`,
   },
   {
     question: "What are the organization's capabilities for doing this?",
@@ -60,8 +60,8 @@ If you have ever seen a charity with lower than 5% over head this is mostly what
     answer: `We provide help for charities with efficiency. One element of efficiency is getting the best product at the lowest price. For charities and non profits much more labor can be provided for free by volunteers. Free for Charity does not make your full-time staff take on more and more roles we can fully take over many of these tasks with expert volunteer labor. Business and IT professionals are always seeking to advance their skills while helping out charities. We capture this labor pool (or create it with training programs) and then manage the volunteers for your charities tasks and projects. We can do this at extremely low if not zero cost because of economies of scale, and because most of this work is process or research based and does not have ‘hard’ costs like equipment.`,
   },
   {
-    question: 'Are you like volunteermatch.org or other matching agencies?',
-    answer: `Not exactly. That type of charity matches workers with charities but then leaves the management of the work to the individual nonprofit or charity group. Many small and medium charities do not have the time to manage a volunteer or group of volunteers. Even charities with a volunteer coordinator who works with entry level volunteers may not have the skills to manage highly technical or high level business volunteers such as those with MBA’s or decades in high level information technology. This can result in your best volunteers leaving before a project is completed.
+    question: 'Are you like Idealist.org or other matching agencies?',
+    answer: `Not exactly. That type of charity matches workers with charities but then leaves the management of the work to the individual nonprofit or charity group. Many small and medium charities do not have the time to manage a volunteer or group of volunteers. Even charities with a volunteer coordinator who works with entry-level volunteers may not have the skills to manage highly technical or high-level business volunteers such as those with MBA’s or decades in high-level information technology. This can result in your best volunteers leaving before a project is completed.
 
 Free for Charity will manage both the work and the results of the projects in-house. All you have to do as a charity is to work with your project manager to set expectations and define results at each stage of the project.
 
