@@ -28,7 +28,7 @@ export const raleway = Raleway({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-raleway',
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  weight: ['400', '500', '600', '700'],
 })
 
 export const faustina = Faustina({
@@ -56,12 +56,12 @@ export const montserrat = Montserrat({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-montserrat',
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  weight: ['400', '500', '600', '700'],
 })
 
 export const cinzel = Cinzel({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-cinzel',
-  weight: ['400', '500', '600', '700', '800', '900'],
+  weight: ['400', '500', '600', '700'],
 })

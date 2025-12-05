@@ -98,7 +98,17 @@ export default function RootLayout({
         <GoogleTagManager />
       </head>
       <body
-        className={`antialiased ${openSans.variable} ${lato.variable} ${raleway.variable} ${faustina.variable} ${cantataOne.variable} ${faunaOne.variable} ${montserrat.variable} ${cinzel.variable}`}
+        className={[
+          'antialiased',
+          openSans.variable,
+          lato.variable,
+          raleway.variable,
+          faustina.variable,
+          cantataOne.variable,
+          faunaOne.variable,
+          montserrat.variable,
+          cinzel.variable,
+        ].join(' ')}
         suppressHydrationWarning={true}
       >
         <GoogleTagManagerNoScript />

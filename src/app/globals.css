@@ -34,7 +34,6 @@ body {
   --font-serif-display: var(--font-faustina);
   --font-serif: var(--font-fauna-one);
   --font-sans: var(--font-lato);
-  --font-alt: var(--font-inter);
 }
 
 body {
@@ -74,7 +73,7 @@ body {
   font-family: var(--font-raleway), sans-serif !important;
 }
 #courier-font {
-  font-family: var(--font-montserrat), monospace !important;
+  font-family: ui-monospace, 'Courier New', monospace !important;
 }
 #faustina-font {
   font-family: var(--font-faustina), serif !important;
