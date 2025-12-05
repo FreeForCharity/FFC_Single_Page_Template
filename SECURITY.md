@@ -224,15 +224,16 @@ The repository uses automated quality checks to ensure code quality and security
 
 **Deploy Workflow** (`.github/workflows/deploy.yml`)
 
-- Runs automatically on push to `main` branch
-- Can also be triggered manually via workflow dispatch
+- Runs automatically after CI workflow completes successfully on `main` branch
+- **Only deploys if all tests pass** in the CI workflow
+- Can also be triggered manually via workflow dispatch (bypasses CI wait)
 - Steps include:
   - Node.js 20 environment setup
   - Clean dependency installation (`npm ci`)
   - Next.js static site build with basePath for GitHub Pages
   - Static site artifact upload
   - Deployment to GitHub Pages from `./out` directory
-- Deployment fails if build encounters errors
+- Deployment is skipped if CI workflow fails or is cancelled
 
 **Security Scanning**
 
