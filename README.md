@@ -177,34 +177,34 @@ Tests run automatically on every push to main via GitHub Actions before deployme
 
 The ESLint warnings fall into three categories:
 
-1. **`@next/next/no-img-element` warnings (4 occurrences)** - ⚠️ ACCEPTABLE for this project
-   - Files: `src/components/header/index.tsx`, `src/components/ui/General-Donation-Card.tsx`, `src/components/ui/trainingcard.tsx`
+1. **`@next/next/no-img-element` warnings (6 occurrences)** - ⚠️ ACCEPTABLE for this project
+   - Files: `header/index.tsx`, `footer/index.tsx`, `endowment-fund/Hero/index.tsx`, `free-charity-web-hosting/About-FFC-Hosting/index.tsx`, `ui/General-Donation-Card.tsx`, `ui/trainingcard.tsx`
    - Issue: Using `<img>` tags instead of Next.js `<Image />` component
    - Why acceptable: This project uses static export (`output: "export"` in `next.config.ts`), which is incompatible with Next.js Image Optimization. We use the `assetPath()` helper to ensure images work correctly on both custom domain and GitHub Pages basePath.
    - Alternative fix: Could suppress these specific warnings or migrate to a custom image component
    - Website impact: Images load correctly but without automatic optimization (WebP conversion, lazy loading). For a static nonprofit site with modest image usage, this is an acceptable tradeoff.
 
 2. **React Hooks warnings - `react-hooks/set-state-in-effect` (6 occurrences)** - ⚠️ ACCEPTABLE but could be improved
-   - Files: Various accordion components (`Accordian.tsx`, `AccordianBold.tsx`, `Frequently-Asked-Questions.tsx`, `OrangeFaqItem.tsx`, `FAQs/index.tsx`)
-   - Issue: Calling `setState` synchronously within `useEffect` when animating accordion height
+   - Files: Various accordion components (`Accordian.tsx`, `AccordianBold.tsx`, `Frequently-Asked-Questions.tsx`, `OrangeFaqItem.tsx`, `free-charity-web-hosting/FAQs/index.tsx`) and `cookie-consent/index.tsx`
+   - Issue: Calling `setState` synchronously within `useEffect` when animating accordion height or loading preferences
    - Why acceptable: These components work correctly and don't cause performance issues in practice
    - Recommended fix: Use `useLayoutEffect` instead of `useEffect` for DOM measurements, or use CSS transitions with `max-height`
    - Website impact: Accordion animations work correctly. May cause minor cascading renders but not noticeable to users.
 
-3. **React Hooks warnings - Other (6 occurrences)** - ⚠️ ACCEPTABLE but could be improved
+3. **React Hooks warnings - Other (4 occurrences)** - ⚠️ ACCEPTABLE but could be improved
    - `react-hooks/exhaustive-deps` (2 occurrences): Missing dependencies in `useEffect`
-     - Files: `src/components/domains/domains-carousel/index.tsx`, `src/components/ui/CallToActionCard.tsx`
+     - Files: `free-charity-web-hosting/ClientTestimonials/index.tsx`, `ui/CallToActionCard.tsx`
      - Impact: Effects may not re-run when dependencies change, but current implementation works as intended
    - `react-hooks/immutability` (2 occurrences): Direct mutation of state values
-     - Files: `src/components/domains/domains-carousel/index.tsx`, `src/components/home/Testimonials/index.tsx`
+     - Files: `free-charity-web-hosting/ClientTestimonials/index.tsx`, `home/Testimonials/index.tsx`
      - Issue: Modifying Swiper navigation params directly instead of using setter
      - Impact: Works correctly but violates React best practices
    - These are technical debt items that don't affect functionality but should be addressed in future refactoring
 
 **Summary:**
 
-- 4 warnings are acceptable by design (static export constraint)
-- 12 warnings are technical debt that don't affect functionality
+- 6 warnings are acceptable by design (static export constraint)
+- 10 warnings are technical debt that don't affect functionality
 - All warnings have been reviewed and determined to be non-blocking
 - Website functions correctly despite these warnings
 
@@ -430,7 +430,9 @@ For a Next.js static site with GitHub Actions already set up:
 4. Configure build settings:
    - Build command: `npm run build`
    - Publish directory: `out`
-   - Add environment variable: `NEXT_PUBLIC_BASE_PATH` = `` (empty for Netlify)
+   - Environment variables: Do NOT set `NEXT_PUBLIC_BASE_PATH` (leave it unset/empty)
+     - GitHub Pages needs `/FFC_Single_Page_Template` basePath for subdirectory routing
+     - Netlify deploys to root domain, so no basePath is needed
 5. Deploy site
 6. In Netlify settings → Build & deploy → Deploy contexts:
    - Enable "Deploy Preview" for pull requests

@@ -294,16 +294,16 @@ The site auto-deploys to GitHub Pages via `.github/workflows/deploy.yml` when pu
 
 The project currently has 16 ESLint warnings. All have been reviewed and are acceptable:
 
-**1. `@next/next/no-img-element` warnings (4 occurrences)** - ✅ ACCEPTABLE
+**1. `@next/next/no-img-element` warnings (6 occurrences)** - ✅ ACCEPTABLE
 
-- **Files**: `header/index.tsx`, `General-Donation-Card.tsx`, `trainingcard.tsx`
+- **Files**: `header/index.tsx`, `footer/index.tsx`, `endowment-fund/Hero/index.tsx`, `free-charity-web-hosting/About-FFC-Hosting/index.tsx`, `ui/General-Donation-Card.tsx`, `ui/trainingcard.tsx`
 - **Cause**: Using `<img>` tags instead of Next.js `<Image />` component
 - **Why acceptable**: Static export (`output: "export"`) is incompatible with Next.js Image Optimization. We use `assetPath()` helper to ensure images work on GitHub Pages.
 - **Impact**: Images load correctly but without automatic optimization
 
-**2. React Hooks warnings (12 occurrences)** - ⚠️ ACCEPTABLE but technical debt
+**2. React Hooks warnings (10 occurrences)** - ⚠️ ACCEPTABLE but technical debt
 
-- `react-hooks/set-state-in-effect` (6): Setting state in `useEffect` for accordion animations - works correctly
+- `react-hooks/set-state-in-effect` (6): Setting state in `useEffect` for accordion animations and cookie consent - works correctly
 - `react-hooks/exhaustive-deps` (2): Missing effect dependencies - intentional for current implementation
 - `react-hooks/immutability` (2): Direct mutation in Swiper setup - works correctly but violates best practices
 
