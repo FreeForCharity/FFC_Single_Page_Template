@@ -331,7 +331,7 @@ Starting your contribution journey with a fresh review:
 
 1. Visit [https://ffcworkingsite1.org](https://ffcworkingsite1.org)
 2. Explore thoroughly and take notes
-3. [Create your review issue](https://github.com/FreeForCharity/FFC_Single_Page_Template/issues/new?template=reviewer-onboarding.md)
+3. [Create your review issue](https://github.com/FreeForCharity/FFC_Single_Page_Template/issues/new?assignees=&labels=documentation%2Creview%2Conboarding&template=reviewer-onboarding.md)
 4. Report individual issues you discover
 5. Engage with the team on your findings
 
