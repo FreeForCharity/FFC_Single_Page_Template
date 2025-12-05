@@ -6,13 +6,14 @@ Thank you for your interest in contributing to Free For Charity! This document p
 
 1. [Code of Conduct](#code-of-conduct)
 2. [AI-Assisted Development](#ai-assisted-development)
-3. [Getting Started](#getting-started)
-4. [Development Workflow](#development-workflow)
-5. [Coding Standards](#coding-standards)
-6. [Testing Guidelines](#testing-guidelines)
-7. [Commit Message Guidelines](#commit-message-guidelines)
-8. [Pull Request Process](#pull-request-process)
-9. [Communication Channels](#communication-channels)
+3. [Reviewer Onboarding](#reviewer-onboarding)
+4. [Getting Started](#getting-started)
+5. [Development Workflow](#development-workflow)
+6. [Coding Standards](#coding-standards)
+7. [Testing Guidelines](#testing-guidelines)
+8. [Commit Message Guidelines](#commit-message-guidelines)
+9. [Pull Request Process](#pull-request-process)
+10. [Communication Channels](#communication-channels)
 
 ---
 
@@ -134,6 +135,207 @@ You can choose among available AI models using Copilot's model selector feature.
 ```
 
 **Note:** Access to alternative AI providers may require specific subscription tiers. GitHub Copilot Individual provides access to core models, while GitHub Copilot Business and Enterprise may offer additional model options. Check your GitHub Copilot subscription details and the [GitHub Copilot documentation](https://docs.github.com/copilot) for currently available models.
+
+---
+
+## Reviewer Onboarding
+
+### Your First Contribution: Perform a Fresh Review
+
+**New to the project? Start here!** We believe fresh perspectives are invaluable for identifying usability issues, bugs, and enhancement opportunities that long-time contributors might overlook.
+
+### What is a Fresh Review?
+
+A fresh review is a comprehensive evaluation of the live Free For Charity website from a new user's perspective. As a new reviewer, your first contribution will be to:
+
+1. **Explore the live application** thoroughly
+2. **Document your findings** - both positive and negative
+3. **Report any issues** you discover
+4. **Suggest improvements** based on your experience
+
+This approach helps you:
+
+- Understand the project deeply before making code contributions
+- Provide valuable feedback from a user's viewpoint
+- Identify real-world usability and functionality issues
+- Build familiarity with the codebase and architecture
+
+### How to Perform Your Fresh Review
+
+#### Step 1: Visit the Live Site
+
+Start by exploring the live Free For Charity website:
+
+- **Production Site:** [https://ffcworkingsite1.org](https://ffcworkingsite1.org)
+- **GitHub Pages:** [https://freeforcharity.github.io/FFC_Single_Page_Template/](https://freeforcharity.github.io/FFC_Single_Page_Template/)
+
+#### Step 2: Comprehensive Evaluation
+
+Test the application thoroughly across multiple dimensions:
+
+**Functionality:**
+
+- Navigate through all sections of the homepage
+- Test the navigation menu (both desktop and mobile)
+- Try the Donate and Volunteer CTAs (if enabled)
+- Explore all policy pages (Privacy Policy, Terms, etc.)
+- Test all interactive elements (buttons, links, forms)
+
+**Usability:**
+
+- Evaluate the clarity of the site's purpose and messaging
+- Assess ease of navigation and information architecture
+- Check for broken links or missing pages
+- Verify that CTAs are clear and prominent
+
+**Design & Responsiveness:**
+
+- Test on multiple devices (desktop, tablet, mobile)
+- Check responsive behavior at different screen sizes
+- Evaluate visual consistency and branding
+- Assess color contrast and readability
+
+**Performance:**
+
+- Note page load times
+- Check for smooth scrolling and transitions
+- Identify any slow-loading resources
+
+**Accessibility:**
+
+- Test keyboard navigation
+- Check color contrast for readability
+- Verify alt text on images
+- Test with screen readers if possible
+
+**Content:**
+
+- Review text for clarity, grammar, and accuracy
+- Check that information is up-to-date
+- Identify any missing or incomplete content
+
+#### Step 3: Create Your Review Issue
+
+Once you've completed your evaluation, create a review issue to document your findings:
+
+1. **Navigate to the Issues tab** in the GitHub repository
+2. **Click "New Issue"**
+3. **Select the "Reviewer Onboarding - Fresh Review" template**
+4. **Fill out all sections** of the template:
+   - Reviewer information (your name, date, duration)
+   - Areas you evaluated
+   - Review environment (browsers, devices tested)
+   - Overall impressions
+   - Positive observations
+   - Issues discovered
+   - Enhancement recommendations
+   - Accessibility and performance notes
+
+5. **Use a clear title** format: `[REVIEW] Fresh Review by [Your Name] - [Date]`
+6. **Assign yourself** to the issue
+7. **Add labels:** `documentation`, `review`, `onboarding`
+
+#### Step 4: Report Individual Issues
+
+For each bug or problem you discovered:
+
+1. **Create a separate issue** for each distinct problem
+2. **Use appropriate labels:**
+   - `bug` - for broken functionality
+   - `enhancement` - for improvement suggestions
+   - `accessibility` - for accessibility issues
+   - `performance` - for performance problems
+   - `documentation` - for documentation issues
+
+3. **Link back to your review issue** by mentioning it (e.g., "Discovered during review #123")
+4. **Provide detailed information:**
+   - Clear description of the problem
+   - Steps to reproduce
+   - Expected vs. actual behavior
+   - Screenshots or recordings when helpful
+   - Browser/device information
+
+#### Step 5: Engage with the Team
+
+After creating your review issue:
+
+1. **Share your review** in GitHub Discussions or mention maintainers
+2. **Be responsive** to questions or feedback on your findings
+3. **Prioritize your findings** if asked (what's most critical?)
+4. **Offer to help** fix issues you're capable of addressing
+
+### Direct Link to Create a Review Issue
+
+You can create a new reviewer onboarding issue directly using this link:
+
+[**Create Reviewer Onboarding Issue**](https://github.com/FreeForCharity/FFC_Single_Page_Template/issues/new?assignees=&labels=documentation%2Creview%2Conboarding&template=reviewer-onboarding.md)
+
+### Tips for a Great Review
+
+**Be Thorough:**
+
+- Spend at least 30-60 minutes exploring the site
+- Test on multiple browsers and devices if possible
+- Click every link and button
+- Try edge cases (very long text, small screens, etc.)
+
+**Be Honest:**
+
+- Report everything you find, even small issues
+- Don't hold back on constructive criticism
+- Highlight what works well, not just problems
+
+**Be Specific:**
+
+- Include screenshots or screen recordings
+- Provide exact steps to reproduce issues
+- Note browser/device details for bugs
+- Quote specific text that's unclear or incorrect
+
+**Be Constructive:**
+
+- Explain why something is a problem
+- Suggest possible solutions when you can
+- Think about the user experience
+- Consider accessibility and inclusivity
+
+**Be Professional:**
+
+- Use respectful, collaborative language
+- Focus on the work, not the people
+- Assume good intentions
+- Remember we're all learning
+
+### What Happens Next?
+
+After you submit your fresh review:
+
+1. **Maintainers will review** your findings
+2. **Issues will be triaged** and prioritized
+3. **You may be asked** for clarification or additional testing
+4. **You'll be welcomed** to contribute fixes or improvements
+5. **Your input will help** improve the site for all users
+
+### Benefits of Starting with a Review
+
+Starting your contribution journey with a fresh review:
+
+- **Builds familiarity** with the project without diving into code immediately
+- **Provides value** even if you're not ready to code yet
+- **Identifies real issues** that affect actual users
+- **Creates opportunities** to contribute fixes later
+- **Establishes credibility** and shows initiative
+- **Helps maintainers** see the project through new eyes
+
+### Ready to Review?
+
+1. Visit [https://ffcworkingsite1.org](https://ffcworkingsite1.org)
+2. Explore thoroughly and take notes
+3. [Create your review issue](https://github.com/FreeForCharity/FFC_Single_Page_Template/issues/new?assignees=&labels=documentation%2Creview%2Conboarding&template=reviewer-onboarding.md)
+4. Report individual issues you discover
+5. Engage with the team on your findings
+
+**Thank you for helping make Free For Charity better! Your fresh perspective is valuable.**
 
 ---
 
