@@ -1,5 +1,5 @@
 import React from 'react'
-import BecomePartOfOurMissionCard from '@/components/UI/BecomePartOfOurMissionCard'
+import BecomePartOfOurMissionCard from '@/components/ui/BecomePartOfOurMissionCard'
 
 const index = () => {
   return (

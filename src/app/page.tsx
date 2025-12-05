@@ -1,12 +1,12 @@
 import React from 'react'
 // import HomePage from './Home/page'
-import FigmaHomePage from '@/app/Figma-Home-page'
+import HomePage from '@/app/home-page'
 
 const page = () => {
   return (
     <div>
       {/* <HomePage /> */}
-      <FigmaHomePage />
+      <HomePage />
     </div>
   )
 }
