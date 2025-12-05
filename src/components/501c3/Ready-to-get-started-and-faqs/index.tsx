@@ -1,6 +1,6 @@
 import React from 'react'
 import ReadyToGetStarted from '@/components/help-for-charities/Ready-to-Get-Started-Now'
-import AccordionItem from '@/components/ui/Accordian'
+import AccordionItem from '@/components/ui/Accordion'
 
 const index = () => {
   return (

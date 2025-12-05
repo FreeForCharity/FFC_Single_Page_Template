@@ -47,8 +47,8 @@ The project has **10 React Hooks ESLint warnings** that are technical debt. Thes
 
 **Affected Files:**
 
-- `src/components/ui/Accordian.tsx`
-- `src/components/ui/AccordianBold.tsx`
+- `src/components/ui/Accordion.tsx`
+- `src/components/ui/AccordionBold.tsx`
 - `src/components/ui/Frequently-Asked-Questions.tsx`
 - `src/components/ui/OrangeFaqItem.tsx`
 - `src/components/free-charity-web-hosting/FAQs/index.tsx`

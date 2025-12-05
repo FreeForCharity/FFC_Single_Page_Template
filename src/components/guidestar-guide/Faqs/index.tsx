@@ -1,5 +1,5 @@
 import React from 'react'
-import AccordianBold from '@/components/ui/AccordianBold'
+import AccordionBold from '@/components/ui/AccordionBold'
 import Image from 'next/image'
 import Transparentbtn from '@/components/ui/Transparentbtn'
 
@@ -11,7 +11,7 @@ const index = () => {
           <h1 className="text-[25px] md:text-[30px] font-[500] text-[#333] pb-[1em]" id="aria-font">
             1. Achieving Gold or Platinum Seal of Transparency
           </h1>
-          <AccordianBold number="1" title=" Claim Your Nonprofit Profile">
+          <AccordionBold number="1" title=" Claim Your Nonprofit Profile">
             <ul className="list-disc list-inside space-y-1 pb-[1em]">
               <li>
                 <strong className="text-[#666]">Create an account:</strong> Go to the{' '}
@@ -48,9 +48,9 @@ const index = () => {
               NOTE: If you nonprofit is already claimed then the current management has to “Add
               Managers” to allow your email to update the profile.
             </p>
-          </AccordianBold>
+          </AccordionBold>
 
-          <AccordianBold number="2" title=" Earn a Bronze Seal of Transparency">
+          <AccordionBold number="2" title=" Earn a Bronze Seal of Transparency">
             <ul className="list-disc list-inside space-y-1 pb-[1em]">
               <li>
                 <strong className="text-[#666]">Basic organizational details:</strong> Complete the
@@ -91,9 +91,9 @@ const index = () => {
                 ).
               </li>
             </ul>
-          </AccordianBold>
+          </AccordionBold>
 
-          <AccordianBold number="3" title=" Earn a Silver Seal of Transparency">
+          <AccordionBold number="3" title=" Earn a Silver Seal of Transparency">
             <ul className="list-disc list-inside space-y-1 pb-[1em]">
               <li>
                 <strong className="text-[#666]">Program details:</strong> Add information about your
@@ -134,9 +134,9 @@ const index = () => {
                 ).
               </li>
             </ul>
-          </AccordianBold>
+          </AccordionBold>
 
-          <AccordianBold number="4" title=" Earn a Gold Seal of Transparency">
+          <AccordionBold number="4" title=" Earn a Gold Seal of Transparency">
             <ul className="list-disc list-inside space-y-1 pb-[1em]">
               <li>
                 <strong className="text-[#666]">Financial information:</strong> Upload detailed
@@ -170,9 +170,9 @@ const index = () => {
                 ).
               </li>
             </ul>
-          </AccordianBold>
+          </AccordionBold>
 
-          <AccordianBold number="5" title=" Earn a Platinum Seal of Transparency">
+          <AccordionBold number="5" title=" Earn a Platinum Seal of Transparency">
             <ul className="list-disc list-inside space-y-1 pb-[1em]">
               <li>
                 <strong className="text-[#666]">Impact metrics:</strong> Provide quantitative data
@@ -218,7 +218,7 @@ const index = () => {
                 ).
               </li>
             </ul>
-          </AccordianBold>
+          </AccordionBold>
         </div>
 
         <div className="pt-[26px] max-w-[90%] sm:max-w-[90%] mx-auto">
