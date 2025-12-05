@@ -620,6 +620,56 @@ npm run preview  # Preview at http://localhost:3000
 - All images use `unoptimized` setting for static export compatibility
 - ESLint warnings about `<img>` tags are expected and acceptable for static export configuration
 
+## Contributing
+
+### New Contributor? Start with a Fresh Review!
+
+We welcome new contributors and believe fresh perspectives are invaluable! **Your first contribution should be a comprehensive review of our live application.**
+
+#### Why Start with a Review?
+
+- 🔍 **Identify issues** that experienced contributors might overlook
+- 📝 **Learn the project** thoroughly before diving into code
+- 💡 **Provide value** immediately with your unique perspective
+- 🎯 **Build familiarity** with features and architecture
+
+#### How to Get Started
+
+1. **Explore the live site:** [https://ffcworkingsite1.org](https://ffcworkingsite1.org)
+2. **Test thoroughly:** Try all features, navigation, and responsive behavior
+3. **Document findings:** Create a review issue using our template
+4. **Report issues:** File separate issues for bugs and enhancements you discover
+
+#### Create Your Review Issue
+
+Use our **Reviewer Onboarding template** to document your findings:
+
+[**Create Reviewer Onboarding Issue**](https://github.com/FreeForCharity/FFC_Single_Page_Template/issues/new?assignees=&labels=documentation%2Creview%2Conboarding&template=reviewer-onboarding.md)
+
+The template guides you through:
+
+- Areas to evaluate (functionality, design, performance, accessibility)
+- How to document findings
+- Creating individual bug/enhancement issues
+- Providing constructive feedback
+
+#### Detailed Instructions
+
+For complete guidance on performing a fresh review, see the **[Reviewer Onboarding section in CONTRIBUTING.md](./CONTRIBUTING.md#reviewer-onboarding)**.
+
+#### After Your Review
+
+Once your review is complete:
+
+- Engage with maintainers on your findings
+- Choose issues you'd like to help fix
+- Start contributing code improvements
+- Help review other contributions
+
+**Ready to help make Free For Charity better? Start your review today!**
+
+---
+
 ## Documentation
 
 For comprehensive guides and documentation:

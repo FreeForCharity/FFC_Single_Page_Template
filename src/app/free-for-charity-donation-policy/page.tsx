@@ -1,4 +1,10 @@
 import React from 'react'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Free For Charity Donation Policy | Free For Charity',
+  description: 'Free For Charity Donation Policy - Learn about our donation policies',
+}
 
 const index = () => {
   return (
