@@ -65,10 +65,11 @@ const CharityHeroBackground = () => {
         <div className="relative w-full max-w-[445px] aspect-square bg-white rounded-full p-12 flex items-center justify-center">
           <div className="relative w-full h-full">
             <Image
-              src="/Images/figma-hero-img.png"
+              src="/Images/figma-hero-img.webp"
               alt="Hero image"
               fill
               className="object-contain"
+              priority
             />
           </div>
         </div>

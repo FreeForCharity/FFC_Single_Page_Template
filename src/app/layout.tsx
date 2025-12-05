@@ -95,6 +95,18 @@ export default function RootLayout({
         <link rel="preconnect" href="https://ffcsites.org" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://ffcsites.org" />
+
+        {/* Preload critical LCP image */}
+        <link
+          rel="preload"
+          as="image"
+          href={`${basePath}/Images/figma-hero-img.webp`}
+          fetchPriority="high"
+        />
+
+        {/* Preload critical fonts */}
+        <link rel="preload" href={`${basePath}/_next/static/css/app/layout.css`} as="style" />
+
         <GoogleTagManager />
       </head>
       <body

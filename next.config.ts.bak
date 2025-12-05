@@ -6,24 +6,12 @@ const nextConfig: NextConfig = {
   images: {
     // This allows all images, local or external, to load without optimization
     unoptimized: true,
-    // Use remotePatterns instead of deprecated domains
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'ffcworkingsite1.org',
-      },
-      {
-        protocol: 'https',
-        hostname: 'staging.freeforcharity.org',
-      },
-      {
-        protocol: 'https',
-        hostname: 'freeforcharity.org',
-      },
-      {
-        protocol: 'https',
-        hostname: 'static.vecteezy.com',
-      },
+    // You can still list specific domains if needed, but with unoptimized it’s optional
+    domains: [
+      'ffcworkingsite1.org',
+      'staging.freeforcharity.org',
+      'freeforcharity.org',
+      'static.vecteezy.com',
     ],
   },
   // Optional: base path and asset prefix if using a subdirectory deployment
