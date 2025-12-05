@@ -208,6 +208,8 @@ The ESLint warnings fall into three categories:
 - All warnings have been reviewed and determined to be non-blocking
 - Website functions correctly despite these warnings
 
+**For detailed technical debt tracking:** See [TECHNICAL_DEBT.md](./TECHNICAL_DEBT.md) for comprehensive documentation of all technical debt items, including these React Hooks warnings, security vulnerabilities, and future refactoring plans.
+
 **TypeScript** (`tsconfig.json`)
 
 - ✅ Strict mode enabled
@@ -245,6 +247,7 @@ The ESLint warnings fall into three categories:
   - Impact: Limited to development environment, does not affect production site
   - Fix available via `npm audit fix --force` (may involve breaking changes)
   - These are being monitored and will be addressed through regular Dependabot updates
+  - See [TECHNICAL_DEBT.md](./TECHNICAL_DEBT.md) for tracking and prioritization
   - See [SECURITY.md](./SECURITY.md) for detailed information and mitigation steps
 
 ### CI/CD Integration
@@ -348,108 +351,136 @@ The following enhancements could further improve the test suite:
 
 Preview deployments allow reviewers to see and test changes in a live environment before merging, without needing to clone the repository or run it locally. This is especially valuable for non-technical reviewers.
 
-#### Options for Static Site Preview Deployments
+#### Recommended Options for Nonprofits: Vercel vs Cloudflare Pages
 
-**1. GitHub Pages PR Previews (Manual Approach)**
+For Free For Charity as a nonprofit organization, we evaluated the best preview deployment platforms based on free tier sustainability and features.
 
-Current limitation: GitHub Pages only supports one deployment per repository (typically from `main` branch). However, you can implement PR previews using subdirectories:
+**Platform Comparison for Nonprofits:**
 
-- **How it works**: Deploy each PR to a subdirectory like `/pr-123/`
-- **Pros**: Free, uses existing GitHub Pages setup
-- **Cons**: Manual cleanup needed, subdirectory routing complexity
-- **Implementation**: Requires custom workflow to build and deploy to PR-specific paths
+| Feature                           | Vercel                                             | Cloudflare Pages                          |
+| --------------------------------- | -------------------------------------------------- | ----------------------------------------- |
+| **Free Tier Sustainability**      | 🟡 Hobby tier may have future changes              | 🟢 Most likely to remain free             |
+| **Bandwidth Limit**               | 100GB/month                                        | ✅ Unlimited                              |
+| **Build Minutes**                 | 6,000 minutes/month                                | 500 builds/month                          |
+| **Preview Deployments**           | ✅ Unlimited                                       | ✅ Unlimited                              |
+| **Custom Domains**                | ✅ Unlimited                                       | ✅ Unlimited                              |
+| **Next.js Optimization**          | ✅ Excellent (created by Vercel)                   | ✅ Good                                   |
+| **Edge Network**                  | Global CDN                                         | Global CDN (270+ cities)                  |
+| **Nonprofit Program**             | ❌ No specific program                             | ❌ No specific program                    |
+| **Sustainability for Nonprofits** | 🟡 Personal/hobby use, not official nonprofit tier | 🟢 Generous free tier, unlikely to change |
+| **Bot Comments on PRs**           | ✅ Automatic                                       | ✅ Automatic                              |
+| **Build Time (typical)**          | ~2 minutes                                         | ~2-3 minutes                              |
+| **Ease of Setup**                 | 🟢 Very easy (GitHub integration)                  | 🟢 Easy (GitHub integration)              |
 
-**2. Netlify (Recommended for Static Sites)**
+**🏆 Recommendation: Cloudflare Pages**
 
-- **Setup**: Connect GitHub repo to Netlify
-- **How it works**: Automatic preview deployments for every PR
-- **Pros**: Automatic, free tier available, custom preview URLs, automatic cleanup
-- **URL format**: `https://deploy-preview-123--your-site.netlify.app`
-- **Review workflow**:
-  1. Developer creates PR
-  2. Netlify bot comments with preview URL (appears automatically in PR)
-  3. Reviewer clicks preview link to test changes
-  4. No local setup or IDE needed
-- **Cost**: Free for open source projects (100GB bandwidth/month)
+For Free For Charity, **Cloudflare Pages is the better choice** for these reasons:
 
-**3. Vercel**
+1. **Most Likely to Stay Free Long-Term**
+   - Cloudflare's business model is built on enterprise customers, not small sites
+   - Unlimited bandwidth makes it sustainable even as traffic grows
+   - No history of restricting free tier features
 
-- **Setup**: Import GitHub repository to Vercel
-- **How it works**: Automatic preview deployments for every PR and branch
-- **Pros**: Excellent Next.js integration, automatic HTTPS, custom domains
-- **URL format**: `https://project-name-git-branch.vercel.app`
-- **Review workflow**: Similar to Netlify, bot comments with preview URL
-- **Cost**: Free for personal/hobby projects
+2. **Unlimited Bandwidth**
+   - Vercel's 100GB/month may become restrictive as the nonprofit grows
+   - Cloudflare has no bandwidth limits on free tier
+   - Better for handling traffic spikes during fundraising campaigns
 
-**4. Cloudflare Pages**
+3. **Better Sustainability Model**
+   - Cloudflare Pages is positioned as a competitive feature, not a revenue source
+   - Vercel's focus on monetization through usage limits may tighten over time
 
-- **Setup**: Connect GitHub repo to Cloudflare Pages
-- **How it works**: Automatic preview deployments
-- **Pros**: Fast global CDN, unlimited bandwidth on free tier
-- **Review workflow**: Preview links in PR comments
-- **Cost**: Free with generous limits
+4. **Good Next.js Support**
+   - While Vercel created Next.js, Cloudflare Pages handles static exports excellently
+   - This project uses static export (`output: "export"`), so Vercel's edge runtime advantages don't apply
 
-#### Recommended Implementation for This Project
+**⚠️ Vercel Considerations**
 
-For a Next.js static site with GitHub Actions already set up:
+Vercel is still a good option if you prioritize:
 
-1. **Best for ease of use**: Netlify or Vercel
-   - Both have excellent Next.js support
-   - Both auto-comment preview URLs on PRs
-   - Both handle cleanup automatically
-   - No changes to existing GitHub Pages deployment needed (can run both)
+- Slightly better Next.js-specific tooling
+- Simpler initial setup for Next.js projects
+- Current free tier is adequate for foreseeable traffic
 
-2. **Workflow for creators/reviewers**:
+However, the "hobby" designation may be subject to future policy changes, and the 100GB bandwidth limit could become restrictive.
 
-   ```
-   Creator:
-   1. Create feature branch
-   2. Make changes
-   3. Push to GitHub and open PR
-   4. Wait for preview deployment (1-3 minutes)
-   5. Share preview URL from bot comment
+#### Workflow for Creators and Reviewers
 
-   Reviewer:
-   1. Open PR on GitHub
-   2. Click preview URL in bot comment
-   3. Test the live site in browser
-   4. Provide feedback on PR
-   5. No IDE or local setup required
-   ```
+Both platforms provide identical workflows:
 
-3. **Coexistence with GitHub Pages**:
-   - Keep GitHub Pages for production (ffcworkingsite1.org)
-   - Use Netlify/Vercel only for PR previews
-   - No conflicts between the two systems
+**Creator:**
 
-#### Setting Up Netlify Preview Deployments (Step-by-Step)
+1. Create feature branch
+2. Make changes and push to GitHub
+3. Open pull request
+4. Wait for automatic preview deployment (1-3 minutes)
+5. Share preview URL from bot comment
 
-1. Go to [netlify.com](https://netlify.com) and sign in with GitHub
-2. Click "Add new site" → "Import an existing project"
-3. Choose GitHub and select this repository
-4. Configure build settings:
+**Reviewer:**
+
+1. Open PR on GitHub
+2. Click preview URL in bot comment
+3. Test the live site in browser (no IDE or local setup needed)
+4. Provide feedback on PR
+5. Changes automatically deploy on new commits
+
+**Coexistence with GitHub Pages:**
+
+- Keep GitHub Pages for production (ffcworkingsite1.org)
+- Use Cloudflare Pages or Vercel for PR previews only
+- No conflicts between systems
+
+#### Setting Up Cloudflare Pages (Recommended)
+
+1. **Sign Up/Sign In**
+   - Go to [pages.cloudflare.com](https://pages.cloudflare.com)
+   - Sign in with GitHub (or create Cloudflare account)
+
+2. **Connect Repository**
+   - Click "Create a project" → "Connect to Git"
+   - Select "GitHub" and authorize Cloudflare Pages
+   - Choose this repository
+
+3. **Configure Build Settings**
+   - Framework preset: Select "Next.js (Static HTML Export)"
    - Build command: `npm run build`
-   - Publish directory: `out`
-   - Environment variables: Do NOT set `NEXT_PUBLIC_BASE_PATH` (leave it unset/empty)
-     - GitHub Pages needs `/FFC_Single_Page_Template` basePath for subdirectory routing
-     - Netlify deploys to root domain, so no basePath is needed
-5. Deploy site
-6. In Netlify settings → Build & deploy → Deploy contexts:
-   - Enable "Deploy Preview" for pull requests
-   - Enable "Branch deploys" if desired
-7. Done! Netlify will now automatically:
-   - Comment on PRs with preview URLs
-   - Build and deploy each PR commit
-   - Clean up deployments when PRs are closed
+   - Build output directory: `out`
+   - Environment variables: Leave `NEXT_PUBLIC_BASE_PATH` unset
+     - GitHub Pages needs `/FFC_Single_Page_Template` for subdirectory routing
+     - Cloudflare Pages deploys to root, no basePath needed
+
+4. **Enable Preview Deployments**
+   - In project settings → Builds & deployments
+   - Enable "Enable automatic preview deployments" (should be on by default)
+   - Enable "Enable comments on pull requests"
+
+5. **Deploy**
+   - Click "Save and Deploy"
+   - First build will take 2-3 minutes
+   - Future PR preview deployments are automatic
 
 **Result**: Every PR will have a comment like:
 
 ```
-✅ Deploy Preview for ffc-template ready!
-🔨 Explore the source changes: abc123
-🔍 Inspect the deploy log: https://app.netlify.com/...
-😎 Browse the preview: https://deploy-preview-123--ffc-template.netlify.app
+✅ Preview deployed to https://abc123.ffc-template.pages.dev
+🔗 Production: https://ffc-template.pages.dev
 ```
+
+#### Setting Up Vercel (Alternative)
+
+If you prefer Vercel:
+
+1. Go to [vercel.com](https://vercel.com) and sign in with GitHub
+2. Click "Add New..." → "Project"
+3. Import this repository
+4. Configure:
+   - Framework Preset: Next.js
+   - Build Command: `npm run build`
+   - Output Directory: `out`
+   - Leave `NEXT_PUBLIC_BASE_PATH` unset
+5. Deploy
+
+Vercel automatically enables PR preview deployments and comments.
 
 **Full Testing Guide:** See [TESTING.md](./TESTING.md) for complete documentation.
 
@@ -617,3 +648,4 @@ For comprehensive guides and documentation:
 - **[ISSUE_RESOLUTION.md](./ISSUE_RESOLUTION.md)** - Common issues, troubleshooting, and FAQ
 - **[LESSONS_LEARNED.md](./LESSONS_LEARNED.md)** - Project retrospective, what worked, what didn't
 - **[SITE_IMPROVEMENTS.md](./SITE_IMPROVEMENTS.md)** - ✅ Phase 5 Complete: Technical analysis showing repository comparison and implemented improvements
+- **[TECHNICAL_DEBT.md](./TECHNICAL_DEBT.md)** - Consolidated tracking of technical debt items, security vulnerabilities, and future refactoring plans
