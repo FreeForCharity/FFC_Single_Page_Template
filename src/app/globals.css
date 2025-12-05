@@ -1,17 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Faustina:ital,wght@0,300..800;1,300..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&display=swap');
-@import url('https://fonts.cdnfonts.com/css/segoe-ui-4?styles=18006,18005,18004,18003');
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fauna+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cantata+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Faustina:ital,wght@0,300..800;1,300..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fauna+One&display=swap');
+/* Fonts are now loaded via next/font in layout.tsx for optimal performance */
 @import 'tailwindcss';
 
 :root {
@@ -51,52 +38,45 @@ body {
 }
 
 body {
-  /* font-family: "Open Sans", sans-serif !important; */
-  font-family: 'Faustina', serif !important;
+  font-family: var(--font-faustina), serif !important;
   background: var(--color-paper);
   color: var(--color-ink);
 }
 #header {
-  font-family: 'Open Sans', sans-serif !important;
+  font-family: var(--font-open-sans), sans-serif !important;
 }
 #aria-font {
-  font-family: 'Open Sans', sans-serif !important;
+  font-family: var(--font-open-sans), sans-serif !important;
 }
 #lato-font {
-  font-family: 'Lato', sans-serif !important;
+  font-family: var(--font-lato), sans-serif !important;
 }
 #montserrat-font {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: var(--font-montserrat), sans-serif !important;
 }
 #abeezee {
-  font-family: 'ABeeZee', sans-serif !important;
+  font-family: var(--font-open-sans), sans-serif !important;
 }
 #segoe-font {
-  font-family: 'Segoe UI', sans-serif !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
 }
 #cinzel {
-  font-family: 'Cinzel', sans-serif !important;
+  font-family: var(--font-raleway), serif !important;
 }
 #fauna-font {
-  font-family: 'Fauna One', sans-serif !important;
+  font-family: var(--font-fauna-one), serif !important;
 }
 #cantata-font {
-  font-family: 'Cantata One', sans-serif !important;
+  font-family: var(--font-cantata-one), serif !important;
 }
 #raleway-font {
-  font-family: 'Raleway', sans-serif !important;
-}
-#montserrat-font {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: var(--font-raleway), sans-serif !important;
 }
 #courier-font {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: var(--font-montserrat), monospace !important;
 }
 #faustina-font {
-  font-family: 'Faustina', sans-serif !important;
-}
-#fauna-font {
-  font-family: 'Fauna One', sans-serif !important;
+  font-family: var(--font-faustina), serif !important;
 }
 
 @keyframes fadeTop {
