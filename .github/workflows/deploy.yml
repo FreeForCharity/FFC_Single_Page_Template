@@ -69,7 +69,7 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: /FFC_Single_Page_Template
 
       - name: Upload artifact for Pages
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./out
 
