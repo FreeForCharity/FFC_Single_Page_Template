@@ -127,7 +127,6 @@ const Footer: React.FC = () => {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    target="_blank"
                     className="hover:text-[#F58C23] hover:tracking-widest transition-all text-[16px] font-[500]"
                   >
                     {link.name}

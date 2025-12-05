@@ -1,3 +1,10 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Donation Policy | Free For Charity',
+  description: 'Donation Policy for Free For Charity website',
+}
+
 export default function DonationPolicy() {
   return (
     <main className="ffc-container py-16">
