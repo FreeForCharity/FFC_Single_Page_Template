@@ -1,17 +1,9 @@
-import { dirname } from 'path'
-import { fileURLToPath } from 'url'
-import { FlatCompat } from '@eslint/eslintrc'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-})
+import nextConfig from 'eslint-config-next'
+import prettierRecommended from 'eslint-plugin-prettier/recommended'
 
 const eslintConfig = [
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
-  ...compat.extends('plugin:prettier/recommended'),
+  ...nextConfig,
+  prettierRecommended,
   {
     ignores: [
       'node_modules/**',
@@ -27,6 +19,14 @@ const eslintConfig = [
     files: ['jest.config.js', 'jest.setup.js'],
     rules: {
       '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
+  {
+    // Relax some stricter rules introduced in eslint-config-next 16.x
+    // These are pre-existing issues that should be addressed separately
+    rules: {
+      'react-hooks/set-state-in-effect': 'warn',
+      'react-hooks/immutability': 'warn',
     },
   },
 ]
