@@ -112,7 +112,7 @@ The FFC Single Page Template was created as a standardized, reusable foundation 
 
 **Current Stats**:
 
-- 111 component files
+- 112 component files
 - Well-organized in `/src/components/`
 - Each component has single responsibility
 
@@ -289,11 +289,11 @@ docs: update README with new deployment instructions
 
 ## Technical Decisions
 
-### Next.js 15.5.2
+### Next.js 15.5.7
 
 **Why chosen**:
 
-- Latest stable version at project start
+- Latest stable version with security fixes
 - Improved performance with Turbopack
 - Better static export support
 - React 19 compatibility
