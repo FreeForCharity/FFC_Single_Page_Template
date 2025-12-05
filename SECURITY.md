@@ -395,18 +395,15 @@ Beyond branch protection, this repository uses:
 
 ### Current Status (December 2025)
 
-The project currently has **5 known vulnerabilities** identified by npm audit:
-
-- **1 critical**: Next.js RCE vulnerability in React flight protocol (GHSA-9qr9-h5gf-34mp)
-  - Affects: next@15.5.1-canary.0 through 15.5.6
-  - Fix: Update to next@15.5.7 via `npm audit fix --force`
-  - ⚠️ **Warning**: This requires manual update as it may involve breaking changes. Test thoroughly in a development environment before deploying to production.
+The project currently has **4 low severity vulnerabilities** identified by npm audit:
 
 - **4 low severity**: tmp package vulnerabilities
   - Affects: @lhci/cli (Lighthouse CI - dev dependency only)
-  - Vulnerability: Arbitrary temporary file/directory write via symbolic link
+  - Vulnerability: Arbitrary temporary file/directory write via symbolic link (GHSA-52f5-9888-hmc6)
   - Impact: Limited to development environment, does not affect production site
-  - Fix available via `npm audit fix --force` (may involve breaking changes)
+  - Fix available via `npm audit fix --force` (may involve breaking changes to Lighthouse CI)
+
+**Good News**: The previously reported critical Next.js RCE vulnerability (GHSA-9qr9-h5gf-34mp) has been resolved. The project is now using next@15.5.7, which includes the security fix.
 
 ### Monitoring and Updates
 
