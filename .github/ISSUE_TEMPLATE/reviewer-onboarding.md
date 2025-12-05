@@ -45,7 +45,7 @@ Please check all areas you reviewed:
 - [ ] Chrome/Edge
 - [ ] Firefox
 - [ ] Safari
-- [ ] Mobile browser (specify): \***\*\_\_\_\*\***
+- [ ] Mobile browser (specify):
 
 **Device(s) Used:**
 
