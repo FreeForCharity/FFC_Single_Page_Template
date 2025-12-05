@@ -1,3 +1,10 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Terms of Service | Free For Charity',
+  description: 'Terms of Service for Free For Charity website',
+}
+
 export default function TermsOfService() {
   return (
     <div className="pt-[130px] pb-[54px]">
