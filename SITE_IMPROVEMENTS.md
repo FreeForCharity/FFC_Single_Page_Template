@@ -54,7 +54,7 @@ This analysis compares FFC_Single_Page_Template against three sister repositorie
 
 ### Key Findings
 
-**FFC_Single_Page_Template** is a feature-rich, multi-page Next.js application with 111 component files and extensive content pages.
+**FFC_Single_Page_Template** is a feature-rich, single-page Next.js application with 112 component files and extensive content sections, plus 7 policy pages.
 
 **Note:** As of Phase 5 completion, most critical gaps have been addressed. The items listed below were the original gaps identified, many of which have now been implemented. However, compared to sister sites, some differences remain:
 
@@ -75,7 +75,7 @@ This analysis compares FFC_Single_Page_Template against three sister repositorie
 
 | Feature             | FFC_Single_Page_Template | freeforcharity-web | ffcadmin.org | KCCF-web |
 | ------------------- | ------------------------ | ------------------ | ------------ | -------- |
-| **Next.js Version** | 15.5.2                   | 15.5.2             | 16.0.3       | 15.4.6   |
+| **Next.js Version** | 16.0.7                   | 15.5.2             | 16.0.3       | 15.4.6   |
 | **React Version**   | 19.1.0                   | 19.1.0             | 19.2.0       | 19.1.0   |
 | **Node.js Target**  | 20.x                     | 20.x               | 20.x         | 20.x     |
 | **Package Manager** | npm                      | npm                | pnpm         | npm      |
