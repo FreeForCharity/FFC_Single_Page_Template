@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import Header from './../components/Header'
-import Footer from './../components/Footer'
-import CookieConsent from './../components/CookieConsent'
+import Header from './../components/header'
+import Footer from './../components/footer'
+import CookieConsent from './../components/cookie-consent'
+import GoogleTagManager, { GoogleTagManagerNoScript } from './../components/google-tag-manager'
 
 // Get basePath for GitHub Pages deployment
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
@@ -78,7 +79,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <GoogleTagManager />
+      </head>
       <body className={`antialiased`} suppressHydrationWarning={true}>
+        <GoogleTagManagerNoScript />
         {/* <PopupProvider> */}
         <Header />
         {children}

@@ -30,7 +30,7 @@ We are committed to providing a welcoming and inclusive environment for all cont
 
 ### Prerequisites
 
-- **Node.js**: Version 20.x or higher (validated with v20.19.5)
+- **Node.js**: Version 20.x (validated with v20.19.6)
 - **npm**: Package manager (comes with Node.js)
 - **Git**: Version control
 - **Code Editor**: We recommend VS Code with the following extensions:
@@ -246,6 +246,7 @@ describe('ComponentName', () => {
 
 ### Test Coverage Goals
 
+- **Current**: 26 unit tests passing (4 test suites)
 - **Minimum**: 5% overall coverage (current threshold)
 - **Target**: 15-20% coverage for initial implementation
 - **Long-term goal**: 50%+ coverage
