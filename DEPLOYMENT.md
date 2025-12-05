@@ -93,18 +93,20 @@ Runs on all pull requests and pushes to main:
 
 #### Deploy Workflow Steps (`.github/workflows/deploy.yml`)
 
-Runs only after CI workflow completes successfully on push to main branch:
+Triggered automatically after the CI workflow completes successfully on push to the main branch:
 
-1. **Wait for CI**: Triggered by successful completion of CI workflow
-2. **Verify CI success**: Checks that CI workflow concluded with success status
-3. **Checkout code**: Retrieves the latest code from the repository
-4. **Setup Node.js**: Installs Node.js 20.x
-5. **Setup Pages**: Configures GitHub Pages settings
-6. **Restore Next.js cache**: Restores build cache for faster builds
-7. **Install dependencies**: Runs `npm ci` for a clean installation
-8. **Build site**: Runs `next build` with basePath for GitHub Pages
-9. **Upload artifact**: Packages the `./out` directory
-10. **Deploy to GitHub Pages**: Publishes the site to GitHub Pages (separate job)
+**Note**: The deploy workflow only runs if the CI workflow completed successfully. This is enforced by the `workflow_run` trigger and job-level conditional.
+
+The actual steps performed by the deploy workflow are:
+
+1. **Checkout code**: Retrieves the tested code from the repository
+2. **Setup Node.js**: Installs Node.js 20.x
+3. **Setup Pages**: Configures GitHub Pages settings
+4. **Restore Next.js cache**: Restores build cache for faster builds
+5. **Install dependencies**: Runs `npm ci` for a clean installation
+6. **Build site**: Runs `next build` with basePath for GitHub Pages
+7. **Upload artifact**: Packages the `./out` directory
+8. **Deploy to GitHub Pages**: Publishes the site to GitHub Pages (separate job)
 
 #### Environment Variables in CI
 

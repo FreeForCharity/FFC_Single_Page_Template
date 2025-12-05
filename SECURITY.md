@@ -228,7 +228,6 @@ The repository uses automated quality checks to ensure code quality and security
 - **Only deploys if all tests pass** in the CI workflow
 - Can also be triggered manually via workflow dispatch (bypasses CI wait)
 - Steps include:
-  - Wait for CI workflow completion and verify success status
   - Node.js 20 environment setup
   - Clean dependency installation (`npm ci`)
   - Next.js static site build with basePath for GitHub Pages
