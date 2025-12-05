@@ -24,7 +24,7 @@ The Free For Charity website is a static Next.js application deployed to GitHub 
 
 ### Technology Stack
 
-- **Framework**: Next.js 15.5.2 with static export
+- **Framework**: Next.js 15.5.7 with static export
 - **Hosting**: GitHub Pages
 - **CI/CD**: GitHub Actions
 - **Node.js**: Version 20.x

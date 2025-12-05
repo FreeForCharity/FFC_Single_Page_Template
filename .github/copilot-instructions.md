@@ -1,6 +1,6 @@
 # Free For Charity Web Application
 
-Free For Charity is a Next.js 15.5.2 static website that connects students, professionals, and businesses with nonprofits to reduce operating costs and increase impact. Built with TypeScript, Tailwind CSS, and configured for static export to GitHub Pages.
+Free For Charity is a Next.js 15.5.7 single-page static website that connects students, professionals, and businesses with nonprofits to reduce operating costs and increase impact. Built with TypeScript, Tailwind CSS, and configured for static export to GitHub Pages.
 
 **ALWAYS reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.**
 
@@ -13,21 +13,18 @@ Free For Charity is a Next.js 15.5.2 static website that connects students, prof
 
 ### Bootstrap and Build Process
 
-**CRITICAL: Google Fonts Network Limitation**
+**Build Process**
 
-- `npm run build` -- **FAILS** due to network restrictions accessing fonts.googleapis.com
-- **Workaround**: Comment out Google Font imports in `src/app/layout.tsx` before building:
-  ```typescript
-  // import { Faustina, Fauna_One, Lato, Inter } from "next/font/google";
-  // Comment out font variable declarations and body className usage
-  ```
-- Build takes ~20 seconds when fonts are disabled. NEVER CANCEL. Set timeout to 180+ seconds (includes retry time for font failures).
+- `npm run build` -- Builds the static site successfully (~30 seconds)
+- Google Fonts are NOT used in this project (imports have been removed)
+- Build generates 13 static pages (1 homepage + 7 policy pages + sitemap/robots)
+- NEVER CANCEL. Set timeout to 180+ seconds for safety.
 
 ### Core Commands and Timings
 
 1. `npm install` -- takes ~17 seconds. NEVER CANCEL. Set timeout to 60+ seconds.
-2. `npm run lint` -- takes ~2 seconds. Produces warnings about img tags (expected). Set timeout to 30+ seconds.
-3. `npm run build` -- **FAILS with Google Fonts**. Takes ~20 seconds when fonts disabled. NEVER CANCEL. Set timeout to 180+ seconds.
+2. `npm run lint` -- takes ~2 seconds. Produces 8 warnings about img tags and React hooks (expected). Set timeout to 30+ seconds.
+3. `npm run build` -- takes ~30 seconds. NEVER CANCEL. Set timeout to 180+ seconds.
 4. `npm run dev` -- starts in ~1 second with turbopack. NEVER CANCEL. Set timeout to 30+ seconds.
 5. `npm run preview` -- serves built static files. NEVER CANCEL. Set timeout to 30+ seconds.
 
@@ -41,10 +38,10 @@ npm install
 npm run dev
 # Visit http://localhost:3000
 
-# Lint code (2 seconds, warnings expected)
+# Lint code (2 seconds, 8 warnings expected)
 npm run lint
 
-# Build for production (REQUIRES font workaround)
+# Build for production (30 seconds)
 npm run build
 
 # Preview built site
