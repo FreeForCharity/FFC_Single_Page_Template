@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import AccordionItem from '@/components/ui/Accordian'
+import AccordionItem from '@/components/ui/Accordion'
 const index = () => {
   return (
     <div className="bg-[#fcfcfc] pt-[60px] pb-[25px] w-full max-w-[100%]">

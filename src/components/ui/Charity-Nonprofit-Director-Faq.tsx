@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import AccordionItem from '@/components/ui/Accordian'
+import AccordionItem from '@/components/ui/Accordion'
 
 const CharityFAQ: React.FC = () => {
   return (
