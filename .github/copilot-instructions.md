@@ -1,6 +1,6 @@
 # Free For Charity Web Application
 
-Free For Charity is a Next.js 15.5.7 single-page static website that connects students, professionals, and businesses with nonprofits to reduce operating costs and increase impact. Built with TypeScript, Tailwind CSS, and configured for static export to GitHub Pages.
+Free For Charity is a Next.js 16.0.7 single-page static website that connects students, professionals, and businesses with nonprofits to reduce operating costs and increase impact. Built with TypeScript, Tailwind CSS, and configured for static export to GitHub Pages.
 
 **ALWAYS reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.**
 
@@ -17,7 +17,7 @@ Free For Charity is a Next.js 15.5.7 single-page static website that connects st
 
 - `npm run build` -- Builds the static site successfully (~30 seconds)
 - Google Fonts are NOT used in this project (imports have been removed)
-- Build generates 13 static pages (1 homepage + 7 policy pages + sitemap/robots)
+- Build generates 12 static pages (1 homepage + 7 policy pages + 1 not-found page + 2 metadata files: sitemap.xml, robots.txt)
 - NEVER CANCEL. Set timeout to 180+ seconds for safety.
 
 ### Core Commands and Timings

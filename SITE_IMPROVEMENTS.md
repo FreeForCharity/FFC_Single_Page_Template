@@ -75,7 +75,7 @@ This analysis compares FFC_Single_Page_Template against three sister repositorie
 
 | Feature             | FFC_Single_Page_Template | freeforcharity-web | ffcadmin.org | KCCF-web |
 | ------------------- | ------------------------ | ------------------ | ------------ | -------- |
-| **Next.js Version** | 15.5.7                   | 15.5.2             | 16.0.3       | 15.4.6   |
+| **Next.js Version** | 16.0.7                   | 15.5.2             | 16.0.3       | 15.4.6   |
 | **React Version**   | 19.1.0                   | 19.1.0             | 19.2.0       | 19.1.0   |
 | **Node.js Target**  | 20.x                     | 20.x               | 20.x         | 20.x     |
 | **Package Manager** | npm                      | npm                | pnpm         | npm      |

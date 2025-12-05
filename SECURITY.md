@@ -403,7 +403,7 @@ The project currently has **4 low severity vulnerabilities** identified by npm a
   - Impact: Limited to development environment, does not affect production site
   - Fix available via `npm audit fix --force` (may involve breaking changes to Lighthouse CI)
 
-**Good News**: The previously reported critical Next.js RCE vulnerability (GHSA-9qr9-h5gf-34mp) has been resolved. The project is now using next@15.5.7, which includes the security fix.
+**Good News**: The previously reported critical Next.js RCE vulnerability (GHSA-9qr9-h5gf-34mp) has been resolved. The project is now using next@16.0.7, which includes the security fix.
 
 ### Monitoring and Updates
 

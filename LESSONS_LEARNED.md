@@ -289,7 +289,7 @@ docs: update README with new deployment instructions
 
 ## Technical Decisions
 
-### Next.js 15.5.7
+### Next.js 16.0.7
 
 **Why chosen**:
 

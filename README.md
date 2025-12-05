@@ -1,6 +1,6 @@
 # Free For Charity Website
 
-Single-page Next.js website built with App Router for Free For Charity nonprofit organization.
+Single-page Next.js 16.0.7 website built with App Router for Free For Charity nonprofit organization.
 
 ## 🎉 Phase 5 Implementation Complete
 
