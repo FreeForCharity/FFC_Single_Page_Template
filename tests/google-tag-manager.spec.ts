@@ -60,12 +60,12 @@ test.describe('Google Tag Manager Integration', () => {
     expect(canPushToDataLayer).toBe(true)
   })
 
-  test('should load GTM script early in page lifecycle', async ({ page }) => {
+  test('should load GTM script after page interaction', async ({ page }) => {
     await page.goto('/')
 
     // Verify GTM script exists on the page
-    // Note: Next.js Script component with afterInteractive strategy
-    // may inject scripts in the body, which is acceptable for GTM
+    // Note: Next.js Script component with lazyOnload strategy
+    // defers script loading until after page is interactive
     const gtmScript = await page.evaluate(() => {
       const script = document.querySelector('script[id="gtm-script"]')
       return script !== null
@@ -73,7 +73,7 @@ test.describe('Google Tag Manager Integration', () => {
 
     expect(gtmScript).toBe(true)
 
-    // Verify dataLayer is initialized before page content loads
+    // Verify dataLayer is initialized (may be delayed with lazyOnload)
     const dataLayerInitialized = await page.evaluate(() => {
       return typeof window.dataLayer !== 'undefined'
     })
