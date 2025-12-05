@@ -4,10 +4,9 @@
       "staticDistDir": "./out",
       "url": [
         "http://localhost/index.html",
-        "http://localhost/about-us/index.html",
-        "http://localhost/donate/index.html",
-        "http://localhost/volunteer/index.html",
-        "http://localhost/help-for-charities/index.html"
+        "http://localhost/about-us.html",
+        "http://localhost/donate.html",
+        "http://localhost/volunteer.html"
       ],
       "numberOfRuns": 3
     },

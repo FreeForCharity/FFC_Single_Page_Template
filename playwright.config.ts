@@ -1,5 +1,5 @@
 import { defineConfig, devices } from '@playwright/test'
-import { execSync } from 'child_process'
+import { execFileSync } from 'child_process'
 
 /**
  * Finds the system Chromium browser executable.
@@ -23,7 +23,7 @@ function findChromiumExecutable(): string | undefined {
   const browserNames = ['chromium', 'chromium-browser', 'google-chrome', 'google-chrome-stable']
   for (const name of browserNames) {
     try {
-      const path = execSync(`which ${name}`, {
+      const path = execFileSync('which', [name], {
         encoding: 'utf-8',
         stdio: ['pipe', 'pipe', 'ignore'], // Suppress stderr
       }).trim()
