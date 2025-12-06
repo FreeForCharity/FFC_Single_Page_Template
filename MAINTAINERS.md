@@ -150,7 +150,7 @@ We appreciate all maintainers' time and dedication to making Free For Charity's 
 
 ---
 
-**Last Updated**: December 2025  
+**Last Updated**: December 6, 2025  
 **Version**: 1.0
 
 For governance policies and decision-making processes, see [GOVERNANCE.md](./GOVERNANCE.md).
