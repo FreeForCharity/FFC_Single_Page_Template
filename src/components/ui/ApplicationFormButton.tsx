@@ -158,7 +158,7 @@ const ApplicationFormButton: React.FC<ApplicationFormButtonProps> = ({
               className="w-full h-full rounded-lg border-0"
               title="Charity Application Form"
               sandbox="allow-scripts allow-forms allow-popups"
-              allow="geolocation; microphone; camera"
+              allow="geolocation"
               onLoad={handleIframeLoad}
             />
           </div>
