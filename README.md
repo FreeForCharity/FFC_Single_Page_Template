@@ -18,6 +18,25 @@ Single-page Next.js 16.0.7 website built with App Router for Free For Charity no
 
 **Free For Charity** is a 501(c)(3) nonprofit organization (EIN: 46-2471893) dedicated to supporting other nonprofits.
 
+## CNCF-Compliant Open Source Project
+
+This repository follows **Cloud Native Computing Foundation (CNCF)** standards for governance, security, and community practices. We are committed to transparency, inclusive participation, and professional project management.
+
+### Project Governance and Policies
+
+- 📜 **[LICENSE](./LICENSE)** - GPL-3.0 open source license
+- 🤝 **[CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)** - Community standards and reporting (Contributor Covenant 2.1)
+- ⚖️ **[GOVERNANCE.md](./GOVERNANCE.md)** - Decision-making processes and project leadership
+- 👥 **[MAINTAINERS.md](./MAINTAINERS.md)** - Repository maintainers and their roles
+- 🔒 **[SECURITY.md](./SECURITY.md)** - Vulnerability reporting and security practices
+- 🛡️ **[THREAT-MODEL.md](./THREAT-MODEL.md)** - Security threat analysis and mitigations
+- 🌟 **[ADOPTERS.md](./ADOPTERS.md)** - Organizations using this template
+- 🤝 **[CONTRIBUTING.md](./CONTRIBUTING.md)** - How to contribute to the project
+
+**Why CNCF Alignment?** Following CNCF standards strengthens project credibility, simplifies onboarding of contributors, and prepares us for cloud-native ecosystem integrations. It demonstrates our commitment to open source best practices and professional project management.
+
+**Primary Contact**: Clarke Moyer ([@clarkemoyer](https://github.com/clarkemoyer)) - clarkemoyer@freeforcharity.org
+
 ## Purpose
 
 Free For Charity connects students, professionals, and businesses with nonprofits to reduce operating costs and increase impact. By providing free web hosting, domain names, Microsoft 365 grants assistance, and consulting services, we help nonprofits put more resources back into their charitable missions.
