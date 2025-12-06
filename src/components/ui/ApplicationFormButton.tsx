@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 
 interface ApplicationFormButtonProps {
   text?: string
@@ -15,22 +15,22 @@ const ApplicationFormButton: React.FC<ApplicationFormButtonProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const modalRef = useRef<HTMLDivElement>(null)
+  const previousFocusRef = useRef<HTMLElement | null>(null)
 
-  // Microsoft Form URL - hardcoded as requested
-  // TODO: Replace YOUR_FORM_ID with actual Microsoft Form ID from https://forms.office.com
-  // Example: https://forms.office.com/pages/responsepage.aspx?id=dHQyc2FwbGUtaWQtZXhhbXBsZQ
-  const microsoftFormUrl =
-    formUrl || 'https://forms.office.com/pages/responsepage.aspx?id=YOUR_FORM_ID'
+  // Microsoft Form URL - using actual form from issue description
+  // Format: https://forms.office.com/r/{formId}
+  const microsoftFormUrl = formUrl || 'https://forms.office.com/r/vePxGq6JqG'
 
   const openPopup = () => {
     setIsOpen(true)
     setIsLoading(true)
   }
 
-  const closePopup = () => {
+  const closePopup = useCallback(() => {
     setIsOpen(false)
     setIsLoading(true) // Reset loading state for next open
-  }
+  }, [])
 
   const handleIframeLoad = () => {
     setIsLoading(false)
@@ -57,6 +57,29 @@ const ApplicationFormButton: React.FC<ApplicationFormButtonProps> = ({
       return () => {
         document.body.style.overflow = originalOverflow
         document.removeEventListener('keydown', handleEscape)
+      }
+    }
+  }, [isOpen, closePopup])
+
+  // Focus management for modal
+  useEffect(() => {
+    if (isOpen && modalRef.current) {
+      // Store the previously focused element
+      previousFocusRef.current = document.activeElement as HTMLElement
+
+      // Focus the first focusable element in the modal (close button)
+      const focusableElements = modalRef.current.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      )
+      if (focusableElements.length > 0) {
+        ;(focusableElements[0] as HTMLElement).focus()
+      }
+
+      return () => {
+        // Restore focus when modal closes
+        if (previousFocusRef.current) {
+          previousFocusRef.current.focus()
+        }
       }
     }
   }, [isOpen])
@@ -86,9 +109,15 @@ const ApplicationFormButton: React.FC<ApplicationFormButtonProps> = ({
           aria-labelledby="application-form-title"
         >
           <div
+            ref={modalRef}
             className="relative w-full max-w-5xl h-[90vh] mx-4 bg-white rounded-lg shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Screen reader only heading for accessibility */}
+            <h2 id="application-form-title" className="sr-only">
+              Charity Application Form
+            </h2>
+
             {/* Close button */}
             <button
               onClick={closePopup}
@@ -128,11 +157,10 @@ const ApplicationFormButton: React.FC<ApplicationFormButtonProps> = ({
 
             {/* Microsoft Form iframe */}
             <iframe
-              id="application-form-title"
               src={microsoftFormUrl}
               className="w-full h-full rounded-lg border-0"
               title="Charity Application Form"
-              sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
+              sandbox="allow-scripts allow-forms allow-popups"
               allow="geolocation; microphone; camera"
               onLoad={handleIframeLoad}
             />

@@ -6,37 +6,42 @@ The application button now opens a Microsoft Form in a popup modal instead of re
 
 ## Updating the Microsoft Form URL
 
-**⚠️ IMPORTANT:** The Microsoft Form URL is currently set to a placeholder and **must be updated** before the form will work in production.
+The application button is currently configured to use the Microsoft Form at `https://forms.office.com/r/vePxGq6JqG`.
 
-The Microsoft Form URL can be configured in two ways:
+If you need to change the form URL, you can configure it in two ways:
 
-### Option 1: Update Default in Component (Required for production)
+### Option 1: Update Default in Component
 
-Edit `src/components/ui/ApplicationFormButton.tsx` and replace `YOUR_FORM_ID` with your actual Microsoft Form ID on line 22:
+Edit `src/components/ui/ApplicationFormButton.tsx` and update the form URL on line 23:
 
 ```typescript
-const microsoftFormUrl =
-  formUrl || 'https://forms.office.com/pages/responsepage.aspx?id=YOUR_ACTUAL_FORM_ID'
+const microsoftFormUrl = formUrl || 'https://forms.office.com/r/vePxGq6JqG'
 ```
 
 ### Option 2: Pass as Component Prop (Optional - for testing or multiple forms)
 
 ```tsx
-<ApplicationFormButton formUrl="https://forms.office.com/pages/responsepage.aspx?id=YOUR_FORM_ID" />
+<ApplicationFormButton formUrl="https://forms.office.com/r/YOUR_FORM_ID" />
 ```
+
+### Microsoft Form URL Formats
+
+Microsoft Forms supports two URL formats:
+
+1. **Modern short format** (recommended): `https://forms.office.com/r/{formId}`
+   - Example: `https://forms.office.com/r/vePxGq6JqG`
+   - This is the format used by default
+
+2. **Legacy format**: `https://forms.office.com/pages/responsepage.aspx?id={formId}`
+   - Example: `https://forms.office.com/pages/responsepage.aspx?id=dHQyc2FwbGUtaWQtZXhhbXBsZQ`
+   - Still supported but longer
 
 ### How to Get Your Microsoft Form URL
 
 1. Create your Microsoft Form at https://forms.office.com
 2. Click "Share" or "Send" to get the form link
-3. Copy the full form URL (it should look something like: `https://forms.office.com/pages/responsepage.aspx?id=xxxxx`)
-4. Use one of the three methods above to configure it
-
-Example URL:
-
-```
-https://forms.office.com/pages/responsepage.aspx?id=dHQyc2FwbGUtaWQtZXhhbXBsZQ
-```
+3. Copy the full form URL
+4. Update the component using one of the methods above
 
 ## Components Updated
 
