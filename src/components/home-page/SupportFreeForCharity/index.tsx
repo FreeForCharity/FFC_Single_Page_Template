@@ -50,10 +50,11 @@ const Index = () => {
             <div className="w-full flex justify-center lg:justify-end">
               <div className="relative w-full max-w-[400px] aspect-[578/386]">
                 <Image
-                  src="/Images/support-free-for-charity.png"
+                  src="/Images/support-free-for-charity.webp"
                   alt="support free for charity image"
                   fill
                   className="object-contain scale-x-[-1]"
+                  loading="lazy"
                 />
               </div>
             </div>
