@@ -1,32 +1,48 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 interface ApplicationFormButtonProps {
   text?: string
   className?: string
+  formUrl?: string
 }
 
 const ApplicationFormButton: React.FC<ApplicationFormButtonProps> = ({
   text = 'Apply to Become a Supported Charity',
   className = '',
+  formUrl,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
 
-  // Microsoft Form URL - replace with actual URL when provided
-  const microsoftFormUrl = 'https://forms.office.com/pages/responsepage.aspx?id=YOUR_FORM_ID'
+  // Microsoft Form URL - can be passed as prop or use environment variable
+  const microsoftFormUrl =
+    formUrl ||
+    process.env.NEXT_PUBLIC_APPLICATION_FORM_URL ||
+    'https://forms.office.com/pages/responsepage.aspx?id=YOUR_FORM_ID'
 
   const openPopup = () => {
     setIsOpen(true)
-    // Prevent body scroll when popup is open
-    document.body.style.overflow = 'hidden'
   }
 
   const closePopup = () => {
     setIsOpen(false)
-    // Restore body scroll
-    document.body.style.overflow = 'unset'
   }
+
+  // Handle body scroll lock with cleanup
+  useEffect(() => {
+    if (isOpen) {
+      // Store original overflow value
+      const originalOverflow = document.body.style.overflow
+      // Prevent body scroll when popup is open
+      document.body.style.overflow = 'hidden'
+
+      // Cleanup function to restore original overflow
+      return () => {
+        document.body.style.overflow = originalOverflow
+      }
+    }
+  }, [isOpen])
 
   return (
     <>
@@ -78,10 +94,8 @@ const ApplicationFormButton: React.FC<ApplicationFormButtonProps> = ({
             {/* Microsoft Form iframe */}
             <iframe
               src={microsoftFormUrl}
-              className="w-full h-full rounded-lg"
+              className="w-full h-full rounded-lg border-0"
               title="Application Form"
-              frameBorder="0"
-              style={{ border: 'none' }}
             />
           </div>
         </div>
