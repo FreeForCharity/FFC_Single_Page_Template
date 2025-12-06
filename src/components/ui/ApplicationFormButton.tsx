@@ -69,18 +69,15 @@ const ApplicationFormButton: React.FC<ApplicationFormButtonProps> = ({
 
       // Focus the first focusable element in the modal (close button)
       const focusableElements = modalRef.current.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        'button:not([disabled]), [href]:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]):not([disabled])'
       )
       if (focusableElements.length > 0) {
         ;(focusableElements[0] as HTMLElement).focus()
       }
-
-      return () => {
-        // Restore focus when modal closes
-        if (previousFocusRef.current) {
-          previousFocusRef.current.focus()
-        }
-      }
+    } else if (!isOpen && previousFocusRef.current) {
+      // Restore focus when modal closes
+      previousFocusRef.current.focus()
+      previousFocusRef.current = null
     }
   }, [isOpen])
 
