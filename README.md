@@ -67,7 +67,7 @@ The site is live and fully functional with the following features:
 - SEO optimization (metadata, sitemap, robots.txt)
 - Static site generation and deployment pipeline
 - All 7 policy pages created and linked (Privacy Policy, Cookie Policy, Terms of Service, Donation Policy, Free For Charity Donation Policy, Vulnerability Disclosure Policy, Security Acknowledgements)
-- Social media links configured (Facebook, Google+, Twitter/X, LinkedIn, GitHub)
+- Social media links configured (Facebook, Twitter/X, LinkedIn, GitHub)
 - Footer links fully functional with proper destinations
 - Contact information complete (email, phone, addresses)
 - Deployed to live domain: [https://ffcworkingsite1.org](https://ffcworkingsite1.org)
@@ -80,10 +80,11 @@ The site is live and fully functional with the following features:
   - 2 program application CTAs in "Ready to Get Started Now?" section (501c3 and Pre-501c3 onboarding links)
   - 4 informational links in onboarding documentation (domain management and contact references)
 - Contact sections are informational only (no form submission backend)
+- Footer includes a Google+ social media link (service shut down in April 2019 - link should be removed or replaced)
 
 ## Overview
 
-This is a single-page website with **112 component files** organized into multiple sections that showcase Free For Charity's programs, services, and resources. The homepage is composed of scrollable sections (Hero, Mission, Programs, Team, FAQ, etc.), with 7 additional policy pages for legal content. The site includes a global popup system for donations and volunteer signups (codebase includes the infrastructure, though the popups are currently commented out in `layout.tsx`).
+This is a single-page website with **100+ component files** organized into multiple sections that showcase Free For Charity's programs, services, and resources. The homepage is composed of scrollable sections (Hero, Mission, Programs, Team, FAQ, etc.), with 7 additional policy pages for legal content. The site includes a global popup system for donations and volunteer signups (codebase includes the infrastructure, though the popups are currently commented out in `layout.tsx`).
 
 ### Site Structure
 
