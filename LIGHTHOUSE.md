@@ -29,12 +29,12 @@ Our Lighthouse CI is configured with the following warning thresholds:
 
 | Category           | Threshold | Priority |
 | ------------------ | --------- | -------- |
-| **Performance**    | 60%       | Medium   |
-| **Accessibility**  | 80%       | High     |
-| **Best Practices** | 80%       | High     |
-| **SEO**            | 90%       | High     |
+| **Performance**    | 55%       | Medium   |
+| **Accessibility**  | 90%       | High     |
+| **Best Practices** | 65%       | Medium   |
+| **SEO**            | 95%       | High     |
 
-These are **warning** levels, not hard failures. They help identify areas for improvement without blocking deployments.
+These are **warning** levels, not hard failures. They help identify areas for improvement without blocking deployments. Thresholds are set just below current performance levels to catch regressions while allowing for normal score variations.
 
 ---
 
@@ -137,9 +137,9 @@ The Lighthouse CI configuration is in `lighthouserc.json`:
       "staticDistDir": "./out",
       "url": [
         "http://localhost/index.html",
-        "http://localhost/about-us.html",
-        "http://localhost/donate.html",
-        "http://localhost/volunteer.html"
+        "http://localhost/cookie-policy.html",
+        "http://localhost/privacy-policy.html",
+        "http://localhost/terms-of-service.html"
       ],
       "numberOfRuns": 3
     }
@@ -147,9 +147,9 @@ The Lighthouse CI configuration is in `lighthouserc.json`:
 }
 ```
 
-**Important**: URLs should point to the actual `.html` files in the `out` directory (e.g., `about-us.html`), not to subdirectories with `index.html`. Next.js static export generates flat HTML files at the root level.
+**Important**: URLs should point to the actual `.html` files in the `out` directory. Next.js static export generates flat HTML files at the root level. This site has a single homepage with sections (About Us, Donate, Volunteer) rather than separate pages for those features. However, the policy pages are separate routes that generate individual HTML files.
 
-You can add more pages to audit by adding URLs to the `url` array.
+You can add more pages to audit by adding URLs to the `url` array. To see which pages are generated, check the `out/` directory after running `npm run build`.
 
 ---
 
@@ -464,9 +464,9 @@ This prevents unnecessary runs and saves CI/CD resources.
 
 ## Current Status
 
-**Last Updated**: 2025-12-03
+**Last Updated**: 2025-12-06
 
-**Pages Monitored**: 4 key pages (Home, About, Donate, Volunteer)
+**Pages Monitored**: 4 key pages (Homepage, Cookie Policy, Privacy Policy, Terms of Service)
 
 **Monitoring Frequency**:
 

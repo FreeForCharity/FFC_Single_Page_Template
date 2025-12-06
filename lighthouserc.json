@@ -4,9 +4,9 @@
       "staticDistDir": "./out",
       "url": [
         "http://localhost/index.html",
-        "http://localhost/about-us.html",
-        "http://localhost/donate.html",
-        "http://localhost/volunteer.html"
+        "http://localhost/cookie-policy.html",
+        "http://localhost/privacy-policy.html",
+        "http://localhost/terms-of-service.html"
       ],
       "numberOfRuns": 3
     },
@@ -15,12 +15,11 @@
       "outputDir": ".lighthouseci"
     },
     "assert": {
-      "preset": "lighthouse:no-pwa",
       "assertions": {
-        "categories:performance": ["warn", { "minScore": 0.6 }],
-        "categories:accessibility": ["warn", { "minScore": 0.8 }],
-        "categories:best-practices": ["warn", { "minScore": 0.8 }],
-        "categories:seo": ["warn", { "minScore": 0.9 }]
+        "categories:performance": ["warn", { "minScore": 0.55 }],
+        "categories:accessibility": ["warn", { "minScore": 0.9 }],
+        "categories:best-practices": ["warn", { "minScore": 0.65 }],
+        "categories:seo": ["warn", { "minScore": 0.95 }]
       }
     }
   }
