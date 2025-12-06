@@ -56,11 +56,6 @@ test.describe('Footer Social Links', () => {
 
     // Count all social media links in the footer
     // They are identified by having target="_blank" and being in the footer's social links section
-    const socialLinks = page
-      .locator('footer a[target="_blank"][rel="noopener noreferrer"]')
-      .filter({
-        has: page.locator('svg'),
-      })
 
     // We should have exactly 4 social icons: Facebook, X (Twitter), LinkedIn, GitHub
     // Note: This count might be higher due to other external links in footer
