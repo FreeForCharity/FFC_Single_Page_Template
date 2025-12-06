@@ -85,9 +85,14 @@ Lighthouse is an open-source, automated tool developed by Google for improving t
 Lighthouse CI runs automatically:
 
 1. **After successful deployment** to the main branch (via `workflow_run` trigger)
+   - Triggers after the "Deploy to GitHub Pages" workflow completes successfully
+   - Only runs on the main branch to avoid duplicate runs on PRs
 2. **On pull requests** to the main branch (with results posted as PR comments)
+   - Runs once per PR to provide feedback before merging
 3. **On manual trigger** from the Actions tab
 4. **Multiple runs per page** (3 runs) to calculate and report median scores
+
+> **Note**: The workflow is configured to avoid duplicate runs. PRs trigger only via the `pull_request` event, while main branch deployments trigger only via the `workflow_run` event.
 
 ### Viewing CI Results
 

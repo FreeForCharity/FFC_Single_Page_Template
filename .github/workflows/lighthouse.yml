@@ -1,11 +1,12 @@
 name: Lighthouse CI
 
 on:
-  # Run after deployment workflow completes
+  # Run after deployment workflow completes on main branch
   workflow_run:
-    workflows: ['Deploy Next.js site to Pages']
+    workflows: ['Deploy to GitHub Pages']
     types:
       - completed
+    branches: ['main']
 
   # Run on pull requests
   pull_request:
