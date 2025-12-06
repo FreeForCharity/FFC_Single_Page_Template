@@ -70,6 +70,7 @@ const CharityHeroBackground = () => {
               fill
               className="object-contain"
               priority
+              sizes="(max-width: 1024px) 100vw, 445px"
             />
           </div>
         </div>

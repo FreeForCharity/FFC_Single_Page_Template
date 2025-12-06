@@ -31,7 +31,7 @@ const index = () => {
             controls
             playsInline
             preload="metadata"
-            poster="/videos/mission-video-poster.png"
+            poster="/videos/mission-video-poster.webp"
             aria-label="Free For Charity mission video"
             title="Learn about Free For Charity's mission to help nonprofits reduce costs"
           >
