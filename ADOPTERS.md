@@ -57,7 +57,7 @@ If you're using this template, we'd love to hear from you! Add your organization
 - **Commercial**: 0
 - **Personal/Other**: 0
 
-_Last Updated: December 2025_
+_Last Updated: December 6, 2025_
 
 ## Privacy Note
 
