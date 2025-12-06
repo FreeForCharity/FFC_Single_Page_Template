@@ -22,10 +22,10 @@ const ApplicationFormButton: React.FC<ApplicationFormButtonProps> = ({
   // Format: https://forms.office.com/r/{formId}
   const microsoftFormUrl = formUrl || 'https://forms.office.com/r/vePxGq6JqG'
 
-  const openPopup = () => {
+  const openPopup = useCallback(() => {
     setIsOpen(true)
     setIsLoading(true)
-  }
+  }, [])
 
   const closePopup = useCallback(() => {
     setIsOpen(false)
@@ -74,10 +74,13 @@ const ApplicationFormButton: React.FC<ApplicationFormButtonProps> = ({
       if (focusableElements.length > 0) {
         ;(focusableElements[0] as HTMLElement).focus()
       }
-    } else if (!isOpen && previousFocusRef.current) {
-      // Restore focus when modal closes
-      previousFocusRef.current.focus()
-      previousFocusRef.current = null
+
+      // Cleanup function to restore focus when modal closes
+      return () => {
+        if (previousFocusRef.current) {
+          previousFocusRef.current.focus()
+        }
+      }
     }
   }, [isOpen])
 
