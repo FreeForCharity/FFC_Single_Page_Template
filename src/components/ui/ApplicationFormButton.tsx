@@ -14,19 +14,24 @@ const ApplicationFormButton: React.FC<ApplicationFormButtonProps> = ({
   formUrl,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
-  // Microsoft Form URL - can be passed as prop or use environment variable
+  // Microsoft Form URL - hardcoded as requested
   const microsoftFormUrl =
-    formUrl ||
-    process.env.NEXT_PUBLIC_APPLICATION_FORM_URL ||
-    'https://forms.office.com/pages/responsepage.aspx?id=YOUR_FORM_ID'
+    formUrl || 'https://forms.office.com/pages/responsepage.aspx?id=YOUR_FORM_ID'
 
   const openPopup = () => {
     setIsOpen(true)
+    setIsLoading(true)
   }
 
   const closePopup = () => {
     setIsOpen(false)
+    setIsLoading(true) // Reset loading state for next open
+  }
+
+  const handleIframeLoad = () => {
+    setIsLoading(false)
   }
 
   // Handle body scroll lock with cleanup
@@ -105,6 +110,20 @@ const ApplicationFormButton: React.FC<ApplicationFormButtonProps> = ({
               </svg>
             </button>
 
+            {/* Loading indicator */}
+            {isLoading && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-white rounded-lg z-20">
+                <div className="relative">
+                  {/* Animated spinner */}
+                  <div className="w-16 h-16 border-4 border-[#2A6682] border-t-transparent rounded-full animate-spin"></div>
+                </div>
+                <p className="mt-4 text-lg text-gray-600 font-medium">
+                  Loading application form...
+                </p>
+                <p className="mt-2 text-sm text-gray-500">This may take a few seconds</p>
+              </div>
+            )}
+
             {/* Microsoft Form iframe */}
             <iframe
               id="application-form-title"
@@ -113,6 +132,7 @@ const ApplicationFormButton: React.FC<ApplicationFormButtonProps> = ({
               title="Charity Application Form"
               sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
               allow="geolocation; microphone; camera"
+              onLoad={handleIframeLoad}
             />
           </div>
         </div>
