@@ -6,25 +6,24 @@ The application button now opens a Microsoft Form in a popup modal instead of re
 
 ## Updating the Microsoft Form URL
 
-The Microsoft Form URL can be configured in three ways (in order of priority):
+**⚠️ IMPORTANT:** The Microsoft Form URL is currently set to a placeholder and **must be updated** before the form will work in production.
 
-### Option 1: Pass as Component Prop (Recommended for multiple forms)
+The Microsoft Form URL can be configured in two ways:
+
+### Option 1: Update Default in Component (Required for production)
+
+Edit `src/components/ui/ApplicationFormButton.tsx` and replace `YOUR_FORM_ID` with your actual Microsoft Form ID on line 22:
+
+```typescript
+const microsoftFormUrl =
+  formUrl || 'https://forms.office.com/pages/responsepage.aspx?id=YOUR_ACTUAL_FORM_ID'
+```
+
+### Option 2: Pass as Component Prop (Optional - for testing or multiple forms)
 
 ```tsx
 <ApplicationFormButton formUrl="https://forms.office.com/pages/responsepage.aspx?id=YOUR_FORM_ID" />
 ```
-
-### Option 2: Environment Variable (Recommended for single global form)
-
-Add to your `.env.local` file:
-
-```
-NEXT_PUBLIC_APPLICATION_FORM_URL=https://forms.office.com/pages/responsepage.aspx?id=YOUR_FORM_ID
-```
-
-### Option 3: Update Default in Component
-
-Edit `src/components/ui/ApplicationFormButton.tsx` and update the fallback URL.
 
 ### How to Get Your Microsoft Form URL
 

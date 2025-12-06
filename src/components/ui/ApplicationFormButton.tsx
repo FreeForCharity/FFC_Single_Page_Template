@@ -17,6 +17,8 @@ const ApplicationFormButton: React.FC<ApplicationFormButtonProps> = ({
   const [isLoading, setIsLoading] = useState(true)
 
   // Microsoft Form URL - hardcoded as requested
+  // TODO: Replace YOUR_FORM_ID with actual Microsoft Form ID from https://forms.office.com
+  // Example: https://forms.office.com/pages/responsepage.aspx?id=dHQyc2FwbGUtaWQtZXhhbXBsZQ
   const microsoftFormUrl =
     formUrl || 'https://forms.office.com/pages/responsepage.aspx?id=YOUR_FORM_ID'
 
