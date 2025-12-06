@@ -1,5 +1,5 @@
 import React from 'react'
-import Transparentbtn from '@/components/ui/Transparentbtn'
+import ApplicationFormButton from '@/components/ui/ApplicationFormButton'
 
 const index = () => {
   return (
@@ -12,15 +12,8 @@ const index = () => {
           Ready to Get Started Now?
         </h1>
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-o sm:gap-6">
-          <Transparentbtn
-            text="501(c)3 Charities Click Here To Get Started!"
-            href="https://freeforcharity.org/hub/store/ffc-consulting/free-for-charity-501c3-onboarding-ffc-nonprofit-charity-onboarding"
-          />
-          <Transparentbtn
-            text="Pre-501(c)3 Charities Click Here to Get Started!"
-            href="https://freeforcharity.org/hub/cart.php?a=confproduct&i=8"
-          />
+        <div className="flex items-center justify-center">
+          <ApplicationFormButton className="max-w-fit" />
         </div>
       </div>
     </div>
