@@ -4,18 +4,13 @@ import React from 'react'
 import Link from 'next/link'
 import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react'
 
-import { FaFacebookF, FaLinkedinIn, FaGooglePlusG, FaGithub } from 'react-icons/fa'
+import { FaFacebookF, FaLinkedinIn, FaGithub } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
 
 const Footer: React.FC = () => {
   const currentYear = React.useMemo(() => new Date().getFullYear(), [])
   const socialLinks = [
     { icon: FaFacebookF, href: 'https://www.facebook.com/freeforcharity', label: 'Facebook' },
-    {
-      icon: FaGooglePlusG,
-      href: 'https://www.plus.google.com/105559070419304828544',
-      label: 'Google Plus',
-    },
     { icon: FaXTwitter, href: 'https://x.com/freeforcharity1', label: 'X (Twitter)' },
     {
       icon: FaLinkedinIn,
