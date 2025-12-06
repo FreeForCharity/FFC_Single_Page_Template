@@ -259,15 +259,88 @@ Each report shows:
 
 ### Image Optimization
 
-1. **Use WebP format** where possible
-2. **Properly size images** - don't load 2000px images for 200px display
-3. **Lazy load images** below the fold
-4. **Add width and height attributes** to prevent layout shift
+#### Recent Optimizations (December 2025)
 
-```tsx
-// Good
-<img src="/images/hero.webp" alt="Hero" width={1200} height={600} loading="lazy" />
+We recently completed a comprehensive image optimization effort that achieved:
+
+- **~2.3 MB** of image data eliminated
+- **95% average file size reduction** across converted images
+- **79% improvement in LCP** (18.6s → 3.9s)
+- **85% improvement in Speed Index** (6.1s → 0.9s)
+- **81% improvement in Total Blocking Time** (850ms → 160ms)
+
+#### Best Practices
+
+1. **Use WebP format** - Modern image format with superior compression
+   - Convert PNG/JPG to WebP using ImageMagick: `convert image.png -quality 85 image.webp`
+   - Typical savings: 90-95% file size reduction
+   - Example: mission-video-poster.png (646KB) → .webp (30KB)
+
+2. **Properly size images** - Match image dimensions to display size
+   - Don't load 2000px images for 200px display
+   - Use 2x the display size for retina displays (e.g., 890px image for 445px display)
+   - Example: Resized figma-hero-img from 1200x1200 to 890x890 (60% reduction)
+
+3. **Preload LCP images** - Critical for fast Largest Contentful Paint
+
+   ```tsx
+   // In layout.tsx <head>
+   <link rel="preload" as="image" href="/Images/hero.webp" fetchPriority="high" />
+   ```
+
+4. **Add sizes attribute** for responsive images
+
+   ```tsx
+   <Image
+     src="/images/hero.webp"
+     alt="Hero"
+     fill
+     priority
+     sizes="(max-width: 1024px) 100vw, 445px"
+   />
+   ```
+
+5. **Lazy load images** below the fold
+
+   ```tsx
+   <img src="/images/content.webp" alt="Content" loading="lazy" />
+   ```
+
+6. **Add width and height attributes** to prevent layout shift
+   ```tsx
+   <img src="/images/hero.webp" alt="Hero" width={1200} height={600} />
+   ```
+
+#### Image Conversion Commands
+
+```bash
+# Convert single PNG to WebP
+convert image.png -quality 85 image.webp
+
+# Batch convert all PNGs in a directory
+for img in *.png; do convert "$img" -quality 85 "${img%.png}.webp"; done
+
+# Resize image to specific dimensions
+convert image.webp -resize 890x890 -quality 85 output.webp
+
+# Check image dimensions
+identify image.webp
 ```
+
+#### Measuring Impact
+
+Before making image optimizations, run Lighthouse to establish a baseline:
+
+```bash
+npm run build
+lhci autorun
+```
+
+Check the "Opportunities" section in the report for:
+
+- "Serve images in next-gen formats" - Suggests WebP conversion
+- "Properly size images" - Suggests resizing oversized images
+- "Efficiently encode images" - Suggests better compression
 
 ### JavaScript Optimization
 
@@ -467,6 +540,22 @@ This prevents unnecessary runs and saves CI/CD resources.
 **Last Updated**: 2025-12-06
 
 **Pages Monitored**: 4 key pages (Homepage, Cookie Policy, Privacy Policy, Terms of Service)
+
+**Current Performance Scores**:
+
+| Page             | Performance | Accessibility | Best Practices | SEO     |
+| ---------------- | ----------- | ------------- | -------------- | ------- |
+| Homepage         | 63-67% 🟡   | 91% 🟢        | 71% 🟡         | 100% 🟢 |
+| Cookie Policy    | 84-86% 🟢   | 95% 🟢        | 71% 🟡         | 100% 🟢 |
+| Privacy Policy   | 85-86% 🟢   | 96% 🟢        | 71% 🟡         | 100% 🟢 |
+| Terms of Service | 84-86% 🟢   | 94% 🟢        | 71% 🟡         | 100% 🟢 |
+
+**Recent Performance Improvements** (December 2025):
+
+- Homepage LCP: 18.6s → 3.9s (79% improvement)
+- Homepage Speed Index: 6.1s → 0.9s (85% improvement)
+- Homepage TBT: 850ms → 160ms (81% improvement)
+- Total image size reduced by ~2.3 MB (95% average reduction)
 
 **Monitoring Frequency**:
 
