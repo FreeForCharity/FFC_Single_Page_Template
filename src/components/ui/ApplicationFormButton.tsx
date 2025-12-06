@@ -37,9 +37,19 @@ const ApplicationFormButton: React.FC<ApplicationFormButtonProps> = ({
       // Prevent body scroll when popup is open
       document.body.style.overflow = 'hidden'
 
-      // Cleanup function to restore original overflow
+      // Handle Escape key to close modal
+      const handleEscape = (event: KeyboardEvent) => {
+        if (event.key === 'Escape') {
+          closePopup()
+        }
+      }
+
+      document.addEventListener('keydown', handleEscape)
+
+      // Cleanup function to restore original overflow and remove event listener
       return () => {
         document.body.style.overflow = originalOverflow
+        document.removeEventListener('keydown', handleEscape)
       }
     }
   }, [isOpen])
@@ -64,6 +74,9 @@ const ApplicationFormButton: React.FC<ApplicationFormButtonProps> = ({
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
           onClick={closePopup}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="application-form-title"
         >
           <div
             className="relative w-full max-w-5xl h-[90vh] mx-4 bg-white rounded-lg shadow-xl"
@@ -72,8 +85,9 @@ const ApplicationFormButton: React.FC<ApplicationFormButtonProps> = ({
             {/* Close button */}
             <button
               onClick={closePopup}
-              className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors"
-              aria-label="Close"
+              className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+              aria-label="Close application form"
+              type="button"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -93,9 +107,12 @@ const ApplicationFormButton: React.FC<ApplicationFormButtonProps> = ({
 
             {/* Microsoft Form iframe */}
             <iframe
+              id="application-form-title"
               src={microsoftFormUrl}
               className="w-full h-full rounded-lg border-0"
-              title="Application Form"
+              title="Charity Application Form"
+              sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
+              allow="geolocation; microphone; camera"
             />
           </div>
         </div>
