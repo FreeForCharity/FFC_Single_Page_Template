@@ -32,11 +32,12 @@ const index = () => {
         </a>
 
         <Image
-          src="/Images/Volunteer-with-Us.png"
+          src="/Images/Volunteer-with-Us.webp"
           alt="Volunteer-with-Us"
           width={1083}
           height={607}
           className="mx-auto mt-[40px]"
+          loading="lazy"
         ></Image>
       </div>
     </div>

@@ -16,7 +16,7 @@ const OutBlogs: React.FC = () => {
       date: 'Jan 9, 2023',
       description:
         "We're excited to share that our organization has earned a 2022 Platinum Seal of Transparency with Candid! Now, you can support our work with trust and confidence by viewing our nonprofit profile Free For Charity - GuideStar Profile",
-      imageUrl: '/Images/card-image.png',
+      imageUrl: '/Images/card-image.webp',
       href: 'https://freeforcharity.org/we-just-updated-for-the-2022-guidestar-platinum-seal/', // example link
     },
     {

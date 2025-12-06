@@ -38,7 +38,7 @@ test.describe('Image Loading', () => {
     const imageRequests: Array<{ url: string; status: number }> = []
 
     page.on('response', (response) => {
-      if (response.url().includes('figma-hero-img.png')) {
+      if (response.url().includes('figma-hero-img')) {
         imageRequests.push({
           url: response.url(),
           status: response.status(),
