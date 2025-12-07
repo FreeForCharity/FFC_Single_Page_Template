@@ -144,10 +144,10 @@ on:
 
 The screenshots show some workflows with 1-second durations (#38, #231). This is expected behavior:
 
-1. **Deploy #38** (skipped): The CI workflow for commit `084134659e4` (shortened hash) was cancelled when commit `038851c` was pushed
+1. **Deploy #38** (skipped): The CI workflow for commit `0841346` (from PR #89) was cancelled when commit `038851c` (from PR #83) was pushed
 2. **Lighthouse #231** (skipped): The Deploy workflow was cancelled, so Lighthouse had nothing to test
 
-*Note: Git commit hashes are shown in shortened 7-11 character format for readability, which is standard practice in git logs and GitHub UI.*
+*Note: Git commit hashes are shown in shortened 7-character format (standard git abbreviation), which is commonly used in git logs and GitHub UI for readability.*
 
 This is **correct behavior** due to the `cancel-in-progress: true` setting in the CI workflow, which saves Actions minutes and provides faster feedback.
 
