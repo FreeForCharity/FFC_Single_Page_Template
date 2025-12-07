@@ -13,12 +13,14 @@
 Based on the provided screenshots and GitHub API data, here's what happened when PR #83 was merged:
 
 ### 1. Merge Queue Bot Initiated Merge
+
 - **Timestamp:** December 7, 2024 01:54:54 UTC
 - **Actor:** `github-merge-queue[bot]`
 - **Target Branch:** main
 - **Result:** ✅ Successful merge
 
 ### 2. CI Workflow (Required Check)
+
 - **Run ID:** #245
 - **Duration:** 5 minutes 2 seconds
 - **Status:** ✅ Completed successfully
@@ -35,6 +37,7 @@ Based on the provided screenshots and GitHub API data, here's what happened when
   - Run E2E tests (`npm run test:e2e`)
 
 ### 3. Deploy Workflow (Automated Deployment)
+
 - **Run ID:** #39
 - **Duration:** 1 minute 10 seconds
 - **Status:** ✅ Completed successfully
@@ -48,6 +51,7 @@ Based on the provided screenshots and GitHub API data, here's what happened when
 **Note:** Run #38 was skipped (1 second duration) because the CI workflow for the previous commit was cancelled due to concurrency settings.
 
 ### 4. Lighthouse CI Workflow (Performance Testing)
+
 - **Run ID:** #232
 - **Duration:** 3 minutes 56 seconds
 - **Status:** ✅ Completed successfully
@@ -58,6 +62,7 @@ Based on the provided screenshots and GitHub API data, here's what happened when
 **Note:** Run #231 was skipped (1 second duration) for the same concurrency reason as Deploy #38.
 
 ### 5. CodeQL Security Scanning
+
 - **Run ID:** #247
 - **Duration:** 55 seconds
 - **Status:** ✅ Completed successfully
@@ -68,6 +73,7 @@ Based on the provided screenshots and GitHub API data, here's what happened when
 ## Workflow Configuration Analysis
 
 ### CI Workflow (`ci.yml`)
+
 ```yaml
 on:
   pull_request:
@@ -81,12 +87,14 @@ concurrency:
   cancel-in-progress: true
 ```
 
-**Analysis:** 
+**Analysis:**
+
 - ✅ Proper concurrency control prevents wasted resources
 - ✅ Runs on both PRs and pushes to main
 - ✅ Includes comprehensive test suite (formatting, linting, unit tests, E2E tests)
 
 ### Deploy Workflow (`deploy.yml`)
+
 ```yaml
 on:
   workflow_run:
@@ -105,12 +113,14 @@ concurrency:
 ```
 
 **Analysis:**
+
 - ✅ Only deploys after CI completes successfully
 - ✅ Uses `workflow_run` trigger to avoid duplicate runs
 - ✅ Deployment uses proper basePath for GitHub Pages
 - ✅ Does NOT cancel in-progress deployments (correct for production)
 
 ### Lighthouse CI Workflow (`lighthouse.yml`)
+
 ```yaml
 on:
   workflow_run:
@@ -127,11 +137,13 @@ jobs:
 ```
 
 **Analysis:**
+
 - ✅ Runs after deployment completes (for main branch)
 - ✅ Also runs on PRs to catch performance regressions early
 - ✅ Uses `workflow_run` to prevent duplicate runs
 
 ### CodeQL Workflow (`codeql.yml`)
+
 ```yaml
 on:
   push:
@@ -143,6 +155,7 @@ on:
 ```
 
 **Analysis:**
+
 - ✅ Runs on every push and PR
 - ✅ Weekly scheduled scans for new vulnerabilities
 
@@ -155,9 +168,10 @@ The screenshots show some workflows with 1-second durations (#38, #231). This is
 
 This is **correct behavior** due to the `cancel-in-progress: true` setting in the CI workflow, which saves Actions minutes and provides faster feedback. When multiple PRs are in the merge queue, only the most recent commit's workflows complete - older commits are automatically cancelled.
 
-*Note: Throughout this document, git commit hashes are shown in both formats:*
-- *Shortened 7-character format (e.g., `038851c`) for readability in explanations*
-- *Full 40-character format (e.g., `038851c79adc2a42ac7fe1616a35862b475de729`) for precise reference*
+_Note: Throughout this document, git commit hashes are shown in both formats:_
+
+- _Shortened 7-character format (e.g., `038851c`) for readability in explanations_
+- _Full 40-character format (e.g., `038851c79adc2a42ac7fe1616a35862b475de729`) for precise reference_
 
 ## GitHub Merge Queue Integration
 
@@ -220,7 +234,7 @@ The temporary 1-second workflow runs observed in the screenshots are expected be
 ### Workflow Run Details
 
 | Workflow               | Run ID | Status     | Duration | Triggered By    |
-|------------------------|--------|------------|----------|-----------------|
+| ---------------------- | ------ | ---------- | -------- | --------------- |
 | CI - Build and Test    | #245   | ✅ Success | 5m 2s    | Merge to main   |
 | Deploy to GitHub Pages | #39    | ✅ Success | 1m 10s   | CI completion   |
 | Lighthouse CI          | #232   | ✅ Success | 3m 56s   | Deploy complete |
