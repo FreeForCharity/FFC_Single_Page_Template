@@ -255,19 +255,24 @@ The current iframe implementation uses:
 
 ```typescript
 sandbox = 'allow-scripts allow-forms allow-popups'
+allow = 'geolocation'
 ```
 
-**What this allows:**
+**Sandbox attribute - What this allows:**
 
 - ✅ JavaScript execution (required for form functionality)
 - ✅ Form submission
 - ✅ Popup windows (for authentication)
 
-**What this blocks:**
+**Sandbox attribute - What this blocks:**
 
 - ❌ Top-level navigation
 - ❌ Same-origin access to parent page
 - ❌ Automatic downloads
+
+**Allow attribute - Additional permissions:**
+
+- ✅ Geolocation access (if user grants permission)
 
 **Note:** Cannot block third-party cookies loaded by Microsoft Forms scripts without breaking form functionality.
 
@@ -292,7 +297,7 @@ This form is:
 
 1. ✅ **Confirmed:** No direct HubSpot integration in codebase
 2. ✅ **Identified:** Microsoft Forms as the HubSpot source
-3. ⏳ **Recommended:** Update privacy policy to disclose Microsoft Forms usage
+3. ✅ **Completed:** Privacy Policy (section 3.4) and Cookie Policy (section 3.2) updated to disclose Microsoft Forms usage and HubSpot as a transitive dependency
 4. ⏳ **Optional:** Evaluate alternative form solutions if HubSpot is unacceptable
 
 **Status:** Investigation complete. HubSpot usage is indirect and expected behavior from Microsoft Forms integration.
