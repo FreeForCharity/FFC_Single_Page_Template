@@ -219,12 +219,12 @@ The temporary 1-second workflow runs observed in the screenshots are expected be
 
 ### Workflow Run Details
 
-| Workflow | Run ID | Status | Duration | Triggered By |
-|----------|--------|--------|----------|--------------|
-| CI - Build and Test | #245 | ✅ Success | 5m 2s | Merge to main |
-| Deploy to GitHub Pages | #39 | ✅ Success | 1m 10s | CI completion |
-| Lighthouse CI | #232 | ✅ Success | 3m 56s | Deploy completion |
-| CodeQL Advanced | #247 | ✅ Success | 55s | Merge to main |
+| Workflow               | Run ID | Status     | Duration | Triggered By    |
+|------------------------|--------|------------|----------|-----------------|
+| CI - Build and Test    | #245   | ✅ Success | 5m 2s    | Merge to main   |
+| Deploy to GitHub Pages | #39    | ✅ Success | 1m 10s   | CI completion   |
+| Lighthouse CI          | #232   | ✅ Success | 3m 56s   | Deploy complete |
+| CodeQL Advanced        | #247   | ✅ Success | 55s      | Merge to main   |
 
 ### Commit Information
 
