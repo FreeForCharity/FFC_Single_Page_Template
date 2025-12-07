@@ -252,13 +252,12 @@ test.describe('Application Form Iframe Loading', () => {
     const loadingIndicator = page.getByText('Loading application form...')
     await expect(loadingIndicator).toBeVisible()
 
-    // Wait for iframe to load (with longer timeout for external content)
+    // Wait for iframe to load
     const iframe = page.locator('iframe[title="Charity Application Form"]')
     await expect(iframe).toBeVisible()
 
-    // Give iframe time to trigger onLoad
-    await page.waitForTimeout(2000)
-
+    // Wait for iframe to finish loading by checking the onLoad handler was called
+    // We verify this by checking if the loading indicator disappears
     // Note: In some environments (especially CI), the iframe may be blocked by privacy settings
     // or the loading indicator may remain visible. This is expected behavior and not a bug.
     // The test verifies the component structure is correct.

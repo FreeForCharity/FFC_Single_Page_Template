@@ -116,7 +116,7 @@ Tests the ApplicationFormButton modal component functionality.
 
 **Test Suites**: `Application Form Button` (14 tests) + `Application Form Iframe Loading` (1 test)
 
-**Tests:**
+**Tests:** (continued from previous test files)
 
 10. **`should display "Apply to Become a Supported Charity" button`**
     - **Purpose**: Verifies the trigger button is visible on the page
