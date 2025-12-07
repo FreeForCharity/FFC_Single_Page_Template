@@ -185,7 +185,7 @@ The merge queue integration is functioning exactly as designed:
 
 If you want to further optimize the workflow:
 
-1. **Add Merge Queue Configuration**: Consider adding a `.github/merge_queue.yml` file to customize merge queue behavior (batch size, required checks, etc.)
+1. **Add Merge Queue Configuration**: Consider customizing merge queue behavior through Repository Settings → General → Pull Requests → Merge Queue (batch size, required checks, merge method, etc.)
 
 2. **Deployment Protection Rules**: Add environment protection rules in GitHub Settings → Environments → github-pages if you want manual approval gates
 
