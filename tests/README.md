@@ -73,11 +73,48 @@ Tests deployment compatibility for both custom domain and GitHub Pages with base
      - ❌ Fails in GitHub Actions
      - Needs investigation of CI timing or rendering differences
 
+### `social-links.spec.ts`
+
+Tests footer social media links to ensure only active platforms are displayed.
+
+**Test Suite**: `Footer Social Links` (3 tests)
+
+**Tests:**
+
+7. **`should not contain Google+ social link`**
+   - **Purpose**: Verifies defunct Google+ link has been removed (shut down April 2019)
+   - **Verifications**:
+     - No links to `plus.google.com` in footer
+     - No elements with `aria-label="Google Plus"` in footer
+   - **Selectors**:
+     - `footer a[href*="plus.google.com"]`
+     - `footer a[aria-label="Google Plus"]`
+
+8. **`should display active social media links`**
+   - **Purpose**: Validates all 4 active social media platforms are present and functional
+   - **Verifications**:
+     - Facebook link is visible with correct href and aria-label
+     - X (Twitter) link is visible with correct href and aria-label
+     - LinkedIn link is visible with correct href and aria-label
+     - GitHub link is visible with correct href and aria-label
+   - **Platforms Tested**:
+     - ✅ Facebook: `facebook.com/freeforcharity`
+     - ✅ X (Twitter): `x.com/freeforcharity1`
+     - ✅ LinkedIn: `linkedin.com/company/freeforcharity`
+     - ✅ GitHub: `github.com/FreeForCharity/FFC_Single_Page_Template`
+
+9. **`should have exactly 4 social media icons`**
+   - **Purpose**: Ensures correct number of social icons are rendered
+   - **Verifications**:
+     - Counts social media links by aria-label
+     - Validates exactly 4 icons: Facebook, X (Twitter), LinkedIn, GitHub
+   - **Why This Matters**: Prevents accidental addition/removal of social links
+
 ## Test Statistics
 
-- **Total Test Suites**: 2
-- **Total Test Cases**: 6
-- **Active Tests**: 5 passing ✅
+- **Total Test Suites**: 3
+- **Total Test Cases**: 9
+- **Active Tests**: 8 passing ✅
 - **Skipped Tests**: 1 ⏭️
 - **Status**: All active tests passing
 
@@ -117,6 +154,9 @@ npx playwright test logo.spec.ts
 
 # Run only GitHub Pages tests
 npx playwright test github-pages.spec.ts
+
+# Run only social links tests
+npx playwright test social-links.spec.ts
 
 # Run a specific test by name
 npx playwright test -g "should display logo in top left corner"
@@ -352,6 +392,6 @@ When tests fail in CI:
 
 ---
 
-**Test Suite Status**: ✅ 5 passing, 1 skipped  
+**Test Suite Status**: ✅ 8 passing, 1 skipped  
 **Last Updated**: December 2025  
-**Framework**: Playwright v1.56.0
+**Framework**: Playwright v1.57.0
