@@ -93,7 +93,9 @@ on:
     branches: ['main']
   workflow_dispatch:
 
-if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+jobs:
+  build:
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
 
 concurrency:
   group: 'pages'
@@ -117,7 +119,9 @@ on:
     branches: ['main']
   workflow_dispatch:
 
-if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request' }}
+jobs:
+  lighthouse:
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request' }}
 ```
 
 **Analysis:**
