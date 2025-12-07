@@ -58,6 +58,8 @@ Based on the provided screenshots and GitHub API data, here's what happened when
 **Note:** Run #231 was skipped (1 second duration) for the same concurrency reason as Deploy #38.
 
 ### 5. CodeQL Security Scanning
+- **Run ID:** #247
+- **Duration:** 55 seconds
 - **Status:** ✅ Completed successfully
 - **Workflow:** CodeQL Advanced
 - **Languages Scanned:** JavaScript/TypeScript, GitHub Actions
@@ -220,7 +222,7 @@ The temporary 1-second workflow runs observed in the screenshots are expected be
 | CI - Build and Test | #245 | ✅ Success | 5m 2s | Merge to main |
 | Deploy to GitHub Pages | #39 | ✅ Success | 1m 10s | CI completion |
 | Lighthouse CI | #232 | ✅ Success | 3m 56s | Deploy completion |
-| CodeQL Advanced | - | ✅ Success | - | Merge to main |
+| CodeQL Advanced | #247 | ✅ Success | 55s | Merge to main |
 
 ### Commit Information
 
