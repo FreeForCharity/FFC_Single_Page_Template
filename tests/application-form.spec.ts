@@ -107,8 +107,7 @@ test.describe('Application Form Button', () => {
     const modal = page.locator('[role="dialog"][aria-modal="true"]')
     await expect(modal).toBeVisible()
 
-    // Find the iframe
-    const iframe = page.frameLocator('iframe[title="Charity Application Form"]')
+    // Find the iframe element
     const iframeElement = page.locator('iframe[title="Charity Application Form"]')
 
     // Verify iframe is present
@@ -241,7 +240,7 @@ test.describe('Application Form Iframe Loading', () => {
     await page.waitForLoadState('domcontentloaded')
   })
 
-  test('should hide loading indicator after iframe loads', async ({ page }) => {
+  test('should display loading indicator and iframe elements', async ({ page }) => {
     // Open modal
     await page.getByRole('button', { name: 'Apply to Become a Supported Charity' }).click()
 
@@ -252,14 +251,13 @@ test.describe('Application Form Iframe Loading', () => {
     const loadingIndicator = page.getByText('Loading application form...')
     await expect(loadingIndicator).toBeVisible()
 
-    // Wait for iframe to load
+    // Verify iframe element exists
     const iframe = page.locator('iframe[title="Charity Application Form"]')
     await expect(iframe).toBeVisible()
 
-    // Wait for iframe to finish loading by checking the onLoad handler was called
-    // We verify this by checking if the loading indicator disappears
-    // Note: In some environments (especially CI), the iframe may be blocked by privacy settings
-    // or the loading indicator may remain visible. This is expected behavior and not a bug.
-    // The test verifies the component structure is correct.
+    // Note: The loading indicator behavior is environment-dependent.
+    // In some environments (especially CI), external iframes may be blocked by privacy settings,
+    // causing the loading indicator to remain visible. This test verifies the component structure
+    // is correct (both loading indicator and iframe are present), not the iframe loading behavior.
   })
 })

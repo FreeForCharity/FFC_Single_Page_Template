@@ -183,9 +183,12 @@ Tests the ApplicationFormButton modal component functionality.
     - **Purpose**: Tests modal stability across multiple interactions
     - **Verifications**: Modal can be opened and closed multiple times using different methods
 
-24. **`should hide loading indicator after iframe loads`**
-    - **Purpose**: Verifies loading state clears when iframe loads
-    - **Note**: May show loading in some environments due to privacy settings blocking external iframes
+24. **`should display loading indicator and iframe elements`**
+    - **Purpose**: Verifies component structure (loading indicator and iframe are present)
+    - **Verifications**:
+      - Loading indicator displays initially
+      - Iframe element exists in the DOM
+    - **Note**: Loading indicator behavior is environment-dependent; external iframes may be blocked by privacy settings
 
 ## Test Statistics
 
