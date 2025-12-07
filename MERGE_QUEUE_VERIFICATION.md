@@ -150,12 +150,14 @@ on:
 
 The screenshots show some workflows with 1-second durations (#38, #231). This is expected behavior:
 
-1. **Deploy #38** (skipped): The CI workflow for commit `0841346` (from PR #89) was cancelled when commit `038851c` (from PR #83) was pushed
+1. **Deploy #38** (skipped): The CI workflow for commit `0841346` (from PR #89, which was attempting to merge simultaneously) was cancelled when commit `038851c` (from PR #83) was pushed
 2. **Lighthouse #231** (skipped): The Deploy workflow was cancelled, so Lighthouse had nothing to test
 
-*Note: Git commit hashes are shown in shortened 7-character format (standard git abbreviation), which is commonly used in git logs and GitHub UI for readability.*
+This is **correct behavior** due to the `cancel-in-progress: true` setting in the CI workflow, which saves Actions minutes and provides faster feedback. When multiple PRs are in the merge queue, only the most recent commit's workflows complete - older commits are automatically cancelled.
 
-This is **correct behavior** due to the `cancel-in-progress: true` setting in the CI workflow, which saves Actions minutes and provides faster feedback.
+*Note: Throughout this document, git commit hashes are shown in both formats:*
+- *Shortened 7-character format (e.g., `038851c`) for readability in explanations*
+- *Full 40-character format (e.g., `038851c79adc2a42ac7fe1616a35862b475de729`) for precise reference*
 
 ## GitHub Merge Queue Integration
 
