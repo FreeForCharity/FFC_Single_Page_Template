@@ -14,6 +14,7 @@ Single-page Next.js 16.0.7 website built with App Router for Free For Charity no
 - 🎨 [Responsive Design Guide](./RESPONSIVE_DESIGN.md) - Mobile-first design principles
 - 📝 [Naming Conventions](./NAMING_CONVENTIONS.md) - **Required**: kebab-case for SEO (Google-recommended)
 - 🤖 [Copilot Autofix Guide](./COPILOT_AUTOFIX_GUIDE.md) - Understanding GitHub Copilot automated checks
+- 🔗 [External Dependencies](./EXTERNAL_DEPENDENCIES.md) - Third-party services and integrations
 
 ## Organization
 
@@ -33,6 +34,7 @@ This repository follows **Cloud Native Computing Foundation (CNCF)** standards f
 - 🛡️ **[THREAT-MODEL.md](./THREAT-MODEL.md)** - Security threat analysis and mitigations
 - 🌟 **[ADOPTERS.md](./ADOPTERS.md)** - Organizations using this template
 - 🤝 **[CONTRIBUTING.md](./CONTRIBUTING.md)** - How to contribute to the project
+- 🔗 **[EXTERNAL_DEPENDENCIES.md](./EXTERNAL_DEPENDENCIES.md)** - Third-party services and privacy disclosure
 
 **Why CNCF Alignment?** Following CNCF standards strengthens project credibility, simplifies onboarding of contributors, and prepares us for cloud-native ecosystem integrations. It demonstrates our commitment to open source best practices and professional project management.
 

@@ -408,10 +408,13 @@ export default function CookieConsent() {
               </div>
               <p className="text-sm text-gray-600 mb-2">
                 These cookies enable enhanced functionality and features that are essential for our
-                core services. This includes our donation processing system which requires cookies
-                to function properly.
+                core services. This includes our donation processing and application form systems
+                which require cookies to function properly.
               </p>
-              <p className="text-xs text-gray-500">Services: Zeffy (Donation Processing)</p>
+              <p className="text-xs text-gray-500">
+                Services: Zeffy (Donation Processing), Microsoft Forms (Application Forms - may
+                include HubSpot analytics)
+              </p>
             </div>
 
             {/* Analytics Cookies */}
