@@ -21,86 +21,75 @@ Free For Charity maintains an active Facebook page at [https://www.facebook.com/
 
 ### Goals
 
+- **Display Individual Events:** Show the **next 5 upcoming events** as individual cards, not a full Facebook page widget
+- **Direct Links:** Each event card must link directly to the specific event on Facebook
+- **Clean Design:** Custom event cards that match the existing site design
 - **Increase Event Visibility:** Display upcoming events prominently on the homepage
-- **Drive Engagement:** Make it easy for visitors to see and RSVP to events
+- **Drive Engagement:** Make it easy for visitors to discover and attend events
 - **Maintain Consistency:** Automatically sync with Facebook event updates
 - **Ensure Privacy Compliance:** Respect GDPR, CCPA, and user privacy preferences
 - **Preserve Performance:** Minimize impact on page load times and Lighthouse scores
 
+### Specific Requirements
+
+Based on stakeholder feedback:
+
+1. **Only list events** - NOT the full Facebook page
+2. **Show next 5 events** - Exactly 5 upcoming events
+3. **Direct event links** - Link to each event's Facebook page (e.g., facebook.com/events/[event-id])
+4. **Custom design** - Individual event cards, not embedded widget
+
 ## Integration Options
 
-There are three primary approaches to integrating Facebook events:
+Given the requirement to show **only individual event cards (not the full Facebook page)**, the integration approach is determined:
 
-### Option 1: Facebook Page Plugin (Easiest)
+### Required Approach: Facebook Graph API
 
-**Description:** Embed Facebook's official Page Plugin configured to show the events tab.
+**Description:** Use Facebook's Graph API to programmatically fetch event data and render exactly 5 upcoming events as individual custom cards with direct links to each event on Facebook.
 
-**Pros:**
+**Why This is Required:**
 
-- No API credentials required
-- Automatic updates when events change on Facebook
-- Official Facebook styling and functionality
-- Built-in RSVP and sharing features
-- No token management or expiration concerns
+The requirement explicitly states: *"list events not the full FB page"* and *"show the next 5 events"* with direct links to each event. The Facebook Page Plugin cannot meet this requirement because:
 
-**Cons:**
-
-- Limited customization of appearance
-- Loads third-party scripts from Facebook
-- Requires cookie consent for GDPR compliance
-- Less control over displayed data
-- May not match site design perfectly
-
-**Technical Details:**
-
-```html
-<div
-  class="fb-page"
-  data-href="https://www.facebook.com/freeforcharity"
-  data-tabs="events"
-  data-width="500"
-  data-height="600"
-  data-small-header="false"
-  data-adapt-container-width="true"
-  data-hide-cover="false"
-  data-show-facepile="true"
-></div>
-<script
-  async
-  defer
-  crossorigin="anonymous"
-  src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0"
-></script>
-```
-
-### Option 2: Facebook Graph API (Most Customizable)
-
-**Description:** Use Facebook's Graph API to programmatically fetch event data and render it with custom components.
+- ❌ Shows full Facebook page (cover photo, posts, etc.), not just events
+- ❌ Cannot limit to exactly 5 events  
+- ❌ Cannot create individual event cards with custom styling
+- ❌ Does not provide direct links to individual events
 
 **Pros:**
 
-- Complete control over design and layout
-- Can filter and customize event data
-- Better performance optimization opportunities
-- Matches existing site design perfectly
-- No third-party iframe dependencies
+- ✅ Complete control over design and layout
+- ✅ Can display exactly 5 events as required
+- ✅ Custom event cards with direct links to each event (e.g., facebook.com/events/[event-id])
+- ✅ Matches existing site design perfectly
+- ✅ Better performance (server-side fetching)
+- ✅ No third-party iframe dependencies
+- ✅ No tracking cookies needed (when implemented server-side)
 
 **Cons:**
 
-- Requires Facebook Developer account and app creation
-- Needs access token management (tokens expire)
-- Requires API permissions (`pages_read_engagement`, `pages_manage_events`)
-- Must handle token refresh logic
-- More complex implementation
-- Potential API rate limits
-- Must go through Facebook App Review for production use
+- ❌ Requires Facebook Developer account and app creation
+- ❌ Needs access token management (tokens expire every 60 days)
+- ❌ Requires API permissions (`pages_read_engagement`)
+- ❌ Must handle token refresh logic (can be automated)
+- ❌ More development time (16-20 hours vs 4-6 hours for Page Plugin)
+- ❌ Potential API rate limits (typically 200 calls/hour per user)
+- ❌ May need Facebook App Review for production use
 
 **Technical Details:**
 
-- API Endpoint: `GET /{page-id}/events?access_token={token}`
-- Required Permissions: `pages_read_engagement`, `pages_manage_events`
+- API Endpoint: `GET /{page-id}/events?fields=id,name,description,start_time,end_time,place&limit=5&time_filter=upcoming&access_token={token}`
+- Required Permissions: `pages_read_engagement`
 - Token Type: Long-lived Page Access Token (60 days validity)
 - Response Format: JSON with event objects
+
+**Event URL Format:**
+
+Facebook uses different URL formats for events:
+- Modern format: `https://www.facebook.com/share/[share-id]/` (Example: https://www.facebook.com/share/17eDJE45WE/)
+- Legacy format: `https://www.facebook.com/events/[event-id]`
+
+**Important:** The Graph API response includes the event ID, but may need additional API calls or URL construction to get the shareable link. During implementation, verify which URL format is returned by the API or construct the appropriate URL based on the event ID.
 
 **Example Response:**
 
@@ -145,70 +134,37 @@ There are three primary approaches to integrating Facebook events:
 - Less control than Graph API
 - Another service to maintain
 
-## Recommended Approach
+## Required Approach
 
-**Primary Recommendation: Facebook Page Plugin with Cookie Consent Integration**
+**Facebook Graph API - REQUIRED**
 
-For Free For Charity's use case, the Facebook Page Plugin is recommended because:
+Based on the specific requirements, the Graph API is the only viable approach:
 
-1. **Simplicity:** No API credentials, token management, or complex setup
-2. **Maintainability:** Automatic updates without code changes
-3. **Compliance:** Already have cookie consent infrastructure in place
-4. **Consistency:** Official Facebook styling is familiar to users
-5. **Static Site Friendly:** Works with Next.js static export
-6. **Cost:** No additional service fees or API rate limits
+**Requirements that mandate Graph API:**
 
-**Alternative: Graph API for Future Enhancement**
+1. **"List events not the full FB page"** - Must show only events as individual cards
+2. **"Show the next 5 events"** - Must display exactly 5 upcoming events
+3. **Direct event links** - Each card must link to the specific event (e.g., https://www.facebook.com/share/17eDJE45WE/)
+4. **Custom design** - Event cards must match the existing site design
 
-If greater customization is needed in the future, the Graph API approach can be implemented. However, this should be considered Phase 2 due to:
+**Why Graph API is Required:**
 
-- Token management complexity
-- Need for server-side logic or edge functions
-- Facebook App Review requirements for production
-- Compatibility concerns with static site generation
+- ✅ Can fetch and display only event data (not full page)
+- ✅ Can limit results to exactly 5 events
+- ✅ Provides event IDs/URLs for direct linking
+- ✅ Allows complete control over card design
+- ✅ No embedded Facebook widgets or iframes
+
+**Implementation Considerations:**
+
+1. **Token Management:** Tokens expire every 60 days - automated refresh recommended
+2. **Static Site Compatibility:** Use build-time fetching, Cloudflare Workers, or scheduled builds
+3. **Event URL Format:** Verify URL format from API (may be `/share/[id]` or `/events/[id]`)
+4. **Development Time:** Estimated 16-20 hours including setup and testing
 
 ## Technical Requirements
 
-### For Facebook Page Plugin Approach
-
-#### Frontend Components
-
-1. **Events Section Component** (`src/components/home-page/Events/index.tsx`)
-   - Section container with consistent styling
-   - Heading: "Upcoming Events" or similar
-   - Facebook Page Plugin embed
-   - Responsive design (mobile/tablet/desktop)
-   - Loading state while Facebook SDK initializes
-
-2. **Cookie Consent Integration**
-   - Block Facebook SDK script until user accepts marketing/social cookies
-   - Show placeholder or notice when blocked
-   - Auto-load after consent is given
-   - Store consent state in existing cookie consent system
-
-#### Dependencies
-
-- **No new npm packages required** (uses Facebook's CDN)
-- Facebook SDK loaded conditionally based on consent
-- Integration with existing `src/components/cookie-consent/index.tsx`
-
-#### Configuration
-
-```typescript
-// Configuration object for Facebook Page Plugin
-interface FacebookPagePluginConfig {
-  pageUrl: string // 'https://www.facebook.com/freeforcharity'
-  tabs: string[] // ['events']
-  width: number // Responsive or fixed (e.g., 500)
-  height: number // e.g., 600
-  smallHeader: boolean // false
-  adaptContainerWidth: boolean // true
-  hideCover: boolean // false
-  showFacepile: boolean // true
-}
-```
-
-### For Graph API Approach (Future)
+### For Facebook Graph API Approach (REQUIRED)
 
 #### Backend/API Requirements
 
@@ -220,42 +176,85 @@ interface FacebookPagePluginConfig {
 
 2. **Token Management**
    - Implement token refresh logic
-   - Handle token expiration gracefully
+   - Handle token expiration gracefully (60-day cycle)
    - Secure storage of access tokens
    - Monitoring for token validity
 
 3. **API Integration**
    - Fetch events endpoint handler
-   - Cache responses (reduce API calls)
+   - Limit to 5 events with `?limit=5`
+   - Filter for upcoming events only
+   - Cache responses (reduce API calls, 1-hour TTL recommended)
    - Error handling for API failures
    - Rate limit management
 
 #### Frontend Components
 
-1. **Events Display Component**
-   - Fetch events from API endpoint
-   - Display event cards with custom styling
+1. **Events Section Component** (`src/components/home-page/Events/index.tsx`)
+   - Section container with consistent styling
+   - Heading: "Upcoming Events"
+   - Grid layout for event cards
+   - Responsive design (mobile/tablet/desktop)
    - Loading states
    - Error states
    - Empty state (no upcoming events)
 
-2. **Event Card Component**
+2. **Event Card Component** (`src/components/home-page/Events/EventCard.tsx`)
    - Event title, date, time
    - Location (if applicable)
    - Description (truncated with "read more")
-   - RSVP link to Facebook
-   - Share functionality
+   - **Direct link to Facebook event** (e.g., https://www.facebook.com/share/[id]/)
+   - Share functionality (optional)
+   - Responsive card design
+
+#### Dependencies
+
+- **No new npm packages required** for basic implementation
+- Consider adding:
+  - Date formatting library (e.g., `date-fns` or use built-in `Intl`)
+  - HTTP client for API calls (if not using built-in `fetch`)
+
+#### Configuration
+
+```typescript
+// Configuration for Facebook Graph API
+interface FacebookEventsConfig {
+  pageId: string // Facebook page ID
+  accessToken: string // Long-lived page access token (from environment variable)
+  limit: number // Number of events to fetch (5)
+  fields: string[] // Event fields to retrieve
+  cacheTimeout: number // Cache TTL in seconds (3600 = 1 hour)
+}
+
+// Example API call
+const eventsUrl = `https://graph.facebook.com/v19.0/${pageId}/events?fields=id,name,description,start_time,end_time,place&limit=5&time_filter=upcoming&access_token=${accessToken}`
+```
+
+#### Event URL Construction
+
+Based on the actual event URL format (https://www.facebook.com/share/17eDJE45WE/), the implementation needs to:
+
+1. **Determine URL format** from Graph API response
+2. **Construct event URLs** properly:
+   - If API returns share ID: `https://www.facebook.com/share/${shareId}/`
+   - If API returns event ID: `https://www.facebook.com/events/${eventId}`
+3. **Test URL format** with actual event data during implementation
+4. **Fallback** to Facebook page if event URL unavailable
 
 ## Privacy and Compliance Requirements
 
 ### GDPR and Cookie Consent
 
-#### Required Updates to Cookie Policy
+**Important:** When using the Graph API with server-side fetching, **NO tracking cookies are set** on user browsers, significantly simplifying privacy compliance.
 
-Update `src/app/cookie-policy/page.tsx` to include:
+#### Required Updates to Privacy Policy
+
+Update `src/app/privacy-policy/page.tsx` to include:
 
 ```markdown
-#### Facebook Page Plugin / Events Widget
+### Facebook Events Data
+
+Our website displays upcoming events from our Facebook page using the Facebook Graph API. This integration fetches event information from Facebook's servers and displays it on our website. No tracking cookies are set on your browser, and no personal data is shared with Facebook when viewing events.
 
 - **Purpose:** Display upcoming Facebook events from our Facebook page
 - **Data Collected:** Facebook may set cookies to track page visits, user interactions,
