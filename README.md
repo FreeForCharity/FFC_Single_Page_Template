@@ -719,6 +719,11 @@ For comprehensive guides and documentation:
 - **[SECURITY.md](./SECURITY.md)** - Security policies, branch protection rules, and best practices
 - **[DEPENDABOT.md](./DEPENDABOT.md)** - Automated dependency management and security updates
 
+### Feature Implementation Guides
+
+- **[FACEBOOK_EVENTS_REQUIREMENTS.md](./FACEBOOK_EVENTS_REQUIREMENTS.md)** - Complete requirements analysis for Facebook Events integration
+- **[FACEBOOK_EVENTS_SETUP.md](./FACEBOOK_EVENTS_SETUP.md)** - Step-by-step implementation guide for adding Facebook Events section
+
 ### Troubleshooting & Planning
 
 - **[ISSUE_RESOLUTION.md](./ISSUE_RESOLUTION.md)** - Common issues, troubleshooting, and FAQ
