@@ -365,7 +365,7 @@ Find the "Direct Integrations" section and add after the Meta Pixel entry:
 
 Update the preconnect section if needed:
 
-```markdown
+````markdown
 ### Preconnect Optimization
 
 To improve performance, we preconnect to frequently used domains:
@@ -378,7 +378,9 @@ To improve performance, we preconnect to frequently used domains:
 <link rel="preconnect" href="https://www.zeffy.com" />
 <link rel="preconnect" href="https://widgets.guidestar.org" />
 ```
-```
+````
+
+````
 
 ### Step 8: Add Preconnect for Facebook SDK (Optional but Recommended)
 
@@ -388,7 +390,7 @@ Find the existing preconnect links and add:
 
 ```typescript
 <link rel="preconnect" href="https://connect.facebook.net" />
-```
+````
 
 This improves performance by establishing early connection to Facebook's CDN.
 
@@ -397,103 +399,103 @@ This improves performance by establishing early connection to Facebook's CDN.
 Create `tests/facebook-events.spec.ts`:
 
 ```typescript
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test'
 
 test.describe('Facebook Events Section', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-  });
+    await page.goto('/')
+  })
 
   test('should show events section with heading', async ({ page }) => {
     // Scroll to events section
-    await page.locator('#events').scrollIntoViewIfNeeded();
-    
+    await page.locator('#events').scrollIntoViewIfNeeded()
+
     // Verify section exists
-    await expect(page.locator('#events')).toBeVisible();
-    
+    await expect(page.locator('#events')).toBeVisible()
+
     // Verify heading
-    const heading = page.locator('#events h1');
-    await expect(heading).toBeVisible();
-    await expect(heading).toContainText('Upcoming Events');
-  });
+    const heading = page.locator('#events h1')
+    await expect(heading).toBeVisible()
+    await expect(heading).toContainText('Upcoming Events')
+  })
 
   test('should show consent placeholder when cookies not accepted', async ({ page }) => {
     // If cookie banner appears, reject cookies
-    const rejectButton = page.locator('button:has-text("Reject All")');
+    const rejectButton = page.locator('button:has-text("Reject All")')
     if (await rejectButton.isVisible({ timeout: 2000 }).catch(() => false)) {
-      await rejectButton.click();
+      await rejectButton.click()
     }
-    
+
     // Scroll to events section
-    await page.locator('#events').scrollIntoViewIfNeeded();
-    
+    await page.locator('#events').scrollIntoViewIfNeeded()
+
     // Verify placeholder is shown
-    await expect(page.locator('[data-testid="events-consent-required"]')).toBeVisible();
-    
+    await expect(page.locator('[data-testid="events-consent-required"]')).toBeVisible()
+
     // Verify "Manage Cookie Preferences" button exists
-    await expect(page.locator('button:has-text("Manage Cookie Preferences")')).toBeVisible();
-  });
+    await expect(page.locator('button:has-text("Manage Cookie Preferences")')).toBeVisible()
+  })
 
   test('should show Facebook widget after accepting cookies', async ({ page }) => {
     // Accept marketing cookies if banner appears
-    const acceptButton = page.locator('button:has-text("Accept All")');
+    const acceptButton = page.locator('button:has-text("Accept All")')
     if (await acceptButton.isVisible({ timeout: 2000 }).catch(() => false)) {
-      await acceptButton.click();
+      await acceptButton.click()
     }
-    
+
     // Scroll to events section
-    await page.locator('#events').scrollIntoViewIfNeeded();
-    
+    await page.locator('#events').scrollIntoViewIfNeeded()
+
     // Wait for Facebook widget to load (may take a few seconds)
-    await page.waitForSelector('.fb-page', { timeout: 10000 });
-    
+    await page.waitForSelector('.fb-page', { timeout: 10000 })
+
     // Verify Facebook widget container is present
-    await expect(page.locator('.fb-page')).toBeVisible();
-  });
+    await expect(page.locator('.fb-page')).toBeVisible()
+  })
 
   test('should have link to Facebook page', async ({ page }) => {
-    await page.locator('#events').scrollIntoViewIfNeeded();
-    
+    await page.locator('#events').scrollIntoViewIfNeeded()
+
     // Find link to Facebook page
-    const fbLink = page.locator('#events a[href*="facebook.com/freeforcharity"]').first();
-    await expect(fbLink).toBeVisible();
-    
+    const fbLink = page.locator('#events a[href*="facebook.com/freeforcharity"]').first()
+    await expect(fbLink).toBeVisible()
+
     // Verify link opens in new tab
-    await expect(fbLink).toHaveAttribute('target', '_blank');
-    await expect(fbLink).toHaveAttribute('rel', /noopener/);
-  });
+    await expect(fbLink).toHaveAttribute('target', '_blank')
+    await expect(fbLink).toHaveAttribute('rel', /noopener/)
+  })
 
   test('should be keyboard accessible', async ({ page }) => {
-    await page.locator('#events').scrollIntoViewIfNeeded();
-    
+    await page.locator('#events').scrollIntoViewIfNeeded()
+
     // Tab to events section link
-    await page.keyboard.press('Tab');
-    
+    await page.keyboard.press('Tab')
+
     // Check if any element within events section can receive focus
-    const focusedElement = page.locator('#events :focus');
-    const isEventsSectionFocused = await focusedElement.count().then(count => count > 0);
-    
+    const focusedElement = page.locator('#events :focus')
+    const isEventsSectionFocused = await focusedElement.count().then((count) => count > 0)
+
     // This is informational - keyboard accessibility should be manually verified
-    console.log('Events section keyboard accessible:', isEventsSectionFocused);
-  });
+    console.log('Events section keyboard accessible:', isEventsSectionFocused)
+  })
 
   test('should maintain section ID for navigation', async ({ page }) => {
     // Navigate directly to events section via hash
-    await page.goto('/#events');
-    
+    await page.goto('/#events')
+
     // Verify we're at the events section
-    const eventsSection = page.locator('#events');
-    await expect(eventsSection).toBeVisible();
-    
+    const eventsSection = page.locator('#events')
+    await expect(eventsSection).toBeVisible()
+
     // Verify the section is scrolled into view
-    const isInViewport = await eventsSection.evaluate(el => {
-      const rect = el.getBoundingClientRect();
-      return rect.top >= 0 && rect.top < window.innerHeight;
-    });
-    
-    expect(isInViewport).toBe(true);
-  });
-});
+    const isInViewport = await eventsSection.evaluate((el) => {
+      const rect = el.getBoundingClientRect()
+      return rect.top >= 0 && rect.top < window.innerHeight
+    })
+
+    expect(isInViewport).toBe(true)
+  })
+})
 ```
 
 ### Step 10: Manual Testing
@@ -501,6 +503,7 @@ test.describe('Facebook Events Section', () => {
 Before committing, perform these manual tests:
 
 1. **Start development server:**
+
    ```bash
    npm run dev
    ```
@@ -641,10 +644,12 @@ NEXT_PUBLIC_FACEBOOK_APP_ID=your_app_id_here
 Tokens expire after 60 days. Set up a reminder or automation:
 
 **Option A: Manual Reminder**
+
 - Set calendar reminder for 55 days from token creation
 - Repeat steps 4-6 to refresh token
 
 **Option B: Automated Refresh (Advanced)**
+
 - Create a GitHub Actions workflow to refresh token
 - Store refresh date in repository
 - Automatically run token refresh and update secrets
@@ -677,11 +682,13 @@ jobs:
 #### 10. Submit for App Review (If Needed)
 
 **When is App Review needed?**
+
 - If app is used by users other than page admins
 - If you need permissions beyond basic page access
 - For production use outside of development mode
 
 **Steps:**
+
 1. Go to App Dashboard > App Review
 2. Submit required permissions for review
 3. Provide detailed explanation of how permissions are used
@@ -731,11 +738,11 @@ export async function fetchFacebookEvents(): Promise<FacebookEvent[]> {
   try {
     const response = await fetch(
       `https://graph.facebook.com/v19.0/${pageId}/events?` +
-      `fields=name,description,start_time,end_time,place&` +
-      `time_filter=upcoming&` +
-      `access_token=${accessToken}`,
+        `fields=name,description,start_time,end_time,place&` +
+        `time_filter=upcoming&` +
+        `access_token=${accessToken}`,
       {
-        next: { revalidate: 3600 } // Cache for 1 hour
+        next: { revalidate: 3600 }, // Cache for 1 hour
       }
     )
 
@@ -955,6 +962,7 @@ npm run lighthouse
 ```
 
 **Acceptance criteria:**
+
 - Performance: ≥ 95
 - Accessibility: 100
 - Best Practices: ≥ 95
@@ -993,6 +1001,7 @@ git push origin main
 ```
 
 The GitHub Actions workflow will:
+
 1. Build the site with static export
 2. Run Playwright tests
 3. Deploy to GitHub Pages
@@ -1013,6 +1022,7 @@ The GitHub Actions workflow will:
 **Symptoms:** Page Plugin doesn't appear after accepting cookies
 
 **Solutions:**
+
 1. Check browser console for errors
 2. Verify Facebook SDK script is loaded (`document.getElementById('facebook-jssdk')`)
 3. Check if ad blocker is blocking Facebook scripts
@@ -1025,6 +1035,7 @@ The GitHub Actions workflow will:
 **Symptoms:** Widget loads without consent or doesn't load with consent
 
 **Solutions:**
+
 1. Check localStorage for `cookie_consent` key
 2. Verify `cookieConsentChange` event is being dispatched
 3. Check consent object structure matches expected format
@@ -1036,6 +1047,7 @@ The GitHub Actions workflow will:
 **Symptoms:** Lighthouse score drops after adding Events section
 
 **Solutions:**
+
 1. Implement lazy loading for Facebook SDK
 2. Use Intersection Observer to load only when section is visible
 3. Verify preconnect hint is in place for `connect.facebook.net`
@@ -1047,6 +1059,7 @@ The GitHub Actions workflow will:
 **Symptoms:** Events not loading, API errors in logs
 
 **Solutions:**
+
 1. Check token expiration date (60 days from creation)
 2. Generate new long-lived token following steps 4-6 in External Setup
 3. Update environment variables with new token
@@ -1058,6 +1071,7 @@ The GitHub Actions workflow will:
 **Symptoms:** Browser console shows CORS errors when fetching events
 
 **Solutions:**
+
 1. Ensure Facebook API calls are made server-side, not client-side
 2. Use API routes or serverless functions for fetching
 3. Never expose access token in client-side code
@@ -1068,6 +1082,7 @@ The GitHub Actions workflow will:
 **Symptoms:** Facebook returns error about permissions or app review
 
 **Solutions:**
+
 1. Check if app is in Development Mode or Live Mode
 2. For development, ensure testing users are added to app
 3. For production, submit app for review if needed
@@ -1078,16 +1093,19 @@ The GitHub Actions workflow will:
 ### Regular Tasks
 
 **Monthly:**
+
 - [ ] Verify Events section is displaying correctly
 - [ ] Check Facebook page for upcoming events
 - [ ] Test cookie consent flow
 
 **Every 50 Days (Graph API only):**
+
 - [ ] Generate new long-lived page access token
 - [ ] Update environment variables
 - [ ] Test API integration
 
 **Quarterly:**
+
 - [ ] Review Facebook SDK version (update if needed)
 - [ ] Review privacy policy for accuracy
 - [ ] Test on new browser versions
@@ -1096,6 +1114,7 @@ The GitHub Actions workflow will:
 ### Monitoring
 
 Set up monitoring for:
+
 - Facebook SDK load failures
 - API errors (if using Graph API)
 - Performance regressions
@@ -1104,14 +1123,17 @@ Set up monitoring for:
 ### Support Contacts
 
 **Technical Issues:**
+
 - Repository: https://github.com/FreeForCharity/FFC_Single_Page_Template/issues
 - Email: clarkemoyer@freeforcharity.org
 
 **Facebook Developer Support:**
+
 - Developer Documentation: https://developers.facebook.com/docs/
 - Support: https://developers.facebook.com/support/
 
 **Privacy/Legal Questions:**
+
 - Email: privacy@freeforcharity.org
 
 ---

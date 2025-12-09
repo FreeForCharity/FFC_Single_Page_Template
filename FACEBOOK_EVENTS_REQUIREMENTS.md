@@ -36,6 +36,7 @@ There are three primary approaches to integrating Facebook events:
 **Description:** Embed Facebook's official Page Plugin configured to show the events tab.
 
 **Pros:**
+
 - No API credentials required
 - Automatic updates when events change on Facebook
 - Official Facebook styling and functionality
@@ -43,6 +44,7 @@ There are three primary approaches to integrating Facebook events:
 - No token management or expiration concerns
 
 **Cons:**
+
 - Limited customization of appearance
 - Loads third-party scripts from Facebook
 - Requires cookie consent for GDPR compliance
@@ -50,20 +52,25 @@ There are three primary approaches to integrating Facebook events:
 - May not match site design perfectly
 
 **Technical Details:**
+
 ```html
-<div class="fb-page"
-     data-href="https://www.facebook.com/freeforcharity"
-     data-tabs="events"
-     data-width="500"
-     data-height="600"
-     data-small-header="false"
-     data-adapt-container-width="true"
-     data-hide-cover="false"
-     data-show-facepile="true">
-</div>
-<script async defer crossorigin="anonymous" 
-        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0">
-</script>
+<div
+  class="fb-page"
+  data-href="https://www.facebook.com/freeforcharity"
+  data-tabs="events"
+  data-width="500"
+  data-height="600"
+  data-small-header="false"
+  data-adapt-container-width="true"
+  data-hide-cover="false"
+  data-show-facepile="true"
+></div>
+<script
+  async
+  defer
+  crossorigin="anonymous"
+  src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0"
+></script>
 ```
 
 ### Option 2: Facebook Graph API (Most Customizable)
@@ -71,6 +78,7 @@ There are three primary approaches to integrating Facebook events:
 **Description:** Use Facebook's Graph API to programmatically fetch event data and render it with custom components.
 
 **Pros:**
+
 - Complete control over design and layout
 - Can filter and customize event data
 - Better performance optimization opportunities
@@ -78,6 +86,7 @@ There are three primary approaches to integrating Facebook events:
 - No third-party iframe dependencies
 
 **Cons:**
+
 - Requires Facebook Developer account and app creation
 - Needs access token management (tokens expire)
 - Requires API permissions (`pages_read_engagement`, `pages_manage_events`)
@@ -87,12 +96,14 @@ There are three primary approaches to integrating Facebook events:
 - Must go through Facebook App Review for production use
 
 **Technical Details:**
+
 - API Endpoint: `GET /{page-id}/events?access_token={token}`
 - Required Permissions: `pages_read_engagement`, `pages_manage_events`
 - Token Type: Long-lived Page Access Token (60 days validity)
 - Response Format: JSON with event objects
 
 **Example Response:**
+
 ```json
 {
   "data": [
@@ -120,12 +131,14 @@ There are three primary approaches to integrating Facebook events:
 **Description:** Use services like SociableKIT, Elfsight, or similar that provide event embedding widgets.
 
 **Pros:**
+
 - Easier setup than Graph API
 - More customization than Page Plugin
 - Handle token management for you
 - Often provide enhanced features
 
 **Cons:**
+
 - Additional third-party dependency
 - May have monthly costs
 - Privacy policy updates required
@@ -148,6 +161,7 @@ For Free For Charity's use case, the Facebook Page Plugin is recommended because
 **Alternative: Graph API for Future Enhancement**
 
 If greater customization is needed in the future, the Graph API approach can be implemented. However, this should be considered Phase 2 due to:
+
 - Token management complexity
 - Need for server-side logic or edge functions
 - Facebook App Review requirements for production
@@ -183,14 +197,14 @@ If greater customization is needed in the future, the Graph API approach can be 
 ```typescript
 // Configuration object for Facebook Page Plugin
 interface FacebookPagePluginConfig {
-  pageUrl: string; // 'https://www.facebook.com/freeforcharity'
-  tabs: string[]; // ['events']
-  width: number; // Responsive or fixed (e.g., 500)
-  height: number; // e.g., 600
-  smallHeader: boolean; // false
-  adaptContainerWidth: boolean; // true
-  hideCover: boolean; // false
-  showFacepile: boolean; // true
+  pageUrl: string // 'https://www.facebook.com/freeforcharity'
+  tabs: string[] // ['events']
+  width: number // Responsive or fixed (e.g., 500)
+  height: number // e.g., 600
+  smallHeader: boolean // false
+  adaptContainerWidth: boolean // true
+  hideCover: boolean // false
+  showFacepile: boolean // true
 }
 ```
 
@@ -244,7 +258,7 @@ Update `src/app/cookie-policy/page.tsx` to include:
 #### Facebook Page Plugin / Events Widget
 
 - **Purpose:** Display upcoming Facebook events from our Facebook page
-- **Data Collected:** Facebook may set cookies to track page visits, user interactions, 
+- **Data Collected:** Facebook may set cookies to track page visits, user interactions,
   and behavior even for non-logged-in users
 - **Cookie Category:** Marketing/Social Media
 - **Provider:** Meta Platforms, Inc.
@@ -259,12 +273,13 @@ Update `src/app/privacy-policy/page.tsx` to include:
 ```markdown
 ### Facebook Events Integration
 
-Our website displays upcoming events from our Facebook page using the Facebook Page Plugin. 
-When you consent to marketing and social media cookies, this plugin may load content from 
-Facebook and set cookies that allow Facebook to track your activity on our site, even if 
+Our website displays upcoming events from our Facebook page using the Facebook Page Plugin.
+When you consent to marketing and social media cookies, this plugin may load content from
+Facebook and set cookies that allow Facebook to track your activity on our site, even if
 you are not logged into Facebook.
 
 **Data Shared with Facebook:**
+
 - Your IP address
 - Browser information
 - Pages visited on our site
@@ -272,8 +287,8 @@ you are not logged into Facebook.
 - Time spent on page
 
 **User Control:**
-You can control whether the Facebook plugin loads by managing your cookie preferences 
-through our cookie consent banner. You may also opt out of Facebook tracking through 
+You can control whether the Facebook plugin loads by managing your cookie preferences
+through our cookie consent banner. You may also opt out of Facebook tracking through
 your Facebook ad settings at [https://www.facebook.com/settings/?tab=ads](https://www.facebook.com/settings/?tab=ads).
 ```
 
@@ -319,6 +334,7 @@ Update `EXTERNAL_DEPENDENCIES.md` to include:
 - **Opt-out:** https://www.facebook.com/settings/?tab=ads
 
 **Technical Details:**
+
 - SDK Version: v19.0 or latest stable
 - Plugin Type: Page Plugin with Events tab
 - Integration: Client-side JavaScript SDK
@@ -334,11 +350,13 @@ The Events section should be placed on the homepage in a logical position:
 **Recommended Placement:** After "Volunteer with Us" and before "Support Free For Charity"
 
 Rationale:
+
 - Events are related to volunteering and engagement
 - Placing near volunteer section encourages participation
 - Maintains flow from calls to action to informational content
 
 **Homepage Section Order (with Events):**
+
 ```
 1. Hero
 2. Mission
@@ -364,7 +382,7 @@ Rationale:
 
 #### Typography
 
-- **Section Heading:** 
+- **Section Heading:**
   - Font: Faustina (consistent with "Our Programs", etc.)
   - Size: `text-[40px] lg:text-[48px]`
   - Weight: `font-[400]`
@@ -394,7 +412,7 @@ When user has not consented to marketing cookies:
   <p className="text-lg text-gray-600 mb-6">
     To view our upcoming Facebook events, please accept marketing and social media cookies.
   </p>
-  <button 
+  <button
     onClick={openCookieSettings}
     className="bg-orange-500 text-white px-6 py-3 rounded-md hover:bg-orange-600 transition-colors"
   >
@@ -485,6 +503,7 @@ When user has not consented to marketing cookies:
 Not applicable for Facebook Page Plugin approach (external widget).
 
 For Graph API approach:
+
 - Test API response parsing
 - Test error handling
 - Test loading states
@@ -495,73 +514,73 @@ For Graph API approach:
 Create `tests/facebook-events.spec.ts`:
 
 ```typescript
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test'
 
 test.describe('Facebook Events Section', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-  });
+    await page.goto('/')
+  })
 
   test('should show events section with heading', async ({ page }) => {
     // Scroll to events section
-    await page.locator('#events').scrollIntoViewIfNeeded();
-    
+    await page.locator('#events').scrollIntoViewIfNeeded()
+
     // Verify section exists
-    await expect(page.locator('#events')).toBeVisible();
-    
+    await expect(page.locator('#events')).toBeVisible()
+
     // Verify heading
-    await expect(page.locator('#events h1, #events h2')).toBeVisible();
-  });
+    await expect(page.locator('#events h1, #events h2')).toBeVisible()
+  })
 
   test('should show consent placeholder when cookies not accepted', async ({ page }) => {
     // Reject cookies first
-    await page.locator('[data-testid="cookie-reject"]').click();
-    
+    await page.locator('[data-testid="cookie-reject"]').click()
+
     // Scroll to events section
-    await page.locator('#events').scrollIntoViewIfNeeded();
-    
+    await page.locator('#events').scrollIntoViewIfNeeded()
+
     // Verify placeholder is shown
-    await expect(page.locator('#events [data-testid="events-consent-required"]')).toBeVisible();
-  });
+    await expect(page.locator('#events [data-testid="events-consent-required"]')).toBeVisible()
+  })
 
   test('should load Facebook widget after accepting cookies', async ({ page }) => {
     // Accept marketing cookies
-    await page.locator('[data-testid="cookie-accept"]').click();
-    
+    await page.locator('[data-testid="cookie-accept"]').click()
+
     // Scroll to events section
-    await page.locator('#events').scrollIntoViewIfNeeded();
-    
+    await page.locator('#events').scrollIntoViewIfNeeded()
+
     // Wait for Facebook SDK to load
-    await page.waitForSelector('.fb-page iframe', { timeout: 10000 });
-    
+    await page.waitForSelector('.fb-page iframe', { timeout: 10000 })
+
     // Verify Facebook iframe is present
-    await expect(page.locator('.fb-page iframe')).toBeVisible();
-  });
+    await expect(page.locator('.fb-page iframe')).toBeVisible()
+  })
 
   test('should be accessible', async ({ page }) => {
-    await page.locator('#events').scrollIntoViewIfNeeded();
-    
+    await page.locator('#events').scrollIntoViewIfNeeded()
+
     // Check for proper heading hierarchy
-    const heading = page.locator('#events h1, #events h2');
-    await expect(heading).toBeVisible();
-    
+    const heading = page.locator('#events h1, #events h2')
+    await expect(heading).toBeVisible()
+
     // Verify section has accessible name
-    const section = page.locator('#events');
-    await expect(section).toHaveAttribute('id', 'events');
-  });
+    const section = page.locator('#events')
+    await expect(section).toHaveAttribute('id', 'events')
+  })
 
   test('should link to Facebook page', async ({ page }) => {
-    await page.locator('#events').scrollIntoViewIfNeeded();
-    
+    await page.locator('#events').scrollIntoViewIfNeeded()
+
     // Find link to Facebook page
-    const fbLink = page.locator('#events a[href*="facebook.com/freeforcharity"]');
-    await expect(fbLink).toBeVisible();
-    
+    const fbLink = page.locator('#events a[href*="facebook.com/freeforcharity"]')
+    await expect(fbLink).toBeVisible()
+
     // Verify link opens in new tab
-    await expect(fbLink).toHaveAttribute('target', '_blank');
-    await expect(fbLink).toHaveAttribute('rel', /noopener/);
-  });
-});
+    await expect(fbLink).toHaveAttribute('target', '_blank')
+    await expect(fbLink).toHaveAttribute('rel', /noopener/)
+  })
+})
 ```
 
 ### Manual Testing Checklist
@@ -592,6 +611,7 @@ npm run lighthouse
 ```
 
 **Acceptance Criteria:**
+
 - Performance score: Maintain 95+ (currently 97)
 - Accessibility score: Maintain 100
 - Best Practices score: Maintain 95+
@@ -612,6 +632,7 @@ If scores drop significantly, investigate lazy loading or defer Facebook SDK loa
 5. Manual testing and refinement (1-2 hours)
 
 **Deliverables:**
+
 - Events section on homepage with Facebook Page Plugin
 - Cookie consent integration
 - Updated privacy documentation
@@ -629,6 +650,7 @@ If scores drop significantly, investigate lazy loading or defer Facebook SDK loa
 6. Documentation updates (2 hours)
 
 **Deliverables:**
+
 - Custom-designed events display
 - Full control over event presentation
 - Optimized performance with caching
