@@ -49,10 +49,10 @@ Given the requirement to show **only individual event cards (not the full Facebo
 
 **Why This is Required:**
 
-The requirement explicitly states: *"list events not the full FB page"* and *"show the next 5 events"* with direct links to each event. The Facebook Page Plugin cannot meet this requirement because:
+The requirement explicitly states: _"list events not the full FB page"_ and _"show the next 5 events"_ with direct links to each event. The Facebook Page Plugin cannot meet this requirement because:
 
 - ❌ Shows full Facebook page (cover photo, posts, etc.), not just events
-- ❌ Cannot limit to exactly 5 events  
+- ❌ Cannot limit to exactly 5 events
 - ❌ Cannot create individual event cards with custom styling
 - ❌ Does not provide direct links to individual events
 
@@ -86,6 +86,7 @@ The requirement explicitly states: *"list events not the full FB page"* and *"sh
 **Event URL Format:**
 
 Facebook uses different URL formats for events:
+
 - Modern format: `https://www.facebook.com/share/[share-id]/` (Example: https://www.facebook.com/share/17eDJE45WE/)
 - Legacy format: `https://www.facebook.com/events/[event-id]`
 

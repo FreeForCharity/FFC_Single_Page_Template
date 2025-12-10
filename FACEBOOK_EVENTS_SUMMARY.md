@@ -361,6 +361,7 @@ After implementation, track these metrics to measure success:
 ### Q: Can we use static site generation (GitHub Pages)?
 
 **A:** Yes! Options include:
+
 1. **Build-time fetching**: Fetch events during `npm run build` (events update when site rebuilds)
 2. **Cloudflare Workers**: Proxy API requests to hide tokens
 3. **GitHub Actions scheduled builds**: Rebuild site daily to refresh events
