@@ -21,13 +21,14 @@ const Events = () => {
         <div className="flex justify-center">
           <iframe
             src="https://widgets.sociablekit.com/facebook-page-events/iframe/25631700"
-            frameBorder="0"
+            frameBorder={0}
             width="100%"
             height="1000"
             style={{ maxWidth: '1200px' }}
             title="Facebook Events"
             loading="lazy"
             className="rounded-lg"
+            sandbox="allow-scripts allow-same-origin"
           ></iframe>
         </div>
 

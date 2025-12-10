@@ -132,6 +132,10 @@ Based on the requirement to show **"the next 5 events"** as individual cards wit
 - Page Plugin cannot create custom event card designs
 - Requirements explicitly state "list events not the full FB page"
 
+> **Current Implementation Note (December 2024):**
+>
+> Although the requirements above specify the Facebook Graph API as the _required_ approach, the current homepage implementation uses the [SociableKit Facebook Events widget](https://www.sociablekit.com/facebook-page-events-widget/) (see Option 3 above) to display upcoming events. This was chosen for rapid deployment and to avoid the complexity of Facebook API tokens and server-side integration. The SociableKit widget allows embedding individual event cards with direct links, closely matching the design requirements, but relies on a third-party service and may have different privacy/compliance implications. If/when a native Graph API integration is implemented, this document will be updated accordingly.
+
 ## Privacy and Compliance
 
 ### Required Updates

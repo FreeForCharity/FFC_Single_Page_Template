@@ -63,24 +63,23 @@ These are services we directly integrate into our application code.
 - **Privacy Policy:** https://www.facebook.com/privacy/policy/
 - **Opt-out:** https://www.facebook.com/settings/?tab=ads
 
-#### 5. Facebook Page Plugin (Events)
+#### 5. SociableKit Facebook Events Widget
 
-- **Purpose:** Display upcoming events from Free For Charity's Facebook page
-- **Implementation:** Embedded widget via iframe (when implemented)
-- **Domain:** `www.facebook.com`, `connect.facebook.net`
-- **Load Strategy:** Conditional (only after marketing cookie consent)
-- **Data Collected:** User interactions, page views, browser information
-- **User Control:** Requires explicit user consent via cookie banner
-- **Privacy Policy:** https://www.facebook.com/privacy/policy/
-- **Opt-out:** https://www.facebook.com/settings/?tab=ads
-- **Status:** Documented - Implementation pending (see FACEBOOK_EVENTS_REQUIREMENTS.md)
+- **Purpose:** Display Facebook events via third-party widget
+- **Implementation:** SociableKit iframe widget embedded in the site
+- **Domain:** `widgets.sociablekit.com`
+- **Load Strategy:** Lazy-loaded iframe (loaded only when the events section is visible)
+- **Data Collected:** User interactions, page views, browser/device information (as determined by SociableKit)
+- **User Control:** Requires explicit user consent via cookie banner before loading
+- **Privacy Policy:** https://www.sociablekit.com/privacy-policy/
+- **Opt-out:** See SociableKit privacy policy for data subject rights
+- **Status:** Documented - Implementation complete
 
 **Technical Details:**
 
-- SDK Version: v19.0 or latest stable
-- Plugin Type: Page Plugin with Events tab
-- Integration: Client-side JavaScript SDK
-- Sandbox: None (uses iframe from Facebook domain)
+- Integration: Embedded via iframe from SociableKit
+- No Facebook SDK or direct Facebook domain requests are made; all event data is proxied through SociableKit
+- Privacy Considerations: Loading the widget may send user data (IP address, browser info, etc.) to SociableKit. Users should review SociableKit's privacy policy for details. Widget is only loaded after user consents to marketing cookies.
 
 ### Forms & User Input
 
