@@ -25,10 +25,11 @@ const IconTextCard: React.FC<IconTextCardProps> = ({ icon, iconLabel = 'icon', t
       { threshold: 0.3 } // 30% visible triggers animation
     )
 
-    if (cardRef.current) observer.observe(cardRef.current)
+    const currentCard = cardRef.current
+    if (currentCard) observer.observe(currentCard)
 
     return () => {
-      if (cardRef.current) observer.unobserve(cardRef.current)
+      if (currentCard) observer.unobserve(currentCard)
     }
   }, [])
 

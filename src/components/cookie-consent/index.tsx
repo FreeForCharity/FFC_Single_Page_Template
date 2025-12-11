@@ -230,6 +230,7 @@ export default function CookieConsent() {
     setShowPreferences(false)
   }, [savedPreferencesBackup])
 
+  // Initialize state from localStorage on mount - this is the correct pattern for hydration
   useEffect(() => {
     // Expose method to window for reopening preferences from other components
     window.openCookiePreferences = () => {
@@ -239,6 +240,7 @@ export default function CookieConsent() {
     }
 
     // Check if user has already made a choice with error handling
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     loadPreferencesFromLocalStorage(true)
 
     // Cleanup function to remove the window method

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const testimonials = [
@@ -23,28 +23,28 @@ export default function TestimonialSlider() {
   const [isHovered, setIsHovered] = useState(false)
   const [transitioning, setTransitioning] = useState(false)
 
-  useEffect(() => {
-    if (!isHovered) {
-      const interval = setInterval(() => handleNext(), 5000)
-      return () => clearInterval(interval)
-    }
-  }, [isHovered])
-
-  const handlePrev = () => {
-    startTransition((prev) => (prev - 1 + testimonials.length) % testimonials.length)
-  }
-
-  const handleNext = () => {
-    startTransition((prev) => (prev + 1) % testimonials.length)
-  }
-
-  const startTransition = (getNextIndex: (prev: number) => number) => {
+  const startTransition = useCallback((getNextIndex: (prev: number) => number) => {
     setTransitioning(true)
     setTimeout(() => {
       setCurrentIndex(getNextIndex)
       setTimeout(() => setTransitioning(false), 300)
     }, 300)
-  }
+  }, [])
+
+  const handleNext = useCallback(() => {
+    startTransition((prev) => (prev + 1) % testimonials.length)
+  }, [startTransition])
+
+  const handlePrev = useCallback(() => {
+    startTransition((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+  }, [startTransition])
+
+  useEffect(() => {
+    if (!isHovered) {
+      const interval = setInterval(() => handleNext(), 5000)
+      return () => clearInterval(interval)
+    }
+  }, [isHovered, handleNext])
 
   return (
     <div className="py-16 bg-white">
