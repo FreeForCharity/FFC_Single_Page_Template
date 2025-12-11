@@ -14,8 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - .github/FUNDING.yml for sponsorship information
   - .github/CODEOWNERS for code ownership
   - .github/PULL_REQUEST_TEMPLATE.md for PR guidelines
+  - .github/ISSUE_TEMPLATE/bug_report.md for bug reporting
+  - .github/ISSUE_TEMPLATE/feature_request.md for feature suggestions
+  - .github/ISSUE_TEMPLATE/documentation.md for documentation issues
+  - .github/ISSUE_TEMPLATE/config.yml for issue template configuration
   - CITATION.cff for academic citation
   - CHANGELOG.md for release tracking
+  - COMMUNITY_HEALTH_FILES.md for community health documentation
 
 ## [0.1.0] - 2025-12-11
 
