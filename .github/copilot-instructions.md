@@ -309,6 +309,51 @@ The project currently has 16 ESLint warnings. All have been reviewed and are acc
 
 **Running `npm run lint` will show these warnings - this is expected and does not indicate a problem.**
 
+## GitHub Community Health Files
+
+This repository includes a comprehensive set of GitHub-recognized community health files that automatically appear in GitHub's navigation interface. See [COMMUNITY_HEALTH_FILES.md](../COMMUNITY_HEALTH_FILES.md) for complete documentation.
+
+### Core Documentation (Automatic GitHub Navigation)
+
+**Files in repository root:**
+- `README.md` - Main documentation (always visible in navigation)
+- `LICENSE` - GPL-3.0 license (appears in License tab)
+- `CODE_OF_CONDUCT.md` - Contributor Covenant 2.1 (appears in Code of conduct tab)
+- `CONTRIBUTING.md` - Contribution guidelines (appears in Contributing tab and sidebar)
+- `SECURITY.md` - Security policies (appears in Security tab)
+- `SUPPORT.md` - Support resources and help (appears in sidebar)
+- `CITATION.cff` - Academic citation info (enables "Cite this repository" button)
+- `CHANGELOG.md` - Release notes and version history
+
+**Files in .github directory:**
+- `.github/FUNDING.yml` - Funding sources (enables "Sponsor" button)
+- `.github/CODEOWNERS` - Code ownership (auto-assigns PR reviewers)
+- `.github/PULL_REQUEST_TEMPLATE.md` - PR template (auto-populates PR description)
+- `.github/ISSUE_TEMPLATE/` - Issue templates:
+  - `bug_report.md` - Bug reporting template
+  - `feature_request.md` - Feature request template
+  - `documentation.md` - Documentation issue template
+  - `reviewer-onboarding.md` - Reviewer onboarding template
+  - `config.yml` - Issue template configuration with support links
+
+### Verifying Community Health Files
+
+To verify files are recognized by GitHub:
+1. Visit: https://github.com/FreeForCharity/FFC_Single_Page_Template/community
+2. Check navigation tabs on mobile (README, Code of conduct, Contributing, License, Security, More)
+3. Look for "Sponsor" button in repository header
+4. Look for "Cite this repository" button
+5. Create a new issue to see issue templates
+6. Create a new PR to see PR template
+
+### Maintaining Community Health Files
+
+When updating documentation:
+- Keep files in their designated locations (root or .github/)
+- Follow GitHub's naming conventions exactly
+- Update COMMUNITY_HEALTH_FILES.md when adding new files
+- Test that files appear in GitHub navigation after updates
+
 ## Quick Reference Commands
 
 ```bash
