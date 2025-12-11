@@ -305,10 +305,11 @@ For questions about our external dependencies or privacy practices:
 
 ## Updates to This Document
 
-| Date       | Changes                                                                      |
-| ---------- | ---------------------------------------------------------------------------- |
-| 2024-12-09 | Added Facebook Page Plugin (Events) documentation for planned implementation |
-| 2025-12-07 | Initial documentation of all external dependencies and integrations          |
+| Date       | Changes                                                             |
+| ---------- | ------------------------------------------------------------------- |
+| 2024-12-11 | Added SociableKit Facebook Events Widget - implementation complete  |
+| 2024-12-09 | Added Facebook Events integration documentation                     |
+| 2024-12-07 | Initial documentation of all external dependencies and integrations |
 
 ---
 
