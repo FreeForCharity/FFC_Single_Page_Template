@@ -1,6 +1,6 @@
 # External Dependencies and Third-Party Services
 
-**Last Updated:** December 7, 2025
+**Last Updated:** December 9, 2024
 
 This document provides a comprehensive list of all external dependencies and third-party services used by the Free For Charity website. This includes both direct integrations (services we explicitly configure) and transitive dependencies (services loaded by our direct integrations).
 
@@ -63,9 +63,27 @@ These are services we directly integrate into our application code.
 - **Privacy Policy:** https://www.facebook.com/privacy/policy/
 - **Opt-out:** https://www.facebook.com/settings/?tab=ads
 
+#### 5. SociableKit Facebook Events Widget
+
+- **Purpose:** Display Facebook events via third-party widget
+- **Implementation:** SociableKit iframe widget embedded in the site
+- **Domain:** `widgets.sociablekit.com`
+- **Load Strategy:** Lazy-loaded iframe (loaded only when the events section is visible)
+- **Data Collected:** User interactions, page views, browser/device information (as determined by SociableKit)
+- **User Control:** Requires explicit user consent via cookie banner before loading
+- **Privacy Policy:** https://www.sociablekit.com/privacy-policy/
+- **Opt-out:** See SociableKit privacy policy for data subject rights
+- **Status:** Documented - Implementation complete
+
+**Technical Details:**
+
+- Integration: Embedded via iframe from SociableKit
+- No Facebook SDK or direct Facebook domain requests are made; all event data is proxied through SociableKit
+- Privacy Considerations: Loading the widget may send user data (IP address, browser info, etc.) to SociableKit. Users should review SociableKit's privacy policy for details. Widget is only loaded after user consents to marketing cookies.
+
 ### Forms & User Input
 
-#### 5. Microsoft Forms
+#### 6. Microsoft Forms
 
 - **Purpose:** Charity application form
 - **Form URL:** `https://forms.office.com/r/vePxGq6JqG`
@@ -79,7 +97,7 @@ These are services we directly integrate into our application code.
 
 ### Donation Platform
 
-#### 6. Zeffy
+#### 7. Zeffy
 
 - **Purpose:** Zero-fee donation processing platform
 - **Implementation:** Embedded widget
@@ -90,7 +108,7 @@ These are services we directly integrate into our application code.
 
 ### Transparency & Validation
 
-#### 7. GuideStar (Candid)
+#### 8. GuideStar (Candid)
 
 - **Purpose:** Display charity transparency seal
 - **Implementation:** Widget embedded in footer
@@ -101,7 +119,7 @@ These are services we directly integrate into our application code.
 
 ### External Volunteer Platforms
 
-#### 8. Idealist.org
+#### 9. Idealist.org
 
 - **Purpose:** Volunteer opportunity listings
 - **Implementation:** Link to external profile
@@ -289,7 +307,9 @@ For questions about our external dependencies or privacy practices:
 
 | Date       | Changes                                                             |
 | ---------- | ------------------------------------------------------------------- |
-| 2025-12-07 | Initial documentation of all external dependencies and integrations |
+| 2024-12-11 | Added SociableKit Facebook Events Widget - implementation complete  |
+| 2024-12-09 | Added Facebook Events integration documentation                     |
+| 2024-12-07 | Initial documentation of all external dependencies and integrations |
 
 ---
 
