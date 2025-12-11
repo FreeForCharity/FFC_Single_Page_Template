@@ -1,0 +1,38 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Free For Charity Website Template
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Clarke
+    family-names: Moyer
+    email: clarkemoyer@freeforcharity.org
+    affiliation: Free For Charity
+    orcid: 'https://orcid.org/0000-0000-0000-0000'
+repository-code: 'https://github.com/FreeForCharity/FFC_Single_Page_Template'
+url: 'https://ffcworkingsite1.org'
+abstract: >-
+  Single-page Next.js 16.0.7 website template built with App
+  Router for Free For Charity nonprofit organization. This
+  template provides a professional, accessible, and
+  performant foundation for nonprofit websites, featuring
+  global popups for donations and volunteer applications,
+  comprehensive testing, and GitHub Pages deployment
+  support.
+keywords:
+  - nonprofit
+  - charity
+  - nextjs
+  - website-template
+  - 501c3
+  - typescript
+  - tailwindcss
+  - accessibility
+  - open-source
+license: GPL-3.0
+version: 1.0.0
+date-released: '2025-12-11'
