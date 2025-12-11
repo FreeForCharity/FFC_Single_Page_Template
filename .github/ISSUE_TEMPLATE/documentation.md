@@ -71,8 +71,8 @@ Paste suggested documentation here if applicable
 
 <!-- Link to related documentation or issues -->
 
-- 
-- 
+-
+-
 
 ## Willing to Submit PR
 

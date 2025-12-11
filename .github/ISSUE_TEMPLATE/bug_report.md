@@ -32,16 +32,19 @@ assignees: ''
 ## Environment
 
 **Desktop:**
+
 - OS: [e.g., Windows 11, macOS 14, Ubuntu 22.04]
 - Browser: [e.g., Chrome 120, Firefox 121, Safari 17]
 - Version: [e.g., 120.0.0.0]
 
 **Mobile:**
+
 - Device: [e.g., iPhone 15, Samsung Galaxy S24]
 - OS: [e.g., iOS 17.2, Android 14]
 - Browser: [e.g., Safari, Chrome]
 
 **Additional Context:**
+
 - Node version (if applicable): [e.g., v20.19.5]
 - npm version (if applicable): [e.g., 10.8.2]
 

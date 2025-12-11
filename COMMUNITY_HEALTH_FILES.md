@@ -24,11 +24,13 @@ These tabs are automatically generated based on the presence of specific files i
 ### Core Documentation Files
 
 #### ✅ README.md
+
 **Location:** `/README.md`  
 **Appears In:** Main navigation tab (always visible)  
 **Purpose:** Primary project documentation, overview, and quick start guide
 
 Our README includes:
+
 - Project description and purpose
 - Quick links to all major documentation
 - Organization information (501(c)(3) nonprofit)
@@ -36,32 +38,38 @@ Our README includes:
 - Technical stack overview
 
 #### ✅ LICENSE
+
 **Location:** `/LICENSE`  
 **Appears In:** License tab in navigation  
 **Purpose:** Legal terms under which the project is released
 
 Our license:
+
 - GPL-3.0 open source license
 - Copyright by Free For Charity (EIN: 46-2471893)
 - Full text of GPL-3.0 terms
 
 #### ✅ CODE_OF_CONDUCT.md
+
 **Location:** `/CODE_OF_CONDUCT.md`  
 **Appears In:** Code of conduct tab in navigation  
 **Purpose:** Community behavior standards and enforcement
 
 Our code of conduct:
+
 - Based on Contributor Covenant 2.1
 - Defines acceptable and unacceptable behavior
 - Outlines enforcement responsibilities
 - Provides reporting mechanisms
 
 #### ✅ CONTRIBUTING.md
+
 **Location:** `/CONTRIBUTING.md`  
 **Appears In:** Contributing tab in navigation (and sidebar)  
 **Purpose:** Guidelines for contributing to the project
 
 Our contributing guide includes:
+
 - Getting started instructions
 - Development workflow
 - Coding standards
@@ -71,11 +79,13 @@ Our contributing guide includes:
 - Reviewer onboarding
 
 #### ✅ SECURITY.md
+
 **Location:** `/SECURITY.md`  
 **Appears In:** Security tab in navigation  
 **Purpose:** Security policies and vulnerability reporting
 
 Our security documentation includes:
+
 - Branch protection rules
 - Signed commits requirement
 - Security scanning setup
@@ -83,11 +93,13 @@ Our security documentation includes:
 - Security best practices
 
 #### ✅ SUPPORT.md
+
 **Location:** `/SUPPORT.md`  
 **Appears In:** Repository sidebar (Support section)  
 **Purpose:** How to get help and support
 
 Our support guide includes:
+
 - Contact information
 - How to report bugs
 - How to ask questions
@@ -97,32 +109,38 @@ Our support guide includes:
 ### GitHub-Specific Files
 
 #### ✅ .github/FUNDING.yml
+
 **Location:** `/.github/FUNDING.yml`  
 **Appears In:** "Sponsor" button in repository header  
 **Purpose:** Funding and sponsorship options
 
 Our funding file includes:
+
 - GitHub Sponsors link
 - Custom donation links to our website
 - Direct links to donation forms
 
 #### ✅ .github/CODEOWNERS
+
 **Location:** `/.github/CODEOWNERS`  
 **Appears In:** Pull request review assignments  
 **Purpose:** Defines who owns specific files/directories
 
 Our CODEOWNERS file:
+
 - Assigns @clarkemoyer as default owner
 - Specifies owners for security files
 - Defines ownership for documentation
 - Sets ownership for configuration files
 
 #### ✅ .github/PULL_REQUEST_TEMPLATE.md
+
 **Location:** `/.github/PULL_REQUEST_TEMPLATE.md`  
 **Appears In:** Automatically populates PR descriptions  
 **Purpose:** Standardizes pull request information
 
 Our PR template includes:
+
 - Description section
 - Type of change checklist
 - Testing performed checklist
@@ -130,11 +148,13 @@ Our PR template includes:
 - Breaking changes section
 
 #### ✅ .github/ISSUE_TEMPLATE/
+
 **Location:** `/.github/ISSUE_TEMPLATE/`  
 **Appears In:** Issue creation page  
 **Purpose:** Provides templates for different issue types
 
 Our issue templates:
+
 - **bug_report.md** - For reporting bugs
 - **feature_request.md** - For suggesting features
 - **documentation.md** - For documentation issues
@@ -144,22 +164,26 @@ Our issue templates:
 ### Additional Documentation Files
 
 #### ✅ CITATION.cff
+
 **Location:** `/CITATION.cff`  
 **Appears In:** "Cite this repository" button  
 **Purpose:** Provides citation information for academic use
 
 Our citation file includes:
+
 - Author information
 - Project metadata
 - Version information
 - Keywords and abstract
 
 #### ✅ CHANGELOG.md
+
 **Location:** `/CHANGELOG.md`  
 **Appears In:** Linked from README and releases  
 **Purpose:** Documents all notable changes to the project
 
 Our changelog follows:
+
 - [Keep a Changelog](https://keepachangelog.com/) format
 - [Semantic Versioning](https://semver.org/)
 - Categorized changes (Added, Changed, Fixed, etc.)

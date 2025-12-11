@@ -316,6 +316,7 @@ This repository includes a comprehensive set of GitHub-recognized community heal
 ### Core Documentation (Automatic GitHub Navigation)
 
 **Files in repository root:**
+
 - `README.md` - Main documentation (always visible in navigation)
 - `LICENSE` - GPL-3.0 license (appears in License tab)
 - `CODE_OF_CONDUCT.md` - Contributor Covenant 2.1 (appears in Code of conduct tab)
@@ -326,6 +327,7 @@ This repository includes a comprehensive set of GitHub-recognized community heal
 - `CHANGELOG.md` - Release notes and version history
 
 **Files in .github directory:**
+
 - `.github/FUNDING.yml` - Funding sources (enables "Sponsor" button)
 - `.github/CODEOWNERS` - Code ownership (auto-assigns PR reviewers)
 - `.github/PULL_REQUEST_TEMPLATE.md` - PR template (auto-populates PR description)
@@ -339,6 +341,7 @@ This repository includes a comprehensive set of GitHub-recognized community heal
 ### Verifying Community Health Files
 
 To verify files are recognized by GitHub:
+
 1. Visit: https://github.com/FreeForCharity/FFC_Single_Page_Template/community
 2. Check navigation tabs on mobile (README, Code of conduct, Contributing, License, Security, More)
 3. Look for "Sponsor" button in repository header
@@ -349,6 +352,7 @@ To verify files are recognized by GitHub:
 ### Maintaining Community Health Files
 
 When updating documentation:
+
 - Keep files in their designated locations (root or .github/)
 - Follow GitHub's naming conventions exactly
 - Update COMMUNITY_HEALTH_FILES.md when adding new files

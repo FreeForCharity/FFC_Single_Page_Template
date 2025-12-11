@@ -34,15 +34,16 @@ assignees: ''
 
 <!-- Describe the benefits of implementing this feature -->
 
-- 
-- 
-- 
+-
+-
+-
 
 ## Impact
 
 <!-- Describe who would benefit from this feature and how -->
 
 **User Impact:**
+
 - [ ] Donors
 - [ ] Volunteers
 - [ ] Nonprofits applying for services
@@ -55,13 +56,12 @@ assignees: ''
 <!-- Optional: If you have thoughts on implementation, technical requirements, or potential challenges -->
 
 **Technical Considerations:**
-- 
 
-**Potential Challenges:**
-- 
+- **Potential Challenges:**
 
-**Dependencies:**
-- 
+- **Dependencies:**
+
+-
 
 ## Priority
 
@@ -76,9 +76,9 @@ assignees: ''
 
 <!-- Define what "done" looks like for this feature -->
 
-- [ ] 
-- [ ] 
-- [ ] 
+- [ ]
+- [ ]
+- [ ]
 
 ## Related Issues
 

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
 - Community health files for better GitHub integration
   - SUPPORT.md for support resources
   - .github/FUNDING.yml for sponsorship information
@@ -16,9 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - CITATION.cff for academic citation
   - CHANGELOG.md for release tracking
 
-## [1.0.0] - 2025-12-11
+## [0.1.0] - 2025-12-11
 
 ### Added
+
 - Initial release of Free For Charity Website Template
 - Next.js 16.0.7 single-page application with App Router
 - TypeScript implementation throughout
@@ -57,6 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Multiple technical guides and documentation
 
 ### Technical Stack
+
 - Next.js 16.0.7
 - React 19
 - TypeScript 5.7.2
@@ -68,11 +71,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Conventional commits enforcement
 
 ### Infrastructure
+
 - GitHub Pages deployment
 - GitHub Actions CI/CD
 - Lighthouse performance monitoring
 - Automated testing in CI
 - Merge queue verification
 
-[unreleased]: https://github.com/FreeForCharity/FFC_Single_Page_Template/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/FreeForCharity/FFC_Single_Page_Template/releases/tag/v1.0.0
+[unreleased]: https://github.com/FreeForCharity/FFC_Single_Page_Template/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/FreeForCharity/FFC_Single_Page_Template/releases/tag/v0.1.0

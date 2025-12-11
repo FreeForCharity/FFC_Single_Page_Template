@@ -25,9 +25,9 @@ Fixes #
 
 <!-- Provide a detailed list of changes -->
 
-- 
-- 
-- 
+-
+-
+-
 
 ## Screenshots (if applicable)
 
