@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useLayoutEffect } from 'react'
 import { FaPlus, FaMinus } from 'react-icons/fa'
 
 /* ---------------------------------------------------
@@ -23,8 +23,11 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   const [height, setHeight] = useState('0px')
   const contentRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  // Using useLayoutEffect (not useEffect) for synchronous DOM measurement before paint
+  // This is the correct React pattern to avoid visual flicker when measuring and updating height
+  useLayoutEffect(() => {
     if (contentRef.current) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setHeight(isOpen ? `${contentRef.current.scrollHeight}px` : '0px')
     }
   }, [isOpen])
