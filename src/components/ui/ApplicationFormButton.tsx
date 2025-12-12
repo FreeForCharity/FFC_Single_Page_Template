@@ -160,7 +160,7 @@ const ApplicationFormButton: React.FC<ApplicationFormButtonProps> = ({
               src={microsoftFormUrl}
               className="w-full h-full rounded-lg border-0"
               title="Charity Application Form"
-              sandbox="allow-scripts allow-forms allow-popups"
+              sandbox="allow-scripts allow-forms allow-popups allow-same-origin"
               allow="geolocation"
               onLoad={handleIframeLoad}
             />

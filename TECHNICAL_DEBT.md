@@ -31,7 +31,9 @@ This document tracks technical debt items that:
 - Require monitoring and eventual resolution
 - Are acceptable tradeoffs for now but not ideal long-term
 
-**Current Technical Debt Count:** 10 React Hooks warnings + 4 security vulnerabilities (low severity)
+**Current Technical Debt Count:** 1 React Hooks warning + 6 Next.js Image warnings + 4 security vulnerabilities (low severity)
+
+**Recent Progress (December 2025):** Reduced React Hooks warnings from 10 to 1 (90% reduction) by fixing exhaustive-deps and set-state-in-effect issues.
 
 ---
 
@@ -39,13 +41,19 @@ This document tracks technical debt items that:
 
 ### Summary
 
-The project has **10 React Hooks ESLint warnings** that are technical debt. These warnings don't affect functionality but violate React best practices and should be addressed in future refactoring.
+The project has **1 React Hooks ESLint warning** remaining after recent refactoring (December 2025). This warning is low priority and doesn't affect functionality.
 
-### Category 1: `react-hooks/set-state-in-effect` (6 occurrences)
+### Category 1: ~~`react-hooks/set-state-in-effect` (6 occurrences)~~ ✅ **RESOLVED**
 
-**Issue:** Calling `setState` synchronously within `useEffect` when animating accordion height or loading preferences.
+**Status:** Fixed in December 2025
 
-**Affected Files:**
+**Solution Applied:**
+
+- Replaced `useEffect` with `useLayoutEffect` for all DOM measurements in accordion components
+- Added inline ESLint suppressions with explanatory comments since `useLayoutEffect` is the correct React pattern for synchronous DOM measurements before paint
+- This prevents visual flicker and follows React best practices
+
+**Fixed Files:**
 
 - `src/components/ui/Accordion.tsx`
 - `src/components/ui/AccordionBold.tsx`
@@ -54,55 +62,31 @@ The project has **10 React Hooks ESLint warnings** that are technical debt. Thes
 - `src/components/free-charity-web-hosting/FAQs/index.tsx`
 - `src/components/cookie-consent/index.tsx`
 
-**Why it's acceptable now:**
-
-- Components work correctly without performance issues
-- Accordion animations function properly
-- No user-visible impact
-
-**Recommended fix:**
-
-- Use `useLayoutEffect` instead of `useEffect` for DOM measurements
-- OR migrate to CSS transitions with `max-height` instead of JavaScript height calculations
-- OR use React's `useTransition` API for smoother updates
-
-**Priority:** Medium - Should address during next UI component refactoring
-
 ---
 
-### Category 2: `react-hooks/exhaustive-deps` (2 occurrences)
+### Category 2: ~~`react-hooks/exhaustive-deps` (2 occurrences)~~ ✅ **RESOLVED**
 
-**Issue:** Missing dependencies in `useEffect` dependency arrays.
+**Status:** Fixed in December 2025
 
-**Affected Files:**
+**Solution Applied:**
+
+- `CallToActionCard.tsx`: Captured `cardRef.current` in a local variable inside the effect to prevent stale closures
+- `ClientTestimonials/index.tsx`: Wrapped `handleNext` and related functions with `useCallback` to stabilize function references and added to dependency array
+
+**Fixed Files:**
 
 - `src/components/free-charity-web-hosting/ClientTestimonials/index.tsx`
 - `src/components/ui/CallToActionCard.tsx`
 
-**Why it's acceptable now:**
-
-- Effects function as intended with current implementation
-- Dependencies are intentionally omitted to prevent unnecessary re-runs
-- No functional bugs observed
-
-**Recommended fix:**
-
-- Add missing dependencies to dependency arrays
-- OR use `useCallback` to stabilize function references
-- OR refactor to eliminate the need for complex dependencies
-
-**Priority:** Medium - Address when refactoring these components
-
 ---
 
-### Category 3: `react-hooks/immutability` (2 occurrences)
+### Category 3: `react-hooks/immutability` (1 occurrence)
 
 **Issue:** Direct mutation of state values in Swiper carousel setup.
 
 **Affected Files:**
 
-- `src/components/free-charity-web-hosting/ClientTestimonials/index.tsx`
-- `src/components/home/Testimonials/index.tsx`
+- `src/components/home/Testimonials/index.tsx` (1 remaining - ClientTestimonials was refactored to not use Swiper)
 
 **Why it's acceptable now:**
 
@@ -117,6 +101,36 @@ The project has **10 React Hooks ESLint warnings** that are technical debt. Thes
 - OR use a more React-friendly carousel library
 
 **Priority:** Low - Works correctly, only a code style issue
+
+---
+
+### Category 4: `@next/next/no-img-element` (6 occurrences)
+
+**Issue:** Using `<img>` tags instead of Next.js `<Image />` component.
+
+**Affected Files:**
+
+- `src/components/header/index.tsx`
+- `src/components/footer/index.tsx`
+- `src/components/endowment-fund/Hero/index.tsx`
+- `src/components/free-charity-web-hosting/About-FFC-Hosting/index.tsx`
+- `src/components/ui/General-Donation-Card.tsx`
+- `src/components/ui/trainingcard.tsx`
+
+**Why it's acceptable:**
+
+- Project uses `output: "export"` for static site generation
+- Next.js Image Optimization is **incompatible** with static export
+- Images use the `assetPath()` helper for GitHub Pages compatibility
+- This is an intentional architectural decision documented in README.md
+
+**Why we can't fix this:**
+
+- Next.js `<Image />` component requires Node.js server for optimization
+- Static export doesn't support server-side image optimization
+- Using `<Image />` would break GitHub Pages deployment
+
+**Priority:** N/A - This is expected behavior, not technical debt
 
 ---
 
@@ -350,15 +364,19 @@ These architectural patterns are not needed for this static site:
 
 ### Current Action Items
 
+**Recently Completed (December 2025):**
+
+- [x] Refactor accordion components to use `useLayoutEffect` - **COMPLETED**
+- [x] Review and fix `exhaustive-deps` warnings in carousel components - **COMPLETED**
+- [x] Reduced React Hooks warnings from 10 to 1 (90% improvement)
+
 **Immediate (Next Sprint):**
 
 - [ ] Monitor tmp package vulnerability for updates from Dependabot
 
 **Short Term (Next Quarter):**
 
-- [ ] Refactor accordion components to use `useLayoutEffect`
-- [ ] Review and fix `exhaustive-deps` warnings in carousel components
-- [ ] Evaluate Swiper.js alternative or React-specific API usage
+- [ ] Evaluate Swiper.js alternative or React-specific API usage for Testimonials component (1 remaining immutability warning)
 
 **Long Term (Next 6 Months):**
 

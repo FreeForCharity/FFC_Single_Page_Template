@@ -110,11 +110,91 @@ Tests footer social media links to ensure only active platforms are displayed.
      - Validates exactly 4 icons: Facebook, X (Twitter), LinkedIn, GitHub
    - **Why This Matters**: Prevents accidental addition/removal of social links
 
+### `application-form.spec.ts`
+
+Tests the ApplicationFormButton modal component functionality.
+
+**Test Suites**: `Application Form Button` (14 tests) + `Application Form Iframe Loading` (1 test)
+
+**Tests:** (continued from previous test files)
+
+10. **`should display "Apply to Become a Supported Charity" button`**
+    - **Purpose**: Verifies the trigger button is visible on the page
+    - **Verifications**: Button is visible with correct text
+
+11. **`should open modal when button is clicked`**
+    - **Purpose**: Validates modal opens on button click
+    - **Verifications**:
+      - Modal becomes visible
+      - Modal has proper ARIA attributes (aria-modal, aria-labelledby)
+
+12. **`should display loading indicator before iframe loads`**
+    - **Purpose**: Ensures loading state is shown to users
+    - **Verifications**: Loading message "Loading application form..." is visible initially
+
+13. **`should display close button in modal`**
+    - **Purpose**: Verifies close button is present
+    - **Verifications**: Close button with aria-label "Close application form" is visible
+
+14. **`should close modal when close button is clicked`**
+    - **Purpose**: Tests modal closure via close button
+    - **Verifications**: Modal is hidden after clicking close button
+
+15. **`should close modal when pressing Escape key`**
+    - **Purpose**: Validates keyboard accessibility
+    - **Verifications**: Modal closes when Escape key is pressed
+
+16. **`should close modal when clicking outside (overlay)`**
+    - **Purpose**: Tests click-outside-to-close behavior
+    - **Verifications**: Modal closes when overlay (background) is clicked
+
+17. **`should have Microsoft Forms iframe with correct attributes`**
+    - **Purpose**: Verifies iframe sandbox configuration (critical for form loading)
+    - **Verifications**:
+      - Iframe is present with title "Charity Application Form"
+      - Sandbox attribute includes: `allow-scripts`, `allow-forms`, `allow-popups`, `allow-same-origin`
+    - **Why This Matters**: The `allow-same-origin` permission is required for Microsoft Forms to load
+
+18. **`should have Microsoft Forms URL in iframe src`**
+    - **Purpose**: Validates correct form URL is embedded
+    - **Verifications**: iframe src contains `forms.office.com/r/`
+
+19. **`should lock body scroll when modal is open`**
+    - **Purpose**: Tests scroll-lock behavior for better UX
+    - **Verifications**:
+      - Body overflow is set to 'hidden' when modal opens
+      - Body overflow is restored when modal closes
+
+20. **`should manage focus properly when modal opens`**
+    - **Purpose**: Tests focus management for accessibility
+    - **Verifications**: Focus moves to close button when modal opens
+
+21. **`should restore focus to trigger button when modal closes`**
+    - **Purpose**: Ensures focus returns to trigger element
+    - **Verifications**: Focus returns to "Apply to Become a Supported Charity" button after closing
+
+22. **`should have proper accessibility attributes`**
+    - **Purpose**: Validates WCAG compliance
+    - **Verifications**:
+      - Modal has role="dialog", aria-modal="true", aria-labelledby
+      - Screen reader heading with sr-only class exists
+
+23. **`should handle multiple open/close cycles correctly`**
+    - **Purpose**: Tests modal stability across multiple interactions
+    - **Verifications**: Modal can be opened and closed multiple times using different methods
+
+24. **`should display loading indicator and iframe elements`**
+    - **Purpose**: Verifies component structure (loading indicator and iframe are present)
+    - **Verifications**:
+      - Loading indicator displays initially
+      - Iframe element exists in the DOM
+    - **Note**: Loading indicator behavior is environment-dependent; external iframes may be blocked by privacy settings
+
 ## Test Statistics
 
-- **Total Test Suites**: 3
-- **Total Test Cases**: 9
-- **Active Tests**: 8 passing ✅
+- **Total Test Suites**: 4
+- **Total Test Cases**: 24
+- **Active Tests**: 23 passing ✅
 - **Skipped Tests**: 1 ⏭️
 - **Status**: All active tests passing
 

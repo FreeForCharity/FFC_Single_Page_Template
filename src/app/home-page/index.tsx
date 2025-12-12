@@ -9,6 +9,7 @@ import Results2023 from '@/components/home-page/Results-2023'
 import Testimonials from '@/components/home/Testimonials'
 import TheFreeForCharityTeam from '@/components/home-page/TheFreeForCharityTeam'
 import FrequentlyAskedQuestions from '@/components/home-page/FrequentlyAskedQuestions'
+import Events from '@/components/home-page/Events'
 
 const index = () => {
   return (
@@ -18,6 +19,7 @@ const index = () => {
       <Results2023 />
       <Testimonials />
       <VolunteerwithUs />
+      <Events />
       <SupportFreeForCharity />
       <EndowmentFeatures />
       <OurPrograms />

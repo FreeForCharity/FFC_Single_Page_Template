@@ -1,0 +1,36 @@
+# CODEOWNERS file for Free For Charity Website Template
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owners for everything in the repository
+# These owners will be requested for review when someone opens a pull request
+* @clarkemoyer
+
+# Documentation
+*.md @clarkemoyer
+/docs/ @clarkemoyer
+
+# Security and governance files
+/SECURITY.md @clarkemoyer
+/CODE_OF_CONDUCT.md @clarkemoyer
+/GOVERNANCE.md @clarkemoyer
+/THREAT-MODEL.md @clarkemoyer
+
+# GitHub configuration files
+/.github/ @clarkemoyer
+
+# Configuration files
+*.config.* @clarkemoyer
+*.json @clarkemoyer
+*.yml @clarkemoyer
+*.yaml @clarkemoyer
+
+# Source code
+/src/ @clarkemoyer
+
+# Tests
+/tests/ @clarkemoyer
+/__tests__/ @clarkemoyer
+
+# Deployment and CI/CD
+/.github/workflows/ @clarkemoyer
+/DEPLOYMENT.md @clarkemoyer
