@@ -25,6 +25,7 @@ Contributors are recognized in several ways:
 #### Founder & Lead Maintainer
 
 **Clarke Moyer** ([@clarkemoyer](https://github.com/clarkemoyer))
+
 - **Role**: Founder, Lead Maintainer, Project Owner
 - **Email**: clarkemoyer@freeforcharity.org
 - **Contributions**: Project vision, architecture, initial codebase, ongoing maintenance
@@ -37,6 +38,7 @@ Contributors who have made significant contributions to the project:
 #### Development & Code
 
 **Clarke Moyer** ([@clarkemoyer](https://github.com/clarkemoyer))
+
 - Repository setup and configuration
 - Core application architecture
 - Feature development
@@ -46,6 +48,7 @@ Contributors who have made significant contributions to the project:
 #### Automation & AI Assistance
 
 **GitHub Copilot** ([@copilot-swe-agent[bot]](https://github.com/apps/copilot))
+
 - Automated code reviews
 - Code quality improvements
 - Documentation enhancements
@@ -56,6 +59,7 @@ Contributors who have made significant contributions to the project:
 We value all types of contributions, including but not limited to:
 
 ### Code Contributions
+
 - 💻 Feature development
 - 🐛 Bug fixes
 - ♻️ Refactoring
@@ -63,6 +67,7 @@ We value all types of contributions, including but not limited to:
 - ⚡ Performance optimizations
 
 ### Documentation
+
 - 📝 Writing and updating docs
 - 📚 Creating tutorials and guides
 - 🌐 Translation efforts
@@ -70,6 +75,7 @@ We value all types of contributions, including but not limited to:
 - ✏️ Fixing typos and clarity issues
 
 ### Community & Support
+
 - 💬 Answering questions
 - 🤝 Helping other contributors
 - 🎯 Triaging issues
@@ -77,6 +83,7 @@ We value all types of contributions, including but not limited to:
 - 🎤 Presenting at events
 
 ### Design & Content
+
 - 🎨 Visual design
 - 🖼️ Graphics and icons
 - 📸 Photography
@@ -84,6 +91,7 @@ We value all types of contributions, including but not limited to:
 - 🧪 User testing
 
 ### Infrastructure & Tools
+
 - 🔧 CI/CD improvements
 - 🚀 Deployment automation
 - 🛡️ Security enhancements
@@ -92,13 +100,15 @@ We value all types of contributions, including but not limited to:
 
 ## Contribution Statistics
 
-_Last updated: December 2025_
+_Last updated: December 13, 2025_
 
 - **Total Contributors**: 2
 - **Total Commits**: 2 (excluding merges)
 - **Active Maintainers**: 1
 - **Pull Requests**: Multiple
 - **Issues Closed**: Multiple
+
+_Note: These statistics are updated manually and may not reflect real-time data. For current statistics, check the repository's Insights tab on GitHub._
 
 ## Recognition Guidelines
 
@@ -118,21 +128,25 @@ Contributors are automatically recognized when they:
 We recognize contributors based on their level of engagement:
 
 #### 🌟 Core Team
+
 - Maintainers with write access
 - Long-term contributors who shape project direction
 - Listed in [MAINTAINERS.md](./MAINTAINERS.md)
 
 #### 💎 Regular Contributors
+
 - Contributors with multiple merged pull requests
 - Active participants in issues and discussions
 - Regular reviewers of contributions
 
 #### ⭐ Contributors
+
 - Anyone with at least one merged pull request
 - Those who have filed helpful issues
 - Documentation contributors
 
 #### 🙏 Community Members
+
 - Users who ask questions that improve documentation
 - Those who spread the word about the project
 - Anyone who supports the project's mission
@@ -147,8 +161,10 @@ We welcome you to add yourself to this list! Here's how:
 4. Include a brief description of your contribution
 
 **Format:**
+
 ```markdown
 **Your Name** ([@yourusername](https://github.com/yourusername))
+
 - Brief description of your contributions
 ```
 
@@ -165,12 +181,14 @@ _None yet - this is a young project!_
 Special recognition for significant contributions:
 
 ### Founding Supporters
+
 - **Free For Charity Board of Directors** - Strategic guidance and nonprofit governance
 - **Early testers and reviewers** - Providing valuable feedback
 
 ### Technology Partners
+
 - **GitHub** - Repository hosting and CI/CD infrastructure
-- **Vercel** - Next.js framework development
+- **Vercel** - Next.js framework creators and deployment platform
 - **Cloudflare** - CDN and security services
 
 ## Contributor Guidelines
@@ -215,5 +233,5 @@ Your work helps nonprofits reduce operating costs and focus more resources on th
 
 ---
 
-_Last Updated: December 2025_  
-_Maintained By: Free For Charity Maintainers_
+**Last Updated**: December 13, 2025  
+**Maintained By**: Free For Charity Maintainers

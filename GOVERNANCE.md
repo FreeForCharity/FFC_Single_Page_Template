@@ -55,6 +55,7 @@ Maintainers are trusted contributors with write access to the repository who are
 Contributors are community members who submit issues, pull requests, documentation improvements, or other valuable input to the project.
 
 **All contributors are recognized in [CONTRIBUTORS.md](./CONTRIBUTORS.md)**, which provides:
+
 - Full list of contributors and their contributions
 - Recognition guidelines
 - How to add yourself as a contributor
