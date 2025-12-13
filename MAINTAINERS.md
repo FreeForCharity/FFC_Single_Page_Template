@@ -148,9 +148,11 @@ For maintainer-related questions:
 
 We appreciate all maintainers' time and dedication to making Free For Charity's mission possible. Maintainers volunteer their time to support nonprofits and strengthen the open-source community.
 
+For a complete list of all contributors (including maintainers), see [CONTRIBUTORS.md](./CONTRIBUTORS.md).
+
 ---
 
-**Last Updated**: December 6, 2025  
-**Version**: 1.0
+**Last Updated**: December 13, 2025  
+**Version**: 1.1
 
 For governance policies and decision-making processes, see [GOVERNANCE.md](./GOVERNANCE.md).
