@@ -188,12 +188,31 @@ Our changelog follows:
 - [Semantic Versioning](https://semver.org/)
 - Categorized changes (Added, Changed, Fixed, etc.)
 
+#### ✅ CONTRIBUTORS.md
+
+**Location:** `/CONTRIBUTORS.md`  
+**Appears In:** Linked from README, CONTRIBUTING, and community pages  
+**Purpose:** Recognition of all project contributors
+
+Our contributors file includes:
+
+- Current contributors list with roles and contributions
+- Project leadership information
+- Types of contributions recognized (code, docs, design, etc.)
+- How to add yourself as a contributor
+- Recognition guidelines and levels
+- Contribution statistics
+- Emeritus contributors and special thanks
+
+This follows CNCF best practices for transparent contributor recognition and community building.
+
 ### Project-Specific Documentation
 
 The repository also includes extensive project-specific documentation:
 
 - **GOVERNANCE.md** - Project governance and decision-making
 - **MAINTAINERS.md** - List of maintainers and their roles
+- **CONTRIBUTORS.md** - Recognition of all project contributors
 - **THREAT-MODEL.md** - Security threat analysis
 - **TESTING.md** - Comprehensive testing guide
 - **DEPLOYMENT.md** - Deployment instructions

@@ -31,6 +31,7 @@ This repository follows **Cloud Native Computing Foundation (CNCF)** standards f
 - 🤝 **[CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)** - Community standards and reporting (Contributor Covenant 2.1)
 - ⚖️ **[GOVERNANCE.md](./GOVERNANCE.md)** - Decision-making processes and project leadership
 - 👥 **[MAINTAINERS.md](./MAINTAINERS.md)** - Repository maintainers and their roles
+- 🎉 **[CONTRIBUTORS.md](./CONTRIBUTORS.md)** - Recognition of all project contributors
 - 🔒 **[SECURITY.md](./SECURITY.md)** - Vulnerability reporting and security practices
 - 🛡️ **[THREAT-MODEL.md](./THREAT-MODEL.md)** - Security threat analysis and mitigations
 - 🌟 **[ADOPTERS.md](./ADOPTERS.md)** - Organizations using this template
