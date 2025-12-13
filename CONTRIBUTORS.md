@@ -47,7 +47,7 @@ Contributors who have made significant contributions to the project:
 
 #### Automation & AI Assistance
 
-**GitHub Copilot** ([@copilot-swe-agent[bot]](https://github.com/apps/copilot))
+**GitHub Copilot**
 
 - Automated code reviews
 - Code quality improvements
@@ -103,12 +103,12 @@ We value all types of contributions, including but not limited to:
 _Last updated: December 13, 2025_
 
 - **Total Contributors**: 2
-- **Total Commits**: 2 (excluding merges)
+- **Total Commits**: See GitHub Insights
 - **Active Maintainers**: 1
-- **Pull Requests**: Multiple
-- **Issues Closed**: Multiple
+- **Pull Requests**: See GitHub Insights
+- **Issues Closed**: See GitHub Insights
 
-_Note: These statistics are updated manually and may not reflect real-time data. For current statistics, check the repository's Insights tab on GitHub._
+_Note: These statistics are updated manually and may not reflect real-time data. For current statistics, check the repository's [Insights tab](https://github.com/FreeForCharity/FFC_Single_Page_Template/pulse) on GitHub._
 
 ## Recognition Guidelines
 
@@ -188,8 +188,8 @@ Special recognition for significant contributions:
 ### Technology Partners
 
 - **GitHub** - Repository hosting and CI/CD infrastructure
-- **Vercel** - Next.js framework creators and deployment platform
-- **Cloudflare** - CDN and security services
+- **Vercel** - Next.js framework creators (not used for deployment in this project)
+- **Cloudflare** - CDN and security services (available for adoption)
 
 ## Contributor Guidelines
 
