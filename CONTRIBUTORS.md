@@ -45,15 +45,6 @@ Contributors who have made significant contributions to the project:
 - Documentation authorship
 - Community management
 
-#### Automation & AI Assistance
-
-**GitHub Copilot**
-
-- Automated code reviews
-- Code quality improvements
-- Documentation enhancements
-- Issue resolution assistance
-
 ## Types of Contributions
 
 We value all types of contributions, including but not limited to:
@@ -102,13 +93,13 @@ We value all types of contributions, including but not limited to:
 
 _Last updated: December 13, 2025_
 
-- **Total Contributors**: 2
+- **Total Contributors**: See GitHub Insights
 - **Total Commits**: See GitHub Insights
 - **Active Maintainers**: 1
 - **Pull Requests**: See GitHub Insights
 - **Issues Closed**: See GitHub Insights
 
-_Note: These statistics are updated manually and may not reflect real-time data. For current statistics, check the repository's [Insights tab](https://github.com/FreeForCharity/FFC_Single_Page_Template/pulse) on GitHub._
+_Note: For current statistics, visit the repository's [Insights tab](https://github.com/FreeForCharity/FFC_Single_Page_Template/pulse) or [Contributors page](https://github.com/FreeForCharity/FFC_Single_Page_Template/graphs/contributors) on GitHub._
 
 ## Recognition Guidelines
 
@@ -163,7 +154,7 @@ We welcome you to add yourself to this list! Here's how:
 **Format:**
 
 ```markdown
-**Your Name** ([@yourusername](https://github.com/yourusername))
+**Your Name** ([@your-github-username](https://github.com/your-github-username))
 
 - Brief description of your contributions
 ```
@@ -187,9 +178,17 @@ Special recognition for significant contributions:
 
 ### Technology Partners
 
-- **GitHub** - Repository hosting and CI/CD infrastructure
-- **Vercel** - Next.js framework creators (not used for deployment in this project)
-- **Cloudflare** - CDN and security services (available for adoption)
+- **GitHub** - Repository hosting, CI/CD infrastructure, and GitHub Pages deployment
+- **Vercel** - Creators of the Next.js framework used in this project
+
+### Development Tools & AI Assistance
+
+This project benefits from modern development tools and AI assistance:
+
+- **GitHub Copilot** - AI-powered code review, quality improvements, and documentation assistance
+- **ESLint** - Code quality and consistency checks
+- **Prettier** - Code formatting automation
+- **Playwright** - End-to-end testing framework
 
 ## Contributor Guidelines
 
