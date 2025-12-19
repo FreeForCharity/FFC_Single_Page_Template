@@ -258,7 +258,7 @@ To enable Lighthouse CI historical tracking:
 
 1. Click **"New repository secret"**
 2. **Name**: `LHCI_GITHUB_APP_TOKEN`
-3. **Value**: Create a GitHub token with `repo` scope
+3. **Value**: Create a **fine-grained** GitHub personal access token, limited to this repository and with only the minimal permissions required for Lighthouse CI (avoid using a classic token with broad `repo` scope).
 4. Click **"Add secret"**
 
 **Note**: Without this secret, Lighthouse CI still runs but doesn't store historical data.
