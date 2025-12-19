@@ -318,7 +318,7 @@ This repository includes a comprehensive set of GitHub-recognized community heal
 **Files in repository root:**
 
 - `README.md` - Main documentation (always visible in navigation)
-- `LICENSE` - GPL-3.0 license (appears in License tab)
+- `LICENSE` - Apache 2.0 license (appears in License tab)
 - `CODE_OF_CONDUCT.md` - Contributor Covenant 2.1 (appears in Code of conduct tab)
 - `CONTRIBUTING.md` - Contribution guidelines (appears in Contributing tab and sidebar)
 - `SECURITY.md` - Security policies (appears in Security tab)
