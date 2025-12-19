@@ -135,10 +135,11 @@ Create ruleset named "Protect Main":
 
 ## Optional Features
 
-### Lighthouse CI Historical Tracking
+### Lighthouse CI GitHub Integration
 
 - [ ] Create a **fine-grained** or **repository-scoped** GitHub token limited to this repository with the minimal permissions Lighthouse CI needs (for example, read access to contents and pull requests; avoid classic PATs with broad `repo` scope).
 - [ ] Add this least-privilege token to repository secrets as `LHCI_GITHUB_APP_TOKEN`
+- [ ] Note: This enables PR comments and status checks; without it, Lighthouse runs but only stores results locally
 
 ### Preview Deployments
 

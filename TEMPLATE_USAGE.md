@@ -261,7 +261,7 @@ To enable Lighthouse CI historical tracking:
 3. **Value**: Create a **fine-grained** GitHub personal access token, limited to this repository and with only the minimal permissions required for Lighthouse CI (avoid using a classic token with broad `repo` scope).
 4. Click **"Add secret"**
 
-**Note**: Without this secret, Lighthouse CI still runs but doesn't store historical data.
+**Note**: With the current filesystem storage configuration in `lighthouserc.json`, Lighthouse CI still runs and stores results locally without this secret. The `LHCI_GITHUB_APP_TOKEN` is only required to enable GitHub integration features such as status checks, annotations, and PR comments for Lighthouse reports.
 
 ### Customizing basePath for Your Repository
 
@@ -475,9 +475,9 @@ custom:
 
 **Note**: You must have GitHub Sponsors enabled for your organization/account.
 
-### 2. Lighthouse CI Historical Tracking
+### 2. Lighthouse CI GitHub Integration
 
-To enable Lighthouse CI historical data storage:
+To enable Lighthouse CI to post detailed results and comments on pull requests:
 
 1. Create a fine-grained GitHub Personal Access Token (recommended):
    - Go to GitHub **Settings → Developer settings → Personal access tokens → Fine-grained tokens**
@@ -495,11 +495,13 @@ To enable Lighthouse CI historical data storage:
    - Value: Paste your fine-grained token
    - Click **"Add secret"**
 
-3. Lighthouse CI will now store historical performance data
+3. Lighthouse CI will now be able to post PR comments with detailed performance reports
 
 **Security note**: Avoid using classic personal access tokens with broad `repo` scope for CI. If you must use a classic token, restrict it to the smallest possible set of repositories and permissions, or use a dedicated bot account.
 
-**Without this token**: Lighthouse CI still runs and posts PR comments, but doesn't store historical trends.
+**Without this token**: Lighthouse CI still runs and generates reports locally (stored in `.lighthouseci` directory), but cannot post results as PR comments or GitHub status checks. The workflow will upload reports as artifacts that you can download manually.
+
+**Note**: The current configuration uses filesystem storage (`lighthouserc.json`). If you want to enable historical trend tracking, you would need to configure a Lighthouse Server or use the temporary public storage option by changing the upload target in `lighthouserc.json`.
 
 ### 3. Preview Deployments (Cloudflare Pages or Vercel)
 
