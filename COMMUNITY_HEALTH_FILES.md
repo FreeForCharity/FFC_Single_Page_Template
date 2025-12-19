@@ -45,9 +45,9 @@ Our README includes:
 
 Our license:
 
-- GPL-3.0 open source license
+- Apache 2.0 open source license
 - Copyright by Free For Charity (EIN: 46-2471893)
-- Full text of GPL-3.0 terms
+- Full text of Apache 2.0 terms
 
 #### ✅ CODE_OF_CONDUCT.md
 

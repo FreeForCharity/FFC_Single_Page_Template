@@ -27,7 +27,7 @@ This repository follows **Cloud Native Computing Foundation (CNCF)** standards f
 
 ### Project Governance and Policies
 
-- 📜 **[LICENSE](./LICENSE)** - GPL-3.0 open source license
+- 📜 **[LICENSE](./LICENSE)** - Apache 2.0 open source license
 - 🤝 **[CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)** - Community standards and reporting (Contributor Covenant 2.1)
 - ⚖️ **[GOVERNANCE.md](./GOVERNANCE.md)** - Decision-making processes and project leadership
 - 👥 **[MAINTAINERS.md](./MAINTAINERS.md)** - Repository maintainers and their roles

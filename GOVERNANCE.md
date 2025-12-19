@@ -234,7 +234,7 @@ Significant changes should be announced to contributors.
 
 ## License
 
-All contributions to this project are licensed under the [GPL-3.0 License](./LICENSE).
+All contributions to this project are licensed under the [Apache 2.0 License](./LICENSE).
 
 ## Acknowledgments
 
