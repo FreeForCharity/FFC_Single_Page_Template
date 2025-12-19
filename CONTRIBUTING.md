@@ -785,7 +785,17 @@ For sensitive matters, contact the maintainers directly:
 
 ## Recognition
 
-All contributors will be recognized in our project documentation and release notes. Thank you for helping make Free For Charity better!
+All contributors will be recognized in multiple ways:
+
+- **[CONTRIBUTORS.md](./CONTRIBUTORS.md)** - Featured list of all project contributors
+- **[CHANGELOG.md](./CHANGELOG.md)** - Mentioned in release notes
+- **Git History** - Credited in commit messages
+- **Pull Requests** - Acknowledged in PR descriptions and comments
+- **Annual Reports** - Featured in Free For Charity's annual reports
+
+We value all contributions, whether code, documentation, design, testing, or community support. Visit our [CONTRIBUTORS.md](./CONTRIBUTORS.md) page to see all the amazing people who have helped make this project possible.
+
+Thank you for helping make Free For Charity better!
 
 ---
 
