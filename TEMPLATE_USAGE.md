@@ -19,6 +19,8 @@ This guide helps you create a new repository from this template and configure al
 
 Use this checklist to track your progress when setting up a new repository from this template:
 
+> **Quick Reference**: For a printable checklist version of this guide, see [TEMPLATE_SETUP_CHECKLIST.md](./TEMPLATE_SETUP_CHECKLIST.md).
+
 ### Immediate Setup (Required)
 
 - [ ] Create repository from template on GitHub
@@ -254,7 +256,7 @@ Most workflows don't require secrets, but some optional features do:
 
 **Location**: Settings → Secrets and variables → Actions
 
-To enable Lighthouse CI historical tracking:
+To enable Lighthouse CI GitHub integration features:
 
 1. Click **"New repository secret"**
 2. **Name**: `LHCI_GITHUB_APP_TOKEN`
@@ -485,7 +487,7 @@ To enable Lighthouse CI to post detailed results and comments on pull requests:
    - Name: `Lighthouse CI`
    - Resource owner: Select your user or a dedicated bot account
    - Repository access: Choose **"Only select repositories"** and select this repository (and any others that need Lighthouse CI)
-   - Permissions: Grant only the minimal repository permissions required for Lighthouse CI (for most setups, read access is sufficient; add write permissions only if your configuration explicitly requires it)
+   - Permissions: Grant repository **read** access and **pull requests: write** access (required for posting PR comments via the Lighthouse workflow)
    - Click **"Generate token"** and copy it
 
 2. Add the token to repository secrets:
