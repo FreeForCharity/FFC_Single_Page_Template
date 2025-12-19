@@ -400,7 +400,7 @@ Country: ___________________
 
 ## 📊 Impact Metrics (Optional)
 
-**2023 Results** (or most recent year):
+**Latest Annual Results**:
 
 **People/Organizations Served:** `___________________`
 
@@ -463,9 +463,9 @@ Before submitting this issue, verify you have:
 
 If you have questions about completing this template:
 
-- Review [TEMPLATE_USAGE.md](../TEMPLATE_USAGE.md) for detailed setup instructions
-- Review [TEMPLATE_SETUP_CHECKLIST.md](../TEMPLATE_SETUP_CHECKLIST.md) for a quick reference
-- Check [CONTRIBUTING.md](../CONTRIBUTING.md) for contribution guidelines
+- Review [TEMPLATE_USAGE.md](/TEMPLATE_USAGE.md) for detailed setup instructions
+- Review [TEMPLATE_SETUP_CHECKLIST.md](/TEMPLATE_SETUP_CHECKLIST.md) for a quick reference
+- Check [CONTRIBUTING.md](/CONTRIBUTING.md) for contribution guidelines
 - Open a discussion in the repository's Discussions tab
 
 ---

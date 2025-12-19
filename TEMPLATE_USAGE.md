@@ -277,9 +277,9 @@ env:
 **You MUST update this** in `.github/workflows/deploy.yml` and `.github/workflows/lighthouse.yml`:
 
 1. Open `.github/workflows/deploy.yml`
-2. Find line 69: `NEXT_PUBLIC_BASE_PATH: /FFC_Single_Page_Template`
-3. Replace with your repository name: `NEXT_PUBLIC_BASE_PATH: /YOUR-REPO-NAME`
-4. Repeat for `.github/workflows/lighthouse.yml` (line 45)
+2. Search for `NEXT_PUBLIC_BASE_PATH: /FFC_Single_Page_Template`
+3. Replace with your repository name, for example: `NEXT_PUBLIC_BASE_PATH: /YOUR-REPO-NAME`
+4. Repeat steps 1–3 for `.github/workflows/lighthouse.yml`
 5. Commit the changes
 
 **If using a custom domain**: You can remove the `NEXT_PUBLIC_BASE_PATH` line entirely, as custom domains don't need a basePath.
