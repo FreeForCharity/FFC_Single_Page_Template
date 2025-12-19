@@ -479,21 +479,25 @@ custom:
 
 To enable Lighthouse CI historical data storage:
 
-1. Create a GitHub Personal Access Token:
-   - Go to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)
-   - Click "Generate new token (classic)"
-   - Name: "Lighthouse CI"
-   - Scopes: Select `repo` (full control of private repositories)
-   - Click "Generate token" and copy it
+1. Create a fine-grained GitHub Personal Access Token (recommended):
+   - Go to GitHub **Settings → Developer settings → Personal access tokens → Fine-grained tokens**
+   - Click **"Generate new token"**
+   - Name: `Lighthouse CI`
+   - Resource owner: Select your user or a dedicated bot account
+   - Repository access: Choose **"Only select repositories"** and select this repository (and any others that need Lighthouse CI)
+   - Permissions: Grant only the minimal repository permissions required for Lighthouse CI (for most setups, read access is sufficient; add write permissions only if your configuration explicitly requires it)
+   - Click **"Generate token"** and copy it
 
 2. Add the token to repository secrets:
-   - Go to your repository Settings → Secrets and variables → Actions
-   - Click "New repository secret"
+   - Go to your repository **Settings → Secrets and variables → Actions**
+   - Click **"New repository secret"**
    - Name: `LHCI_GITHUB_APP_TOKEN`
-   - Value: Paste your token
-   - Click "Add secret"
+   - Value: Paste your fine-grained token
+   - Click **"Add secret"**
 
 3. Lighthouse CI will now store historical performance data
+
+**Security note**: Avoid using classic personal access tokens with broad `repo` scope for CI. If you must use a classic token, restrict it to the smallest possible set of repositories and permissions, or use a dedicated bot account.
 
 **Without this token**: Lighthouse CI still runs and posts PR comments, but doesn't store historical trends.
 
@@ -864,6 +868,79 @@ The issue mentions "reducing the number of settings that need to occur." Here ar
    - Scans your repository
    - Detects which settings are configured
    - Generates a personalized checklist of remaining tasks
+
+5. **Content Customization Script**: A CLI tool that reduces manual find-and-replace work when adapting for a new charity:
+   - Interactive prompts for organization details (name, EIN, domain, contact info)
+   - Automated search-and-replace across all files
+   - Generates checklist of remaining manual customizations (logos, team photos, FAQs, testimonials)
+   - Validates that all placeholders have been replaced
+   - Example usage: `npm run customize-for-charity`
+
+### Reducing Manual Steps for New Charity Customization
+
+When adapting this template for a new charity, the most time-consuming manual steps are:
+
+**Text Replacements (Can be Automated):**
+
+- Organization name: "Free For Charity" → Your charity name
+- EIN: "46-2471893" → Your EIN
+- Domain: "ffcworkingsite1.org" → Your domain
+- Contact email: Multiple files with contact information
+- Social media links: Footer and other components
+- CODEOWNERS: GitHub usernames
+
+**File Replacements (Requires Manual Work):**
+
+- Logo files (`/public/logo.svg`, `/public/favicon.ico`)
+- Team member photos (`/public/team/`)
+- Team member data (`src/data/team/*.json`)
+- FAQs (`src/data/faqs/*.json`)
+- Testimonials (`src/data/testimonials/*.json`)
+
+**Strategies to Reduce Burden:**
+
+1. **Automation Script**: Create `scripts/customize-charity.js` that:
+   - Prompts for all text-based customizations
+   - Performs automated find-and-replace
+   - Lists files that need manual updates (images, content)
+   - Updates workflow basePath automatically
+   - Validates all changes before committing
+
+2. **Content Templates**: Provide JSON schema and examples for:
+   - Team member structure with placeholder data
+   - FAQ format with example questions
+   - Testimonial format with sample content
+
+3. **Image Placeholders**: Include generic placeholder images that:
+   - Clearly indicate "Replace with your logo"
+   - Have correct dimensions and formats
+   - Make it obvious what needs to be replaced
+
+4. **Pre-configured Variants**: Maintain template variants for:
+   - Small nonprofits (simplified structure)
+   - Large organizations (full feature set)
+   - Different nonprofit types (501c3, pre-501c3, etc.)
+
+**Example Automation Script Workflow:**
+
+```bash
+npm run customize-charity
+# Prompts for:
+# - Charity name
+# - EIN
+# - Domain
+# - Contact email/phone
+# - Social media handles
+# - CODEOWNERS usernames
+# - Repository name (for basePath)
+
+# Then automatically:
+# - Updates all text references
+# - Modifies workflow files
+# - Updates CODEOWNERS
+# - Creates checklist of manual tasks
+# - Provides instructions for next steps
+```
 
 **Note**: Most of the setup burden comes from GitHub security features that are intentionally not automated (branch protection, security scanning, etc.). This is by design - these settings should be explicitly reviewed and enabled by repository administrators rather than automatically inherited.
 
