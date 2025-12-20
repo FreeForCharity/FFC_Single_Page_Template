@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { testConfig } from './test.config'
 
 /**
  * Image Loading Tests
@@ -9,6 +10,7 @@ import { test, expect } from '@playwright/test'
  *
  * Note: The hero image is a local asset (/Images/figma-hero-img.png) that
  * should load correctly in all deployment scenarios including GitHub Pages.
+ * Test expectations use values from test.config.ts for easy customization.
  */
 
 test.describe('Image Loading', () => {
@@ -17,8 +19,8 @@ test.describe('Image Loading', () => {
     await page.goto('/')
 
     // Find the logo images
-    const headerLogo = page.locator('header a[href="/"] img[alt="Free For Charity"]')
-    const heroImage = page.locator('img[alt="Hero image"]')
+    const headerLogo = page.locator(`header a[href="/"] img[alt="${testConfig.logo.headerAlt}"]`)
+    const heroImage = page.locator(`img[alt="${testConfig.logo.heroAlt}"]`)
 
     // Verify both images are visible (meaning they loaded successfully)
     await expect(headerLogo).toBeVisible()
@@ -50,7 +52,7 @@ test.describe('Image Loading', () => {
     await page.goto('/')
 
     // Wait for hero image to be visible
-    const heroImage = page.locator('img[alt="Hero image"]')
+    const heroImage = page.locator(`img[alt="${testConfig.logo.heroAlt}"]`)
     await expect(heroImage).toBeVisible()
 
     // Verify at least one image request was made for the hero image
@@ -70,7 +72,7 @@ test.describe('Image Loading', () => {
     await page.goto('/')
 
     // Find the hero image
-    const heroImage = page.locator('img[alt="Hero image"]')
+    const heroImage = page.locator(`img[alt="${testConfig.logo.heroAlt}"]`)
 
     // Wait for the image to be visible
     await expect(heroImage).toBeVisible()
