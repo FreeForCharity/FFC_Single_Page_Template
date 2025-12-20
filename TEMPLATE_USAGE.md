@@ -274,7 +274,14 @@ env:
   NEXT_PUBLIC_BASE_PATH: /FFC_Single_Page_Template
 ```
 
-**You MUST update this** in `.github/workflows/deploy.yml` and `.github/workflows/lighthouse.yml`:
+**This needs to be updated** in `.github/workflows/deploy.yml` and `.github/workflows/lighthouse.yml`:
+
+**Option A: Using AI/Copilot (Recommended)**
+
+- Ask Copilot: "Update `NEXT_PUBLIC_BASE_PATH` in both `.github/workflows/deploy.yml` and `.github/workflows/lighthouse.yml` from `/FFC_Single_Page_Template` to `/YOUR-REPO-NAME`"
+- Copilot will automatically find and replace the values in both files
+
+**Option B: Manual Update**
 
 1. Open `.github/workflows/deploy.yml`
 2. Search for `NEXT_PUBLIC_BASE_PATH: /FFC_Single_Page_Template`
@@ -282,7 +289,7 @@ env:
 4. Repeat steps 1–3 for `.github/workflows/lighthouse.yml`
 5. Commit the changes
 
-**If using a custom domain**: You can remove the `NEXT_PUBLIC_BASE_PATH` line entirely, as custom domains don't need a basePath.
+**If using a custom domain**: You can ask Copilot to remove the `NEXT_PUBLIC_BASE_PATH` line from both workflow files, as custom domains don't need a basePath.
 
 ---
 
@@ -882,69 +889,65 @@ The issue mentions "reducing the number of settings that need to occur." Here ar
 
 ### Reducing Manual Steps for New Charity Customization
 
-When adapting this template for a new charity, the most time-consuming manual steps are:
+When adapting this template for a new charity, many tasks can be automated using AI/Copilot:
 
-**Text Replacements (Can be Automated):**
+**Tasks That Can Be Fully Automated by Copilot:**
 
-- Organization name: "Free For Charity" → Your charity name
-- EIN: "46-2471893" → Your EIN
-- Domain: "ffcworkingsite1.org" → Your domain
-- Contact email: Multiple files with contact information
+After completing the "Rebrand Template To A New Brand" issue with all required information, you can assign these tasks to Copilot:
+
+- Organization name replacement: "Free For Charity" → Your charity name
+- EIN replacement: "46-2471893" → Your EIN
+- Domain replacement: "ffcworkingsite1.org" → Your domain
+- Contact email updates: Multiple files with contact information
 - Social media links: Footer and other components
-- CODEOWNERS: GitHub usernames
+- CODEOWNERS updates: GitHub usernames
+- Workflow basePath updates: `.github/workflows/deploy.yml` and `.github/workflows/lighthouse.yml`
 
-**File Replacements (Requires Manual Work):**
+**Example Copilot Instructions:**
 
-- Logo files (`/public/logo.svg`, `/public/favicon.ico`)
-- Team member photos (`/public/team/`)
-- Team member data (`src/data/team/*.json`)
-- FAQs (`src/data/faqs/*.json`)
-- Testimonials (`src/data/testimonials/*.json`)
-
-**Strategies to Reduce Burden:**
-
-1. **Automation Script**: Create `scripts/customize-charity.js` that:
-   - Prompts for all text-based customizations
-   - Performs automated find-and-replace
-   - Lists files that need manual updates (images, content)
-   - Updates workflow basePath automatically
-   - Validates all changes before committing
-
-2. **Content Templates**: Provide JSON schema and examples for:
-   - Team member structure with placeholder data
-   - FAQ format with example questions
-   - Testimonial format with sample content
-
-3. **Image Placeholders**: Include generic placeholder images that:
-   - Clearly indicate "Replace with your logo"
-   - Have correct dimensions and formats
-   - Make it obvious what needs to be replaced
-
-4. **Pre-configured Variants**: Maintain template variants for:
-   - Small nonprofits (simplified structure)
-   - Large organizations (full feature set)
-   - Different nonprofit types (501c3, pre-501c3, etc.)
-
-**Example Automation Script Workflow:**
-
-```bash
-npm run customize-charity
-# Prompts for:
-# - Charity name
-# - EIN
-# - Domain
-# - Contact email/phone
-# - Social media handles
-# - CODEOWNERS usernames
-# - Repository name (for basePath)
-
-# Then automatically:
-# - Updates all text references
-# - Modifies workflow files
-# - Updates CODEOWNERS
-# - Creates checklist of manual tasks
-# - Provides instructions for next steps
 ```
+Based on the information in issue #[number], update all instances of:
+- "Free For Charity" to "[New Org Name]"
+- "46-2471893" to "[New EIN]"
+- "ffcworkingsite1.org" to "[new-domain.org]"
+- Update CODEOWNERS with @[username1], @[username2]
+- Update NEXT_PUBLIC_BASE_PATH in both workflow files to /[new-repo-name]
+- Update all social media links in footer components
+```
+
+**Tasks That Require Manual File Uploads:**
+
+These cannot be automated by AI and require manual work:
+
+- Logo files (`/public/logo.svg`, `/public/favicon.ico`) - Must upload new files
+- Team member photos (`/public/team/`) - Must upload new images
+- Team member data (`src/data/team/*.json`) - Can be updated by Copilot with provided information
+- FAQs (`src/data/faqs/*.json`) - Can be updated by Copilot with provided Q&A content
+- Testimonials (`src/data/testimonials/*.json`) - Can be updated by Copilot with provided testimonial text
+
+**Optimal Workflow:**
+
+1. **Complete GitHub Web UI Settings First** (manual, cannot be automated)
+   - Repository settings, GitHub Pages, Actions permissions, etc.
+
+2. **Fill Out Rebrand Issue Template** (manual data collection)
+   - Provide all organization details, board member info, content, etc.
+
+3. **Assign Bulk Updates to Copilot** (automated text replacements)
+   - Copilot handles all text-based find-and-replace operations
+   - Updates workflow configurations, CODEOWNERS, data files
+   - **Time estimate: 5-10 minutes for Copilot to complete**
+
+4. **Upload Binary Files** (manual file uploads)
+   - Upload logos, photos, and other assets
+   - **Time estimate: 15-30 minutes**
+
+5. **Review and Test** (manual verification)
+   - Verify all changes are correct
+   - Test site locally with `npm run dev`
+   - **Time estimate: 15-30 minutes**
+
+**Total Time with AI Assistance: 35-70 minutes** (vs. 8-12 hours fully manual)
 
 **Note**: Most of the setup burden comes from GitHub security features that are intentionally not automated (branch protection, security scanning, etc.). This is by design - these settings should be explicitly reviewed and enabled by repository administrators rather than automatically inherited.
 

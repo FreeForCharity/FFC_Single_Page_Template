@@ -434,28 +434,61 @@ Before submitting this issue, verify you have:
 
 ---
 
-## 🤖 Automation Notes
+## 🤖 Using This Issue with Copilot/AI Automation
 
 **After submitting this issue with complete information:**
 
-1. GitHub Copilot or automated scripts can perform the following tasks:
-   - Update all text references (organization name, EIN, domain, contact info)
-   - Update workflow basePath configuration
-   - Update CODEOWNERS file
-   - Update social media links
-   - Update team member data files
-   - Update FAQ data files
-   - Update testimonial data files
+### Step 1: Assign Text-Based Updates to Copilot
 
-2. Manual tasks that will still be required:
-   - Replace logo and favicon files in `/public` directory
-   - Add team member photos to `/public/team/` directory
-   - Review and adjust color scheme in CSS files
-   - Test all changes locally before deployment
+Copy and paste this template into a comment on this issue, filling in the values from above:
 
-3. Estimated time for automated rebrand: 10-15 minutes
-4. Estimated time for manual tasks: 30-60 minutes
-5. **Total estimated rebrand time: 1-2 hours** (vs. 8-12 hours manual)
+```
+@copilot, based on the information provided in this issue, please update the repository:
+
+1. Replace all instances of "Free For Charity" with "[Your Organization Name]"
+2. Replace all instances of "46-2471893" with "[Your EIN]"
+3. Replace all instances of "ffcworkingsite1.org" with "[your-domain.org]"
+4. Update CODEOWNERS file to list: @[username1], @[username2], @[username3]
+5. Update NEXT_PUBLIC_BASE_PATH in .github/workflows/deploy.yml and .github/workflows/lighthouse.yml to /[your-repo-name]
+6. Update all social media links in footer component to:
+   - Facebook: [your-facebook-url]
+   - Twitter: [your-twitter-url]
+   - LinkedIn: [your-linkedin-url]
+7. Update team member data in src/data/team/ with the board member information provided above
+8. Update FAQ data in src/data/faqs/ with the FAQ content provided above
+9. Update testimonial data in src/data/testimonials/ with the testimonial content provided above
+10. Update contact information (email, phone, addresses) throughout the codebase with the contact details provided above
+```
+
+Copilot will handle all text-based find-and-replace operations automatically. **Estimated time: 5-10 minutes**
+
+### Step 2: Manual File Uploads (Cannot be Automated)
+
+After Copilot completes the updates, you will need to manually:
+
+1. Replace logo and favicon files in `/public` directory with the assets attached to this issue
+2. Add team member photos to `/public/team/` directory with filenames matching the data files
+3. Review and adjust color scheme in `src/app/globals.css` with the hex codes provided above
+4. Test all changes locally with `npm run dev`
+
+**Estimated time: 20-40 minutes**
+
+### Step 3: Review and Deploy
+
+1. Review Copilot's changes in the PR it creates
+2. Test the site locally to ensure everything looks correct
+3. Approve and merge the PR
+4. Verify deployment to GitHub Pages
+
+**Estimated time: 10-20 minutes**
+
+### Total Time Breakdown
+
+- **GitHub Web UI Settings** (completed before this issue): Already done
+- **Copilot automated updates**: 5-10 minutes
+- **Manual file uploads**: 20-40 minutes
+- **Review and deploy**: 10-20 minutes
+- **Total rebrand time: 35-70 minutes** (vs. 8-12 hours fully manual)
 
 ---
 
