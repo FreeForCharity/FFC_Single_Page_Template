@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { testConfig } from './test.config'
 
 /**
  * Google Tag Manager (GTM) Tests
@@ -7,7 +8,9 @@ import { test, expect } from '@playwright/test'
  * 1. GTM script is loaded in the head section
  * 2. dataLayer is initialized
  * 3. GTM noscript fallback exists in body
- * 4. GTM ID is hardcoded in the component
+ * 4. GTM ID is configured in the component
+ *
+ * Note: Test expectations use values from test.config.ts for easy customization
  */
 
 test.describe('Google Tag Manager Integration', () => {
@@ -108,13 +111,13 @@ test.describe('Google Tag Manager Integration', () => {
 })
 
 test.describe('Google Tag Manager Configuration', () => {
-  test('should load GTM script with hardcoded ID', async ({ page }) => {
-    // This test verifies that GTM loads with the hardcoded ID GTM-TQ5H8HPR
-    // The GTM_ID is hardcoded in the component (not from environment variable)
+  test('should load GTM script with configured ID', async ({ page }) => {
+    // This test verifies that GTM loads with the configured ID from test.config.ts
+    // The GTM_ID is configured in the component
 
     await page.goto('/')
 
-    // GTM script should always be present with the hardcoded ID
+    // GTM script should always be present with the configured ID
     const gtmScript = await page.locator('script[id="gtm-script"]').count()
 
     // Script should be present
@@ -122,6 +125,6 @@ test.describe('Google Tag Manager Configuration', () => {
 
     // Verify the script contains the correct GTM ID
     const scriptContent = await page.locator('script[id="gtm-script"]').innerHTML()
-    expect(scriptContent).toContain('GTM-TQ5H8HPR')
+    expect(scriptContent).toContain(testConfig.googleTagManager.id)
   })
 })

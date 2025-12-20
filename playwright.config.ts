@@ -41,17 +41,22 @@ function findChromiumExecutable(): string | undefined {
 /**
  * Playwright configuration for Free For Charity web application
  * Tests run against the built static site served locally
+ *
+ * Performance Optimizations:
+ * - Parallel execution enabled for faster test runs
+ * - Configurable workers based on environment
+ * - Tests run in isolation to prevent side effects
  */
 export default defineConfig({
   testDir: './tests',
-  // Run tests in parallel
+  // Run tests in parallel for better performance
   fullyParallel: true,
   // Fail the build on CI if you accidentally left test.only in the source code
   forbidOnly: !!process.env.CI,
   // Retry on CI only
   retries: process.env.CI ? 2 : 0,
-  // Opt out of parallel tests on CI
-  workers: process.env.CI ? 1 : undefined,
+  // Use more workers for better performance (1 in CI for stability, 4 locally for speed)
+  workers: process.env.CI ? 1 : 4,
   // Reporter to use
   reporter: 'html',
 

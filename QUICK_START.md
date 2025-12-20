@@ -2,6 +2,10 @@
 
 Get up and running with the FFC Single Page Template in 5 minutes.
 
+> **Using this as a template?** See [TEMPLATE_USAGE.md](./TEMPLATE_USAGE.md) for complete setup instructions including GitHub settings configuration.
+
+> **Quick checklist?** See [TEMPLATE_SETUP_CHECKLIST.md](./TEMPLATE_SETUP_CHECKLIST.md) for a printable checklist of required steps.
+
 ## Prerequisites
 
 - **Node.js 20.x** - [Download here](https://nodejs.org/)

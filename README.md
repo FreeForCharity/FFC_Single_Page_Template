@@ -9,6 +9,7 @@ Single-page Next.js 16.0.7 website built with App Router for Free For Charity no
 **Quick Links:**
 
 - 📚 [Quick Start Guide](./QUICK_START.md) - Get set up in 5 minutes
+- 🎯 [**Template Usage Guide**](./TEMPLATE_USAGE.md) - **NEW**: Complete guide for using this repository as a template
 - 📋 [Site Improvements Summary](./SITE_IMPROVEMENTS.md) - See what was implemented (13 of 19 gaps closed)
 - 🧪 [Testing Guide](./TESTING.md) - Unit + E2E + Accessibility tests
 - 🎨 [Responsive Design Guide](./RESPONSIVE_DESIGN.md) - Mobile-first design principles
@@ -44,6 +45,50 @@ This repository follows **Cloud Native Computing Foundation (CNCF)** standards f
 **Why CNCF Alignment?** Following CNCF standards strengthens project credibility, simplifies onboarding of contributors, and prepares us for cloud-native ecosystem integrations. It demonstrates our commitment to open source best practices and professional project management.
 
 **Primary Contact**: Clarke Moyer ([@clarkemoyer](https://github.com/clarkemoyer)) - clarkemoyer@freeforcharity.org
+
+## Using This Repository as a Template
+
+This repository is configured as a GitHub template, making it easy to create your own nonprofit website with all the features and best practices included.
+
+### Quick Template Setup
+
+1. **Click "Use this template"** button at the top of this repository
+2. **Create your new repository** with your organization's name
+3. **Follow the [Template Usage Guide](./TEMPLATE_USAGE.md)** for complete setup instructions
+
+### What's Included in the Template
+
+✅ **Ready to Use:**
+
+- Next.js 16.0.7 with TypeScript and static export
+- Tailwind CSS for styling
+- Comprehensive testing (Jest + Playwright)
+- GitHub Actions CI/CD workflows
+- Security scanning (CodeQL + Dependabot)
+- Performance monitoring (Lighthouse CI)
+- SEO optimization (sitemap, robots.txt, metadata)
+- Community health files (Code of Conduct, Contributing, Security, etc.)
+
+⚙️ **Requires Configuration:**
+
+- GitHub Pages deployment settings
+- Branch protection rules
+- Dependabot alerts and security updates
+- Custom domain (if applicable)
+- Organization-specific content and branding
+
+📋 **Complete Setup Guide:**
+
+The [**Template Usage Guide (TEMPLATE_USAGE.md)**](./TEMPLATE_USAGE.md) provides:
+
+- Step-by-step setup checklist
+- GitHub repository settings configuration
+- Security and quality settings
+- Customization instructions
+- Troubleshooting for common issues
+- Tips for reducing setup burden
+
+**Note**: Some settings (GitHub Pages, branch protection, Dependabot) must be configured through GitHub's web interface as they cannot be included in template files. The guide explains exactly what needs to be configured and why.
 
 ## Purpose
 
@@ -709,6 +754,7 @@ For comprehensive guides and documentation:
 
 - **[README.md](./README.md)** - Project overview, setup, and deployment (this file)
 - **[QUICK_START.md](./QUICK_START.md)** - ⚡ 5-minute setup guide for new contributors
+- **[TEMPLATE_USAGE.md](./TEMPLATE_USAGE.md)** - 🎯 **Complete guide for using this repository as a template**
 - **[CONTRIBUTING.md](./CONTRIBUTING.md)** - Guidelines for contributing to the project
 
 ### Development & Testing

@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { testConfig } from './test.config'
 
 /**
  * Copyright Notice Tests
@@ -7,6 +8,8 @@ import { test, expect } from '@playwright/test'
  * 1. Contains the copyright symbol (©)
  * 2. Displays the current year
  * 3. Renders the complete copyright text
+ *
+ * Note: Test expectations use values from test.config.ts for easy customization
  */
 
 test.describe('Footer Copyright Notice', () => {
@@ -18,7 +21,7 @@ test.describe('Footer Copyright Notice', () => {
     const currentYear = new Date().getFullYear()
 
     // Find the footer paragraph containing the copyright text
-    const footerText = page.locator('footer p:has-text("All Rights Are Reserved")')
+    const footerText = page.locator(`footer p:has-text("${testConfig.copyright.searchText}")`)
 
     // Verify the copyright notice is visible
     await expect(footerText).toBeVisible()
@@ -27,24 +30,22 @@ test.describe('Footer Copyright Notice', () => {
     await expect(footerText).toContainText(`© ${currentYear}`)
 
     // Verify the complete copyright text is present
-    await expect(footerText).toContainText(
-      'All Rights Are Reserved by Free For Charity a US 501c3 Non Profit'
-    )
+    await expect(footerText).toContainText(testConfig.copyright.text)
   })
 
-  test('should display link to freeforcharity.org in copyright notice', async ({ page }) => {
+  test('should display link to organization website in copyright notice', async ({ page }) => {
     // Navigate to the homepage
     await page.goto('/')
 
     // Find the link within the copyright notice
     const copyrightLink = page.locator(
-      'footer p:has-text("All Rights Are Reserved") a[href="https://freeforcharity.org"]'
+      `footer p:has-text("${testConfig.copyright.searchText}") a[href="${testConfig.copyright.linkUrl}"]`
     )
 
     // Verify the link is visible
     await expect(copyrightLink).toBeVisible()
 
     // Verify the link text
-    await expect(copyrightLink).toContainText('https://freeforcharity.org')
+    await expect(copyrightLink).toContainText(testConfig.copyright.linkText)
   })
 })

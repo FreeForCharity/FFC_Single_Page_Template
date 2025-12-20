@@ -1,477 +1,355 @@
-# Test Suite
+# E2E Test Configuration Guide
 
-This directory contains automated end-to-end tests for the Free For Charity web application using Playwright.
+## Overview
+
+This directory contains end-to-end (E2E) tests that validate the website functionality using Playwright. The tests are designed to be **template-friendly**, meaning they can be easily customized when you fork this template for a new organization.
+
+## Quick Start
+
+### Running Tests
+
+```bash
+# Build the site first
+npm run build
+
+# Run tests
+npm run test:e2e
+
+# Run tests with UI (interactive)
+npm run test:e2e:ui
+
+# Run tests in headed mode (see browser)
+npm run test:e2e:headed
+```
+
+## Customizing Tests for Your Organization
+
+When you customize this template for a new organization, you **only need to update one file** to make all tests work with your content:
+
+### 1. Update Test Configuration
+
+Edit `tests/test.config.ts` with your organization's information:
+
+```typescript
+export const testConfig = {
+  organization: {
+    name: 'Your Organization Name',
+    type: 'Your Organization Type',
+    website: 'https://yourwebsite.org',
+  },
+
+  // Update each section with your content
+  missionVideo: {
+    ariaLabel: 'Your organization mission video',
+    title: 'Your mission video title',
+  },
+
+  // ... and so on for other sections
+}
+```
+
+**That's it!** All test files will automatically use your updated configuration.
+
+### What to Update
+
+The configuration file is organized by sections. Here's what each section controls:
+
+#### Mission Video (mission-video.spec.ts)
+
+- `missionVideo.ariaLabel`: Accessibility label for mission video
+- `missionVideo.title`: Video title attribute
+
+#### Application Form (application-form.spec.ts)
+
+- `applicationForm.buttonText`: Text on the application button
+- `applicationForm.modalTitle`: Title of the modal dialog
+- `applicationForm.loadingText`: Loading message text
+- `applicationForm.closeButtonAriaLabel`: Close button accessibility label
+
+#### Events Section (events.spec.ts)
+
+- `events.sectionId`: HTML ID for events section (default: 'events')
+- `events.heading`: Section heading text
+- `events.footerLinkText`: Text for footer navigation link (e.g., 'Events')
+- `events.iframeTitle`: Events iframe title
+- `events.facebookLinkText`: Facebook link text
+- `events.facebookUrl`: Your Facebook page URL
+- `events.descriptionText`: Text to find in event descriptions
+
+#### Social Media Links (social-links.spec.ts)
+
+- `socialLinks.facebook.url`: Your Facebook URL
+- `socialLinks.twitter.url`: Your Twitter/X URL
+- `socialLinks.linkedin.url`: Your LinkedIn URL
+- `socialLinks.github.url`: Your GitHub URL
+- Each has an `ariaLabel` for accessibility
+
+#### Copyright Notice (copyright.spec.ts)
+
+- `copyright.text`: Full copyright text
+- `copyright.searchText`: Text to search for when locating copyright element (e.g., 'All Rights Are Reserved')
+- `copyright.linkUrl`: Organization website URL
+- `copyright.linkText`: Displayed link text
+
+#### Animated Numbers (animated-numbers.spec.ts)
+
+- `animatedNumbers.sectionHeading`: Results section heading
+- `animatedNumbers.statistics`: Array of statistics with:
+  - `description`: Statistic description
+  - `value`: Expected value after animation
+
+#### Google Tag Manager (google-tag-manager.spec.ts)
+
+- `googleTagManager.id`: Your GTM container ID (e.g., 'GTM-XXXXXX')
+
+#### Logo and Images (logo.spec.ts, image-loading.spec.ts)
+
+- `logo.headerAlt`: Alt text for header logo
+- `logo.heroAlt`: Alt text for hero section image
+- `logo.navBarAriaLabel`: Aria label for navbar home link
+
+#### Cookie Consent (cookie-consent.spec.ts)
+
+- `cookieConsent.bannerHeading`: Cookie banner heading
+- `cookieConsent.modalHeading`: Preferences modal heading
+- `cookieConsent.buttons.*`: Button text for all cookie consent buttons
 
 ## Test Files
 
-### `logo.spec.ts`
+### Content-Specific Tests (Use Configuration)
 
-Tests logo visibility and consistency across the application.
+These tests use values from `test.config.ts`:
 
-**Test Suite**: `Logo Visibility` (3 tests)
+- **`mission-video.spec.ts`** - Mission video presence and configuration
+- **`application-form.spec.ts`** - Application form modal functionality
+- **`events.spec.ts`** - Events section rendering and links
+- **`social-links.spec.ts`** - Social media link validation
+- **`copyright.spec.ts`** - Copyright notice with current year
+- **`animated-numbers.spec.ts`** - Results section number animations
+- **`google-tag-manager.spec.ts`** - GTM integration
+- **`cookie-consent.spec.ts`** - Cookie consent banner and preferences
+- **`logo.spec.ts`** - Logo visibility in header and hero
+- **`image-loading.spec.ts`** - Image loading validation
 
-**Tests:**
+## Test Performance
 
-1. **`should display logo in top left corner (NavBar)`**
-   - **Purpose**: Verifies logo appears correctly in the navigation header
-   - **Verifications**:
-     - Logo element is visible on page
-     - Image src ends with `/web-app-manifest-512x512.png`
-     - Alt text equals "Free For Charity logo"
-   - **Selector**: `header a[aria-label="Free For Charity home"] img[alt="Free For Charity logo"]`
+### Current Performance
 
-2. **`should display logo in hero section`**
-   - **Purpose**: Verifies logo appears correctly in the hero/landing section
-   - **Verifications**:
-     - Logo element is visible on page
-     - Image src ends with `/web-app-manifest-512x512.png`
-     - Alt text equals "Free For Charity mark"
-   - **Selector**: `section#home img[alt="Free For Charity mark"]`
+- **Total tests**: 62 tests
+- **Execution time**: ~5 minutes (varies by environment)
+- **Parallel execution**: Enabled locally (4 workers), disabled in CI (1 worker)
 
-3. **`both logos should be present on the same page`**
-   - **Purpose**: Verifies consistency between NavBar and Hero logos
-   - **Verifications**:
-     - NavBar logo is visible
-     - Hero logo is visible
-     - Both logos use identical image source paths
-     - Image path matches expected pattern
+### Performance Optimization Tips
 
-### `github-pages.spec.ts`
-
-Tests deployment compatibility for both custom domain and GitHub Pages with basePath.
-
-**Test Suite**: `GitHub Pages Image Loading` (3 tests)
-
-**Tests:**
-
-4. **`images should load correctly with proper paths`**
-   - **Purpose**: Validates image paths work in both deployment scenarios
-   - **Verifications**:
-     - NavBar logo is visible (loaded successfully)
-     - Hero logo is visible (loaded successfully)
-     - Both image src attributes end with `/web-app-manifest-512x512.png`
-     - Both logos use identical path
-   - **Deployment Scenarios**:
-     - ✅ Custom domain: `/web-app-manifest-512x512.png`
-     - ✅ GitHub Pages: `/FFC_Single_Page_Template/web-app-manifest-512x512.png`
-
-5. **`images should return 200 status code`**
-   - **Purpose**: Verifies images load successfully via HTTP requests
-   - **Method**: Monitors network responses using Playwright's response listener
-   - **Verifications**:
-     - Captures HTTP responses for logo image requests
-     - At least one image request is made
-     - All image requests return status code 200 OK
-
-6. **`images have natural dimensions indicating successful load`** ⏭️ **SKIPPED**
-   - **Purpose**: Verifies image has loaded by checking natural pixel dimensions
-   - **Status**: Temporarily disabled
-   - **Reason**: `naturalWidth`/`naturalHeight` return 0 in CI environment despite image being visible
-   - **Expected**: Should verify 512x512 pixel dimensions
-   - **Notes**:
-     - ✅ Passes locally
-     - ❌ Fails in GitHub Actions
-     - Needs investigation of CI timing or rendering differences
-
-### `social-links.spec.ts`
-
-Tests footer social media links to ensure only active platforms are displayed.
-
-**Test Suite**: `Footer Social Links` (3 tests)
-
-**Tests:**
-
-7. **`should not contain Google+ social link`**
-   - **Purpose**: Verifies defunct Google+ link has been removed (shut down April 2019)
-   - **Verifications**:
-     - No links to `plus.google.com` in footer
-     - No elements with `aria-label="Google Plus"` in footer
-   - **Selectors**:
-     - `footer a[href*="plus.google.com"]`
-     - `footer a[aria-label="Google Plus"]`
-
-8. **`should display active social media links`**
-   - **Purpose**: Validates all 4 active social media platforms are present and functional
-   - **Verifications**:
-     - Facebook link is visible with correct href and aria-label
-     - X (Twitter) link is visible with correct href and aria-label
-     - LinkedIn link is visible with correct href and aria-label
-     - GitHub link is visible with correct href and aria-label
-   - **Platforms Tested**:
-     - ✅ Facebook: `facebook.com/freeforcharity`
-     - ✅ X (Twitter): `x.com/freeforcharity1`
-     - ✅ LinkedIn: `linkedin.com/company/freeforcharity`
-     - ✅ GitHub: `github.com/FreeForCharity/FFC_Single_Page_Template`
-
-9. **`should have exactly 4 social media icons`**
-   - **Purpose**: Ensures correct number of social icons are rendered
-   - **Verifications**:
-     - Counts social media links by aria-label
-     - Validates exactly 4 icons: Facebook, X (Twitter), LinkedIn, GitHub
-   - **Why This Matters**: Prevents accidental addition/removal of social links
-
-### `application-form.spec.ts`
-
-Tests the ApplicationFormButton modal component functionality.
-
-**Test Suites**: `Application Form Button` (14 tests) + `Application Form Iframe Loading` (1 test)
-
-**Tests:** (continued from previous test files)
-
-10. **`should display "Apply to Become a Supported Charity" button`**
-    - **Purpose**: Verifies the trigger button is visible on the page
-    - **Verifications**: Button is visible with correct text
-
-11. **`should open modal when button is clicked`**
-    - **Purpose**: Validates modal opens on button click
-    - **Verifications**:
-      - Modal becomes visible
-      - Modal has proper ARIA attributes (aria-modal, aria-labelledby)
-
-12. **`should display loading indicator before iframe loads`**
-    - **Purpose**: Ensures loading state is shown to users
-    - **Verifications**: Loading message "Loading application form..." is visible initially
-
-13. **`should display close button in modal`**
-    - **Purpose**: Verifies close button is present
-    - **Verifications**: Close button with aria-label "Close application form" is visible
-
-14. **`should close modal when close button is clicked`**
-    - **Purpose**: Tests modal closure via close button
-    - **Verifications**: Modal is hidden after clicking close button
-
-15. **`should close modal when pressing Escape key`**
-    - **Purpose**: Validates keyboard accessibility
-    - **Verifications**: Modal closes when Escape key is pressed
-
-16. **`should close modal when clicking outside (overlay)`**
-    - **Purpose**: Tests click-outside-to-close behavior
-    - **Verifications**: Modal closes when overlay (background) is clicked
-
-17. **`should have Microsoft Forms iframe with correct attributes`**
-    - **Purpose**: Verifies iframe sandbox configuration (critical for form loading)
-    - **Verifications**:
-      - Iframe is present with title "Charity Application Form"
-      - Sandbox attribute includes: `allow-scripts`, `allow-forms`, `allow-popups`, `allow-same-origin`
-    - **Why This Matters**: The `allow-same-origin` permission is required for Microsoft Forms to load
-
-18. **`should have Microsoft Forms URL in iframe src`**
-    - **Purpose**: Validates correct form URL is embedded
-    - **Verifications**: iframe src contains `forms.office.com/r/`
-
-19. **`should lock body scroll when modal is open`**
-    - **Purpose**: Tests scroll-lock behavior for better UX
-    - **Verifications**:
-      - Body overflow is set to 'hidden' when modal opens
-      - Body overflow is restored when modal closes
-
-20. **`should manage focus properly when modal opens`**
-    - **Purpose**: Tests focus management for accessibility
-    - **Verifications**: Focus moves to close button when modal opens
-
-21. **`should restore focus to trigger button when modal closes`**
-    - **Purpose**: Ensures focus returns to trigger element
-    - **Verifications**: Focus returns to "Apply to Become a Supported Charity" button after closing
-
-22. **`should have proper accessibility attributes`**
-    - **Purpose**: Validates WCAG compliance
-    - **Verifications**:
-      - Modal has role="dialog", aria-modal="true", aria-labelledby
-      - Screen reader heading with sr-only class exists
-
-23. **`should handle multiple open/close cycles correctly`**
-    - **Purpose**: Tests modal stability across multiple interactions
-    - **Verifications**: Modal can be opened and closed multiple times using different methods
-
-24. **`should display loading indicator and iframe elements`**
-    - **Purpose**: Verifies component structure (loading indicator and iframe are present)
-    - **Verifications**:
-      - Loading indicator displays initially
-      - Iframe element exists in the DOM
-    - **Note**: Loading indicator behavior is environment-dependent; external iframes may be blocked by privacy settings
-
-## Test Statistics
-
-- **Total Test Suites**: 4
-- **Total Test Cases**: 24
-- **Active Tests**: 23 passing ✅
-- **Skipped Tests**: 1 ⏭️
-- **Status**: All active tests passing
-
-## Running Tests
-
-### Prerequisites
-
-1. **Build the application:**
-
+1. **Local Development**: Tests run in parallel with 4 workers for faster feedback
+2. **CI Environment**: Tests run sequentially for stability
+3. **Targeted Testing**: Run specific test files during development:
    ```bash
-   npm run build
+   npx playwright test mission-video.spec.ts
    ```
 
-2. **Install Playwright browsers (first time only):**
-   ```bash
-   npx playwright install chromium
-   ```
+## Benefits of This Approach
 
-### Test Commands
+### For Template Users
 
-```bash
-# Run all tests in headless mode (default)
-npm test
+✅ **Simple Customization**: Update one config file instead of editing multiple test files  
+✅ **Reduced Errors**: No need to search/replace strings across many files  
+✅ **Clear Documentation**: Configuration file shows exactly what needs to change  
+✅ **Type Safety**: TypeScript configuration provides autocomplete and validation
 
-# Run tests with browser visible (useful for debugging)
-npm run test:headed
+### For Maintainers
 
-# Run tests with Playwright UI (interactive mode)
-npm run test:ui
-```
+✅ **Single Source of Truth**: All test expectations in one place  
+✅ **Easy Updates**: Change test expectations without touching test logic  
+✅ **Better Maintainability**: Separate concerns (configuration vs. test logic)  
+✅ **Consistent Testing**: Same test structure works across all forks
 
-### Running Individual Tests
+## Troubleshooting
 
-```bash
-# Run only logo tests
-npx playwright test logo.spec.ts
+### Tests Fail After Customization
 
-# Run only GitHub Pages tests
-npx playwright test github-pages.spec.ts
-
-# Run only social links tests
-npx playwright test social-links.spec.ts
-
-# Run a specific test by name
-npx playwright test -g "should display logo in top left corner"
-
-# Run in debug mode
-npx playwright test --debug
-```
-
-## Test Configuration
-
-Tests are configured in `playwright.config.ts` at the project root.
-
-**Key Configuration:**
-
-- **Base URL**: `http://localhost:3000`
-- **Browser**: Chromium (uses system browser when available)
-- **Web Server**: Auto-starts `npm run preview` before tests
-- **Server Timeout**: 120 seconds
-- **Parallel Execution**: Enabled locally, disabled in CI
-- **Retries**:
-  - CI: 2 times
-  - Local: 0 times
-- **Trace Collection**: On first retry (for debugging)
-- **Reporter**: HTML (view with `npx playwright show-report`)
-
-**Special Features**:
-
-- Automatically detects and uses system Chromium browser
-- Falls back to Playwright's bundled browser if system browser unavailable
-- Works in restricted network environments
-- Prevents accidental `test.only` in CI (`forbidOnly: true`)
-
-## CI/CD Integration
-
-Tests are automatically run in GitHub Actions on every push to the main branch.
-
-**Workflows**:
-
-- `.github/workflows/ci.yml` - CI testing on all PRs and pushes
-- `.github/workflows/deploy.yml` - Deployment on push to main
-
-**CI Pipeline Steps**:
-
-1. ✅ Checkout repository
-2. ✅ Setup Node.js 20
-3. ✅ Install dependencies (`npm ci`)
-4. ✅ Install Playwright browsers with system deps
-5. ✅ Build Next.js with GitHub Pages basePath
-6. ✅ Run test suite
-7. ✅ Upload test artifacts on failure
-8. ✅ Deploy only if tests pass
-
-**Test Failure Handling**:
-
-- If any test fails, the build is marked as failed
-- Deployment to GitHub Pages is blocked
-- Test artifacts and traces are uploaded for debugging
-- Team is notified of failure
-
-## Writing New Tests
-
-### Basic Test Structure
-
-To add new tests:
-
-1. **Create a new test file** in this directory:
-
-   ```bash
-   touch tests/my-feature.spec.ts
-   ```
-
-2. **Import Playwright utilities**:
-
-   ```typescript
-   import { test, expect } from '@playwright/test'
-   ```
-
-3. **Write test cases**:
-
-   ```typescript
-   test.describe('My Feature', () => {
-     test('should do something', async ({ page }) => {
-       await page.goto('/')
-
-       // Your test code here
-       const element = page.locator('selector')
-       await expect(element).toBeVisible()
-     })
-   })
-   ```
-
-4. **Run your tests**:
-   ```bash
-   npm test
-   ```
-
-### Best Practices
-
-- **Use descriptive test names**: Clearly state what is being tested
-- **Group related tests**: Use `test.describe()` blocks
-- **Use specific selectors**: Prefer data-testid, role, or aria-label attributes
-- **Wait for elements**: Always use Playwright's auto-waiting or explicit waits
-- **Test user behavior**: Focus on what users see and do, not implementation details
-- **Keep tests independent**: Each test should run in isolation
-- **Handle multiple scenarios**: Test both success and failure cases
-
-### Useful Playwright Commands
-
-```typescript
-// Navigation
-await page.goto('/path')
-await page.goBack()
-await page.reload()
-
-// Finding elements
-const element = page.locator('css-selector')
-const byRole = page.getByRole('button', { name: 'Submit' })
-const byText = page.getByText('Hello World')
-
-// Assertions
-await expect(element).toBeVisible()
-await expect(element).toHaveText('Expected Text')
-await expect(element).toHaveAttribute('href', '/link')
-await expect(page).toHaveURL('/expected-path')
-
-// Interactions
-await element.click()
-await element.fill('text input')
-await element.selectOption('value')
-
-// Network monitoring
-page.on('response', (response) => {
-  console.log(response.url(), response.status())
-})
-```
-
-## Test Debugging
-
-### Local Debugging
-
-```bash
-# Run tests in headed mode to see browser
-npm run test:headed
-
-# Run in debug mode with Playwright Inspector
-npx playwright test --debug
-
-# Run with trace collection
-npx playwright test --trace on
-
-# View trace file
-npx playwright show-trace trace.zip
-```
-
-### CI Debugging
-
-When tests fail in CI:
-
-1. Check the GitHub Actions workflow run logs
-2. Download test artifacts (screenshots, traces)
-3. View HTML report: `npx playwright show-report`
-4. Compare local vs CI results
+1. **Check Configuration**: Verify all values in `test.config.ts` match your content exactly
+2. **Special Characters**: Make sure special characters in strings are properly escaped
+3. **Case Sensitivity**: Text matching is case-sensitive
+4. **Whitespace**: Extra spaces can cause failures
 
 ### Common Issues
 
-**Issue**: Test times out waiting for element  
-**Solution**: Check selector specificity or increase timeout
+**Issue**: Tests can't find elements  
+**Solution**: Check that the configured text exactly matches what's on the page
 
-**Issue**: Element not visible  
-**Solution**: Add explicit waits or check for dynamic loading
+**Issue**: Social link tests fail  
+**Solution**: Verify URLs in `test.config.ts` match your actual social media URLs
 
-**Issue**: Tests pass locally but fail in CI  
-**Solution**: Check for timing issues, race conditions, or environment differences
+**Issue**: Animated numbers test fails  
+**Solution**: Update the `statistics` array with your actual statistics and values
 
-## Recommended Test Additions
+**Issue**: GTM tests fail  
+**Solution**: Update `googleTagManager.id` with your actual GTM container ID
 
-### High Priority
+### Getting Help
 
-1. **Navigation Tests**
-   - Verify all navigation links work
-   - Test mobile hamburger menu
-   - Validate smooth scrolling to sections
+If tests continue to fail after updating the configuration:
 
-2. **Form Tests**
-   - Test donation popup form
-   - Test volunteer popup form
-   - Validate form validation
+1. Run tests with UI to see what's happening: `npm run test:e2e:ui`
+2. Check the Playwright HTML report: `npx playwright show-report`
+3. Review the test file to understand what it's checking
+4. Verify your page content matches the test expectations
 
-3. **Responsive Tests**
-   - Test mobile viewport (375px)
-   - Test tablet viewport (768px)
-   - Test desktop viewport (1920px)
+## Example: Customizing for "Acme Charity"
 
-4. **Accessibility Tests**
-   - Add @axe-core/playwright for WCAG checks
-   - Test keyboard navigation
-   - Verify screen reader compatibility
+Here's a complete example of customizing the tests for a new organization:
 
-### Medium Priority
+```typescript
+// tests/test.config.ts
+export const testConfig = {
+  missionVideo: {
+    ariaLabel: 'Acme Charity mission video',
+    title: "Learn about Acme Charity's mission to help communities",
+  },
 
-5. **Content Tests**
-   - Verify all team members display
-   - Verify all testimonials display
-   - Verify all FAQs display
+  applicationForm: {
+    buttonText: 'Apply for Assistance',
+    modalTitle: 'Assistance Application Form',
+    loadingText: 'Loading form...',
+    closeButtonAriaLabel: 'Close form',
+  },
 
-6. **SEO Tests**
-   - Test meta tags presence
-   - Validate Open Graph tags
-   - Check robots.txt and sitemap.xml
+  events: {
+    sectionId: 'events',
+    heading: 'Community Events',
+    footerLinkText: 'Events',
+    iframeTitle: 'Event Calendar',
+    facebookLinkText: 'View all events on Facebook',
+    facebookUrl: 'https://www.facebook.com/acmecharity',
+    descriptionText: 'community',
+  },
 
-7. **Performance Tests**
-   - Lighthouse CI integration
-   - Core Web Vitals monitoring
-   - Bundle size tracking
+  socialLinks: {
+    facebook: {
+      url: 'facebook.com/acmecharity',
+      ariaLabel: 'Facebook',
+    },
+    twitter: {
+      url: 'x.com/acmecharity',
+      ariaLabel: 'X (Twitter)',
+    },
+    linkedin: {
+      url: 'linkedin.com/company/acmecharity',
+      ariaLabel: 'LinkedIn',
+    },
+    github: {
+      url: 'github.com/acmecharity',
+      ariaLabel: 'GitHub',
+    },
+  },
 
-### Lower Priority
+  copyright: {
+    text: 'All Rights Reserved by Acme Charity a 501c3 Non Profit',
+    searchText: 'All Rights Reserved',
+    linkUrl: 'https://acmecharity.org',
+    linkText: 'https://acmecharity.org',
+  },
 
-8. **Visual Regression Tests**
-   - Screenshot comparison testing
-   - Detect unintended UI changes
+  animatedNumbers: {
+    sectionHeading: 'Our Impact - 2024',
+    statistics: [
+      { description: 'Families helped', value: '500' },
+      { description: 'Volunteers', value: '50' },
+      { description: 'Community partners', value: '25' },
+      { description: 'Volunteer hours', value: '1000' },
+    ],
+  },
 
-9. **Cross-Browser Tests**
-   - Firefox compatibility
-   - WebKit/Safari compatibility
+  googleTagManager: {
+    id: 'GTM-XXXXXXX', // Your GTM ID
+  },
 
-## Resources
+  logo: {
+    headerAlt: 'Acme Charity',
+    heroAlt: 'Hero image',
+    navBarAriaLabel: 'Acme Charity home',
+  },
 
-- **Playwright Documentation**: https://playwright.dev/docs/intro
-- **Best Practices**: https://playwright.dev/docs/best-practices
-- **API Reference**: https://playwright.dev/docs/api/class-test
-- **Debugging Guide**: https://playwright.dev/docs/debug
-- **CI Guide**: https://playwright.dev/docs/ci
+  cookieConsent: {
+    bannerHeading: 'We Value Your Privacy',
+    modalHeading: 'Cookie Preferences',
+    buttons: {
+      acceptAll: 'Accept All',
+      declineAll: 'Decline All',
+      customize: 'Customize',
+      savePreferences: 'Save Preferences',
+      cancel: 'Cancel',
+    },
+  },
+}
+```
 
----
+After updating the configuration file, run the tests:
 
-**Test Suite Status**: ✅ 8 passing, 1 skipped  
-**Last Updated**: December 2025  
-**Framework**: Playwright v1.57.0
+```bash
+npm run build
+npm run test:e2e
+```
+
+All 62 tests should pass with your customized content!
+
+## Advanced Customization
+
+### Adding New Tests
+
+If you need to add tests for new features:
+
+1. Create a new test file: `tests/your-feature.spec.ts`
+2. Import the test config: `import { testConfig } from './test.config'`
+3. Add configuration for your feature to `test.config.ts`
+4. Write tests using the configuration values
+
+Example:
+
+```typescript
+// tests/test.config.ts
+export const testConfig = {
+  // ... existing config
+
+  yourFeature: {
+    heading: 'Your Feature Heading',
+    buttonText: 'Click Here',
+  },
+}
+
+// tests/your-feature.spec.ts
+import { test, expect } from '@playwright/test'
+import { testConfig } from './test.config'
+
+test.describe('Your Feature', () => {
+  test('should display feature heading', async ({ page }) => {
+    await page.goto('/')
+    const heading = page.locator(`h1:has-text("${testConfig.yourFeature.heading}")`)
+    await expect(heading).toBeVisible()
+  })
+})
+```
+
+### Modifying Test Behavior
+
+If you need to change how tests work (not just what they check):
+
+1. Edit the relevant test file in `tests/`
+2. Keep the configuration-based approach for content checks
+3. Test your changes locally before committing
+
+## Best Practices
+
+1. **Always update test.config.ts first** before modifying test files
+2. **Run tests after customization** to ensure everything works
+3. **Keep configuration values exact** - they must match page content exactly
+4. **Use descriptive values** in configuration for clarity
+5. **Test locally before pushing** to catch issues early
+
+## Further Reading
+
+- [Playwright Documentation](https://playwright.dev/docs/intro)
+- [Writing Tests](https://playwright.dev/docs/writing-tests)
+- [Test Configuration](https://playwright.dev/docs/test-configuration)
+- [Best Practices](https://playwright.dev/docs/best-practices)
