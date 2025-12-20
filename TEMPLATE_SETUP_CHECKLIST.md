@@ -74,10 +74,10 @@ Create ruleset named "Protect Main":
 
 ### Update basePath in Workflows
 
-- [ ] Edit `.github/workflows/deploy.yml` line 69
-  - Change `/FFC_Single_Page_Template` to `/YOUR-REPO-NAME`
-- [ ] Edit `.github/workflows/lighthouse.yml` line 45
-  - Change `/FFC_Single_Page_Template` to `/YOUR-REPO-NAME`
+- [ ] Edit `.github/workflows/deploy.yml`
+  - In the job that builds the Next.js site (look for the `env` section where `NEXT_PUBLIC_BASE_PATH` is set), change `/FFC_Single_Page_Template` to `/YOUR-REPO-NAME`
+- [ ] Edit `.github/workflows/lighthouse.yml`
+  - In the job that runs the Lighthouse checks (look for the `env` section where `NEXT_PUBLIC_BASE_PATH` is set), change `/FFC_Single_Page_Template` to `/YOUR-REPO-NAME`
 - [ ] OR remove `NEXT_PUBLIC_BASE_PATH` if using custom domain
 
 ### Update CODEOWNERS
