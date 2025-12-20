@@ -13,15 +13,6 @@
 
 export const testConfig = {
   /**
-   * Organization Information
-   */
-  organization: {
-    name: 'Free For Charity',
-    type: 'US 501c3 Non Profit',
-    website: 'https://freeforcharity.org',
-  },
-
-  /**
    * Mission Video Configuration
    * Used in: tests/mission-video.spec.ts
    */
@@ -84,6 +75,7 @@ export const testConfig = {
    */
   copyright: {
     text: 'All Rights Are Reserved by Free For Charity a US 501c3 Non Profit',
+    searchText: 'All Rights Are Reserved',
     linkUrl: 'https://freeforcharity.org',
     linkText: 'https://freeforcharity.org',
   },

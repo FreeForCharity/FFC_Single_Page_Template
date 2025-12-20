@@ -21,9 +21,7 @@ test.describe('Footer Copyright Notice', () => {
     const currentYear = new Date().getFullYear()
 
     // Find the footer paragraph containing the copyright text
-    const footerText = page.locator(
-      `footer p:has-text("${testConfig.copyright.text.split(' ').slice(0, 3).join(' ')}")`
-    )
+    const footerText = page.locator(`footer p:has-text("${testConfig.copyright.searchText}")`)
 
     // Verify the copyright notice is visible
     await expect(footerText).toBeVisible()
@@ -41,7 +39,7 @@ test.describe('Footer Copyright Notice', () => {
 
     // Find the link within the copyright notice
     const copyrightLink = page.locator(
-      `footer p:has-text("${testConfig.copyright.text.split(' ').slice(0, 3).join(' ')}") a[href="${testConfig.copyright.linkUrl}"]`
+      `footer p:has-text("${testConfig.copyright.searchText}") a[href="${testConfig.copyright.linkUrl}"]`
     )
 
     // Verify the link is visible

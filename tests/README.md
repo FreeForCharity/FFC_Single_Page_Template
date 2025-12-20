@@ -54,12 +54,6 @@ export const testConfig = {
 
 The configuration file is organized by sections. Here's what each section controls:
 
-#### Organization Information
-
-- `organization.name`: Your organization's name
-- `organization.type`: Organization type (e.g., "501c3 Non Profit")
-- `organization.website`: Your website URL
-
 #### Mission Video (mission-video.spec.ts)
 
 - `missionVideo.ariaLabel`: Accessibility label for mission video
@@ -93,6 +87,7 @@ The configuration file is organized by sections. Here's what each section contro
 #### Copyright Notice (copyright.spec.ts)
 
 - `copyright.text`: Full copyright text
+- `copyright.searchText`: Text to search for when locating copyright element (e.g., 'All Rights Are Reserved')
 - `copyright.linkUrl`: Organization website URL
 - `copyright.linkText`: Displayed link text
 
@@ -208,12 +203,6 @@ Here's a complete example of customizing the tests for a new organization:
 ```typescript
 // tests/test.config.ts
 export const testConfig = {
-  organization: {
-    name: 'Acme Charity',
-    type: '501c3 Non Profit',
-    website: 'https://acmecharity.org',
-  },
-
   missionVideo: {
     ariaLabel: 'Acme Charity mission video',
     title: "Learn about Acme Charity's mission to help communities",
@@ -257,6 +246,7 @@ export const testConfig = {
 
   copyright: {
     text: 'All Rights Reserved by Acme Charity a 501c3 Non Profit',
+    searchText: 'All Rights Reserved',
     linkUrl: 'https://acmecharity.org',
     linkText: 'https://acmecharity.org',
   },
