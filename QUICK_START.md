@@ -4,7 +4,7 @@ Get up and running with the FFC Single Page Template in 5 minutes.
 
 ## Prerequisites
 
-- **Node.js 20.x** - [Download here](https://nodejs.org/)
+- **Node.js 25.x** - [Download here](https://nodejs.org/)
 - **npm** (comes with Node.js)
 - **Git** - [Download here](https://git-scm.com/)
 
@@ -392,6 +392,6 @@ npm run prepare             # Setup git hooks
 
 ---
 
-**Last Updated**: 2025-12-03  
+**Last Updated**: 2025-12-20  
 **Version**: 0.1.0  
-**Node.js**: 20.x (validated with v20.19.6)
+**Node.js**: 25.x (validated with v20.19.6)
