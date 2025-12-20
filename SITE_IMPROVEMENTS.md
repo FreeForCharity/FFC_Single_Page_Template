@@ -7,7 +7,7 @@
 **Last Updated:** December 2025  
 **Status:** Phase 5 Complete - All Critical Gaps Closed  
 **Repository:** FreeForCharity/FFC_Single_Page_Template  
-**Node.js:** 25.x (validated with v20.19.6)
+**Node.js:** 25.x
 
 ---
 
@@ -80,7 +80,7 @@ This analysis compares FFC_Single_Page_Template against three sister repositorie
 | ------------------- | ------------------------ | ------------------ | ------------ | -------- |
 | **Next.js Version** | 16.0.7                   | 15.5.2             | 16.0.3       | 15.4.6   |
 | **React Version**   | 19.1.0                   | 19.1.0             | 19.2.0       | 19.1.0   |
-| **Node.js Target**  | 25.x                     | 25.x               | 25.x         | 25.x     |
+| **Node.js Target**  | 25.x                     | 20.x               | 20.x         | 20.x     |
 | **Package Manager** | npm                      | npm                | pnpm         | npm      |
 | **Static Export**   | ✅                       | ✅                 | ✅           | ✅       |
 | **TypeScript**      | ✅                       | ✅                 | ✅           | ✅       |

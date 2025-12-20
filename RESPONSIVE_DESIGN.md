@@ -429,5 +429,5 @@ When adding new components or modifying existing ones:
 
 **Last Updated**: 2025-12-20  
 **Repository**: FreeForCharity/FFC_Single_Page_Template  
-**Node.js**: 25.x (validated with v20.19.6)  
+**Node.js**: 25.x  
 **Maintainer**: FreeForCharity Development Team
