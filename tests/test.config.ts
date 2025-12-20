@@ -48,6 +48,7 @@ export const testConfig = {
   events: {
     sectionId: 'events',
     heading: 'Upcoming Events',
+    footerLinkText: 'Events',
     iframeTitle: 'Facebook Events',
     facebookLinkText: 'View all events on Facebook',
     facebookUrl: 'https://www.facebook.com/freeforcharity',

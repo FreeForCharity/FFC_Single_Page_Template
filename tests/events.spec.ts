@@ -150,7 +150,7 @@ test.describe('Events Section', () => {
     // Verify Events link exists in footer
     const footerEventsLink = page.locator(`footer a[href="/#${testConfig.events.sectionId}"]`)
     await expect(footerEventsLink).toBeVisible()
-    await expect(footerEventsLink).toContainText(testConfig.events.heading.replace('Upcoming ', ''))
+    await expect(footerEventsLink).toContainText(testConfig.events.footerLinkText)
 
     // Click the footer link and verify it navigates to Events section
     await footerEventsLink.click()

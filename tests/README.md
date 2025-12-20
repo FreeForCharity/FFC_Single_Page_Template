@@ -76,6 +76,7 @@ The configuration file is organized by sections. Here's what each section contro
 
 - `events.sectionId`: HTML ID for events section (default: 'events')
 - `events.heading`: Section heading text
+- `events.footerLinkText`: Text for footer navigation link (e.g., 'Events')
 - `events.iframeTitle`: Events iframe title
 - `events.facebookLinkText`: Facebook link text
 - `events.facebookUrl`: Your Facebook page URL
@@ -228,6 +229,7 @@ export const testConfig = {
   events: {
     sectionId: 'events',
     heading: 'Community Events',
+    footerLinkText: 'Events',
     iframeTitle: 'Event Calendar',
     facebookLinkText: 'View all events on Facebook',
     facebookUrl: 'https://www.facebook.com/acmecharity',
