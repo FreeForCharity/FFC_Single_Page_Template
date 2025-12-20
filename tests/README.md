@@ -281,7 +281,7 @@ Tests are automatically run in GitHub Actions on every push to the main branch.
 **CI Pipeline Steps**:
 
 1. ✅ Checkout repository
-2. ✅ Setup Node.js 20
+2. ✅ Setup Node.js 25
 3. ✅ Install dependencies (`npm ci`)
 4. ✅ Install Playwright browsers with system deps
 5. ✅ Build Next.js with GitHub Pages basePath
