@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { testConfig } from './test.config'
 
 /**
  * Application Form Button Tests
@@ -11,6 +12,8 @@ import { test, expect } from '@playwright/test'
  * 5. Click-outside closes the modal
  * 6. Loading indicator displays before iframe loads
  * 7. Body scroll is locked when modal is open
+ *
+ * Note: Test expectations use values from test.config.ts for easy customization
  */
 
 test.describe('Application Form Button', () => {
@@ -20,15 +23,15 @@ test.describe('Application Form Button', () => {
     await page.waitForLoadState('domcontentloaded')
   })
 
-  test('should display "Apply to Become a Supported Charity" button', async ({ page }) => {
+  test('should display application form button', async ({ page }) => {
     // Find the application button
-    const button = page.getByRole('button', { name: 'Apply to Become a Supported Charity' })
+    const button = page.getByRole('button', { name: testConfig.applicationForm.buttonText })
     await expect(button).toBeVisible()
   })
 
   test('should open modal when button is clicked', async ({ page }) => {
     // Click the button
-    await page.getByRole('button', { name: 'Apply to Become a Supported Charity' }).click()
+    await page.getByRole('button', { name: testConfig.applicationForm.buttonText }).click()
 
     // Modal should be visible
     const modal = page.locator('[role="dialog"][aria-modal="true"]')
@@ -41,31 +44,35 @@ test.describe('Application Form Button', () => {
 
   test('should display loading indicator before iframe loads', async ({ page }) => {
     // Click the button
-    await page.getByRole('button', { name: 'Apply to Become a Supported Charity' }).click()
+    await page.getByRole('button', { name: testConfig.applicationForm.buttonText }).click()
 
     // Loading indicator should be visible initially
-    const loadingIndicator = page.getByText('Loading application form...')
+    const loadingIndicator = page.getByText(testConfig.applicationForm.loadingText)
     await expect(loadingIndicator).toBeVisible()
   })
 
   test('should display close button in modal', async ({ page }) => {
     // Open modal
-    await page.getByRole('button', { name: 'Apply to Become a Supported Charity' }).click()
+    await page.getByRole('button', { name: testConfig.applicationForm.buttonText }).click()
 
     // Close button should be visible
-    const closeButton = page.getByRole('button', { name: 'Close application form' })
+    const closeButton = page.getByRole('button', {
+      name: testConfig.applicationForm.closeButtonAriaLabel,
+    })
     await expect(closeButton).toBeVisible()
   })
 
   test('should close modal when close button is clicked', async ({ page }) => {
     // Open modal
-    await page.getByRole('button', { name: 'Apply to Become a Supported Charity' }).click()
+    await page.getByRole('button', { name: testConfig.applicationForm.buttonText }).click()
 
     const modal = page.locator('[role="dialog"][aria-modal="true"]')
     await expect(modal).toBeVisible()
 
     // Click close button
-    await page.getByRole('button', { name: 'Close application form' }).click()
+    await page
+      .getByRole('button', { name: testConfig.applicationForm.closeButtonAriaLabel })
+      .click()
 
     // Modal should be hidden
     await expect(modal).not.toBeVisible()
@@ -73,7 +80,7 @@ test.describe('Application Form Button', () => {
 
   test('should close modal when pressing Escape key', async ({ page }) => {
     // Open modal
-    await page.getByRole('button', { name: 'Apply to Become a Supported Charity' }).click()
+    await page.getByRole('button', { name: testConfig.applicationForm.buttonText }).click()
 
     const modal = page.locator('[role="dialog"][aria-modal="true"]')
     await expect(modal).toBeVisible()
@@ -87,7 +94,7 @@ test.describe('Application Form Button', () => {
 
   test('should close modal when clicking outside (overlay)', async ({ page }) => {
     // Open modal
-    await page.getByRole('button', { name: 'Apply to Become a Supported Charity' }).click()
+    await page.getByRole('button', { name: testConfig.applicationForm.buttonText }).click()
 
     const modal = page.locator('[role="dialog"][aria-modal="true"]')
     await expect(modal).toBeVisible()
@@ -101,20 +108,20 @@ test.describe('Application Form Button', () => {
 
   test('should have Microsoft Forms iframe with correct attributes', async ({ page }) => {
     // Open modal
-    await page.getByRole('button', { name: 'Apply to Become a Supported Charity' }).click()
+    await page.getByRole('button', { name: testConfig.applicationForm.buttonText }).click()
 
     // Wait for modal to be visible
     const modal = page.locator('[role="dialog"][aria-modal="true"]')
     await expect(modal).toBeVisible()
 
     // Find the iframe element
-    const iframeElement = page.locator('iframe[title="Charity Application Form"]')
+    const iframeElement = page.locator(`iframe[title="${testConfig.applicationForm.modalTitle}"]`)
 
     // Verify iframe is present
     await expect(iframeElement).toBeVisible()
 
     // Verify iframe has correct title
-    await expect(iframeElement).toHaveAttribute('title', 'Charity Application Form')
+    await expect(iframeElement).toHaveAttribute('title', testConfig.applicationForm.modalTitle)
 
     // Verify iframe has correct sandbox attribute with allow-same-origin
     const sandboxAttr = await iframeElement.getAttribute('sandbox')
@@ -126,10 +133,10 @@ test.describe('Application Form Button', () => {
 
   test('should have Microsoft Forms URL in iframe src', async ({ page }) => {
     // Open modal
-    await page.getByRole('button', { name: 'Apply to Become a Supported Charity' }).click()
+    await page.getByRole('button', { name: testConfig.applicationForm.buttonText }).click()
 
     // Find the iframe
-    const iframeElement = page.locator('iframe[title="Charity Application Form"]')
+    const iframeElement = page.locator(`iframe[title="${testConfig.applicationForm.modalTitle}"]`)
     await expect(iframeElement).toBeVisible()
 
     // Verify iframe src contains Microsoft Forms URL
@@ -142,7 +149,7 @@ test.describe('Application Form Button', () => {
     const initialOverflow = await page.evaluate(() => document.body.style.overflow)
 
     // Open modal
-    await page.getByRole('button', { name: 'Apply to Become a Supported Charity' }).click()
+    await page.getByRole('button', { name: testConfig.applicationForm.buttonText }).click()
 
     const modal = page.locator('[role="dialog"][aria-modal="true"]')
     await expect(modal).toBeVisible()
@@ -161,7 +168,7 @@ test.describe('Application Form Button', () => {
 
   test('should manage focus properly when modal opens', async ({ page }) => {
     // Store reference to button before opening modal
-    const openButton = page.getByRole('button', { name: 'Apply to Become a Supported Charity' })
+    const openButton = page.getByRole('button', { name: testConfig.applicationForm.buttonText })
 
     // Open modal
     await openButton.click()
@@ -170,13 +177,15 @@ test.describe('Application Form Button', () => {
     await expect(modal).toBeVisible()
 
     // Focus should move to the first focusable element (close button)
-    const closeButton = page.getByRole('button', { name: 'Close application form' })
+    const closeButton = page.getByRole('button', {
+      name: testConfig.applicationForm.closeButtonAriaLabel,
+    })
     await expect(closeButton).toBeFocused()
   })
 
   test('should restore focus to trigger button when modal closes', async ({ page }) => {
     // Store reference to button
-    const openButton = page.getByRole('button', { name: 'Apply to Become a Supported Charity' })
+    const openButton = page.getByRole('button', { name: testConfig.applicationForm.buttonText })
 
     // Open modal
     await openButton.click()
@@ -194,7 +203,7 @@ test.describe('Application Form Button', () => {
 
   test('should have proper accessibility attributes', async ({ page }) => {
     // Open modal
-    await page.getByRole('button', { name: 'Apply to Become a Supported Charity' }).click()
+    await page.getByRole('button', { name: testConfig.applicationForm.buttonText }).click()
 
     const modal = page.locator('[role="dialog"]')
     await expect(modal).toBeVisible()
@@ -207,11 +216,11 @@ test.describe('Application Form Button', () => {
     // Verify screen reader heading exists
     const heading = modal.locator('#application-form-title')
     await expect(heading).toHaveClass(/sr-only/)
-    await expect(heading).toHaveText('Charity Application Form')
+    await expect(heading).toHaveText(testConfig.applicationForm.modalTitle)
   })
 
   test('should handle multiple open/close cycles correctly', async ({ page }) => {
-    const button = page.getByRole('button', { name: 'Apply to Become a Supported Charity' })
+    const button = page.getByRole('button', { name: testConfig.applicationForm.buttonText })
     const modal = page.locator('[role="dialog"][aria-modal="true"]')
 
     // First open/close cycle
@@ -223,7 +232,9 @@ test.describe('Application Form Button', () => {
     // Second open/close cycle
     await button.click()
     await expect(modal).toBeVisible()
-    await page.getByRole('button', { name: 'Close application form' }).click()
+    await page
+      .getByRole('button', { name: testConfig.applicationForm.closeButtonAriaLabel })
+      .click()
     await expect(modal).not.toBeVisible()
 
     // Third open/close cycle
@@ -242,17 +253,17 @@ test.describe('Application Form Iframe Loading', () => {
 
   test('should display loading indicator and iframe elements', async ({ page }) => {
     // Open modal
-    await page.getByRole('button', { name: 'Apply to Become a Supported Charity' }).click()
+    await page.getByRole('button', { name: testConfig.applicationForm.buttonText }).click()
 
     const modal = page.locator('[role="dialog"][aria-modal="true"]')
     await expect(modal).toBeVisible()
 
     // Loading indicator should be visible initially
-    const loadingIndicator = page.getByText('Loading application form...')
+    const loadingIndicator = page.getByText(testConfig.applicationForm.loadingText)
     await expect(loadingIndicator).toBeVisible()
 
     // Verify iframe element exists
-    const iframe = page.locator('iframe[title="Charity Application Form"]')
+    const iframe = page.locator(`iframe[title="${testConfig.applicationForm.modalTitle}"]`)
     await expect(iframe).toBeVisible()
 
     // Note: The loading indicator behavior is environment-dependent.

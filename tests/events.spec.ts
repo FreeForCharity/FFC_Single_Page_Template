@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { testConfig } from './test.config'
 
 /**
  * Events Section Tests
@@ -9,6 +10,8 @@ import { test, expect } from '@playwright/test'
  * 3. The section is accessible via the #events anchor
  * 4. The Facebook link works correctly
  * 5. The component is keyboard accessible
+ *
+ * Note: Test expectations use values from test.config.ts for easy customization
  */
 
 test.describe('Events Section', () => {
@@ -17,13 +20,13 @@ test.describe('Events Section', () => {
     await page.goto('/')
 
     // Verify Events section exists with correct ID
-    const eventsSection = page.locator('#events')
+    const eventsSection = page.locator(`#${testConfig.events.sectionId}`)
     await expect(eventsSection).toBeVisible()
 
     // Verify section heading is present
     const heading = eventsSection.locator('h1')
     await expect(heading).toBeVisible()
-    await expect(heading).toContainText('Upcoming Events')
+    await expect(heading).toContainText(testConfig.events.heading)
   })
 
   test('should load iframe with proper sandbox attributes', async ({ page }) => {
@@ -31,7 +34,9 @@ test.describe('Events Section', () => {
     await page.goto('/')
 
     // Locate the Events iframe
-    const eventsIframe = page.locator('#events iframe[title="Facebook Events"]')
+    const eventsIframe = page.locator(
+      `#${testConfig.events.sectionId} iframe[title="${testConfig.events.iframeTitle}"]`
+    )
     await expect(eventsIframe).toBeVisible()
 
     // Verify iframe has correct src
@@ -50,18 +55,18 @@ test.describe('Events Section', () => {
     await expect(eventsIframe).toHaveAttribute('loading', 'lazy')
 
     // Verify iframe has accessible title
-    await expect(eventsIframe).toHaveAttribute('title', 'Facebook Events')
+    await expect(eventsIframe).toHaveAttribute('title', testConfig.events.iframeTitle)
   })
 
   test('should be accessible via #events anchor link', async ({ page }) => {
     // Navigate directly to the events section via anchor
-    await page.goto('/#events')
+    await page.goto(`/#${testConfig.events.sectionId}`)
 
     // Wait for page to load (use domcontentloaded instead of networkidle)
     await page.waitForLoadState('domcontentloaded')
 
     // Verify Events section is visible
-    const eventsSection = page.locator('#events')
+    const eventsSection = page.locator(`#${testConfig.events.sectionId}`)
     await expect(eventsSection).toBeVisible()
 
     // Section should be at least partially visible
@@ -74,11 +79,13 @@ test.describe('Events Section', () => {
     await page.goto('/')
 
     // Locate the Facebook link in Events section
-    const facebookLink = page.locator('#events a[href*="facebook.com/freeforcharity"]')
+    const facebookLink = page.locator(
+      `#${testConfig.events.sectionId} a[href*="${testConfig.events.facebookUrl}"]`
+    )
     await expect(facebookLink).toBeVisible()
 
     // Verify link text
-    await expect(facebookLink).toContainText('View all events on Facebook')
+    await expect(facebookLink).toContainText(testConfig.events.facebookLinkText)
 
     // Verify link opens in new tab
     await expect(facebookLink).toHaveAttribute('target', '_blank')
@@ -87,7 +94,7 @@ test.describe('Events Section', () => {
     await expect(facebookLink).toHaveAttribute('rel', 'noopener noreferrer')
 
     // Verify link href
-    await expect(facebookLink).toHaveAttribute('href', 'https://www.facebook.com/freeforcharity')
+    await expect(facebookLink).toHaveAttribute('href', testConfig.events.facebookUrl)
   })
 
   test('should be keyboard accessible', async ({ page }) => {
@@ -95,10 +102,12 @@ test.describe('Events Section', () => {
     await page.goto('/')
 
     // Scroll to Events section
-    await page.locator('#events').scrollIntoViewIfNeeded()
+    await page.locator(`#${testConfig.events.sectionId}`).scrollIntoViewIfNeeded()
 
     // Tab to the Facebook link in Events section
-    const facebookLink = page.locator('#events a[href*="facebook.com/freeforcharity"]')
+    const facebookLink = page.locator(
+      `#${testConfig.events.sectionId} a[href*="${testConfig.events.facebookUrl}"]`
+    )
 
     // Focus the link using keyboard navigation
     await facebookLink.focus()
@@ -118,7 +127,7 @@ test.describe('Events Section', () => {
     // Navigate to the homepage
     await page.goto('/')
 
-    const eventsSection = page.locator('#events')
+    const eventsSection = page.locator(`#${testConfig.events.sectionId}`)
 
     // Verify section has proper padding class
     const classes = await eventsSection.getAttribute('class')
@@ -127,7 +136,7 @@ test.describe('Events Section', () => {
     // Verify description text is present
     const description = eventsSection.locator('p').first()
     await expect(description).toBeVisible()
-    await expect(description).toContainText('volunteer opportunities')
+    await expect(description).toContainText(testConfig.events.descriptionText)
 
     // Verify section has separator line at bottom
     const separator = eventsSection.locator('div.border')
@@ -139,9 +148,9 @@ test.describe('Events Section', () => {
     await page.goto('/')
 
     // Verify Events link exists in footer
-    const footerEventsLink = page.locator('footer a[href="/#events"]')
+    const footerEventsLink = page.locator(`footer a[href="/#${testConfig.events.sectionId}"]`)
     await expect(footerEventsLink).toBeVisible()
-    await expect(footerEventsLink).toContainText('Events')
+    await expect(footerEventsLink).toContainText(testConfig.events.heading.replace('Upcoming ', ''))
 
     // Click the footer link and verify it navigates to Events section
     await footerEventsLink.click()
@@ -150,7 +159,7 @@ test.describe('Events Section', () => {
     await page.waitForTimeout(500)
 
     // Verify Events section is visible after clicking footer link
-    const eventsSection = page.locator('#events')
+    const eventsSection = page.locator(`#${testConfig.events.sectionId}`)
     await expect(eventsSection).toBeVisible()
   })
 
@@ -162,14 +171,16 @@ test.describe('Events Section', () => {
     await page.goto('/')
 
     // Scroll to Events section
-    await page.locator('#events').scrollIntoViewIfNeeded()
+    await page.locator(`#${testConfig.events.sectionId}`).scrollIntoViewIfNeeded()
 
     // Verify Events section is visible on mobile
-    const eventsSection = page.locator('#events')
+    const eventsSection = page.locator(`#${testConfig.events.sectionId}`)
     await expect(eventsSection).toBeVisible()
 
     // Verify iframe is visible on mobile
-    const eventsIframe = page.locator('#events iframe[title="Facebook Events"]')
+    const eventsIframe = page.locator(
+      `#${testConfig.events.sectionId} iframe[title="${testConfig.events.iframeTitle}"]`
+    )
     await expect(eventsIframe).toBeVisible()
 
     // Verify heading is visible on mobile
