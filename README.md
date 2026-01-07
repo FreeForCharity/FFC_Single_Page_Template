@@ -10,6 +10,7 @@ Single-page Next.js 16.0.7 website built with App Router for Free For Charity no
 
 - 📚 [Quick Start Guide](./QUICK_START.md) - Get set up in 5 minutes
 - 🎯 [**Template Usage Guide**](./TEMPLATE_USAGE.md) - **NEW**: Complete guide for using this repository as a template
+- 📋 [**Content Replacement Guide**](./CONTENT_REPLACEMENT_GUIDE.md) - **NEW**: Identify every piece of content to replace for your charity
 - 📋 [Site Improvements Summary](./SITE_IMPROVEMENTS.md) - See what was implemented (13 of 19 gaps closed)
 - 🧪 [Testing Guide](./TESTING.md) - Unit + E2E + Accessibility tests
 - 🎨 [Responsive Design Guide](./RESPONSIVE_DESIGN.md) - Mobile-first design principles
@@ -55,6 +56,18 @@ This repository is configured as a GitHub template, making it easy to create you
 1. **Click "Use this template"** button at the top of this repository
 2. **Create your new repository** with your organization's name
 3. **Follow the [Template Usage Guide](./TEMPLATE_USAGE.md)** for complete setup instructions
+4. **Review the [Content Replacement Guide](./CONTENT_REPLACEMENT_GUIDE.md)** to identify all content to replace
+
+### Content Customization
+
+The **[Content Replacement Guide](./CONTENT_REPLACEMENT_GUIDE.md)** provides a comprehensive 4-column table identifying every piece of content you need to provide:
+
+- **All website sections** - From navigation to footer, every section documented
+- **Current example content** - See what Free For Charity uses
+- **Your content column** - Fill in your charity's information
+- **Technical guidance** - Image sizes, file formats, and implementation notes
+
+**Perfect for non-technical users** - The guide explains everything in plain language with step-by-step instructions.
 
 ### What's Included in the Template
 

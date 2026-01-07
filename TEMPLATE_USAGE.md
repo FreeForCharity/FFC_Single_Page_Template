@@ -47,6 +47,18 @@ Use this checklist to track your progress when setting up a new repository from 
 
 ### Content Customization
 
+> **📋 For a comprehensive guide to replacing all content**, see **[CONTENT_REPLACEMENT_GUIDE.md](./CONTENT_REPLACEMENT_GUIDE.md)**
+> 
+> This detailed guide provides a 4-column table identifying every piece of content to replace, including:
+> - All website sections from Navigation to Footer
+> - Current Free For Charity example content
+> - Blank fields for your charity's information
+> - Recommended image sizes and file formats
+> - Step-by-step instructions for non-technical users
+
+Quick checklist of major content areas:
+
+- [ ] Review [CONTENT_REPLACEMENT_GUIDE.md](./CONTENT_REPLACEMENT_GUIDE.md) and gather all required content
 - [ ] Update organization name and EIN in all files
 - [ ] Update social media links in footer
 - [ ] Update contact information
@@ -55,6 +67,7 @@ Use this checklist to track your progress when setting up a new repository from 
 - [ ] Customize color scheme and branding
 - [ ] Update FAQs with your content
 - [ ] Update testimonials with your content
+- [ ] Update metadata and SEO information
 
 ---
 
