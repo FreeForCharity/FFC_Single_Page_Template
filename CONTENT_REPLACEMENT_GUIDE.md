@@ -484,22 +484,24 @@ This information helps your website appear correctly in search results and socia
 When implementing these changes:
 
 - **Logo files**: Located in the `src/components/header/index.tsx` file
-- **Hero section**: Edit `src/components/home-page/Hero/index.tsx`
-- **Mission section**: Edit `src/components/home-page/Mission/index.tsx`
-- **Results section**: Edit `src/components/home-page/Results-2023/index.tsx`
-- **Testimonials**: Edit `src/components/home/Testimonials/index.tsx` (data stored inline)
-- **Volunteer section**: Edit `src/components/home-page/Volunteer-with-Us/index.tsx`
-- **Events section**: Edit `src/components/home-page/Events/index.tsx`
-- **Donate section**: Edit `src/components/home-page/SupportFreeForCharity/index.tsx`
-- **Endowment section**: Edit `src/components/home-page/Endowment-Features/index.tsx`
-- **Programs section**: Edit `src/components/home-page/Our-Programs/index.tsx`
-- **FAQ section**: Edit `src/components/home-page/FrequentlyAskedQuestions/index.tsx`
-- **Team section**: Edit `src/components/home-page/TheFreeForCharityTeam/index.tsx`
+- **Hero section**: Edit `src/components/home-page/hero/index.tsx`
+- **Mission section**: Edit `src/components/home-page/mission/index.tsx`
+- **Results section**: Edit `src/components/home-page/results-2023/index.tsx`
+- **Testimonials**: Edit `src/components/home/testimonials/index.tsx` (data stored inline)
+- **Volunteer section**: Edit `src/components/home-page/volunteer-with-us/index.tsx`
+- **Events section**: Edit `src/components/home-page/events/index.tsx`
+- **Donate section**: Edit `src/components/home-page/support-free-for-charity/index.tsx`
+- **Endowment section**: Edit `src/components/home-page/endowment-features/index.tsx`
+- **Programs section**: Edit `src/components/home-page/our-programs/index.tsx`
+- **FAQ section**: Edit `src/components/home-page/frequently-asked-questions/index.tsx`
+- **Team section**: Edit `src/components/home-page/the-free-for-charity-team/index.tsx`
 - **Footer**: Edit `src/components/footer/index.tsx`
 - **Metadata**: Edit `src/app/layout.tsx`
 - **Navigation menu**: Edit `src/components/header/index.tsx`
 
 All images should be placed in the `public/` directory with appropriate subdirectories (e.g., `public/Images/`, `public/Svgs/`).
+
+**Note**: Folder names listed above follow the required kebab-case naming convention per NAMING_CONVENTIONS.md. If current folder names don't match (e.g., using PascalCase), they should be renamed to kebab-case for SEO optimization and consistency.
 
 ---
 
