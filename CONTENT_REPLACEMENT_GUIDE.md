@@ -141,7 +141,7 @@ Encourage people to volunteer with your charity.
 | Section | Variable | Current Free For Charity Content | Your Content |
 |---------|----------|-----------------------------------|--------------|
 | Volunteer | Section Heading | "Volunteer with Us" | |
-| Volunteer | Description Text | "Your time and skills can create a lasting impact. Whether youre assisting with outreach, providing technical expertise, or supporting our programs, your contributions are invaluable to our mission." | *(Your volunteer appeal text, 2-3 sentences)* |
+| Volunteer | Description Text | "Your time and skills can create a lasting impact. Whether you're assisting with outreach, providing technical expertise, or supporting our programs, your contributions are invaluable to our mission." | *(Your volunteer appeal text, 2-3 sentences)* |
 | Volunteer | Volunteer Button Text | "Volunteer" | |
 | Volunteer | Volunteer Button Link | "https://www.idealist.org/en/nonprofit/356bfc8e2ae64f83beea4a4e677e99d7-free-for-charity-state-college#opportunities" | *(Link to your volunteer sign-up page)* |
 | Volunteer | Volunteer Image | `/Images/Volunteer-with-Us.webp` | *(Image showing volunteers or your cause, recommended size: 1083px × 607px)* |
@@ -224,11 +224,11 @@ Describe the programs or services your charity offers.
 | Section | Variable | Current Free For Charity Content | Your Content |
 |---------|----------|-----------------------------------|--------------|
 | Programs | Program 1 Detail 1 - Title | ".org Domain Registration" | |
-| Programs | Program 1 Detail 1 - Description | "For You: Leverage a .org domain name to enhance your charitys credibility, trustworthiness, and online presence, making it easier to attract donors and supporters" | |
+| Programs | Program 1 Detail 1 - Description | "For You: Leverage a .org domain name to enhance your charity's credibility, trustworthiness, and online presence, making it easier to attract donors and supporters" | |
 | Programs | Program 1 Detail 2 - Title | "Cloudflare DNS" | |
 | Programs | Program 1 Detail 2 - Description | "For You: Faster website load times and enhanced security\nFor Us: Centralized management and automation tools." | |
 | Programs | Program 1 Detail 3 - Title | "Charity Email Address" | |
-| Programs | Program 1 Detail 3 - Description | "For You: Using a charity email address (e.g., yourname@yourcharity.org) enhances your organizations credibility and professionalism, making it easier to build trust with donors, volunteers, and stakeholders\nFor Us: We benefit by ensuring charities use professional email addresses, which helps maintain our servers integrity and provides a more secure and reliable communication platform for our volunteers" | |
+| Programs | Program 1 Detail 3 - Description | "For You: Using a charity email address (e.g., yourname@yourcharity.org) enhances your organization's credibility and professionalism, making it easier to build trust with donors, volunteers, and stakeholders\nFor Us: We benefit by ensuring charities use professional email addresses, which helps maintain our server's integrity and provides a more secure and reliable communication platform for our volunteers" | |
 | Programs | Program 1 Detail 4 - Title | "Microsoft 365" | |
 | Programs | Program 1 Detail 4 - Description | "For You: Professional email and collaboration tools\nFor Us: Streamlined communication and support processes" | |
 
@@ -300,8 +300,8 @@ Frequently Asked Questions help address common inquiries about your charity.
 |---|----------|--------|---------------|-------------|
 | 1 | "What is the organization aiming to accomplish?" | "While in the technical process of setting up free charity hosting we discovered that many small or new organizations are stuck well below the need for full web hosting..." | | |
 | 2 | "What are the organization's key strategies for making this happen?" | "FFC assists by paying the full cost of the .org domain name if available..." | | |
-| 3 | "What are the organizations capabilities for doing this?" | "We already have the accounts set up in eNOM to provide enterprise level domain procurement..." | | |
-| 4 | "What have and havent they accomplished so far?" | "While a lot has been accomplished on the IT hosting side and to a certain degree the IT project management..." | | |
+| 3 | "What are the organization's capabilities for doing this?" | "We already have the accounts set up in eNOM to provide enterprise level domain procurement..." | | |
+| 4 | "What have and haven't they accomplished so far?" | "While a lot has been accomplished on the IT hosting side and to a certain degree the IT project management..." | | |
 | 5 | "Is there a need for a charity to provide help for charities?" | "Yes there is a need to provide help for charities in many ways!..." | | |
 | 6 | "Where did the idea come from?" | "Free for charity was started when the founder first started as a board member..." | | |
 | 7 | "Why do charities pay for items they can get for free?" | "The first reaction to uncovering these issues with the board was anger..." | | |
