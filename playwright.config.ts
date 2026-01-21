@@ -56,7 +56,7 @@ export default defineConfig({
   // Retry on CI only
   retries: process.env.CI ? 2 : 0,
   // Use more workers for better performance
-  // CI: 2 workers per shard (with 3 shards = 6 parallel tests)
+  // CI: 2 workers per shard (with 4 shards = 8 parallel tests)
   // Local: 4 workers for speed
   workers: process.env.CI ? 2 : 4,
   // Reporter configuration

@@ -136,23 +136,24 @@ These tests use values from `test.config.ts`:
 ### Current Performance
 
 - **Total tests**: 62 tests
-- **Execution time**: ~2-3 minutes in CI (with sharding), ~2 minutes locally
+- **Execution time**: ~1.5-2 minutes in CI (with sharding), ~2 minutes locally
 - **Parallel execution**:
   - **Local**: 4 workers for faster feedback
-  - **CI**: 3 shards running in parallel, each with 2 workers (6 total parallel tests)
+  - **CI**: 4 shards running in parallel, each with 2 workers (8 total parallel tests)
 
 ### Performance Optimizations Implemented
 
-1. **Test Sharding**: Tests are split into 3 shards that run in parallel in CI
-   - Shard 1: 21 tests
-   - Shard 2: 21 tests
-   - Shard 3: 20 tests
-   - **Speed improvement**: ~50-60% faster than sequential execution
+1. **Test Sharding**: Tests are split into 4 shards that run in parallel in CI
+   - Shard 1: ~15 tests
+   - Shard 2: ~15 tests
+   - Shard 3: ~15 tests
+   - Shard 4: ~16 tests
+   - **Speed improvement**: ~60-70% faster than sequential execution
 
 2. **Job Separation**: Build, unit tests, and E2E tests run as separate jobs
    - **Build**: Only runs once, artifacts shared with E2E shards
    - **Unit Tests**: Run in parallel with E2E tests
-   - **E2E Tests**: Run in 3 parallel shards
+   - **E2E Tests**: Run in 4 parallel shards
 
 3. **Caching Strategies**:
    - Next.js build cache across CI runs
@@ -174,6 +175,10 @@ These tests use values from `test.config.ts`:
 4. **Shard Testing Locally**: Test a specific shard during development:
    ```bash
    npx playwright test --shard=1/4
+   ```
+   npx playwright test --shard=1/4
+   ```
+
    ```
 
 ## Benefits of This Approach

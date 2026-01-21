@@ -132,7 +132,7 @@ reporter: process.env.CI ? 'blob' : 'html',
 
 **Benefits**:
 
-- More parallelism in CI (2 workers × 3 shards = 6 parallel tests)
+- More parallelism in CI (2 workers × 4 shards = 8 parallel tests)
 - Proper result merging across shards
 - Maintains fast local development experience
 
@@ -183,9 +183,10 @@ Added `/blob-report/` to prevent committing Playwright blob reports generated du
 
 2. **Parallel Execution** (after build completes)
    - **Unit Tests Job**: Run Jest tests
-   - **E2E Shard 1/3**: Run first 21 E2E tests
-   - **E2E Shard 2/3**: Run next 21 E2E tests
-   - **E2E Shard 3/3**: Run final 20 E2E tests
+   - **E2E Shard 1/4**: Run first quarter of E2E tests (~15 tests)
+   - **E2E Shard 2/4**: Run second quarter of E2E tests (~15 tests)
+   - **E2E Shard 3/4**: Run third quarter of E2E tests (~15 tests)
+   - **E2E Shard 4/4**: Run final quarter of E2E tests (~16 tests)
 
 3. **Merge Reports Job** (after all E2E shards complete)
    - Download blob reports from all shards
@@ -219,14 +220,17 @@ npm run test:e2e
 ### Testing a Specific Shard
 
 ```bash
-# Test shard 1 of 3
-npx playwright test --shard=1/3
+# Test shard 1 of 4
+npx playwright test --shard=1/4
 
-# Test shard 2 of 3
-npx playwright test --shard=2/3
+# Test shard 2 of 4
+npx playwright test --shard=2/4
 
-# Test shard 3 of 3
-npx playwright test --shard=3/3
+# Test shard 3 of 4
+npx playwright test --shard=3/4
+
+# Test shard 4 of 4
+npx playwright test --shard=4/4
 ```
 
 ## Monitoring and Debugging
@@ -234,7 +238,7 @@ npx playwright test --shard=3/3
 ### View Test Results in CI
 
 1. Go to GitHub Actions → CI workflow run
-2. Click on "E2E Tests (Shard X/3)" to see individual shard results
+2. Click on "E2E Tests (Shard X/4)" to see individual shard results
 3. Click on "Merge E2E Test Reports" to download merged HTML report
 4. Download artifact "playwright-report-merged" for detailed results
 
