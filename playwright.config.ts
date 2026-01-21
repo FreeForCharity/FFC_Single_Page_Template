@@ -55,10 +55,14 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   // Retry on CI only
   retries: process.env.CI ? 2 : 0,
-  // Use more workers for better performance (1 in CI for stability, 4 locally for speed)
-  workers: process.env.CI ? 1 : 4,
-  // Reporter to use
-  reporter: 'html',
+  // Use more workers for better performance
+  // CI: 2 workers per shard (with 3 shards = 6 parallel tests)
+  // Local: 4 workers for speed
+  workers: process.env.CI ? 2 : 4,
+  // Reporter configuration
+  // CI: Use blob reporter for merging shard results
+  // Local: Use HTML reporter for interactive viewing
+  reporter: process.env.CI ? 'blob' : 'html',
 
   use: {
     // Base URL for tests
