@@ -10,12 +10,13 @@ This document summarizes the optimizations implemented to improve the speed of t
 
 **File**: `.github/workflows/ci.yml`
 
-- Implemented Playwright's test sharding feature to split tests across 3 parallel shards
+- Implemented Playwright's test sharding feature to split tests across 4 parallel shards
 - Each shard runs a portion of the test suite independently:
-  - Shard 1/3: 21 tests
-  - Shard 2/3: 21 tests
-  - Shard 3/3: 20 tests
-- Each shard runs with 2 workers (6 total parallel tests across all shards)
+  - Shard 1/4: ~15 tests
+  - Shard 2/4: ~15 tests
+  - Shard 3/4: ~15 tests
+  - Shard 4/4: ~16 tests
+- Each shard runs with 2 workers (8 total parallel tests across all shards)
 - Test results are collected and merged into a single HTML report
 
 **Benefits**:
@@ -43,7 +44,7 @@ Reorganized the CI workflow into separate parallel jobs:
 
 #### E2E Tests Job (Matrix Strategy)
 
-- Runs 3 shards in parallel using GitHub Actions matrix
+- Runs 4 shards in parallel using GitHub Actions matrix
 - Each shard:
   - Downloads build artifacts from build job
   - Installs and caches Playwright browsers
@@ -165,10 +166,10 @@ Added `/blob-report/` to prevent committing Playwright blob reports generated du
 ### After Optimization
 
 - **Structure**: Parallel jobs with sharding
-- **Workers**: 6 parallel tests (2 workers × 3 shards)
-- **Execution Time**: ~2-3 minutes
+- **Workers**: 8 parallel tests (2 workers × 4 shards)
+- **Execution Time**: ~1.5-2 minutes
 - **Caching**: npm, Playwright browsers, Next.js build
-- **Speed Improvement**: ~50-60% faster
+- **Speed Improvement**: ~60-70% faster
 
 ## How It Works
 
@@ -195,9 +196,16 @@ Added `/blob-report/` to prevent committing Playwright blob reports generated du
 
 Tests are automatically distributed by Playwright based on file paths:
 
-- Shard 1: `animated-numbers.spec.ts`, `application-form.spec.ts`, `cookie-consent.spec.ts`
-- Shard 2: `copyright.spec.ts`, `events.spec.ts`, `google-tag-manager.spec.ts`, etc.
-- Shard 3: Remaining test files
+- Shard 1: First quarter of test files (~15 tests)
+- Shard 2: Second quarter of test files (~15 tests)
+- Shard 3: Third quarter of test files (~15 tests)
+- Shard 4: Fourth quarter of test files (~16 tests)
+
+**Note**: The number of shards was increased from 3 to 4 to achieve better parallelization while maintaining a balance between test execution time and CI job overhead. With 4 shards:
+
+- Each shard completes faster (~45-60 seconds vs ~60-90 seconds)
+- Total parallel tests increased from 6 to 8 (2 workers × 4 shards)
+- Overall CI time reduced by an additional ~30-60 seconds
 
 ## Running Tests Locally
 

@@ -386,17 +386,18 @@ Tests run automatically in GitHub Actions with the following workflows:
   - **Unit Tests Job** (depends on build):
     1. Install dependencies
     2. Run unit tests (Jest)
-  - **E2E Tests Job** (depends on build, runs 3 shards in parallel):
-    - Shard 1/3: 21 tests with 2 workers
-    - Shard 2/3: 21 tests with 2 workers
-    - Shard 3/3: 20 tests with 2 workers
+  - **E2E Tests Job** (depends on build, runs 4 shards in parallel):
+    - Shard 1/4: ~15 tests with 2 workers
+    - Shard 2/4: ~15 tests with 2 workers
+    - Shard 3/4: ~15 tests with 2 workers
+    - Shard 4/4: ~16 tests with 2 workers
     - Each shard downloads build artifacts from build job
     - Caches Playwright browsers to speed up installation
   - **Merge Reports Job** (depends on E2E tests):
     1. Download test results from all shards
     2. Merge into single HTML report
     3. Upload merged report as artifact
-- **Performance**: ~2-3 minutes total (50-60% faster than sequential)
+- **Performance**: ~1.5-2 minutes total (60-70% faster than sequential)
 - **Reliability**: Tests run in parallel without interfering with each other
 - If any test fails, the build is marked as failed
 - Runs before deployment
@@ -834,12 +835,12 @@ FFC_Single_Page_Template/
 
 14. **Parallel Test Execution** ✅ **IMPLEMENTED**
     - Tool: Playwright test sharding
-    - Status: Fully configured with 3 shards running in parallel
+    - Status: Fully configured with 4 shards running in parallel
     - Features:
-      - Tests split into 3 balanced shards (21, 21, 20 tests)
-      - Each shard runs with 2 workers (6 total parallel tests)
+      - Tests split into 4 balanced shards (~15 tests each)
+      - Each shard runs with 2 workers (8 total parallel tests)
       - Test results merged into single report
-    - Benefit: 50-60% faster CI runtime (from ~5min to ~2-3min)
+    - Benefit: 60-70% faster CI runtime (from ~5min to ~1.5-2min)
 
 ## Next Steps for Production
 

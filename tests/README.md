@@ -166,14 +166,14 @@ These tests use values from `test.config.ts`:
 ### Performance Optimization Tips
 
 1. **Local Development**: Tests run in parallel with 4 workers for faster feedback
-2. **CI Environment**: Tests run in 3 parallel shards with 2 workers each (6 total parallel tests)
+2. **CI Environment**: Tests run in 4 parallel shards with 2 workers each (8 total parallel tests)
 3. **Targeted Testing**: Run specific test files during development:
    ```bash
    npx playwright test mission-video.spec.ts
    ```
 4. **Shard Testing Locally**: Test a specific shard during development:
    ```bash
-   npx playwright test --shard=1/3
+   npx playwright test --shard=1/4
    ```
 
 ## Benefits of This Approach
