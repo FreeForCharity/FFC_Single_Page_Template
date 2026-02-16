@@ -47,9 +47,9 @@ npm run test:e2e     # Run Playwright E2E tests
 src/
   app/            --> Pages and routes (App Router)
   components/     --> Reusable UI components
-  data/           --> JSON content (site copy, metadata)
+  data/           --> Content modules (.ts) and JSON data files
   lib/            --> Utilities (including assetPath helper)
-public/           --> Static assets (images, fonts)
+public/           --> Static assets (Images/, Svgs/, fonts)
 ```
 
 **Route folders use kebab-case.** This is required for SEO. Use `about-us/`, not `aboutUs/`.
@@ -74,19 +74,19 @@ public/           --> Static assets (images, fonts)
      )
    }
    ```
-3. Add any images to `public/images/` and reference them with `assetPath()`:
+3. Add any images to `public/Images/` and reference them with `assetPath()`:
    ```tsx
    import { assetPath } from '@/lib/assetPath'
-   ;<img src={assetPath('/images/volunteers.jpg')} alt="Volunteers" />
+   ;<img src={assetPath('/Images/volunteers.jpg')} alt="Volunteers" />
    ```
 4. Run the pre-commit checklist: `npm run format && npm run lint && npm test && npm run build`
 
 ### Updating Site Content
 
-Most text content lives in `src/data/` as JSON files. To update:
+Most text content lives in `src/data/` as `.ts` modules or `.json` files in subdirectories. To update:
 
-1. Find the relevant JSON file in `src/data/`
-2. Edit the text values (keep the JSON structure intact)
+1. Find the relevant file in `src/data/`
+2. Edit the text values (keep the data structure intact)
 3. Run `npm run build` to verify nothing breaks
 
 ### Fixing Lint Errors
@@ -115,7 +115,7 @@ The site deploys to `https://freeforcharity.github.io/FFC_Single_Page_Template/`
 ```tsx
 // Always use assetPath() for images and static assets
 import { assetPath } from '@/lib/assetPath'
-;<img src={assetPath('/images/logo.png')} alt="Logo" />
+;<img src={assetPath('/Images/logo.png')} alt="Logo" />
 ```
 
 Never hardcode absolute paths to assets. They will break on one of the two deployment targets.
