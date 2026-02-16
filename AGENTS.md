@@ -12,7 +12,7 @@
 | --------- | ------------------------------------------------------------------ |
 | Framework | Next.js with App Router (see package.json for version)             |
 | Language  | TypeScript (strict mode)                                           |
-| Styling   | Tailwind CSS                                                       |
+| Styling   | Tailwind CSS v4 (CSS-based config, no tailwind.config file)        |
 | Export    | Static (`output: 'export'` in next.config.ts)                      |
 | Hosting   | GitHub Pages (custom domain + subpath fallback)                    |
 | CI/CD     | GitHub Actions                                                     |
@@ -68,7 +68,6 @@ src/
     assetPath.ts        # GitHub Pages asset path helper
 public/                 # Static assets (Images/, Svgs/, fonts, favicons)
 next.config.ts          # Next.js configuration
-tailwind.config.ts      # Tailwind CSS configuration
 tsconfig.json           # TypeScript configuration
 ```
 
@@ -162,11 +161,11 @@ Example: `feat: add volunteer signup form with validation`
 
 GitHub Actions enforces the following on every PR:
 
-1. **actionlint** -- Validates workflow YAML syntax
-2. **Prettier** -- `npm run format:check` (formatting must pass)
-3. **ESLint** -- `npm run lint` (no errors allowed)
-4. **Jest** -- `npm test` (all unit tests must pass)
-5. **Build** -- `npm run build` (static export must succeed)
-6. **Playwright** -- `npm run test:e2e` (E2E tests must pass)
+1. **Prettier** -- `npm run format:check` (formatting must pass)
+2. **ESLint** -- `npm run lint` (no errors allowed)
+3. **Jest** -- `npm test` (all unit tests must pass)
+4. **Build** -- `npm run build` (static export must succeed)
+5. **Playwright** -- `npm run test:e2e` (E2E tests must pass)
+6. **CodeQL** -- Static analysis and security scanning (separate workflow)
 
 PRs cannot merge until all checks pass.
