@@ -1,0 +1,171 @@
+# AI Agent Instructions: FFC_Single_Page_Template
+
+**Project:** FFC_Single_Page_Template -- a Free For Charity website for 
+
+**Organization:** [Free For Charity](https://freeforcharity.org) provides free, professionally built websites for 501(c)(3) nonprofit organizations. Every repo in this organization serves that mission.
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js (latest) with App Router |
+| Language | TypeScript (strict mode) |
+| Styling | Tailwind CSS |
+| Export | Static (`output: 'export'` in next.config.ts) |
+| Hosting | GitHub Pages (custom domain + subpath fallback) |
+| CI/CD | GitHub Actions |
+| Testing | Jest + Testing Library, Playwright (E2E), jest-axe (accessibility) |
+
+---
+
+## Core Commands
+
+| Command | What It Does | Typical Duration |
+|---------|-------------|-----------------|
+| `npm install` | Install dependencies | ~17s |
+| `npm run dev` | Start dev server | ~1s startup |
+| `npm run format` | Run Prettier to format code | ~2s |
+| `npm run lint` | Run ESLint | ~2s |
+| `npm test` | Run Jest unit tests | ~5s |
+| `npm run build` | Production static build | ~30s |
+| `npm run test:e2e` | Run Playwright E2E tests | ~15s |
+
+**NEVER CANCEL long-running commands.** Builds and E2E tests take time. Set your timeout to 180+ seconds and let them finish.
+
+---
+
+## Development Workflow
+
+All changes follow this process:
+
+1. **Issue** -- Work starts from a GitHub Issue
+2. **Branch** -- Create a feature branch from `main`
+3. **Develop** -- Make changes, commit frequently
+4. **Pre-commit checklist** (run in this order):
+   1. `npm run format` -- Auto-fix formatting
+   2. `npm run lint` -- Catch code quality issues
+   3. `npm test` -- Run unit tests
+   4. `npm run build` -- Verify the static export succeeds
+   5. `npm run test:e2e` -- Run end-to-end tests
+5. **PR** -- Open a Pull Request, link to the issue with `Fixes #NNN` or `Refs #NNN`
+6. **Merge** -- Merge via merge queue (no direct commits to `main`)
+
+---
+
+## Project Architecture
+
+```
+src/
+  app/                  # Next.js App Router -- pages and layouts
+    page.tsx            # Home page
+    layout.tsx          # Root layout
+    about/page.tsx      # Example route: /about
+  components/           # Reusable UI components
+  data/                 # JSON content files (site copy, metadata)
+  lib/                  # Utility functions and helpers
+    assetPath.ts        # GitHub Pages asset path helper
+public/                 # Static assets (images, fonts, favicons)
+next.config.ts          # Next.js configuration
+tailwind.config.ts      # Tailwind CSS configuration
+tsconfig.json           # TypeScript configuration
+```
+
+---
+
+## Naming Conventions
+
+**ALL route folders MUST use kebab-case.** This is an SEO best practice per Google Search Central. URLs like `/about-us` are preferred over `/aboutUs` or `/about_us`.
+
+Examples:
+- `src/app/about-us/page.tsx` (correct)
+- `src/app/aboutUs/page.tsx` (wrong)
+- `src/app/contact-form/page.tsx` (correct)
+
+Component files use PascalCase: `HeroSection.tsx`, `DonateButton.tsx`.
+
+---
+
+## GitHub Pages & Asset Paths
+
+These sites deploy to both a custom domain (e.g., ``) and a GitHub Pages subpath (e.g., `https://freeforcharity.github.io/FFC_Single_Page_Template/`).
+
+**Always use the `assetPath()` helper** from `src/lib/assetPath.ts` for image and asset references:
+
+```tsx
+import { assetPath } from '@/lib/assetPath';
+
+// Correct -- works on both custom domain and GitHub Pages subpath
+<img src={assetPath('/images/hero.jpg')} alt="Hero" />
+
+// Wrong -- breaks on GitHub Pages subpath
+<img src="/images/hero.jpg" alt="Hero" />
+```
+
+The `NEXT_PUBLIC_BASE_PATH` environment variable controls the `basePath` in `next.config.ts`. The build system handles this automatically; you should not hardcode paths.
+
+---
+
+## Security
+
+- **NEVER** expose API tokens or secrets in code, comments, or documentation
+- **NEVER** hardcode secrets in any file
+- In GitHub Actions workflows, **ALWAYS** use `${{ secrets.SECRET_NAME }}` syntax
+- **ALWAYS** validate that secrets exist before using them in workflows
+- **NEVER** echo or print secrets to logs
+- For local development, use `.env` files (excluded from git via `.gitignore`)
+- If a user provides a secret, **DO NOT** write it in any file. Instruct them to add it to GitHub Secrets or a local `.env` file.
+
+---
+
+## Testing Strategy
+
+| Type | Tool | Purpose |
+|------|------|---------|
+| Unit | Jest + Testing Library | Component rendering, utility functions |
+| Accessibility | jest-axe | WCAG compliance, ARIA validation |
+| E2E | Playwright | Full page navigation, visual regression |
+
+**Accessibility target:** WCAG AA compliance. The jest-axe integration catches common ARIA issues, color contrast violations, and missing landmarks.
+
+---
+
+## Known Issues
+
+- **ESLint `img` warnings:** Some ESLint rules flag `<img>` tags in favor of `next/image`. For static exports, `<img>` with `assetPath()` is the correct approach. These warnings are expected.
+- **Google Fonts:** Font loading may fail on restricted networks or air-gapped environments. The site should degrade gracefully with system fonts.
+- **Static export limitations:** Dynamic features like API routes, middleware, and ISR are not available. All pages must be statically renderable at build time.
+
+---
+
+## Commit Message Format
+
+Use descriptive prefixes:
+
+| Prefix | When to Use |
+|--------|------------|
+| `Add:` | New feature or page |
+| `Fix:` | Bug fix |
+| `Update:` | Enhancement to existing feature |
+| `Refactor:` | Code restructuring (no behavior change) |
+| `Docs:` | Documentation only |
+| `Test:` | Adding or updating tests |
+| `Chore:` | Build config, dependencies, CI |
+
+Example: `Add: volunteer signup form with validation`
+
+---
+
+## CI Pipeline
+
+GitHub Actions enforces the following on every PR:
+
+1. **actionlint** -- Validates workflow YAML syntax
+2. **Prettier** -- `npm run format:check` (formatting must pass)
+3. **ESLint** -- `npm run lint` (no errors allowed)
+4. **Jest** -- `npm test` (all unit tests must pass)
+5. **Build** -- `npm run build` (static export must succeed)
+6. **Playwright** -- `npm run test:e2e` (E2E tests must pass)
+
+PRs cannot merge until all checks pass.
