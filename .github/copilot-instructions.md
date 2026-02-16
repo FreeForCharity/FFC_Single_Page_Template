@@ -20,7 +20,7 @@ Issue -> branch -> PR -> merge queue. No direct commits to main.
 - **Output:** Static export (`output: 'export'` in next.config.ts)
 - **Pages:** `src/app/` (App Router conventions)
 - **Components:** `src/components/`
-- **Content:** `src/data/` (JSON files)
+- **Content:** `src/data/` (.ts modules and JSON data files)
 - **Utilities:** `src/lib/`
 
 ## Conventions
