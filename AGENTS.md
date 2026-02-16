@@ -63,10 +63,10 @@ src/
     layout.tsx          # Root layout
     [route]/page.tsx     # Additional routes (e.g., privacy-policy/)
   components/           # Reusable UI components
-  data/                 # JSON content files (site copy, metadata)
+  data/                 # Content modules (.ts) and JSON data files
   lib/                  # Utility functions and helpers
     assetPath.ts        # GitHub Pages asset path helper
-public/                 # Static assets (images, fonts, favicons)
+public/                 # Static assets (Images/, Svgs/, fonts, favicons)
 next.config.ts          # Next.js configuration
 tailwind.config.ts      # Tailwind CSS configuration
 tsconfig.json           # TypeScript configuration
@@ -98,10 +98,10 @@ These sites deploy to `https://freeforcharity.github.io/FFC_Single_Page_Template
 import { assetPath } from '@/lib/assetPath';
 
 // Correct -- works on both custom domain and GitHub Pages subpath
-<img src={assetPath('/images/hero.jpg')} alt="Hero" />
+<img src={assetPath('/Images/hero.jpg')} alt="Hero" />
 
 // Wrong -- breaks on GitHub Pages subpath
-<img src="/images/hero.jpg" alt="Hero" />
+<img src="/Images/hero.jpg" alt="Hero" />
 ```
 
 The `NEXT_PUBLIC_BASE_PATH` environment variable controls the `basePath` in `next.config.ts`. The build system handles this automatically; you should not hardcode paths.
