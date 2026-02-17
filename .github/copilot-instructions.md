@@ -16,7 +16,7 @@ Issue -> branch -> PR -> merge queue. No direct commits to main.
 
 ## Architecture
 
-- **Framework:** Next.js App Router, TypeScript, Tailwind CSS
+- **Framework:** Next.js App Router, TypeScript, Tailwind CSS v4
 - **Output:** Static export (`output: 'export'` in next.config.ts)
 - **Pages:** `src/app/` (App Router conventions)
 - **Components:** `src/components/`
@@ -32,12 +32,12 @@ Issue -> branch -> PR -> merge queue. No direct commits to main.
 
 ## CI Enforcement
 
-- actionlint (workflow YAML validation)
 - Prettier `format:check`
 - ESLint (no errors)
 - Jest (all tests pass)
 - `npm run build` (static export succeeds)
 - Playwright E2E
+- CodeQL (static analysis, separate workflow)
 
 ## Known Constraints
 
