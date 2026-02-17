@@ -16,7 +16,7 @@ See **AGENTS.md** for the complete project reference. This file gives you the pr
 | --------- | --------------------------------------------------------- |
 | Framework | Next.js with App Router (see package.json)                |
 | Language  | TypeScript (strict)                                       |
-| Styling   | Tailwind CSS                                              |
+| Styling   | Tailwind CSS v4 (CSS-based config, no config file)        |
 | Output    | Static export (`output: 'export'`)                        |
 | Hosting   | GitHub Pages (custom domain + subpath)                    |
 | Tests     | Jest + Testing Library, Playwright (E2E), jest-axe (a11y) |
