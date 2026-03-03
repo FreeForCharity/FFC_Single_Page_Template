@@ -16,6 +16,7 @@
 /playwright-report/
 /playwright/.cache/
 /.lighthouseci/
+/blob-report/
 
 # next.js
 /.next/

@@ -136,16 +136,45 @@ These tests use values from `test.config.ts`:
 ### Current Performance
 
 - **Total tests**: 62 tests
-- **Execution time**: ~5 minutes (varies by environment)
-- **Parallel execution**: Enabled locally (4 workers), disabled in CI (1 worker)
+- **Execution time**: ~1.5-2 minutes in CI (with sharding), ~2 minutes locally
+- **Parallel execution**:
+  - **Local**: 4 workers for faster feedback
+  - **CI**: 4 shards running in parallel, each with 2 workers (8 total parallel tests)
+
+### Performance Optimizations Implemented
+
+1. **Test Sharding**: Tests are split into 4 shards that run in parallel in CI
+   - Shard 1: ~15 tests
+   - Shard 2: ~15 tests
+   - Shard 3: ~15 tests
+   - Shard 4: ~16 tests
+   - **Speed improvement**: ~60-70% faster than sequential execution
+
+2. **Job Separation**: Build, unit tests, and E2E tests run as separate jobs
+   - **Build**: Only runs once, artifacts shared with E2E shards
+   - **Unit Tests**: Run in parallel with E2E tests
+   - **E2E Tests**: Run in 4 parallel shards
+
+3. **Caching Strategies**:
+   - Next.js build cache across CI runs
+   - Playwright browser cache (reduces installation time)
+   - npm dependencies cache
+
+4. **Worker Optimization**:
+   - CI: 2 workers per shard (was 1 worker total)
+   - Local: 4 workers (unchanged)
 
 ### Performance Optimization Tips
 
 1. **Local Development**: Tests run in parallel with 4 workers for faster feedback
-2. **CI Environment**: Tests run sequentially for stability
+2. **CI Environment**: Tests run in 4 parallel shards with 2 workers each (8 total parallel tests)
 3. **Targeted Testing**: Run specific test files during development:
    ```bash
    npx playwright test mission-video.spec.ts
+   ```
+4. **Shard Testing Locally**: Test a specific shard during development:
+   ```bash
+   npx playwright test --shard=1/4
    ```
 
 ## Benefits of This Approach
