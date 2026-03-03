@@ -176,10 +176,6 @@ These tests use values from `test.config.ts`:
    ```bash
    npx playwright test --shard=1/4
    ```
-   npx playwright test --shard=1/4
-   ```
-
-   ```
 
 ## Benefits of This Approach
 
