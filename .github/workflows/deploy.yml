@@ -92,30 +92,38 @@ jobs:
           DEPLOY_URL: ${{ steps.deployment.outputs.page_url }}
         run: |
           python3 - <<'PY'
-          import os, sys, time, urllib.request
-      
+          import os, sys, time, socket, urllib.request, urllib.error
           url = os.environ.get("DEPLOY_URL")
           if not url:
               print("DEPLOY_URL not set", file=sys.stderr)
-              sys.exit(1)
-      
-          attempts = 12
+              sys.exit(2)
+          total_wait_seconds = 180
           delay_seconds = 5
-      
-          for i in range(1, attempts + 1):
+          timeout_seconds = 10
+          deadline = time.monotonic() + total_wait_seconds
+          attempt = 0
+          last = None
+          while True:
+              attempt += 1
               try:
                   req = urllib.request.Request(url, method="GET", headers={"User-Agent": "gh-actions-smoke"})
-                  with urllib.request.urlopen(req, timeout=20) as resp:
+                  with urllib.request.urlopen(req, timeout=timeout_seconds) as resp:
                       code = resp.getcode()
-                  print(f"Attempt {i}/{attempts}: HTTP {code}")
+                  print(f"Attempt {attempt}: HTTP {code}")
                   if 200 <= code < 400:
                       print("Smoke check passed")
                       sys.exit(0)
-              except Exception as e:
-                  print(f"Attempt {i}/{attempts} error: {e}")
-              if i < attempts:
-                  time.sleep(delay_seconds)
-      
-          print(f"Smoke check failed: {url}", file=sys.stderr)
-          sys.exit(1)
+                  last = f"HTTP {code}"
+              except urllib.error.HTTPError as e:
+                  last = f"HTTPError {e.code}"
+                  print(f"Attempt {attempt}: HTTPError {e.code}")
+              except (urllib.error.URLError, TimeoutError, socket.timeout) as e:
+                  last = str(e)
+                  print(f"Attempt {attempt} error: {e}")
+              except Exception:
+                  raise
+              if time.monotonic() >= deadline:
+                  print(f"Smoke check failed: {url} (last: {last})", file=sys.stderr)
+                  sys.exit(1)
+              time.sleep(delay_seconds)
           PY
