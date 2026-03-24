@@ -3,10 +3,10 @@ name: Deploy to GitHub Pages
 on:
   # Runs after CI workflow completes successfully on main branch
   workflow_run:
-    workflows: ['CI - Build and Test']
+    workflows: ["CI - Build and Test"]
     types:
       - completed
-    branches: ['main']
+    branches: ["main"]
 
   # Allows manual deployment from Actions tab
   workflow_dispatch:
@@ -20,7 +20,7 @@ permissions:
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
-  group: 'pages'
+  group: "pages"
   cancel-in-progress: false
 
 jobs:
@@ -37,8 +37,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -85,7 +85,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
 
       - name: Post-deploy smoke check
         env:
