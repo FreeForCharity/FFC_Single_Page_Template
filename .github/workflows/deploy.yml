@@ -119,8 +119,6 @@ jobs:
               except (urllib.error.URLError, TimeoutError, socket.timeout) as e:
                   last = str(e)
                   print(f"Attempt {attempt} error: {e}")
-              except Exception:
-                  raise
               if time.monotonic() >= deadline:
                   print(f"Smoke check failed: {url} (last: {last})", file=sys.stderr)
                   sys.exit(1)
