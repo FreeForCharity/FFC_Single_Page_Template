@@ -10,4 +10,4 @@ When reviewing this repository (especially PRs that touch GitHub Actions workflo
   - Avoids `except Exception:` unless there is a strong reason; prefer catching expected HTTP/network errors.
   - Logs helpful context (HTTP status codes, last error) without printing any secrets.
 
-If you see issues outside this scope, mention them briefly but donâ€™t block the PR unless they are security or correctness bugs.
+If you see issues outside this scope, mention them briefly but don't block the PR unless they are security or correctness bugs.
