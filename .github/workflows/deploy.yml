@@ -138,7 +138,7 @@ jobs:
   notify-failure:
     name: Notify on production deploy failure
     needs: [deploy]
-    if: ${{ always() && needs.deploy.result == 'failure' && (github.event_name == 'workflow_run' || github.ref == 'refs/heads/main') }}
+    if: ${{ always() && needs.deploy.result == 'failure' && (github.event_name != 'workflow_run' || github.event.workflow_run.head_branch == 'main') && (github.event_name == 'workflow_run' || github.ref == 'refs/heads/main') }}
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -158,11 +158,6 @@ jobs:
             const branch = isWorkflowRun
               ? workflowRun.head_branch
               : (context.ref && context.ref.startsWith("refs/heads/") ? context.ref.substring("refs/heads/".length) : context.ref);
-
-            if (branch !== "main") {
-              core.info(`Skipping incident creation for event "${context.eventName}" on non-main ref: ${branch}`);
-              return;
-            }
 
             const labels = ["incident", "deployment"];
             for (const name of labels) {
@@ -197,22 +192,10 @@ jobs:
                 repo,
                 state: "open",
                 per_page: 100,
-                labels: labels.join(","),
               });
               openIssues = (allItems || []).filter((item) => !item.pull_request);
             } catch (e) {
-              core.warning(`Could not list existing labeled issues for dedupe: ${e && e.message ? e.message : e}`);
-              try {
-                const allItems = await github.paginate(github.rest.issues.listForRepo, {
-                  owner,
-                  repo,
-                  state: "open",
-                  per_page: 100,
-                });
-                openIssues = (allItems || []).filter((item) => !item.pull_request);
-              } catch (e2) {
-                core.warning(`Could not list existing issues for dedupe: ${e2 && e2.message ? e2.message : e2}`);
-              }
+              core.warning(`Could not list existing issues for dedupe: ${e && e.message ? e.message : e}`);
             }
 
             const duplicate = openIssues.find((issue) => (issue.title || "") === title);
@@ -239,10 +222,8 @@ jobs:
               body,
             });
 
-            for (const name of labels) {
-              try {
-                await github.rest.issues.addLabels({ owner, repo, issue_number: created.data.number, labels: [name] });
-              } catch (e) {
-                core.warning(`Could not apply label "${name}" to incident: ${e && e.message ? e.message : e}`);
-              }
+            try {
+              await github.rest.issues.addLabels({ owner, repo, issue_number: created.data.number, labels });
+            } catch (e) {
+              core.warning(`Could not apply labels to incident: ${e && e.message ? e.message : e}`);
             }
