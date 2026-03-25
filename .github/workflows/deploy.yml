@@ -205,36 +205,34 @@ jobs:
 
             async function findDuplicateIssueNumber() {
               const escapedTitle = title.replace(/"/g, "\\\"");
-              const q = `repo:${owner}/${repo} is:issue is:open in:title "${escapedTitle}" label:incident label:deployment`;
+              const q = `repo:${owner}/${repo} is:issue is:open in:title "${escapedTitle}"`;
               try {
                 const res = await github.rest.search.issuesAndPullRequests({ q, per_page: 10 });
                 const items = (res && res.data && res.data.items) ? res.data.items : [];
-                const match = items.find((item) => !item.pull_request && (item.title || "") === title);
-                if (match) {
+                const matches = items.filter((item) => !item.pull_request && (item.title || "") === title);
+                for (const m of matches) {
                   try {
-                    const full = await github.rest.issues.get({ owner, repo, issue_number: match.number });
+                    const full = await github.rest.issues.get({ owner, repo, issue_number: m.number });
                     const fullBody = (full && full.data && full.data.body) ? full.data.body : "";
-                    if (fullBody.includes(marker)) return match.number;
+                    if (fullBody.includes(marker)) return m.number;
                   } catch (e) {
-                    core.warning(`Could not validate duplicate issue body: ${e && e.message ? e.message : e}`);
-                    return match.number;
+                    core.warning(`Could not validate possible duplicate issue body: ${e && e.message ? e.message : e}`);
                   }
                 }
               } catch (e) {
                 core.warning(`Search API failed for dedupe: ${e && e.message ? e.message : e}`);
               }
 
-              // Fallback: list only labeled open issues (server-side filter) and match title.
+              // Fallback: list the first page of open issues and match by title + marker.
               try {
-                const allItems = await github.paginate(github.rest.issues.listForRepo, {
+                const list = await github.rest.issues.listForRepo({
                   owner,
                   repo,
                   state: "open",
-                  labels: incidentLabels.join(","),
                   per_page: 100,
                 });
-                const openIssues = (allItems || []).filter((item) => !item.pull_request);
-                const dup = openIssues.find((issue) => (issue.title || "") === title);
+                const openIssues = (list && list.data ? list.data : []).filter((item) => !item.pull_request);
+                const dup = openIssues.find((issue) => (issue.title || "") === title && (issue.body || "").includes(marker));
                 return dup ? dup.number : null;
               } catch (e) {
                 core.warning(`Could not list existing issues for dedupe: ${e && e.message ? e.message : e}`);
