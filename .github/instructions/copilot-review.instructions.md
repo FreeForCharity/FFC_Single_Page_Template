@@ -21,3 +21,5 @@ For any "post-deploy smoke check" step, confirm it:
 
 If you see issues outside this scope, mention them briefly.
 Don't block the PR unless they are security or correctness bugs.
+
+<!-- Copilot review wave: 2026-03-25T03:31:43.7766799Z -->
