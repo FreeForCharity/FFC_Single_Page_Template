@@ -6,6 +6,12 @@ When reviewing this repository, please focus on:
 - GitHub Actions workflow correctness and consistency.
 - Avoiding whitespace-only lines or trailing spaces in `run: |` blocks.
 
+This PR also adds an incident-notification job (commonly named `notify-failure`). Please confirm:
+
+- It runs only when the deploy job fails (via `always()` + `needs.<job>.result == 'failure'`).
+- It uses least-privilege permissions (typically `issues: write` and `contents: read`).
+- It links to the failing run and avoids printing any secrets.
+
 For any "post-deploy smoke check" step, confirm it:
 
 - Runs in the job that has access to the deployed URL.
