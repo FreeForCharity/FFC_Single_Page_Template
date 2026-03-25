@@ -150,12 +150,13 @@ jobs:
             const owner = context.repo.owner;
             const repo = context.repo.repo;
 
-            const isWorkflowRun = context.eventName === "workflow_run";
+            const workflowRun = context.payload && context.payload.workflow_run;
+            const isWorkflowRun = Boolean(workflowRun);
             const deployRunUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
-            const upstreamRunUrl = isWorkflowRun ? context.payload.workflow_run.html_url : null;
-            const sha = isWorkflowRun ? context.payload.workflow_run.head_sha : context.sha;
+            const upstreamRunUrl = isWorkflowRun ? workflowRun.html_url : null;
+            const sha = isWorkflowRun ? workflowRun.head_sha : context.sha;
             const branch = isWorkflowRun
-              ? context.payload.workflow_run.head_branch
+              ? workflowRun.head_branch
               : (context.ref && context.ref.startsWith("refs/heads/") ? context.ref.substring("refs/heads/".length) : context.ref);
             const shortSha = (sha || "").substring(0, 7);
 
@@ -174,7 +175,7 @@ jobs:
               }
             }
 
-            const title = `Production deployment failed (${branch} @ ${shortSha})`;
+            const title = `Production deployment failed (${branch})`;
             const bodyLines = [
               `Deploy run: ${deployRunUrl}`,
             ];
@@ -197,17 +198,25 @@ jobs:
                 repo,
                 state: "open",
                 per_page: 100,
+                labels: labels.join(","),
               });
               openIssues = (allItems || []).filter((item) => !item.pull_request);
             } catch (e) {
-              core.warning(`Could not list existing issues for dedupe: ${e && e.message ? e.message : e}`);
+              core.warning(`Could not list existing labeled issues for dedupe: ${e && e.message ? e.message : e}`);
+              try {
+                const allItems = await github.paginate(github.rest.issues.listForRepo, {
+                  owner,
+                  repo,
+                  state: "open",
+                  per_page: 100,
+                });
+                openIssues = (allItems || []).filter((item) => !item.pull_request);
+              } catch (e2) {
+                core.warning(`Could not list existing issues for dedupe: ${e2 && e2.message ? e2.message : e2}`);
+              }
             }
 
-            const duplicate = openIssues.find((issue) => {
-              const issueTitle = issue.title || "";
-              const issueBody = issue.body || "";
-              return issueTitle === title || issueBody.includes(`Deploy run: ${deployRunUrl}`);
-            });
+            const duplicate = openIssues.find((issue) => (issue.title || "") === title);
 
             if (duplicate) {
               core.info(`Incident issue #${duplicate.number} already exists; adding a comment.`);
