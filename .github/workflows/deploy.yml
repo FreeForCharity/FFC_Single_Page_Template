@@ -151,7 +151,8 @@ jobs:
             const repo = context.repo.repo;
 
             const isWorkflowRun = context.eventName === "workflow_run";
-            const failedRunUrl = isWorkflowRun ? context.payload.workflow_run.html_url : `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            const deployRunUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            const upstreamRunUrl = isWorkflowRun ? context.payload.workflow_run.html_url : null;
             const sha = isWorkflowRun ? context.payload.workflow_run.head_sha : context.sha;
             const branch = isWorkflowRun
               ? context.payload.workflow_run.head_branch
@@ -174,14 +175,20 @@ jobs:
             }
 
             const title = `Production deployment failed (${branch} @ ${shortSha})`;
-            const body = [
-              `Workflow run: ${failedRunUrl}`,
+            const bodyLines = [
+              `Deploy run: ${deployRunUrl}`,
+            ];
+            if (upstreamRunUrl) {
+              bodyLines.push(`Upstream run: ${upstreamRunUrl}`);
+            }
+            bodyLines.push(
               "",
               `Ref: ${branch}`,
               `SHA: ${sha}`,
               "",
-              "_This issue was automatically created by the deploy workflow._",
-            ].join("\\n");
+              "_This issue was automatically created by the deploy workflow._"
+            );
+            const body = bodyLines.join("\\n");
 
             let openIssues = [];
             try {
@@ -189,10 +196,9 @@ jobs:
                 owner,
                 repo,
                 state: "open",
-                labels: labels.join(","),
                 per_page: 100,
               });
-              openIssues = resp.data || [];
+              openIssues = (resp.data || []).filter((item) => !item.pull_request);
             } catch (e) {
               core.warning(`Could not list existing issues for dedupe: ${e && e.message ? e.message : e}`);
             }
@@ -200,7 +206,7 @@ jobs:
             const duplicate = openIssues.find((issue) => {
               const issueTitle = issue.title || "";
               const issueBody = issue.body || "";
-              return issueTitle === title || issueBody.includes(`Workflow run: ${failedRunUrl}`);
+              return issueTitle === title || issueBody.includes(`Deploy run: ${deployRunUrl}`);
             });
 
             if (duplicate) {
@@ -218,10 +224,17 @@ jobs:
               return;
             }
 
-            await github.rest.issues.create({
+            const created = await github.rest.issues.create({
               owner,
               repo,
               title,
               body,
-              labels,
             });
+
+            for (const name of labels) {
+              try {
+                await github.rest.issues.addLabels({ owner, repo, issue_number: created.data.number, labels: [name] });
+              } catch (e) {
+                core.warning(`Could not apply label "${name}" to incident: ${e && e.message ? e.message : e}`);
+              }
+            }
