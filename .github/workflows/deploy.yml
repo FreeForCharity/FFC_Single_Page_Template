@@ -223,17 +223,25 @@ jobs:
                 core.warning(`Search API failed for dedupe: ${e && e.message ? e.message : e}`);
               }
 
-              // Fallback: list the first page of open issues and match by title + marker.
+              // Fallback: page through open issues (bounded) and match by title + marker.
               try {
-                const list = await github.rest.issues.listForRepo({
-                  owner,
-                  repo,
-                  state: "open",
-                  per_page: 100,
-                });
-                const openIssues = (list && list.data ? list.data : []).filter((item) => !item.pull_request);
-                const dup = openIssues.find((issue) => (issue.title || "") === title && (issue.body || "").includes(marker));
-                return dup ? dup.number : null;
+                const perPage = 100;
+                const maxPages = 10;
+                for (let page = 1; page <= maxPages; page++) {
+                  const list = await github.rest.issues.listForRepo({
+                    owner,
+                    repo,
+                    state: "open",
+                    per_page: perPage,
+                    page,
+                  });
+                  const data = (list && list.data) ? list.data : [];
+                  const openIssues = data.filter((item) => !item.pull_request);
+                  const dup = openIssues.find((issue) => (issue.title || "") === title && (issue.body || "").includes(marker));
+                  if (dup) return dup.number;
+                  if (data.length < perPage) break;
+                }
+                return null;
               } catch (e) {
                 core.warning(`Could not list existing issues for dedupe: ${e && e.message ? e.message : e}`);
                 return null;
