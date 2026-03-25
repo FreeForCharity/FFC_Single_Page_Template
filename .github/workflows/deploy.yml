@@ -133,3 +133,157 @@ jobs:
                   sys.exit(1)
               time.sleep(min(delay_seconds, remaining))
           PY
+
+  notify-failure:
+    name: Notify on production deploy failure
+    needs: [deploy]
+    if: ${{ always() && needs.deploy.result == 'failure' && (github.event_name != 'workflow_run' || github.event.workflow_run.head_branch == 'main') && (github.event_name == 'workflow_run' || github.ref == 'refs/heads/main') }}
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Create incident issue
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            const workflowRun = context.payload && context.payload.workflow_run;
+            const isWorkflowRun = Boolean(workflowRun);
+            const deployRunUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            const upstreamRunUrl = isWorkflowRun ? workflowRun.html_url : null;
+            const sha = isWorkflowRun ? workflowRun.head_sha : context.sha;
+            const branch = isWorkflowRun
+              ? workflowRun.head_branch
+              : (context.ref && context.ref.startsWith("refs/heads/") ? context.ref.substring("refs/heads/".length) : context.ref);
+
+            const incidentLabelSpecs = [
+              { name: "incident", color: "B60205" },
+              { name: "deployment", color: "B60205" },
+            ];
+            const incidentLabels = incidentLabelSpecs.map((l) => l.name);
+            const marker = "<!-- ffc-incident:prod-deploy-failure -->";
+
+            // Best-effort: ensure labels exist without spamming 422s every run.
+            try {
+              const existing = await github.paginate(github.rest.issues.listLabelsForRepo, {
+                owner,
+                repo,
+                per_page: 100,
+              });
+              const existingNames = new Set((existing || []).map((l) => l && l.name).filter(Boolean));
+              for (const spec of incidentLabelSpecs) {
+                if (existingNames.has(spec.name)) continue;
+                try {
+                  await github.rest.issues.createLabel({ owner, repo, name: spec.name, color: spec.color });
+                } catch (e) {
+                  core.warning(`Could not create label "${spec.name}": ${e && e.message ? e.message : e}`);
+                }
+              }
+            } catch (e) {
+              core.warning(`Could not list/create labels: ${e && e.message ? e.message : e}`);
+            }
+
+            const title = `Production deployment failed (${branch})`;
+            const bodyLines = [
+              `Deploy run: ${deployRunUrl}`,
+            ];
+            if (upstreamRunUrl) {
+              bodyLines.push(`Upstream run: ${upstreamRunUrl}`);
+            }
+            bodyLines.push(
+              "",
+              `Ref: ${branch}`,
+              `SHA: ${sha}`,
+              "",
+              marker,
+              "_This issue was automatically created by the deploy workflow._"
+            );
+            const body = bodyLines.join("\n");
+
+            async function findDuplicateIssueNumber() {
+              const escapedTitle = title.replace(/"/g, "\\\"");
+              const q = `repo:${owner}/${repo} is:issue is:open in:title "${escapedTitle}"`;
+              try {
+                const res = await github.rest.search.issuesAndPullRequests({ q, per_page: 10 });
+                const items = (res && res.data && res.data.items) ? res.data.items : [];
+                const matches = items.filter((item) => !item.pull_request && (item.title || "") === title);
+                for (const m of matches) {
+                  try {
+                    const full = await github.rest.issues.get({ owner, repo, issue_number: m.number });
+                    const fullBody = (full && full.data && full.data.body) ? full.data.body : "";
+                    if (fullBody.includes(marker)) return m.number;
+                  } catch (e) {
+                    core.warning(`Could not validate possible duplicate issue body: ${e && e.message ? e.message : e}`);
+                  }
+                }
+              } catch (e) {
+                core.warning(`Search API failed for dedupe: ${e && e.message ? e.message : e}`);
+              }
+
+              // Fallback: page through open issues (bounded) and match by title + marker.
+              try {
+                const perPage = 100;
+                const maxPages = 10;
+                for (let page = 1; page <= maxPages; page++) {
+                  const list = await github.rest.issues.listForRepo({
+                    owner,
+                    repo,
+                    state: "open",
+                    per_page: perPage,
+                    page,
+                  });
+                  const data = (list && list.data) ? list.data : [];
+                  const openIssues = data.filter((item) => !item.pull_request);
+                  const dup = openIssues.find((issue) => (issue.title || "") === title && (issue.body || "").includes(marker));
+                  if (dup) return dup.number;
+                  if (data.length < perPage) break;
+                }
+                return null;
+              } catch (e) {
+                core.warning(`Could not list existing issues for dedupe: ${e && e.message ? e.message : e}`);
+                return null;
+              }
+            }
+
+            const duplicateNumber = await findDuplicateIssueNumber();
+            if (duplicateNumber) {
+              core.info(`Incident issue #${duplicateNumber} already exists; adding a comment.`);
+              try {
+                await github.rest.issues.createComment({
+                  owner,
+                  repo,
+                  issue_number: duplicateNumber,
+                  body: [
+                    "Another deployment failure was detected:",
+                    "",
+                    body,
+                  ].join("\n"),
+                });
+              } catch (e) {
+                core.warning(`Could not comment on incident issue: ${e && e.message ? e.message : e}`);
+              }
+              return;
+            }
+
+            let created;
+            try {
+              created = await github.rest.issues.create({
+                owner,
+                repo,
+                title,
+                body,
+                labels: incidentLabels,
+              });
+            } catch (e) {
+              core.warning(`Could not create labeled incident issue: ${e && e.message ? e.message : e}`);
+              try {
+                created = await github.rest.issues.create({ owner, repo, title, body });
+              } catch (e2) {
+                core.warning(`Could not create incident issue: ${e2 && e2.message ? e2.message : e2}`);
+                return;
+              }
+            }
+
+            core.info(`Created incident issue #${created.data.number}`);
