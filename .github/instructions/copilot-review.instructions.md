@@ -9,7 +9,7 @@ When reviewing this repository, please focus on:
 This PR also adds an incident-notification job (commonly named `notify-failure`). Please confirm:
 
 - It runs only when the deploy job fails (via `always()` + `needs.<job>.result == 'failure'`).
-- It uses least-privilege permissions (typically `issues: write` and `contents: read`).
+- It uses least-privilege permissions (typically just `issues: write`; omit `contents: read` unless the job reads repo contents).
 - It links to the failing run and avoids printing any secrets.
 
 For any "post-deploy smoke check" step, confirm it:
