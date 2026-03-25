@@ -137,8 +137,8 @@ jobs:
 
   notify-failure:
     name: Notify on production deploy failure
-    needs: [build]
-    if: ${{ always() && needs.build.result == 'failure' && github.event_name != 'pull_request' && (github.event_name == 'workflow_run' || github.ref == 'refs/heads/main') }}
+    needs: [deploy]
+    if: ${{ always() && needs.deploy.result == 'failure' && (github.event_name == 'workflow_run' || github.ref == 'refs/heads/main') }}
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -158,7 +158,6 @@ jobs:
             const branch = isWorkflowRun
               ? workflowRun.head_branch
               : (context.ref && context.ref.startsWith("refs/heads/") ? context.ref.substring("refs/heads/".length) : context.ref);
-            const shortSha = (sha || "").substring(0, 7);
 
             if (branch !== "main") {
               core.info(`Skipping incident creation for event "${context.eventName}" on non-main ref: ${branch}`);
