@@ -41,7 +41,7 @@ jobs:
           cache: 'npm'
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
         with:
           # Automatically inject basePath in your Next.js configuration file and disable
           # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
@@ -84,7 +84,7 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
       - name: Post-deploy smoke check
         env:
@@ -122,7 +122,7 @@ jobs:
                   print(f"Attempt {attempt}: HTTPError {e.code}")
                   try:
                       e.close()
-                  except Exception:
+                  except OSError:
                       pass
               except (urllib.error.URLError, TimeoutError, socket.timeout) as e:
                   last = str(e)
